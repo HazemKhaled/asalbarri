@@ -58,13 +58,13 @@ Ti.App.addEventListener('openAboutWindow', function() {
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
-
 	var CategoryWin = require('ui/common/categoryWin');
 
 	Ti.App.catalogTab.open(new CategoryWin(e.parent));
 });
 
 Ti.App.addEventListener('openProductWindow', function(e) {
+	var ProductsListWin = require('ui/common/productsListWin');
 
-	alert('في منتجات بس شغالين عليها اهو :)');
+	Ti.App.catalogTab.open(new ProductsListWin(e.data));
 });
