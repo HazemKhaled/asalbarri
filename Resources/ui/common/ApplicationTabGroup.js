@@ -3,12 +3,13 @@ function ApplicationTabGroup(Window) {
 	var self = Ti.UI.createTabGroup();
 
 	//create app tabs
-	var loginWindow = require('ui/common/auth/loginWin');
+	var Window = require('ui/handheld/ApplicationWindow');
+	var categoryWin = require('ui/common/categoryWin');
 
 	Ti.App.catalogTab = Ti.UI.createTab({
 		title : 'المنتجات',
 		icon : '/images/KS_nav_ui.png',
-		window : new Window()
+		window : new categoryWin(0)
 	});
 
 	Ti.App.cartTab = Ti.UI.createTab({
@@ -23,6 +24,7 @@ function ApplicationTabGroup(Window) {
 		window : new Window()
 	});
 
+	var loginWindow = require('ui/common/auth/loginWin');
 	Ti.App.orderTab = Ti.UI.createTab({
 		title : 'الطلبات',
 		icon : '/images/KS_nav_views.png',
