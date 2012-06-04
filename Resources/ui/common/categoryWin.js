@@ -3,16 +3,19 @@ function categoryWin(parentID) {
 		title : 'عسل بري',
 		backgroundColor : 'white'
 	});
-	//openAboutWindow
-	var aboutBtn = Ti.UI.createButton({
-		title : 'الدعم'
-	});
 
-	aboutBtn.addEventListener('click', function() {
-		Ti.App.fireEvent('openAboutWindow');
-	});
+	if (parentID == 0) {
+		//openAboutWindow
+		var aboutBtn = Ti.UI.createButton({
+			title : 'الدعم'
+		});
 
-	self.setLeftNavButton(aboutBtn);
+		aboutBtn.addEventListener('click', function() {
+			Ti.App.fireEvent('openAboutWindow');
+		});
+
+		self.setLeftNavButton(aboutBtn);
+	}
 
 	function filterData() {
 
@@ -53,7 +56,7 @@ function categoryWin(parentID) {
 					text : rows[i].title,
 					height : 'auto',
 					left : 0,
-					right : '170dp',
+					right : '110dp',
 					height : '100dp',
 					color : '#000000',
 					textAlign : 'right'
@@ -98,10 +101,20 @@ function categoryWin(parentID) {
 
 		if (e.rowData.data) {
 
-			// TODO: check any window to open
-			Ti.App.fireEvent('openProductWindow', {
-				data : e.rowData.data
-			});
+			if (e.rowData.data.sub_cats_count > 0) {
+				Ti.App.fireEvent('openCategoryWindow', {
+					parentID : e.rowData.data.id
+				});
+			} else if (e.rowData.data.products_count > 0) {
+				Ti.App.fireEvent('openProductWindow', {
+					data : e.rowData.data
+				});
+			} else {
+				Ti.UI.createAlertDialog({
+					title : 'عفواً !',
+					message : 'لا يوجد منتجات حالياً بهذا القسم'
+				}).show();
+			}
 		}
 	});
 
