@@ -1,10 +1,11 @@
 function categoryWin(parent) {
 	var self = Ti.UI.createWindow({
 		title : parent.title ? parent.title : 'عسل بري',
-		backgroundColor : 'white'
+		backgroundColor : 'white',
+		backButtonTitle : 'عودة'
 	});
 
-	if (parent.id == 0) {
+	if (!parent.id) {
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
 			title : 'الدعم'
