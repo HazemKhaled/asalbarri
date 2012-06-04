@@ -79,7 +79,7 @@ function forgetpasswordWin() {
 			}).show();
 			Ti.App.fireEvent('hideLoading');
 		}
-		xhr.open('POST', "https://api.eshtery.me/authapi/forgot_password");
+		xhr.open('POST', Ti.App.APIURL + 'authapi/forgot_password');
 		xhr.send({
 			login : emailField.value
 		});

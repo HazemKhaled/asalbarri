@@ -164,7 +164,7 @@ function loginWin() {
 			Ti.App.fireEvent('closeLoginWindow');
 		}
 
-		xhr.open('POST', 'https://api.eshtery.me/authapi/login');
+		xhr.open('POST', Ti.App.APIURL + 'authapi/login');
 		xhr.send({
 			login : userField.value,
 			password : passField.value

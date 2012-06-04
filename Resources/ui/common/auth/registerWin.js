@@ -175,7 +175,7 @@ function openRegisterWindow() {
 			Ti.App.fireEvent('closeRegisterWindow');
 		}
 
-		xhr.open('POST', 'https://api.eshtery.me/authapi/register');
+		xhr.open('POST', Ti.App.APIURL + 'authapi/register');
 		xhr.send({
 			username : mobileField.value,
 			email : emailField.value,
