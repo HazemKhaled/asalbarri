@@ -3,6 +3,16 @@ function categoryWin(parentID) {
 		title : 'عسل بري',
 		backgroundColor : 'white'
 	});
+	//openAboutWindow
+	var aboutBtn = Ti.UI.createButton({
+		title : 'الدعم'
+	});
+
+	aboutBtn.addEventListener('click', function() {
+		Ti.App.fireEvent('openAboutWindow');
+	});
+
+	self.setLeftNavButton(aboutBtn);
 
 	function filterData() {
 
