@@ -16,6 +16,7 @@ if (Ti.version < 1.8) {
 }
 
 Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
+Ti.App.APITHUMB = 'http://localhost/mtrade/timthumb.php?';
 
 // This is a single context application with mutliple windows in a stack
 //(function() {
@@ -26,15 +27,8 @@ var osname = Ti.Platform.osname, version = Ti.Platform.version, height = Ti.Plat
 //yourself what you consider a tablet form factor for android
 Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || height > 899));
 
-var Window;
-if (Ti.App.isTablet) {
-	Window = require('ui/tablet/ApplicationWindow');
-} else {
-	Window = require('ui/handheld/ApplicationWindow');
-}
-
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
-new ApplicationTabGroup(Window).open();
+new ApplicationTabGroup().open();
 
 //Ti.UI.currentTab
 Ti.include('/lib/events.js');
