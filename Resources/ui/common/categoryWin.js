@@ -1,10 +1,10 @@
-function categoryWin(parentID) {
+function categoryWin(parent) {
 	var self = Ti.UI.createWindow({
-		title : 'عسل بري',
+		title : parent.title ? parent.title : 'عسل بري',
 		backgroundColor : 'white'
 	});
 
-	if (parentID == 0) {
+	if (parent.id == 0) {
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
 			title : 'الدعم'
@@ -25,7 +25,7 @@ function categoryWin(parentID) {
 
 		var xhr = Ti.Network.createHTTPClient();
 
-		xhr.open('GET', Ti.App.APIURL + 'api/catsByID/' + parentID);
+		xhr.open('GET', Ti.App.APIURL + 'api/catsByID/' + parent.id);
 
 		xhr.onerror = function() {
 			table.fireEvent('reloadData', {
@@ -103,7 +103,7 @@ function categoryWin(parentID) {
 
 			if (e.rowData.data.sub_cats_count > 0) {
 				Ti.App.fireEvent('openCategoryWindow', {
-					parentID : e.rowData.data.id
+					parent : e.rowData.data
 				});
 			} else if (e.rowData.data.products_count > 0) {
 				Ti.App.fireEvent('openProductWindow', {

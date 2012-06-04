@@ -61,7 +61,7 @@ Ti.App.addEventListener('openCategoryWindow', function(e) {
 
 	var CategoryWin = require('ui/common/categoryWin');
 
-	Ti.App.catalogTab.open(new CategoryWin(e.parentID));
+	Ti.App.catalogTab.open(new CategoryWin(e.parent));
 });
 
 Ti.App.addEventListener('openProductWindow', function(e) {
