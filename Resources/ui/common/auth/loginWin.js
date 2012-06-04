@@ -1,25 +1,11 @@
 function loginWin() {
 	var androidshift = 0;
 	var self = Ti.UI.createWindow({
-		backgroundImage : '/images/app-bg.png',
-		barImage : '/images/bar.png',
-		barColor : 'gray',
 		title : 'دخول',
 		fullscreen : false,
 		navBarHidden : Ti.Platform.osname == 'iphone' ? false : true,
 		orientationModes : [Titanium.UI.PORTRAIT]
 	});
-
-	if (Ti.Platform.osname == 'android') {
-		var barImage = Ti.UI.createView({
-			backgroundImage : '/images/bar-logo.png',
-			width : Ti.Platform.displayCaps.platformWidth,
-			height : '44dp',
-			top : 0
-		});
-		self.add(barImage);
-		androidshift = 44
-	}
 
 	Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());
 
@@ -36,14 +22,6 @@ function loginWin() {
 		contentWidth : Ti.Platform.displayCaps.platformWidth,
 		contentHeight : 'auto'
 	});
-
-	var logoImg = Ti.UI.createImageView({
-		image : '/images/logo.png',
-		top : (10 + androidshift) + 'dp',
-		width : '55dp',
-		height : '55dp'
-	});
-	scrollview.add(logoImg);
 
 	var userField = Ti.UI.createTextField({
 		hintText : 'رقم الموبايل',
