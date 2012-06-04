@@ -116,20 +116,9 @@ function productsListWin(parent) {
 
 		if (e.rowData.data) {
 
-			if (e.rowData.data.sub_cats_count > 0) {
-				Ti.App.fireEvent('openCategoryWindow', {
-					parentID : e.rowData.data.id
-				});
-			} else if (e.rowData.data.products_count > 0) {
-				Ti.App.fireEvent('openProductWindow', {
-					data : e.rowData.data
-				});
-			} else {
-				Ti.UI.createAlertDialog({
-					title : 'عفواً !',
-					message : 'لا يوجد منتجات حالياً بهذا القسم'
-				}).show();
-			}
+			Ti.App.fireEvent('openProductWindow', {
+				data : e.rowData.data
+			});
 		}
 	});
 

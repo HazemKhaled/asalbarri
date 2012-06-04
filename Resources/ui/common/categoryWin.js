@@ -107,7 +107,7 @@ function categoryWin(parent) {
 					parent : e.rowData.data
 				});
 			} else if (e.rowData.data.products_count > 0) {
-				Ti.App.fireEvent('openProductWindow', {
+				Ti.App.fireEvent('openProductListWindow', {
 					data : e.rowData.data
 				});
 			} else {
