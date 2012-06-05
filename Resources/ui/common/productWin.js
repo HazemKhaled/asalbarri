@@ -9,7 +9,7 @@ function productWin(product) {
 
 	var picWidth = Ti.Platform.displayCaps.platformWidth - 40;
 	var img = Ti.UI.createImageView({
-		image : Ti.App.APIURL + 'thumb/product/' + product.id + '/123/34/1',
+		image : Ti.App.APIURL + 'api/pic/product/' + product.id + '/123/34/1',
 		width : picWidth + 'dp',
 		height : '123dp',
 		top : '34dp',

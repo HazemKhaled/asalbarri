@@ -46,7 +46,7 @@ function categoryWin(parent) {
 				});
 
 				var img = Ti.UI.createImageView({
-					image : Ti.App.APIURL + 'thumb/category/' + rows[i].id + '/100/100/1',
+					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
 					width : '100dp',
 					height : '100p',
 					right : '5dp'
