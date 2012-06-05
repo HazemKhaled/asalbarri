@@ -16,7 +16,6 @@ if (Ti.version < 1.8) {
 }
 
 Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
-Ti.App.APITHUMB = 'http://localhost/mtrade/timthumb.php?';
 
 // This is a single context application with mutliple windows in a stack
 //(function() {

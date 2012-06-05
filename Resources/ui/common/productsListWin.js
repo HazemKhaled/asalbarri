@@ -33,7 +33,7 @@ function productsListWin(parent) {
 				});
 
 				var img = Ti.UI.createImageView({
-					image : Ti.App.APITHUMB + 'w=150&h=78&src=' + rows[i].image,
+					image : Ti.App.APIURL + 'thumb/product/' + rows[i].id + '/100/100/1',
 					width : '100dp',
 					height : '100p',
 					right : '5dp'
