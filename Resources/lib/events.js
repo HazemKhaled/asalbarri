@@ -54,7 +54,14 @@ Ti.App.addEventListener('openForgetpasswordWindow', function(e) {
 Ti.App.addEventListener('openAboutWindow', function() {
 	var AboutWin = require('/ui/common/aboutWin');
 
-	new AboutWin().open();
+	var AboutWin = new AboutWin();
+	
+	AboutWin.open();
+	
+	Ti.App.addEventListener('closeAboutWindow', function(e) {
+
+		AboutWin.close();
+	});
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
