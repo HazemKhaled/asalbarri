@@ -70,5 +70,8 @@ Ti.App.addEventListener('openProductListWindow', function(e) {
 });
 
 Ti.App.addEventListener('openProductWindow', function(e) {
-	alert('اتقل |)');
+
+	var ProductWin = require('/ui/common/productWin');
+
+	Ti.App.catalogTab.open(new ProductWin(e.data));
 });
