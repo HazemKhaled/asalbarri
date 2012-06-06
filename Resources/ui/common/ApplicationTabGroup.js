@@ -18,10 +18,11 @@ function ApplicationTabGroup(Window) {
 		window : new loginWindow()
 	});
 
+	var walletWin = require('ui/common/walletWin');
 	Ti.App.walletTab = Ti.UI.createTab({
 		title : 'المحفظة',
 		icon : '/images/KS_nav_views.png',
-		window : new loginWindow()
+		window : new walletWin()
 	});
 
 	Ti.App.orderTab = Ti.UI.createTab({

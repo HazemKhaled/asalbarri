@@ -16,11 +16,11 @@ Ti.App.addEventListener('openLoginWindow', function() {
 	var LoginWin = require('/ui/common/auth/loginWin');
 
 	var loginWin = new LoginWin();
-	Ti.App.orderTab.open(loginWin);
+	Ti.App.catalogTab.open(loginWin);
 
 	Ti.App.addEventListener('closeLoginWindow', function(e) {
 
-		Ti.App.orderTab.close(loginWin);
+		Ti.App.catalogTab.close(loginWin);
 	});
 });
 
@@ -62,6 +62,13 @@ Ti.App.addEventListener('openAboutWindow', function() {
 
 		AboutWin.close();
 	});
+});
+
+
+Ti.App.addEventListener('goToLogin', function(e) {
+
+		Ti.App.catalogTab.active = true;
+		Ti.App.fireEvent('openLoginWindow');
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
