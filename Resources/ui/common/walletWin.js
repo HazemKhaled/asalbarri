@@ -8,10 +8,7 @@ function walletWin() {
 
 	self.addEventListener('focus', function() {
 		var auth = require('/lib/auth');
-		if(auth.isLogedIn() == false)
-		{
-			Ti.App.fireEvent('goToLogin');
-		}else{
+		if(auth.loginRequired() != false){
 			
 			self.add(Ti.UI.createLabel({
 				text : 'wallet'

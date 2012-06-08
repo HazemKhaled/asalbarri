@@ -19,7 +19,7 @@ Ti.App.addEventListener('openLoginWindow', function() {
 	Ti.App.catalogTab.open(loginWin);
 
 	Ti.App.addEventListener('closeLoginWindow', function(e) {
-
+		
 		Ti.App.catalogTab.close(loginWin);
 	});
 });
@@ -65,10 +65,11 @@ Ti.App.addEventListener('openAboutWindow', function() {
 });
 
 
-Ti.App.addEventListener('goToLogin', function(e) {
+Ti.App.addEventListener('goToLoginWindow', function(e) {
 
 		Ti.App.catalogTab.active = true;
 		Ti.App.fireEvent('openLoginWindow');
+		
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {

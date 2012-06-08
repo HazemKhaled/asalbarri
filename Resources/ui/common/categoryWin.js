@@ -18,6 +18,51 @@ function categoryWin(parent) {
 		self.setLeftNavButton(aboutBtn);
 	}
 
+	//openSettingWindow
+	var settingBtn = Ti.UI.createButton({
+		title : 'اعدادات'
+	});
+
+
+// options dialog
+	var optionsDialogOpts = {
+		options:['تسجيل دخول', 'تغيير العملة', 'اغلاق'],
+		destructive:1,
+		cancel:2,
+		title:'اعدادات'
+	};
+	
+	var dialog = Titanium.UI.createOptionDialog(optionsDialogOpts);
+		
+	var auth = require('/lib/auth');
+	if( auth.isLogedIn() != false)
+	{
+		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', 'تغيير العملة', 'اغلاق'];
+	}
+	
+	// add event listener
+	dialog.addEventListener('click',function(e)
+	{
+		//aboutBtn.title = 'You selected ' + e.index;
+		if(auth.isLogedIn() == false)
+		{
+			if(e.index == 0)
+			{
+				Ti.App.fireEvent('goToLoginWindow');
+			}
+		}else{
+			
+		}
+	});
+
+	settingBtn.addEventListener('click', function() {
+		dialog.show();
+	});
+	//----
+	
+	
+	self.setRightNavButton(settingBtn);
+	
 	function filterData() {
 
 		table.fireEvent('runLoading');
