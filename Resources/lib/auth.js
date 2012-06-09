@@ -9,7 +9,7 @@ exports.loginRequired = function() {
 		var userID = exports.isLogedIn();
 		if(userID == false)
 		{
-			Ti.App.fireEvent('goToLoginWindow');
+			Ti.App.fireEvent('goToLogin');
 		}else{
 			return userID;
 		}

@@ -48,7 +48,7 @@ function categoryWin(parent) {
 		{
 			if(e.index == 0)
 			{
-				Ti.App.fireEvent('goToLoginWindow');
+				Ti.App.fireEvent('goToLogin');
 			}
 		}else{
 			
