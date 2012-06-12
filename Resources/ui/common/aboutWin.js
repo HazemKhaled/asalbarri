@@ -10,7 +10,7 @@ function aboutWin() {
 		});
 
 		closeBtn.addEventListener('click', function() {
-			Ti.App.fireEvent('closeAboutWindow');
+			self.close();
 		});
 
 		self.setLeftNavButton(closeBtn);

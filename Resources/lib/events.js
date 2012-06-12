@@ -58,10 +58,6 @@ Ti.App.addEventListener('openAboutWindow', function() {
 	
 	AboutWin.open();
 	
-	Ti.App.addEventListener('closeAboutWindow', function(e) {
-
-		AboutWin.close();
-	});
 });
 
 
