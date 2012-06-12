@@ -4,6 +4,7 @@ exports.isLogedIn = function() {
 };
 
 exports.loginRequired = function() {
+		Ti.App.catalogTab.active = true;
 
 		Ti.App.fireEvent('closeLoginWindow');
 		var userID = exports.isLogedIn();
@@ -32,6 +33,7 @@ exports.logoutBtn = function(btn) {
 };
 
 exports.registerBtn = function(btn) {
+	Ti.App.catalogTab.active = true;
 
 	btn.addEventListener('click', function() {
 		Ti.App.fireEvent('openRegisterWindow');

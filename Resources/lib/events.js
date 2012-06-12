@@ -63,7 +63,6 @@ Ti.App.addEventListener('openAboutWindow', function() {
 
 Ti.App.addEventListener('goToLogin', function(e) {
 
-		Ti.App.catalogTab.active = true;
 		Ti.App.fireEvent('openLoginWindow');
 		
 });
