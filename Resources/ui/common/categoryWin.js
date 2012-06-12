@@ -26,7 +26,7 @@ function categoryWin(parent) {
 
 // options dialog
 	var optionsDialogOpts = {
-		options:['تسجيل دخول', 'تغيير العملة', 'اغلاق'],
+		options:['تسجيل دخول', 'تسجيل جديد' , 'تغيير العملة', 'اغلاق'],
 		destructive:1,
 		cancel:2,
 		title:'اعدادات'
@@ -49,6 +49,9 @@ function categoryWin(parent) {
 			if(e.index == 0)
 			{
 				Ti.App.fireEvent('goToLogin');
+			}else if(e.index == 1)
+			{
+				Ti.App.fireEvent('openRegisterWindow');
 			}
 		}else{
 			

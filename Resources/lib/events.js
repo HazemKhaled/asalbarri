@@ -12,6 +12,7 @@ Ti.App.addEventListener('showLoading', function(e) {
 });
 
 Ti.App.addEventListener('openLoginWindow', function() {
+	Ti.App.catalogTab.active = true;
 
 	var LoginWin = require('/ui/common/auth/loginWin');
 
@@ -27,13 +28,15 @@ Ti.App.addEventListener('openLoginWindow', function() {
 Ti.App.addEventListener('openRegisterWindow', function(e) {
 	var RegisterWin = require('/ui/common/auth/registerWin');
 
+	Ti.App.catalogTab.active = true;
+
 	var registerWin = new RegisterWin();
 
-	Ti.App.orderTab.open(registerWin);
+	Ti.App.catalogTab.open(registerWin);
 
 	Ti.App.addEventListener('closeRegisterWindow', function(e) {
 
-		Ti.App.orderTab.close(registerWin);
+		Ti.App.catalogTab.close(registerWin);
 	});
 });
 
@@ -43,11 +46,11 @@ Ti.App.addEventListener('openForgetpasswordWindow', function(e) {
 
 	var forgetpasswordWin = new ForgetpasswordWin();
 
-	Ti.App.orderTab.open(forgetpasswordWin);
+	Ti.App.catalogTab.open(forgetpasswordWin);
 
 	Ti.App.addEventListener('closeForgetpasswordWindow', function(e) {
 
-		Ti.App.orderTab.close(forgetpasswordWin);
+		Ti.App.catalogTab.close(forgetpasswordWin);
 	});
 });
 
