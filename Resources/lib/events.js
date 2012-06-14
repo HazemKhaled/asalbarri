@@ -63,6 +63,14 @@ Ti.App.addEventListener('openAboutWindow', function() {
 	
 });
 
+Ti.App.addEventListener('openCurrencyWindow', function() {
+	var currencyWin = require('/ui/common/currencyWin');
+
+	var currencyWin = new currencyWin();
+	
+	currencyWin.open();
+	
+});
 
 Ti.App.addEventListener('goToLogin', function(e) {
 

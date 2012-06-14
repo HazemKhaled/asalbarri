@@ -52,6 +52,9 @@ function categoryWin(parent) {
 			}else if(e.index == 1)
 			{
 				Ti.App.fireEvent('openRegisterWindow');
+			}else if(e.index == 2)
+			{
+				Ti.App.fireEvent('openCurrencyWindow');
 			}
 		}else{
 			

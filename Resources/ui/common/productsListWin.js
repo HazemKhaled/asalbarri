@@ -13,7 +13,7 @@ function productsListWin(parent) {
 
 		var xhr = Ti.Network.createHTTPClient();
 
-		xhr.open('GET', Ti.App.APIURL + 'api/productsByCatID/' + parent.id);
+		xhr.open('GET', Ti.App.APIURL + 'api/productsByCatID/' + parent.id + '/' + Ti.App.properties.currency);
 
 		xhr.onerror = function() {
 			table.fireEvent('reloadData', {

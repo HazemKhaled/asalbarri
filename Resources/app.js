@@ -16,6 +16,8 @@ if (Ti.version < 1.8) {
 }
 
 Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
+//Ti.App.APIURL = 'http://192.168.16.73/hgicms_1.3.0/asal/';
+//Ti.App.APIURL = 'http://169.254.175.156/hgicms_1.3.0/asal/';
 
 // This is a single context application with mutliple windows in a stack
 //(function() {
@@ -29,6 +31,7 @@ Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || 
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
+if(!Ti.App.properties.currency) Ti.App.properties.currency = 0;
 //Ti.UI.currentTab
 Ti.include('/lib/events.js');
 //})();
