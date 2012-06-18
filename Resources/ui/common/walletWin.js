@@ -7,13 +7,24 @@ function walletWin() {
 
 
 	self.addEventListener('focus', function() {
+		
 		var auth = require('/lib/auth');
-		if(auth.loginRequired() != false){
+		Ti.App.fireEvent('closeLoginWindow');
+		var userID = auth.isLogedIn();
+		if(userID == false)
+		{
 			
-			self.add(Ti.UI.createLabel({
-				text : 'wallet'
-			}));
+			Ti.App.fireEvent('openLoginWindow');
+		}else{
+			
+			if(auth.loginRequired() != false){
+				
+				self.add(Ti.UI.createLabel({
+					text : 'wallet'
+				}));
+			}
 		}
+		
 	});
 
 

@@ -72,11 +72,6 @@ Ti.App.addEventListener('openCurrencyWindow', function() {
 	
 });
 
-Ti.App.addEventListener('goToLogin', function(e) {
-
-		Ti.App.fireEvent('openLoginWindow');
-		
-});
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
 	var CategoryWin = require('ui/common/categoryWin');
