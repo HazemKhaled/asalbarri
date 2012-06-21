@@ -14,15 +14,14 @@ function loginWin() {
 	});
 
 	var userField = Ti.UI.createTextField({
-		hintText : 'رقم الموبايل',
+		hintText : 'اسم المستخدم',
 		textAlign : 'right',
 		height : '40dp',
 		width : '90%',
 		left : '5%',
 		top : (75 + androidshift) + 'dp',
 		returnKeyType : Ti.UI.RETURNKEY_NEXT,
-		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-		keyboardType : Ti.UI.KEYBOARD_NUMBER_PAD
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 
 	userField.addEventListener('return', function() {
@@ -61,8 +60,8 @@ function loginWin() {
 
 		if (userField.value.length < 6) {
 			Ti.UI.createAlertDialog({
-				title : 'رقم الموبايل',
-				message : 'تآكد من صحة رقم الهاتف',
+				title : 'اسم المستخدم',
+				message : 'تآكد من صحة اسم المستخدم',
 				cancel : 0,
 				buttonNames : ['موافق']
 			}).show();
@@ -115,7 +114,7 @@ function loginWin() {
 
 					if (response.errors[k] == response.errors.password) {
 						Ti.UI.createAlertDialog({
-							title : 'تآكد من صحة رقم الموبايل الخاص بك',
+							title : 'تآكد من صحة اسم المستخدم الخاص بك',
 							cancel : 0,
 							buttonNames : ['موافق']
 						}).show();

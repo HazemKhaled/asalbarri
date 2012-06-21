@@ -18,11 +18,10 @@ function openRegisterWindow() {
 		left : '5%',
 		width : '90%',
 		top : (80 + androidshift) + 'dp',
-		hintText : 'رقم الموبايل',
+		hintText : 'اسم المستخدم',
 		textAlign : 'right',
 		returnKeyType : Ti.UI.RETURNKEY_NEXT,
-		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-		keyboardType : Ti.UI.KEYBOARD_NUMBER_PAD
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
 	mobileField.addEventListener('change', autoTextAlign);
 	mobileField.addEventListener('return', function() {
@@ -99,7 +98,7 @@ function openRegisterWindow() {
 		if (!mobileNumber.test(mobileField.value)) {
 			Ti.UI.createAlertDialog({
 				title : 'خطآ',
-				message : 'تحقق من رقم الموبايل',
+				message : 'تحقق من اسم المستخدم',
 				cancel : 0,
 				buttonNames : ['موافق']
 			}).show();
@@ -170,7 +169,7 @@ function openRegisterWindow() {
 			if (request.errors) {
 				var msgBox = Ti.UI.createAlertDialog({
 					title : 'خطآ',
-					message : 'هذا البريد او رقم الموبيل مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
+					message : 'هذا البريد او اسم المستخدم مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
 					cancel : 0,
 					buttonNames : ['موافق', 'نسيت كلمة المرور؟']
 				});
