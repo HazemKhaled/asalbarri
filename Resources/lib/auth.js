@@ -3,7 +3,6 @@ exports.isLogedIn = function() {
 	return Ti.App.Properties.hasProperty('userID') ? Ti.App.Properties.getInt('userID') : false;
 };
 
-
 exports.loginBtn = function(btn) {
 
 	btn.addEventListener('click', function() {
