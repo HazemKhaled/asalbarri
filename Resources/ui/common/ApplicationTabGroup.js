@@ -11,11 +11,11 @@ function ApplicationTabGroup(Window) {
 		window : new categoryWin(0)
 	});
 
-	var loginWindow = require('ui/common/auth/loginWin');
+	var cartWindow = require('ui/common/cartWin');
 	Ti.App.cartTab = Ti.UI.createTab({
 		title : 'سلة التسوق',
 		icon : '/images/KS_nav_views.png',
-		window : new loginWindow()
+		window : new cartWindow()
 	});
 
 	var walletWin = require('ui/common/walletWin');
@@ -25,10 +25,11 @@ function ApplicationTabGroup(Window) {
 		window : new walletWin()
 	});
 
+	var myOrdersWindow = require('ui/common/myOrdersWin');
 	Ti.App.orderTab = Ti.UI.createTab({
 		title : 'الطلبات',
 		icon : '/images/KS_nav_views.png',
-		window : new loginWindow()
+		window : new myOrdersWindow()
 	});
 
 	self.addTab(Ti.App.orderTab);
