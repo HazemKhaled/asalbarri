@@ -1,12 +1,12 @@
 function openRegisterWindow() {
 	var androidshift = 0;
 	var self = Ti.UI.createWindow({
-		title : 'تسجيل',
-		fullscreen : false,
-		navBarHidden : Ti.Platform.osname == 'iphone' ? false : true,
-		orientationModes : [Titanium.UI.PORTRAIT]
-
+		title : 'تسجيل'
 	});
+
+	self.addEventListener('open', function() {
+		mobileField.focus();
+	})
 
 	var scrollview = Ti.UI.createScrollView({
 		contentWidth : Ti.Platform.displayCaps.platformWidth,
@@ -19,10 +19,12 @@ function openRegisterWindow() {
 		width : '90%',
 		top : (80 + androidshift) + 'dp',
 		hintText : 'رقم الموبايل',
+		textAlign : 'right',
 		returnKeyType : Ti.UI.RETURNKEY_NEXT,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		keyboardType : Ti.UI.KEYBOARD_NUMBER_PAD
 	});
+	mobileField.addEventListener('change', autoTextAlign);
 	mobileField.addEventListener('return', function() {
 		emailField.focus();
 	});
@@ -35,11 +37,12 @@ function openRegisterWindow() {
 		width : '90%',
 		top : (130 + androidshift) + 'dp',
 		hintText : 'البريد الخاص بك',
+		textAlign : 'right',
 		returnKeyType : Ti.UI.RETURNKEY_NEXT,
-		keyboardType : Titanium.UI.KEYBOARD_EMAIL,
+		keyboardType : Ti.UI.KEYBOARD_EMAIL,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
-
+	emailField.addEventListener('change', autoTextAlign);
 	emailField.addEventListener('return', function() {
 		passField.focus();
 	});
@@ -52,10 +55,12 @@ function openRegisterWindow() {
 		width : '90%',
 		top : (180 + androidshift) + 'dp',
 		hintText : 'كلمة المرور',
+		textAlign : 'right',
 		passwordMask : true,
 		returnKeyType : Ti.UI.RETURNKEY_NEXT,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
+	passField.addEventListener('change', autoTextAlign);
 	passField.addEventListener('return', function() {
 		confirmpassField.focus();
 	});
@@ -68,10 +73,12 @@ function openRegisterWindow() {
 		width : '90%',
 		top : (230 + androidshift) + 'dp',
 		hintText : 'تآكيد كلمة المرور',
+		textAlign : 'right',
 		passwordMask : true,
 		returnKeyType : Ti.UI.RETURNKEY_JOIN,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
+	confirmpassField.addEventListener('change', autoTextAlign);
 	confirmpassField.addEventListener('return', function() {
 		submit.fireEvent('click');
 	});
@@ -83,7 +90,6 @@ function openRegisterWindow() {
 		top : (280 + androidshift) + 'dp',
 		right : Ti.Platform.osname == 'iphone' ? '5%' : '50%'
 	});
-	//scrollview.add(submit);
 
 	submit.addEventListener('click', function() {
 
@@ -95,8 +101,9 @@ function openRegisterWindow() {
 				title : 'خطآ',
 				message : 'تحقق من رقم الموبايل',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			mobileField.focus();
 
 			return false;
 		}
@@ -106,8 +113,10 @@ function openRegisterWindow() {
 				title : 'خطآ',
 				message : 'خطآ في البريد الآلكتروني',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			email.focus();
+
 			return false;
 		}
 
@@ -116,8 +125,10 @@ function openRegisterWindow() {
 				title : 'خطآ في كلمة المرور',
 				message : 'يجب آن تكون كلمة المرور آكبر من ٣ آحرف',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			passField.focus();
+
 			return false;
 		}
 
@@ -126,17 +137,19 @@ function openRegisterWindow() {
 				title : 'خطآ في كلمة المرور',
 				message : 'يجب آن تكون كلمة المرور و تآكيدها متطابقين',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			passField.focus();
+
 			return false;
 		}
 
 		var xhr = Ti.Network.createHTTPClient({});
 		xhr.onerror = function() {
 			Ti.UI.createAlertDialog({
-				message : 'خطآ في الآتصال',
+				title : 'خطآ في الآتصال',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
 			Ti.App.fireEvent('hideLoading');
 		}
@@ -146,30 +159,38 @@ function openRegisterWindow() {
 			} catch(e) {
 				Ti.UI.createAlertDialog({
 					title : 'خطآ',
-					message : 'خطآ في الآتصال',
+					message : 'خطآ في الآتصال، حاول مرة اخرى.',
 					cancel : 0,
-					buttonNames : ['ok']
+					buttonNames : ['موافق']
 				}).show();
 				Ti.App.fireEvent('hideLoading');
-				//Ti.App.fireEvent('closeRegisterWindow');
-				return false;
 
+				return false;
 			}
 			if (request.errors) {
-				Ti.UI.createAlertDialog({
+				var msgBox = Ti.UI.createAlertDialog({
 					title : 'خطآ',
 					message : 'هذا البريد او رقم الموبيل مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
 					cancel : 0,
-					buttonNames : ['ok']
-				}).show();
+					buttonNames : ['موافق', 'نسيت كلمة المرور؟']
+				});
+
+				msgBox.show();
+
+				msgBox.addEventListener('click', function(e) {
+					if (e.index == 1) {
+						Ti.App.fireEvent('openForgetpasswordWindow');
+					}
+				});
 				Ti.App.fireEvent('hideLoading');
+
 				return false;
 			};
 
 			Ti.UI.createAlertDialog({
 				title : request.msg + "يمكنك تسجيل الدخول الآن",
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
 			Ti.App.fireEvent('hideLoading');
 			Ti.App.fireEvent('closeRegisterWindow');
@@ -186,7 +207,7 @@ function openRegisterWindow() {
 
 	});
 	if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-		self.rightNavButton = submit;
+		self.setRightNavButton(submit);
 	} else {
 		scrollview.add(submit)
 	}

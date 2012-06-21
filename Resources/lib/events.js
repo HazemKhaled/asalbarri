@@ -20,7 +20,7 @@ Ti.App.addEventListener('openLoginWindow', function() {
 	Ti.App.catalogTab.open(loginWin);
 
 	Ti.App.addEventListener('closeLoginWindow', function(e) {
-		
+
 		Ti.App.catalogTab.close(loginWin);
 	});
 });
@@ -58,20 +58,19 @@ Ti.App.addEventListener('openAboutWindow', function() {
 	var AboutWin = require('/ui/common/aboutWin');
 
 	var AboutWin = new AboutWin();
-	
+
 	AboutWin.open();
-	
+
 });
 
 Ti.App.addEventListener('openCurrencyWindow', function() {
 	var currencyWin = require('/ui/common/currencyWin');
 
 	var currencyWin = new currencyWin();
-	
-	currencyWin.open();
-	
-});
 
+	currencyWin.open();
+
+});
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
 	var CategoryWin = require('ui/common/categoryWin');
@@ -91,3 +90,11 @@ Ti.App.addEventListener('openProductWindow', function(e) {
 
 	Ti.App.catalogTab.open(new ProductWin(e.data));
 });
+
+function autoTextAlign(e) {
+	if (e.value.length == 0) {
+		e.source.setTextAlign('right');
+	} else {
+		e.source.setTextAlign('left');
+	}
+}

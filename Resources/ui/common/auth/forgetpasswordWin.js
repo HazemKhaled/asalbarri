@@ -1,38 +1,46 @@
 function forgetpasswordWin() {
 	var androidshift = 0
 	var self = Ti.UI.createWindow({
-		title : 'آسترجاع كلمه المرور',
-		fullscreen : false,
-		navBarHidden : Ti.Platform.osname == 'iphone' ? false : true,
-		orientationModes : [Titanium.UI.PORTRAIT]
+		title : 'آسترجاع كلمه المرور'
 	});
+
+	self.addEventListener('open', function() {
+		emailField.focus();
+	})
 
 	var emailField = Ti.UI.createTextField({
 		height : '40dp',
-		left : '5%',
 		width : '90%',
-		top : 75 + androidshift + 'dp',
+		top : (75 + androidshift) + 'dp',
 		hintText : 'البريد الخاص بك',
+		textAlign : 'right',
+		autocapitalization : false,
 		returnKeyType : Ti.UI.RETURNKEY_SEND,
-		keyboardType : Titanium.UI.KEYBOARD_EMAIL,
+		keyboardType : Ti.UI.KEYBOARD_EMAIL,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
 	});
+
+	// align left if empty
+	emailField.addEventListener('change', autoTextAlign);
+
 	self.add(emailField);
-	emailField.focus();
-	var submit = Ti.UI.createButton({
-		title : 'آرسال كلمه المرور'
+
+	var submit = new Ti.App.createBtn({
+		title : 'آرسال'
 	});
 
 	submit.addEventListener('click', function() {
 		var email = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-		if(!email.test(emailField.value)) {
+		if (!email.test(emailField.value)) {
 			Ti.UI.createAlertDialog({
-				title : 'خطآ في البريد ',
+				title : 'خطآ في البريد',
 				message : '"آستخدم بريدك المسجل لدينا"تحقق من بريدك',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			emailField.focus();
+
 			return false;
 		}
 		var xhr = Ti.Network.createHTTPClient();
@@ -41,13 +49,13 @@ function forgetpasswordWin() {
 			Ti.App.fireEvent('hideLoading');
 			var request = JSON.parse(this.responseText);
 
-			if(request.errors.login) {
+			if (request.errors.login) {
 
 				Ti.UI.createAlertDialog({
 					title : 'خطآ',
 					message : request.errors.login,
 					cancel : 0,
-					buttonNames : ['ok']
+					buttonNames : ['موافق']
 				}).show();
 
 				Ti.App.fireEvent('hideLoading');
@@ -57,7 +65,7 @@ function forgetpasswordWin() {
 				var alertWindow = Ti.UI.createAlertDialog({
 					title : request.msg,
 					cancel : 0,
-					buttonNames : ['ok']
+					buttonNames : ['موافق']
 				});
 				Ti.App.fireEvent('hideLoading');
 				alertWindow.addEventListener('click', function(ev) {
@@ -73,9 +81,9 @@ function forgetpasswordWin() {
 
 		xhr.onerror = function(e) {
 			Ti.UI.createAlertDialog({
-				message : 'خطآ في الآتصال',
+				title : 'خطآ في الآتصال',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
 			Ti.App.fireEvent('hideLoading');
 		}
@@ -90,7 +98,11 @@ function forgetpasswordWin() {
 	emailField.addEventListener('return', function() {
 		submit.fireEvent('click');
 	});
-	self.add(submit);
+	if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
+		self.setRightNavButton(submit);
+	} else {
+		self.add(submit);
+	}
 
 	return self;
 };

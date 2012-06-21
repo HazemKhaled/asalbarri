@@ -1,22 +1,12 @@
 function loginWin() {
 	var androidshift = 0;
 	var self = Ti.UI.createWindow({
-		title : 'دخول',
-		fullscreen : false,
-		navBarHidden : Ti.Platform.osname == 'iphone' ? false : true,
-		orientationModes : [Titanium.UI.PORTRAIT]
+		title : 'دخول'
 	});
 
 	Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());
 
 	var auth = require('/lib/auth');
-
-	/*if(Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-
-	 self.rightNavButton = auth.registerBtn(Ti.UI.createButton({
-	 title : L('register')
-	 }));
-	 }*/
 
 	var scrollview = Ti.UI.createScrollView({
 		contentWidth : Ti.Platform.displayCaps.platformWidth,
@@ -25,6 +15,7 @@ function loginWin() {
 
 	var userField = Ti.UI.createTextField({
 		hintText : 'رقم الموبايل',
+		textAlign : 'right',
 		height : '40dp',
 		width : '90%',
 		left : '5%',
@@ -41,11 +32,12 @@ function loginWin() {
 	self.add(scrollview);
 	userField.focus();
 	var passField = Ti.UI.createTextField({
+		hintText : 'كلمة المرور',
+		textAlign : 'right',
 		height : '40dp',
 		width : '90%',
 		left : '5%',
 		top : (125 + androidshift) + 'dp',
-		hintText : 'كلمة المرور',
 		passwordMask : true,
 		returnKeyType : Ti.UI.RETURNKEY_SEND,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -59,7 +51,7 @@ function loginWin() {
 		title : 'دخول'
 	});
 	if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-		self.rightNavButton = submit;
+		self.setRightNavButton(submit);
 	} else {
 		scrollview.add(submit);
 	}
@@ -72,8 +64,10 @@ function loginWin() {
 				title : 'رقم الموبايل',
 				message : 'تآكد من صحة رقم الهاتف',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			userField.focus();
+
 			return false;
 		}
 
@@ -82,20 +76,22 @@ function loginWin() {
 				title : 'كلمة المرور',
 				message : 'تآكد من صحة كلمة المرور',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
+			passField.focus();
+
 			return false;
 		}
 
 		var xhr = Ti.Network.createHTTPClient();
 		xhr.onerror = function() {
 			Ti.UI.createAlertDialog({
-				message : 'خطآ في الآتصال',
+				title : 'خطآ في الآتصال',
 				cancel : 0,
-				buttonNames : ['ok']
+				buttonNames : ['موافق']
 			}).show();
-			Ti.App.fireEvent('hideLoading');
 
+			Ti.App.fireEvent('hideLoading');
 		}
 		xhr.onload = function() {
 
@@ -107,11 +103,10 @@ function loginWin() {
 				Ti.UI.createAlertDialog({
 					message : 'خطآ في الآتصال وجاري آخبار الآداره',
 					cancel : 0,
-					buttonNames : ['ok']
+					buttonNames : ['موافق']
 				}).show();
-				//Ti.App.fireEvent('closeLoginWindow');
-				return false;
 
+				return false;
 			}
 
 			var k = null;
@@ -120,10 +115,9 @@ function loginWin() {
 
 					if (response.errors[k] == response.errors.password) {
 						Ti.UI.createAlertDialog({
-							message : 'تآكد من صحة رقم الموبايل/الآيميل الخاص بك',
+							title : 'تآكد من صحة رقم الموبايل الخاص بك',
 							cancel : 0,
-							buttonNames : ['ok']
-
+							buttonNames : ['موافق']
 						}).show();
 						return false;
 
@@ -132,7 +126,7 @@ function loginWin() {
 							title : 'كلمة المرور',
 							message : 'تآكد من صحة كلمة المرور الخاصة بك',
 							cancel : 0,
-							buttonNames : ['ok']
+							buttonNames : ['موافق']
 						}).show();
 						return false;
 
@@ -140,6 +134,7 @@ function loginWin() {
 						var dialouge = Ti.UI.createAlertDialog({
 							title : 'خطآ في الدخول',
 							message : 'يمكنك التواصل معنا آذا واجهت مشكله',
+							cancel : 0,
 							buttonNames : ['الغاء', 'مراسله'],
 						})
 						dialouge.addEventListener('click', function(ev) {
@@ -174,8 +169,7 @@ function loginWin() {
 	});
 	var registerBtn = auth.registerBtn(Ti.UI.createButton({
 		title : 'تسجيل',
-		top : (215 + androidshift) + 'dp',
-		myStyle : 'important'
+		top : (215 + androidshift) + 'dp'
 	}));
 	scrollview.add(registerBtn);
 
