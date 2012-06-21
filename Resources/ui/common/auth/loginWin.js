@@ -1,7 +1,8 @@
 function loginWin() {
 	var androidshift = 0;
 	var self = Ti.UI.createWindow({
-		title : 'دخول'
+		title : 'دخول',
+		backgroundColor : 'white'
 	});
 
 	Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());

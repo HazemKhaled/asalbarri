@@ -1,7 +1,8 @@
 function forgetpasswordWin() {
 	var androidshift = 0
 	var self = Ti.UI.createWindow({
-		title : 'آسترجاع كلمه المرور'
+		title : 'آسترجاع كلمه المرور',
+		backgroundColor : 'white'
 	});
 
 	self.addEventListener('open', function() {

@@ -1,7 +1,8 @@
 function openRegisterWindow() {
 	var androidshift = 0;
 	var self = Ti.UI.createWindow({
-		title : 'تسجيل'
+		title : 'تسجيل',
+		backgroundColor : 'white'
 	});
 
 	self.addEventListener('open', function() {
