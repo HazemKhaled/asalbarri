@@ -107,7 +107,7 @@ function productsListWin(parent) {
 	});
 	table.addEventListener('reloadData', function(e) {
 		this.setData(e.rows.length > 0 ? e.rows : [{
-			title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
+			title : 'مشكلة تحميل، حاول بعد قليل.'
 		}]);
 	});
 	filterData();
