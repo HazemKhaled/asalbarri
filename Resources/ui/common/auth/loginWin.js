@@ -59,7 +59,7 @@ function loginWin() {
 	submit.addEventListener('click', function() {
 		var email = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-		if (userField.value.length < 6) {
+		if (userField.value.length < 4) {
 			Ti.UI.createAlertDialog({
 				title : 'اسم المستخدم',
 				message : 'تآكد من صحة اسم المستخدم',

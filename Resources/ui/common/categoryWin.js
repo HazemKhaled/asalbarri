@@ -5,7 +5,7 @@ function categoryWin(parent) {
 		backButtonTitle : 'عودة'
 	});
 
-	if (!parent.id) {
+	if (!parent.id) {// only on home window
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
 			title : 'الدعم'
@@ -23,52 +23,51 @@ function categoryWin(parent) {
 		title : 'اعدادات'
 	});
 
-
-// options dialog
+	// options dialog
 	var optionsDialogOpts = {
+<<<<<<< HEAD
 		options:['تسجيل دخول', 'تسجيل جديد' , 'تغيير العملة', 'اغلاق'],
 		destructive:1,
 		cancel:3,
 		title:'اعدادات'
+=======
+		options : ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'],
+		destructive : 1,
+		cancel : 2,
+		title : 'اعدادات'
+>>>>>>> 2aa5fdaa8fd18a83a7d8226e703cb70da6c2a684
 	};
-	
+
 	var dialog = Titanium.UI.createOptionDialog(optionsDialogOpts);
-		
+
 	var auth = require('/lib/auth');
-	if( auth.isLogedIn() != false)
-	{
+	if (auth.isLogedIn() != false) {
 		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', 'تغيير العملة', 'اغلاق'];
 	}
-	
+
 	// add event listener
-	dialog.addEventListener('click',function(e)
-	{
+	dialog.addEventListener('click', function(e) {
 		//aboutBtn.title = 'You selected ' + e.index;
-		if(auth.isLogedIn() == false)
-		{
-			if(e.index == 0)
-			{
+		if (auth.isLogedIn() == false) {
+			if (e.index == 0) {
 				Ti.App.fireEvent('openLoginWindow');
-			}else if(e.index == 1)
-			{
+			} else if (e.index == 1) {
 				Ti.App.fireEvent('openRegisterWindow');
-			}else if(e.index == 2)
-			{
+			} else if (e.index == 2) {
 				Ti.App.fireEvent('openCurrencyWindow');
 			}
-		}else{
-			
+		} else {
+
 		}
 	});
 
 	settingBtn.addEventListener('click', function() {
 		dialog.show();
 	});
-	//----
-	
-	
+
 	self.setRightNavButton(settingBtn);
-	
+
+	// called after recive new data, from main request or if we want to add remote search
 	function filterData() {
 
 		table.fireEvent('runLoading');
@@ -91,7 +90,6 @@ function categoryWin(parent) {
 			for (i in rows ) {
 				var row = Ti.UI.createTableViewRow({
 					height : '110dp',
-					//hasChild : true,
 					myTitle : rows[i].title,
 					data : rows[i]
 				});
@@ -99,18 +97,29 @@ function categoryWin(parent) {
 				var img = Ti.UI.createImageView({
 					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
 					width : '100dp',
-					height : '100p',
+					height : '100dp',
 					right : '5dp'
 				});
 				row.add(img);
 
 				var titleLbl = Ti.UI.createLabel({
 					text : rows[i].title,
-					height : 'auto',
-					left : 0,
+					left : '10dp',
 					right : '110dp',
-					height : '100dp',
 					color : '#000000',
+					textAlign : 'right'
+				});
+				row.add(titleLbl);
+
+				var titleLbl = Ti.UI.createLabel({
+					text : rows[i].products_count + ' منتج',
+					left : '10dp',
+					bottom : '10dp',
+					right : '110dp',
+					color : 'silver',
+					font : {
+						fontSize : '12dp'
+					},
 					textAlign : 'right'
 				});
 				row.add(titleLbl);
