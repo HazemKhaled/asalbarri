@@ -8,7 +8,7 @@ function productWin(product) {
 	self.add(mainScroll);
 
 	var picWidth = Ti.Platform.displayCaps.platformWidth - 40;
-	var img = Ti.UI.createImageView({
+	var productImg = Ti.UI.createImageView({
 		image : Ti.App.APIURL + 'api/pic/product/' + product.id + '/123/' + picWidth + '/1',
 		width : picWidth + 'dp',
 		height : '123dp',
@@ -16,14 +16,16 @@ function productWin(product) {
 		zIndex : 99
 	});
 
-	img.addEventListener('click', function() {
+	productImg.addEventListener('click', function() {
 
-		Ti.App.fireEvent('openImageWindow', {
-			data : product
-		});
+		var fullscreen = require('ui/common/imageFullscreen');
+		new fullscreen({
+			title : product.title,
+			productID : product.id
+		}).open();
 	});
 
-	mainScroll.add(img);
+	mainScroll.add(productImg);
 
 	// description
 	var descLbl = Ti.UI.createLabel({
