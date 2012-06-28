@@ -5,7 +5,7 @@ function categoryWin(parent) {
 		backButtonTitle : 'عودة'
 	});
 
-	if (!parent.id) {
+	if (!parent.id) {// only on home window
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
 			title : 'الدعم'
@@ -57,10 +57,10 @@ function categoryWin(parent) {
 	settingBtn.addEventListener('click', function() {
 		dialog.show();
 	});
-	//----
 
 	self.setRightNavButton(settingBtn);
 
+	// called after recive new data, from main request or if we want to add remote search
 	function filterData() {
 
 		table.fireEvent('runLoading');
@@ -83,7 +83,6 @@ function categoryWin(parent) {
 			for (i in rows ) {
 				var row = Ti.UI.createTableViewRow({
 					height : '110dp',
-					//hasChild : true,
 					myTitle : rows[i].title,
 					data : rows[i]
 				});
@@ -91,18 +90,29 @@ function categoryWin(parent) {
 				var img = Ti.UI.createImageView({
 					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
 					width : '100dp',
-					height : '100p',
+					height : '100dp',
 					right : '5dp'
 				});
 				row.add(img);
 
 				var titleLbl = Ti.UI.createLabel({
 					text : rows[i].title,
-					height : 'auto',
-					left : 0,
+					left : '10dp',
 					right : '110dp',
-					height : '100dp',
 					color : '#000000',
+					textAlign : 'right'
+				});
+				row.add(titleLbl);
+
+				var titleLbl = Ti.UI.createLabel({
+					text : rows[i].products_count + ' منتج',
+					left : '10dp',
+					bottom : '10dp',
+					right : '110dp',
+					color : 'silver',
+					font : {
+						fontSize : '12dp'
+					},
 					textAlign : 'right'
 				});
 				row.add(titleLbl);
