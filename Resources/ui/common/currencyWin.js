@@ -77,6 +77,7 @@ function currencyWin() {
 	picker.addEventListener('change',function(e)
 	{
 		Ti.App.properties.currency = e.row.data.id;
+		Ti.App.properties.currencyName = e.row.title;
 	});
 	filterData();
 		

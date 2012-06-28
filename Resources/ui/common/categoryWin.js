@@ -28,7 +28,7 @@ function categoryWin(parent) {
 	var optionsDialogOpts = {
 		options:['تسجيل دخول', 'تسجيل جديد' , 'تغيير العملة', 'اغلاق'],
 		destructive:1,
-		cancel:2,
+		cancel:3,
 		title:'اعدادات'
 	};
 	

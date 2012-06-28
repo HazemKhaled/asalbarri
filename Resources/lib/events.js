@@ -91,6 +91,15 @@ Ti.App.addEventListener('openProductWindow', function(e) {
 	Ti.App.catalogTab.open(new ProductWin(e.data));
 });
 
+Ti.App.addEventListener('openOrderProductsWindow', function(e) {
+
+	var orderProductsWin = require('/ui/common/orderProductsWin');
+
+	Ti.App.orderTab.open(new orderProductsWin(e.data));
+	//var timer = setInterval(Ti.App.orderProductsTable.fireEvent('cleartable'), 10000);
+	
+});
+
 function autoTextAlign(e) {
 	if (e.value.length == 0) {
 		e.source.setTextAlign('right');

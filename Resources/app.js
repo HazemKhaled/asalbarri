@@ -31,7 +31,10 @@ Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || 
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
-if(!Ti.App.properties.currency) Ti.App.properties.currency = 0;
+if (!Ti.App.properties.currency) {
+	Ti.App.properties.currency = 0;
+	Ti.App.properties.currencyName = 'ريال سعودي';
+}
 //Ti.UI.currentTab
 Ti.include('/lib/events.js');
 //})();
