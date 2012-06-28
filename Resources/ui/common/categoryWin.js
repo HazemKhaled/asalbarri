@@ -23,41 +23,34 @@ function categoryWin(parent) {
 		title : 'اعدادات'
 	});
 
-
-// options dialog
+	// options dialog
 	var optionsDialogOpts = {
-		options:['تسجيل دخول', 'تسجيل جديد' , 'تغيير العملة', 'اغلاق'],
-		destructive:1,
-		cancel:2,
-		title:'اعدادات'
+		options : ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'],
+		destructive : 1,
+		cancel : 2,
+		title : 'اعدادات'
 	};
-	
+
 	var dialog = Titanium.UI.createOptionDialog(optionsDialogOpts);
-		
+
 	var auth = require('/lib/auth');
-	if( auth.isLogedIn() != false)
-	{
+	if (auth.isLogedIn() != false) {
 		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', 'تغيير العملة', 'اغلاق'];
 	}
-	
+
 	// add event listener
-	dialog.addEventListener('click',function(e)
-	{
+	dialog.addEventListener('click', function(e) {
 		//aboutBtn.title = 'You selected ' + e.index;
-		if(auth.isLogedIn() == false)
-		{
-			if(e.index == 0)
-			{
+		if (auth.isLogedIn() == false) {
+			if (e.index == 0) {
 				Ti.App.fireEvent('openLoginWindow');
-			}else if(e.index == 1)
-			{
+			} else if (e.index == 1) {
 				Ti.App.fireEvent('openRegisterWindow');
-			}else if(e.index == 2)
-			{
+			} else if (e.index == 2) {
 				Ti.App.fireEvent('openCurrencyWindow');
 			}
-		}else{
-			
+		} else {
+
 		}
 	});
 
@@ -65,10 +58,9 @@ function categoryWin(parent) {
 		dialog.show();
 	});
 	//----
-	
-	
+
 	self.setRightNavButton(settingBtn);
-	
+
 	function filterData() {
 
 		table.fireEvent('runLoading');
