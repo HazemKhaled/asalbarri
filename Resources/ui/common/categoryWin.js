@@ -25,17 +25,11 @@ function categoryWin(parent) {
 
 	// options dialog
 	var optionsDialogOpts = {
-<<<<<<< HEAD
-		options:['تسجيل دخول', 'تسجيل جديد' , 'تغيير العملة', 'اغلاق'],
-		destructive:1,
-		cancel:3,
-		title:'اعدادات'
-=======
+
 		options : ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'],
 		destructive : 1,
 		cancel : 2,
 		title : 'اعدادات'
->>>>>>> 2aa5fdaa8fd18a83a7d8226e703cb70da6c2a684
 	};
 
 	var dialog = Titanium.UI.createOptionDialog(optionsDialogOpts);
