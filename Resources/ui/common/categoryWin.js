@@ -75,9 +75,14 @@ function categoryWin(parent) {
 			table.fireEvent('reloadData', {
 				rows : []
 			});
+
+			self.addEventListener('focus', filterData);
 		}
 
 		xhr.onload = function() {
+
+			self.removeEventListener('focus', filterData);
+
 			var rows = JSON.parse(this.responseText);
 
 			for (i in rows ) {
@@ -104,18 +109,20 @@ function categoryWin(parent) {
 				});
 				row.add(titleLbl);
 
-				var titleLbl = Ti.UI.createLabel({
-					text : rows[i].products_count + ' منتج',
-					left : '10dp',
-					bottom : '10dp',
-					right : '110dp',
-					color : 'silver',
-					font : {
-						fontSize : '12dp'
-					},
-					textAlign : 'right'
-				});
-				row.add(titleLbl);
+				if (rows[i].products_count > 0) {
+					var titleLbl = Ti.UI.createLabel({
+						text : rows[i].products_count + ' منتج',
+						left : '10dp',
+						bottom : '10dp',
+						right : '110dp',
+						color : 'silver',
+						font : {
+							fontSize : '12dp'
+						},
+						textAlign : 'right'
+					});
+					row.add(titleLbl);
+				}
 
 				tableRows.push(row);
 			}
