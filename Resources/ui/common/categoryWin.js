@@ -26,7 +26,7 @@ function categoryWin(parent) {
 	// options dialog
 	var optionsDialogOpts = {
 
-		options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'],
+		options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'],
 		destructive : 1,
 		cancel : 3,
 		title : 'اعدادات'
@@ -36,34 +36,42 @@ function categoryWin(parent) {
 
 	var auth = require('/lib/auth');
 	if (auth.isLogedIn() != false) {
-		dialog.options = ['تسجيل خروج', 'بيانات المستخدم',Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'];
+		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
 	}
 
 	// add event listener
 	dialog.addEventListener('click', function(e) {
 		//aboutBtn.title = 'You selected ' + e.index;
 		if (auth.isLogedIn() == false) {
-			if (e.index == 0) {
+			switch(e.index) {
+				case 0:
 
-				Ti.App.fireEvent('openLoginWindow');
-			} else if (e.index == 1) {
+					Ti.App.fireEvent('openLoginWindow');
+					break;
+				case 1:
 
-				Ti.App.fireEvent('openRegisterWindow');
-			} else if (e.index == 2) {
+					Ti.App.fireEvent('openRegisterWindow');
+					break;
+				case 2:
 
-				Ti.App.fireEvent('openCurrencyWindow');
+					Ti.App.fireEvent('openCurrencyWindow');
+					break;
 			}
 		} else {
-			if (e.index == 0) {
+			switch(e.index) {
+				case 0:
 
-				Ti.App.Properties.removeProperty('userID');
-				Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد',Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'];
-			} else if (e.index == 1) {
+					Ti.App.Properties.removeProperty('userID');
+					Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+					break;
+				case 1:
 
-				// TODO : open user profule
-			} else if (e.index == 2) {
+					// TODO : open user profule
+					break;
+				case 2:
 
-				Ti.App.fireEvent('openCurrencyWindow');
+					Ti.App.fireEvent('openCurrencyWindow');
+					break;
 			}
 		}
 	});

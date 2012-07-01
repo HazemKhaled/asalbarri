@@ -72,6 +72,15 @@ Ti.App.addEventListener('openCurrencyWindow', function() {
 
 });
 
+Ti.App.addEventListener('openChargeWalletWindow', function() {
+	var chargeWalletWin = require('/ui/common/chargeWalletWin');
+
+	var chargeWalletWin = new chargeWalletWin();
+
+	chargeWalletWin.open();
+
+});
+
 Ti.App.addEventListener('openCategoryWindow', function(e) {
 	var CategoryWin = require('ui/common/categoryWin');
 
@@ -97,7 +106,7 @@ Ti.App.addEventListener('openOrderProductsWindow', function(e) {
 
 	Ti.App.orderTab.open(new orderProductsWin(e.data));
 	//var timer = setInterval(Ti.App.orderProductsTable.fireEvent('cleartable'), 10000);
-	
+
 });
 
 function autoTextAlign(e) {
