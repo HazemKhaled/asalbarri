@@ -15,8 +15,8 @@ if (Ti.version < 1.8) {
 	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
 }
 
-//Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
-Ti.App.APIURL = 'http://192.168.1.16/hgicms_1.3.0/asal/';
+Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
+//Ti.App.APIURL = 'http://192.168.1.16/hgicms_1.3.0/asal/';
 //Ti.App.APIURL = 'http://169.254.175.156/hgicms_1.3.0/asal/';
 
 // This is a single context application with mutliple windows in a stack
