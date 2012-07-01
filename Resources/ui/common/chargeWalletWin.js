@@ -35,7 +35,13 @@ function chargeWalletWin() {
 			var row = JSON.parse(this.responseText);
 			if (row.done == false) {
 
-				alert('خطأ في الرقم المدخل .. يرجي التأكد من إدخال رقم الكارت بشكل صحيح ...');
+				var dialouge = Ti.UI.createAlertDialog({
+					title : 'خطأ',
+					message : 'خطأ في الرقم المدخل .. يرجي التأكد من إدخال رقم الكارت بشكل صحيح ...',
+					cancel : 0,
+					buttonNames : ['اغلاق'],
+				})
+				dialouge.show();
 			} else {
 
 				Ti.App.balanceLbl.text = row.balance + ' ' + Ti.App.Properties.getString('currencyName');
