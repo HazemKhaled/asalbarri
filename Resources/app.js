@@ -15,8 +15,8 @@ if (Ti.version < 1.8) {
 	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
 }
 
-Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
-//Ti.App.APIURL = 'http://192.168.16.73/hgicms_1.3.0/asal/';
+//Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
+Ti.App.APIURL = 'http://192.168.1.16/hgicms_1.3.0/asal/';
 //Ti.App.APIURL = 'http://169.254.175.156/hgicms_1.3.0/asal/';
 
 // This is a single context application with mutliple windows in a stack
@@ -31,9 +31,9 @@ Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || 
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
-if (!Ti.App.properties.currency) {
-	Ti.App.properties.currency = 0;
-	Ti.App.properties.currencyName = 'ريال سعودي';
+if (!Ti.App.Properties.getInt('currency')) {
+	Ti.App.Properties.setInt('currency', 0);
+	Ti.App.Properties.setString('currencyName','ريال سعودي');
 }
 //Ti.UI.currentTab
 Ti.include('/lib/events.js');

@@ -26,7 +26,7 @@ function categoryWin(parent) {
 	// options dialog
 	var optionsDialogOpts = {
 
-		options : ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'],
+		options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'],
 		destructive : 1,
 		cancel : 3,
 		title : 'اعدادات'
@@ -36,7 +36,7 @@ function categoryWin(parent) {
 
 	var auth = require('/lib/auth');
 	if (auth.isLogedIn() != false) {
-		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', 'تغيير العملة', 'اغلاق'];
+		dialog.options = ['تسجيل خروج', 'بيانات المستخدم',Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'];
 	}
 
 	// add event listener
@@ -57,10 +57,10 @@ function categoryWin(parent) {
 			if (e.index == 0) {
 
 				Ti.App.Properties.removeProperty('userID');
-				Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'];
+				Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد',Ti.App.Properties.getString('currencyName') + ' (تغيير)'  , 'اغلاق'];
 			} else if (e.index == 1) {
 
-				// TODO : user profule
+				// TODO : open user profule
 			} else if (e.index == 2) {
 
 				Ti.App.fireEvent('openCurrencyWindow');

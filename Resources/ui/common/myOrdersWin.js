@@ -61,7 +61,7 @@ function myOrdersWin() {
 				row.add(totaltitleLbl);
 
 				var priceLbl = Ti.UI.createLabel({
-					text : rows[i].total_price + ' ' + Ti.App.properties.currencyName,
+					text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
 					height : 'auto',
 					right : '75dp',
 					top : '35dp',

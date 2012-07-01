@@ -82,7 +82,7 @@ function orderProductsWin(parent) {
 				row.add(priceLbl);
 
 				var price = Ti.UI.createLabel({
-					text : rows[i].purchases_unit_price + ' ' + Ti.App.properties.currencyName,
+					text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName'),
 					height : 'auto',
 					left : 0,
 					right : '190dp',
