@@ -156,6 +156,8 @@ function loginWin() {
 			}
 			Ti.App.Properties.setInt('userID', response.userID);
 
+			Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', 'تغيير العملة', 'اغلاق'];
+
 			Ti.App.fireEvent('closeLoginWindow');
 		}
 

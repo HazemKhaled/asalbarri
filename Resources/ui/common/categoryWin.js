@@ -28,7 +28,7 @@ function categoryWin(parent) {
 
 		options : ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'],
 		destructive : 1,
-		cancel : 2,
+		cancel : 3,
 		title : 'اعدادات'
 	};
 
@@ -44,19 +44,33 @@ function categoryWin(parent) {
 		//aboutBtn.title = 'You selected ' + e.index;
 		if (auth.isLogedIn() == false) {
 			if (e.index == 0) {
+
 				Ti.App.fireEvent('openLoginWindow');
 			} else if (e.index == 1) {
+
 				Ti.App.fireEvent('openRegisterWindow');
 			} else if (e.index == 2) {
+
 				Ti.App.fireEvent('openCurrencyWindow');
 			}
 		} else {
+			if (e.index == 0) {
 
+				Ti.App.Properties.removeProperty('userID');
+				Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', 'تغيير العملة', 'اغلاق'];
+			} else if (e.index == 1) {
+
+				// TODO : user profule
+			} else if (e.index == 2) {
+
+				Ti.App.fireEvent('openCurrencyWindow');
+			}
 		}
 	});
 
+	Ti.App.dialog = dialog;
 	settingBtn.addEventListener('click', function() {
-		dialog.show();
+		Ti.App.dialog.show();
 	});
 
 	self.setRightNavButton(settingBtn);
