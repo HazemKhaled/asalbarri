@@ -2,13 +2,20 @@ function categoryWin(parent) {
 	var self = Ti.UI.createWindow({
 		title : parent.title ? parent.title : 'عسل بري',
 		backgroundColor : 'white',
-		backButtonTitle : 'عودة'
+		backButtonTitle : 'عودة',
+		backgroundImage : 'images/common/bg_2.jpg',
+		barImage : 'images/common/Navigation_Bar.jpg'
 	});
+
+	self.setBackButtonTitleImage('mages/common/button_back.png');
 
 	if (!parent.id) {// only on home window
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
-			title : 'الدعم'
+			height : '31dp',
+			width : '31dp',
+			color : '#000000',
+			backgroundImage : 'images/common/icon_2.png'
 		});
 
 		aboutBtn.addEventListener('click', function() {
@@ -16,11 +23,33 @@ function categoryWin(parent) {
 		});
 
 		self.setLeftNavButton(aboutBtn);
+	} else {
+		var backBtn = Ti.UI.createButton({
+			title : 'عودة   ',
+			height : '31dp',
+			width : '67dp',
+			color : '#000000',
+			font : {
+				fontFamily : 'Arial',
+				fontSize : '14dp',
+				fontWeight : 'bold'
+			},
+			backgroundImage : 'images/common/button_back.png'
+		});
+
+		backBtn.addEventListener('click', function() {
+			self.close();
+		});
+
+		self.setLeftNavButton(backBtn);
 	}
 
 	//openSettingWindow
 	var settingBtn = Ti.UI.createButton({
-		title : 'اعدادات'
+		height : '31dp',
+		width : '31dp',
+		color : '#000000',
+		backgroundImage : 'images/common/icon_1.png'
 	});
 
 	// options dialog
@@ -110,16 +139,37 @@ function categoryWin(parent) {
 
 			for (i in rows ) {
 				var row = Ti.UI.createTableViewRow({
-					height : '110dp',
+					height : '95dp',
 					myTitle : rows[i].title,
-					data : rows[i]
+					data : rows[i],
+					selectedBackgroundColor : 'transparent',
+					selectedBackgroundImage : 'images/common/bg_h_one_item.png'
 				});
+
+				var rowSeparator = Titanium.UI.createImageView({
+					image : "images/common/bg_one_item.png",
+					bottom : "0dp",
+					left : "0dp",
+					width : "auto",
+					height : "auto"
+				});
+				row.add(rowSeparator);
+
+				var arrow = Titanium.UI.createImageView({
+					image : "images/common/icon_7.png",
+					top : "6dp",
+					left : "0dp",
+					width : "auto",
+					height : "auto"
+				});
+				row.add(arrow);
 
 				var img = Ti.UI.createImageView({
 					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-					width : '100dp',
-					height : '100dp',
-					right : '5dp'
+					width : '90dp',
+					height : '90dp',
+					right : '5dp',
+					borderRadius : 45
 				});
 				row.add(img);
 
@@ -127,24 +177,47 @@ function categoryWin(parent) {
 					text : rows[i].title,
 					left : '10dp',
 					right : '110dp',
-					color : '#000000',
+					top : '23dp',
+					color : '#ffffff',
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '17dp',
+						fontWeight : 'bold'
+					},
 					textAlign : 'right'
 				});
 				row.add(titleLbl);
 
 				if (rows[i].products_count > 0) {
 					var titleLbl = Ti.UI.createLabel({
-						text : rows[i].products_count + ' منتج',
-						left : '10dp',
+						text : rows[i].products_count,
 						bottom : '10dp',
 						right : '110dp',
-						color : 'silver',
+						color : 'red',
+						top : '30dp',
+						width : '30dp',
 						font : {
-							fontSize : '12dp'
+							fontSize : '16dp'
+						},
+						textAlign : 'center',
+						//backgroundImage : 'images/common/bg_h_one_item.png'
+					});
+					row.add(titleLbl);
+
+					var titleLbl2 = Ti.UI.createLabel({
+						text : ' منتج',
+						left : '10dp',
+						bottom : '10dp',
+						right : '140dp',
+						color : '#ffffff',
+						top : '30dp',
+						font : {
+							fontSize : '16dp'
 						},
 						textAlign : 'right'
 					});
-					row.add(titleLbl);
+					row.add(titleLbl2);
+
 				}
 
 				tableRows.push(row);
@@ -167,6 +240,12 @@ function categoryWin(parent) {
 		//search : search,
 		filterAttribute : 'myTitle',
 		//searchHidden : true
+		opacity : '1',
+		//Set BG transparent
+		backgroundColor : 'transparent',
+		//Set row color - white
+		rowBackgroundColor : 'transparent',
+		separatorColor : 'transparent',
 	});
 
 	table.addEventListener('runLoading', function() {
