@@ -7,28 +7,28 @@ function ApplicationTabGroup(Window) {
 
 	Ti.App.catalogTab = Ti.UI.createTab({
 		title : 'المنتجات',
-		icon : '/images/KS_nav_ui.png',
+		icon : 'images/common/icon_6.png',
 		window : new categoryWin(0)
 	});
 
 	var cartWindow = require('ui/common/cartWin');
 	Ti.App.cartTab = Ti.UI.createTab({
 		title : 'سلة التسوق',
-		icon : '/images/KS_nav_views.png',
+		icon : 'images/common/icon_5.png',
 		window : new cartWindow()
 	});
 
 	var walletWin = require('ui/common/walletWin');
 	Ti.App.walletTab = Ti.UI.createTab({
 		title : 'المحفظة',
-		icon : '/images/KS_nav_views.png',
+		icon : 'images/common/icon_4.png',
 		window : new walletWin()
 	});
 
 	var myOrdersWindow = require('ui/common/myOrdersWin');
 	Ti.App.orderTab = Ti.UI.createTab({
 		title : 'الطلبات',
-		icon : '/images/KS_nav_views.png',
+		icon : 'images/common/icon_3.png',
 		window : new myOrdersWindow()
 	});
 
