@@ -14,7 +14,7 @@ function aboutWin() {
 		color : '#000000',
 		font : {
 			fontFamily : 'Arial',
-			size : 22,
+			fontSize : '14dp',
 			fontWeight : 'bold'
 		},
 		backgroundImage : 'images/common/button_back.png'
