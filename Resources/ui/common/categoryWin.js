@@ -166,9 +166,9 @@ function categoryWin(parent) {
 
 				var img = Ti.UI.createImageView({
 					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-					width : '90dp',
-					height : '90dp',
-					right : '5dp',
+					width : '85dp',
+					height : '85dp',
+					right : '10dp',
 					borderRadius : 45
 				});
 				row.add(img);
