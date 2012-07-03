@@ -50,24 +50,14 @@ function productsListWin(parent) {
 				});
 				row.add(titleLbl);
 
-				if (rows[i].price_shown_coupon) {
-					var priceFitLbl = Ti.UI.createWebView({
-						html : '<html><body style="margin: 0; direction: rtl;"><div style="text-decoration: line-through; ">' + rows[i].price + '</div></body></html>',
-						height : '20dp',
-						width : '30dp',
+				var priceFitLbl = Ti.UI.createLabel({
+					text : rows[i].price_shown_coupon,
+					height : 'auto',
 						right : '160dp',
-						bottom : '10dp',
-					});
-					row.add(priceFitLbl);
-
-					var priceLbl = Ti.UI.createLabel({
-						text : rows[i].price_shown_coupon,
-						height : 'auto',
-						right : '110dp',
-						bottom : '10dp',
-						textAlign : 'right'
-					});
-				}
+					bottom : '10dp',
+					textAlign : 'right'
+				});
+				row.add(priceFitLbl);
 
 				var priceLbl = Ti.UI.createLabel({
 					text : rows[i].price,
