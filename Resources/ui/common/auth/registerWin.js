@@ -8,7 +8,6 @@ function openRegisterWindow() {
 	self.addEventListener('open', function() {
 		mobileField.focus();
 	})
-
 	var scrollview = Ti.UI.createScrollView({
 		contentWidth : Ti.Platform.displayCaps.platformWidth,
 		contentHeight : 'auto'

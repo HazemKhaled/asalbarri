@@ -35,18 +35,18 @@ var messageLbl = Titanium.UI.createLabel({
 });
 
 exports.hide = function() {
-	if(Ti.Platform.osname !== 'android') {
-		if(indWin !== null)
+	if (Ti.Platform.osname !== 'android') {
+		if (indWin !== null)
 			indWin.close({
 				opacity : 0,
 				duration : 500
 			});
 		indWin = null;
 	} else {
-		try{
-		actInd.hide();
-		}catch(e){
-			
+		try {
+			actInd.hide();
+		} catch(e) {
+
 		}
 		actInd = null
 	}
@@ -54,11 +54,11 @@ exports.hide = function() {
 
 exports.show = function() {
 
-	if(actInd) {
+	if (actInd) {
 		return;
 	}
 
-	if(Ti.Platform.osname != 'android') {
+	if (Ti.Platform.osname != 'android') {
 		// window container
 		indWin = Titanium.UI.createWindow({
 			//height : 150,
@@ -84,7 +84,7 @@ exports.show = function() {
 		width : 30
 	});
 
-	if(Ti.Platform.osname != 'android') {
+	if (Ti.Platform.osname != 'android') {
 		actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.BIG;
 		indWin.add(actInd);
 
@@ -98,11 +98,11 @@ exports.show = function() {
 
 exports.setMsg = function(msg, loadingTxt) {
 
-	if(loadingTxt == undefined) {
+	if (loadingTxt == undefined) {
 		loadingTxt = 'جاري التحميل';
 	}
 
-	if(Ti.Platform.osname != 'android') {
+	if (Ti.Platform.osname != 'android') {
 		messageLbl.text = loadingTxt + "\n" + msg;
 	} else {
 		actInd.message = loadingTxt + "\n" + msg;

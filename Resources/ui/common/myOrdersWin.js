@@ -81,17 +81,17 @@ function myOrdersWin() {
 				var statustxt = '';
 				if (rows[i].status == '0')
 					statustxt = 'لم يتم البدأ';
-				else if(rows[i].status == '1')
+				else if (rows[i].status == '1')
 					statustxt = 'جاري الشحن';
-				else if(rows[i].status == '2')
+				else if (rows[i].status == '2')
 					statustxt = 'تم الوصول';
 
 				var statusLbl = Ti.UI.createLabel({
-				text : statustxt ,
-				height : 'auto',
-				right : '85dp',
-				top : '60dp',
-				textAlign : 'right'
+					text : statustxt,
+					height : 'auto',
+					right : '85dp',
+					top : '60dp',
+					textAlign : 'right'
 				});
 				row.add(statusLbl);
 

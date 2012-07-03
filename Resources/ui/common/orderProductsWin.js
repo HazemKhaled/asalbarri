@@ -8,7 +8,7 @@ function orderProductsWin(parent) {
 	function filterData() {
 
 		table.fireEvent('runLoading');
-		
+
 		var tableRows = [];
 
 		var xhr = Ti.Network.createHTTPClient();
@@ -114,7 +114,7 @@ function orderProductsWin(parent) {
 	});
 
 	table.addEventListener('cleartable', function() {
-	
+
 		if (this.data.length > 0) {
 			for (var i = this.data[0].rows.length - 1; i >= 0; i--) {
 				this.deleteRow(i);
@@ -122,7 +122,7 @@ function orderProductsWin(parent) {
 		}
 
 	});
-	
+
 	table.addEventListener('runLoading', function() {
 		this.setData([{
 			title : 'جاري التحميل ....'
@@ -133,11 +133,10 @@ function orderProductsWin(parent) {
 			title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
 		}]);
 	});
-	
+
 	filterData();
-	
+
 	Ti.App.orderProductsTable = table;
-	
 
 	self.add(table);
 	return self;

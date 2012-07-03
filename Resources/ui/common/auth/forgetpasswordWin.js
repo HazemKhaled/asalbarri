@@ -8,7 +8,6 @@ function forgetpasswordWin() {
 	self.addEventListener('open', function() {
 		emailField.focus();
 	})
-
 	var emailField = Ti.UI.createTextField({
 		height : '40dp',
 		width : '90%',

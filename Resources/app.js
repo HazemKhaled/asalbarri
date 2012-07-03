@@ -33,7 +33,7 @@ new ApplicationTabGroup().open();
 
 if (Ti.App.Properties.hasProperty('currency') == false) {
 	Ti.App.Properties.setInt('currency', 0);
-	Ti.App.Properties.setString('currencyName','ريال سعودي');
+	Ti.App.Properties.setString('currencyName', 'ريال سعودي');
 }
 //Ti.UI.currentTab
 Ti.include('/lib/events.js');
