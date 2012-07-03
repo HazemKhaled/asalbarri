@@ -7,8 +7,6 @@ function categoryWin(parent) {
 		barImage : 'images/common/Navigation_Bar.jpg'
 	});
 
-	self.setBackButtonTitleImage('mages/common/button_back.png');
-
 	if (!parent.id) {// only on home window
 		//openAboutWindow
 		var aboutBtn = Ti.UI.createButton({
@@ -56,7 +54,6 @@ function categoryWin(parent) {
 	var optionsDialogOpts = {
 
 		options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'],
-		destructive : 1,
 		cancel : 3,
 		title : 'اعدادات'
 	};
@@ -66,6 +63,7 @@ function categoryWin(parent) {
 	var auth = require('/lib/auth');
 	if (auth.isLogedIn() != false) {
 		dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+		dialog.destructive = 2;
 	}
 
 	// add event listener
