@@ -29,15 +29,15 @@ function productWin(product) {
 	mainScroll.add(productImg);
 
 	// description
-	var descLbl = Ti.UI.createLabel({
-		text : product.desc,
+	var titleLbl = Ti.UI.createLabel({
+		text : product.title,
 		textAlign : 'right',
 		color : '#000000',
 		top : '20dp',
 		right : '110dp',
 		left : '10dp'
 	});
-	mainScroll.add(descLbl);
+	mainScroll.add(titleLbl);
 
 	// + and - buttons with product quantity
 	function getQuantityFieldValue() {
@@ -118,6 +118,17 @@ function productWin(product) {
 
 	quantityMinusBtn.addEventListener('click', plusMinusBtnsOnClick);
 	quantityPlusBtn.addEventListener('click', plusMinusBtnsOnClick);
+
+	// description
+	var descLbl = Ti.UI.createLabel({
+		text : product.desc,
+		textAlign : 'right',
+		color : '#000000',
+		top : '120dp',
+		right : '10dp',
+		left : '10dp'
+	});
+	mainScroll.add(descLbl);
 
 	return self;
 };
