@@ -141,6 +141,23 @@ function productWin(product) {
 	});
 	mainScroll.add(descLbl);
 
+	// description
+	var addToCartBtn = Ti.UI.createButton({
+		title : 'اضف لسلة التسوق',
+		top : '180dp'
+	});
+
+	addToCartBtn.addEventListener('click', function() {
+		Ti.App.fireEvent('cartAdd', {
+			productID : product.id,
+			quantity : getQuantityFieldValue()
+		});
+
+		Ti.App.fireEvent('closeProductWindow');
+	});
+
+	mainScroll.add(addToCartBtn);
+
 	return self;
 };
 

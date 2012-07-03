@@ -97,7 +97,13 @@ Ti.App.addEventListener('openProductWindow', function(e) {
 
 	var ProductWin = require('/ui/common/productWin');
 
-	Ti.App.catalogTab.open(new ProductWin(e.data));
+	var productWin = new ProductWin(e.data);
+	Ti.App.catalogTab.open(productWin);
+
+	Ti.App.addEventListener('closeProductWindow', function(e) {
+
+		Ti.App.catalogTab.close(productWin);
+	});
 });
 
 Ti.App.addEventListener('openOrderProductsWindow', function(e) {
