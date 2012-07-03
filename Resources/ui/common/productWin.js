@@ -107,11 +107,22 @@ function productWin(product) {
 
 	function plusMinusBtnsOnClick(e) {
 
-		if (e.source.title == '+') {
+		var value = getQuantityFieldValue();
 
-			setQuantityFieldValue(getQuantityFieldValue() + 1);
+		if (parseInt(product.quantity) <= 0) {
+
+			Ti.UI.createAlertDialog({
+				title : 'غير متوفر',
+				message : 'عفواً هذا المنتج غير متوفر بالمخازن الان.'
+			}).show();
+
+			return false;
+		}
+
+		if (e.source.title == '+') {
+			setQuantityFieldValue(value + 1);
 		} else {
-			setQuantityFieldValue(getQuantityFieldValue() - 1);
+			setQuantityFieldValue(value - 1);
 		}
 	}
 
