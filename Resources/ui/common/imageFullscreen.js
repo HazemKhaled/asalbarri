@@ -21,7 +21,7 @@ function imageFullscreenView(e) {
 		verticalBounce : true,
 		horizontalBounce : true
 	});
-//alert(Ti.App.APITHUMB + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3');
+	//alert(Ti.App.APITHUMB + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3');
 	var img = Ti.UI.createImageView({
 		image : Ti.App.APIURL + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3',
 		width : 'auto',
