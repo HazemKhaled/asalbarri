@@ -31,7 +31,7 @@ Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || 
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
-if (!Ti.App.Properties.getInt('currency')) {
+if (Ti.App.Properties.hasProperty('currency') == false) {
 	Ti.App.Properties.setInt('currency', 0);
 	Ti.App.Properties.setString('currencyName','ريال سعودي');
 }

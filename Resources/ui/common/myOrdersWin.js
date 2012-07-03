@@ -12,7 +12,7 @@ function myOrdersWin() {
 
 		var xhr = Ti.Network.createHTTPClient();
 
-		xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1' + Ti.App.properties.userID);
+		xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1' + Ti.App.Properties.getInt('userID'));
 
 		xhr.onerror = function() {
 			table.fireEvent('reloadData', {
