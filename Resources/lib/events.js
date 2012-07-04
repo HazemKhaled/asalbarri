@@ -115,6 +115,27 @@ Ti.App.addEventListener('openOrderProductsWindow', function(e) {
 
 });
 
+Ti.App.addEventListener('cartAdd', function(e) {
+
+	var cart = Ti.App.Properties.getObject('cart', {});
+
+	cart[e.productID] = e.quantity;
+	Ti.App.Properties.setObject('cart', cart);
+
+	alert(Ti.App.Properties.getObject('cart'));
+});
+
+Ti.App.addEventListener('cartEmpty', function(e) {
+	Ti.App.Properties.setObject('cart', {});
+});
+
+function cartQuantityByProductID(productID) {
+
+	var cart = Ti.App.Properties.getObject('cart', {});
+
+	return cart[productID] == undefined ? 0 : cart[productID];
+}
+
 function autoTextAlign(e) {
 	if (e.value.length == 0) {
 		e.source.setTextAlign('right');
