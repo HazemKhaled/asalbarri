@@ -148,6 +148,16 @@ function productWin(product) {
 	});
 
 	addToCartBtn.addEventListener('click', function() {
+
+		if (parseInt(product.quantity) < getQuantityFieldValue()) {
+			Ti.UI.createAlertDialog({
+				title : 'هفواً',
+				message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
+				buttonNames : ['موافق']
+			}).show();
+			return;
+		}
+
 		Ti.App.fireEvent('cartAdd', {
 			productID : product.id,
 			productTitle : product.title,
