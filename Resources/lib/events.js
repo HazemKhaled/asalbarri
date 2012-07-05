@@ -133,6 +133,8 @@ Ti.App.addEventListener('cartAdd', function(e) {
 	Ti.App.cartTab.setBadge(cartQuantityCounter(cart).quantity);
 
 	Ti.API.log(cart);
+
+	Ti.App.catalogTab.setActive(true);
 });
 
 Ti.App.addEventListener('cartEmpty', function(e) {
