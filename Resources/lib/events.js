@@ -119,10 +119,29 @@ Ti.App.addEventListener('cartAdd', function(e) {
 
 	var cart = Ti.App.Properties.getObject('cart', {});
 
-	cart[e.productID] = e.quantity;
+	if (e.quantity == 0) {
+		delete cart[e.productID];
+	} else {
+
+		cart[e.productID] = {
+			title : e.productTitle,
+			quantity : e.quantity
+		};
+	}
 	Ti.App.Properties.setObject('cart', cart);
 
-	alert(Ti.App.Properties.getObject('cart'));
+	var quantityBadge = 0;
+	var countBadge = 0;
+
+	for (q in cart) {
+		quantityBadge += cart[q].quantity;
+		countBadge++;
+	}
+
+	Ti.App.cartTab.setBadge(quantityBadge);
+	//countBadge
+
+	Ti.API.log(cart);
 });
 
 Ti.App.addEventListener('cartEmpty', function(e) {
@@ -133,7 +152,7 @@ function cartQuantityByProductID(productID) {
 
 	var cart = Ti.App.Properties.getObject('cart', {});
 
-	return cart[productID] == undefined ? 0 : cart[productID];
+	return cart[productID] == undefined ? 0 : cart[productID].quantity;
 }
 
 function autoTextAlign(e) {

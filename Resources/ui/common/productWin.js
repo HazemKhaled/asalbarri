@@ -150,6 +150,7 @@ function productWin(product) {
 	addToCartBtn.addEventListener('click', function() {
 		Ti.App.fireEvent('cartAdd', {
 			productID : product.id,
+			productTitle : product.title,
 			quantity : getQuantityFieldValue()
 		});
 
