@@ -124,6 +124,7 @@ Ti.App.addEventListener('cartAdd', function(e) {
 	} else {
 
 		cart[e.productID] = {
+			id : e.productID,
 			title : e.productTitle,
 			quantity : e.quantity
 		};
