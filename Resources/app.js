@@ -28,6 +28,8 @@ var osname = Ti.Platform.osname, version = Ti.Platform.version, height = Ti.Plat
 //yourself what you consider a tablet form factor for android
 Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || height > 899));
 
+Ti.include('/lib/events.js');
+
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
@@ -36,5 +38,4 @@ if (Ti.App.Properties.hasProperty('currency') == false) {
 	Ti.App.Properties.setString('currencyName', 'ريال سعودي');
 }
 //Ti.UI.currentTab
-Ti.include('/lib/events.js');
 //})();

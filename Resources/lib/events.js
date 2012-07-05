@@ -130,16 +130,7 @@ Ti.App.addEventListener('cartAdd', function(e) {
 	}
 	Ti.App.Properties.setObject('cart', cart);
 
-	var quantityBadge = 0;
-	var countBadge = 0;
-
-	for (q in cart) {
-		quantityBadge += cart[q].quantity;
-		countBadge++;
-	}
-
-	Ti.App.cartTab.setBadge(quantityBadge);
-	//countBadge
+	Ti.App.cartTab.setBadge(cartQuantityCounter(cart).quantity);
 
 	Ti.API.log(cart);
 });
@@ -153,6 +144,25 @@ function cartQuantityByProductID(productID) {
 	var cart = Ti.App.Properties.getObject('cart', {});
 
 	return cart[productID] == undefined ? 0 : cart[productID].quantity;
+}
+
+function cartQuantityCounter(cart) {
+
+	if (cart == undefined) {
+		var cart = Ti.App.Properties.getObject('cart', {});
+	}
+
+	var data = {
+		quantity : 0,
+		count : 0
+	};
+
+	for (q in cart) {
+		data.quantity += cart[q].quantity;
+		data.count++;
+	}
+
+	return data;
 }
 
 function autoTextAlign(e) {

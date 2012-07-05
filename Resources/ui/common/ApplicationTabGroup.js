@@ -15,6 +15,7 @@ function ApplicationTabGroup(Window) {
 	Ti.App.cartTab = Ti.UI.createTab({
 		title : 'سلة التسوق',
 		icon : 'images/common/icon_5.png',
+		badge : cartQuantityCounter().quantity,
 		window : new cartWindow()
 	});
 
