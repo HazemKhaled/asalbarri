@@ -69,7 +69,7 @@ function productWin(product) {
 	}
 
 	var quantityField = Ti.UI.createTextField({
-		value : cartQuantityByProductID(product.id),
+		value : cartQuantityByProductID(product.id) > 0 ? cartQuantityByProductID(product.id) : 1,
 		textAlign : 'center',
 		width : '50dp',
 		height : '40dp',
