@@ -24,7 +24,7 @@ function openRegisterWindow() {
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    mobileField.addEventListener('change', autoTextAlign);
+    mobileField.addEventListener('change', Ti.App.autoTextAlign);
     mobileField.addEventListener('return', function() {
         emailField.focus();
     });
@@ -42,7 +42,7 @@ function openRegisterWindow() {
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    emailField.addEventListener('change', autoTextAlign);
+    emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
         passField.focus();
     });
@@ -60,7 +60,7 @@ function openRegisterWindow() {
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    passField.addEventListener('change', autoTextAlign);
+    passField.addEventListener('change', Ti.App.autoTextAlign);
     passField.addEventListener('return', function() {
         confirmpassField.focus();
     });
@@ -78,7 +78,7 @@ function openRegisterWindow() {
         returnKeyType : Ti.UI.RETURNKEY_JOIN,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
-    confirmpassField.addEventListener('change', autoTextAlign);
+    confirmpassField.addEventListener('change', Ti.App.autoTextAlign);
     confirmpassField.addEventListener('return', function() {
         submit.fireEvent('click');
     });
@@ -208,10 +208,11 @@ function openRegisterWindow() {
         Ti.App.fireEvent('showLoading');
 
     });
-    if (Ti.Platform.getOsname() === 'iphone' || Ti.Platform.getOsname() === 'ipad') {
-        self.setRightNavButton(submitBtn);
+
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(submitBtn);
     } else {
-        scrollview.add(submitBtn);
+        self.setRightNavButton(submitBtn);
     }
     self.add(scrollview);
 

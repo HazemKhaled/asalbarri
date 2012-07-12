@@ -53,10 +53,11 @@ function loginWin() {
     submitBtn = Ti.UI.createButton({
         title : 'دخول'
     });
-    if (Ti.Platform.getOsname() === 'iphone' || Ti.Platform.getOsname() === 'ipad') {
-        self.setRightNavButton(submitBtn);
+
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(submitBtn);
     } else {
-        scrollview.add(submitBtn);
+        self.setRightNavButton(submitBtn);
     }
 
     submitBtn.addEventListener('click', function() {

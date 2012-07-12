@@ -23,7 +23,11 @@ function categoryWin(parent) {
             Ti.App.fireEvent('openAboutWindow');
         });
 
-        self.setLeftNavButton(aboutBtn);
+        if (Ti.Platform.getOsname() === 'android') {
+            self.add(aboutBtn);
+        } else {
+            self.setLeftNavButton(aboutBtn);
+        }
     } else {
         backBtn = Ti.UI.createButton({
             title : 'عودة   ',
@@ -42,7 +46,11 @@ function categoryWin(parent) {
             self.close();
         });
 
-        self.setLeftNavButton(backBtn);
+        if (Ti.Platform.getOsname() === 'android') {
+            self.add(backBtn);
+        } else {
+            self.setLeftNavButton(backBtn);
+        }
     }
 
     //openSettingWindow
@@ -110,7 +118,11 @@ function categoryWin(parent) {
         Ti.App.dialog.show();
     });
 
-    self.setRightNavButton(settingBtn);
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(settingBtn);
+    } else {
+        self.setRightNavButton(settingBtn);
+    }
 
     // called after recive new data, from main request or if we want to add remote search
     function filterData() {

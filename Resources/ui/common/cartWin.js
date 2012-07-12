@@ -14,7 +14,11 @@ function cartWin() {
         alert('soon');
     });
 
-    self.setRightNavButton(orderBtn);
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(orderBtn);
+    } else {
+        self.setRightNavButton(orderBtn);
+    }
 
     actionBtnBar = Ti.UI.createButtonBar({
         labels : ['تفريغ', 'كوبون خصم'],

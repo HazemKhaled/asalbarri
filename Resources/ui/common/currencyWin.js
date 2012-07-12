@@ -16,7 +16,11 @@ function currencyWin() {
         self.close();
     });
 
-    self.setLeftNavButton(closeBtn);
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(closeBtn);
+    } else {
+        self.setLeftNavButton(closeBtn);
+    }
 
     label = Ti.UI.createLabel();
     self.add(label);

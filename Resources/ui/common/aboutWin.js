@@ -27,7 +27,11 @@ function aboutWin() {
         self.close();
     });
 
-    self.setLeftNavButton(closeBtn);
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(closeBtn);
+    } else {
+        self.setLeftNavButton(closeBtn);
+    }
 
     self.add(Ti.UI.createLabel({
         text : 'Hi all :)'

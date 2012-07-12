@@ -15,8 +15,11 @@ function imageFullscreenView(e) {
         self.close();
     });
 
-    self.setLeftNavButton(closeBtn);
-
+    if (Ti.Platform.getOsname() === 'android') {
+        self.add(closeBtn);
+    } else {
+        self.setLeftNavButton(closeBtn);
+    }
     scrollView = Ti.UI.createScrollView({
         width : '100%',
         height : '100%',

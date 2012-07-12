@@ -24,7 +24,7 @@ function forgetpasswordWin() {
     });
 
     // align left if empty
-    emailField.addEventListener('change', autoTextAlign);
+    emailField.addEventListener('change', Ti.App.autoTextAlign);
 
     self.add(emailField);
 
@@ -105,10 +105,11 @@ function forgetpasswordWin() {
     emailField.addEventListener('return', function() {
         submit.fireEvent('click');
     });
-    if (Ti.Platform.getOsname() === 'iphone' || Ti.Platform.getOsname() === 'ipad') {
-        self.setRightNavButton(submitBtn);
-    } else {
+
+    if (Ti.Platform.getOsname() === 'android') {
         self.add(submitBtn);
+    } else {
+        self.setRightNavButton(submitBtn);
     }
 
     return self;
