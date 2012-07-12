@@ -7,7 +7,7 @@ function productsListWin(parent) {
 
     function filterData() {
 
-        fireEvent('runLoading');
+        tableView.fireEvent('runLoading');
 
         var tableRows = [], xhr;
 
@@ -16,7 +16,7 @@ function productsListWin(parent) {
         xhr.open('GET', Ti.App.APIURL + 'api/productsByCatID/' + parent.id + '/' + Ti.App.Properties.getInt('currency'));
 
         xhr.onerror = function() {
-            fireEvent('reloadData', {
+            tableView.fireEvent('reloadData', {
                 rows : []
             });
         };
@@ -72,7 +72,7 @@ function productsListWin(parent) {
                 tableRows.push(row);
             }
 
-            fireEvent('reloadData', {
+            tableView.fireEvent('reloadData', {
                 rows : tableRows
             });
         };
@@ -107,7 +107,7 @@ function productsListWin(parent) {
         }
     });
 
-    self.add(table);
+    self.add(tableView);
     return self;
 }
 
