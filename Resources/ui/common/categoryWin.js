@@ -46,9 +46,7 @@ function categoryWin(parent) {
             self.close();
         });
 
-        if (Ti.Platform.getOsname() === 'android') {
-            self.add(backBtn);
-        } else {
+        if (Ti.Platform.getOsname() !== 'android') {
             self.setLeftNavButton(backBtn);
         }
     }

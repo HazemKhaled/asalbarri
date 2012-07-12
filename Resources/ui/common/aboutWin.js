@@ -27,9 +27,7 @@ function aboutWin() {
         self.close();
     });
 
-    if (Ti.Platform.getOsname() === 'android') {
-        self.add(closeBtn);
-    } else {
+    if (Ti.Platform.getOsname() !== 'android') {
         self.setLeftNavButton(closeBtn);
     }
 
