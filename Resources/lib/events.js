@@ -1,177 +1,172 @@
 var loading = null;
 Ti.App.addEventListener('showLoading', function(e) {
 
-	if (!loading) {
-		var loading = require('lib/loading');
-	}
-	loading.show();
+    if (!loading) {
+        loading = require('lib/loading');
+    }
+    loading.show();
 
-	Ti.App.addEventListener('hideLoading', function(e) {
-		loading.hide();
-	});
+    Ti.App.addEventListener('hideLoading', function(e) {
+        loading.hide();
+    });
 });
 
 Ti.App.addEventListener('openLoginWindow', function() {
-	Ti.App.catalogTab.active = true;
+    Ti.App.catalogTab.active = true;
 
-	var LoginWin = require('/ui/common/auth/loginWin');
+    var LoginModule = require('/ui/common/auth/loginWin');
 
-	var loginWin = new LoginWin();
-	Ti.App.catalogTab.open(loginWin);
+    loginWin = new LoginModule();
+    Ti.App.catalogTab.open(loginWin);
 
-	Ti.App.addEventListener('closeLoginWindow', function(e) {
+    Ti.App.addEventListener('closeLoginWindow', function(e) {
 
-		Ti.App.catalogTab.close(loginWin);
-	});
+        Ti.App.catalogTab.close(loginWin);
+    });
 });
 
 Ti.App.addEventListener('openRegisterWindow', function(e) {
-	var RegisterWin = require('/ui/common/auth/registerWin');
+    var RegisterWin = require('/ui/common/auth/registerWin');
 
-	Ti.App.catalogTab.active = true;
+    Ti.App.catalogTab.active = true;
 
-	var registerWin = new RegisterWin();
+    registerWin = new RegisterWin();
 
-	Ti.App.catalogTab.open(registerWin);
+    Ti.App.catalogTab.open(registerWin);
 
-	Ti.App.addEventListener('closeRegisterWindow', function(e) {
+    Ti.App.addEventListener('closeRegisterWindow', function(e) {
 
-		Ti.App.catalogTab.close(registerWin);
-	});
+        Ti.App.catalogTab.close(registerWin);
+    });
 });
 
 Ti.App.addEventListener('openForgetpasswordWindow', function(e) {
 
-	var ForgetpasswordWin = require('/ui/common/auth/forgetpasswordWin');
+    var ForgetpasswordWinModule = require('/ui/common/auth/forgetpasswordWin'), forgetpasswordWin;
 
-	var forgetpasswordWin = new ForgetpasswordWin();
+    forgetpasswordWin = new ForgetpasswordWinModule();
 
-	Ti.App.catalogTab.open(forgetpasswordWin);
+    Ti.App.catalogTab.open(forgetpasswordWin);
 
-	Ti.App.addEventListener('closeForgetpasswordWindow', function(e) {
+    Ti.App.addEventListener('closeForgetpasswordWindow', function(e) {
 
-		Ti.App.catalogTab.close(forgetpasswordWin);
-	});
+        Ti.App.catalogTab.close(forgetpasswordWin);
+    });
 });
 
 Ti.App.addEventListener('openAboutWindow', function() {
-	var AboutWin = require('/ui/common/aboutWin');
+    var AboutWinModule = require('/ui/common/aboutWin'), aboutWin;
 
-	var AboutWin = new AboutWin();
+    aboutWin = new AboutWinModule();
 
-	AboutWin.open();
-
+    aboutWin.open();
 });
 
 Ti.App.addEventListener('openCurrencyWindow', function() {
-	var currencyWin = require('/ui/common/currencyWin');
+    var CurrencyWinModule = require('/ui/common/currencyWin'), currencyWin;
 
-	var currencyWin = new currencyWin();
+    currencyWin = new CurrencyWinModule();
 
-	currencyWin.open();
-
+    currencyWin.open();
 });
 
 Ti.App.addEventListener('openChargeWalletWindow', function() {
-	var chargeWalletWin = require('/ui/common/chargeWalletWin');
+    var ChargeWalletWinModule = require('/ui/common/chargeWalletWin'), chargeWalletWin;
 
-	var chargeWalletWin = new chargeWalletWin();
+    chargeWalletWin = new ChargeWalletWinModule();
 
-	chargeWalletWin.open();
-
+    chargeWalletWin.open();
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
-	var CategoryWin = require('ui/common/categoryWin');
+    var CategoryWin = require('ui/common/categoryWin');
 
-	Ti.App.catalogTab.open(new CategoryWin(e.parent));
+    Ti.App.catalogTab.open(new CategoryWin(e.parent));
 });
 
 Ti.App.addEventListener('openProductListWindow', function(e) {
-	var ProductsListWin = require('ui/common/productsListWin');
+    var ProductsListWin = require('ui/common/productsListWin');
 
-	Ti.App.catalogTab.open(new ProductsListWin(e.data));
+    Ti.App.catalogTab.open(new ProductsListWin(e.data));
 });
 
 Ti.App.addEventListener('openProductWindow', function(e) {
 
-	var ProductWin = require('/ui/common/productWin');
+    var ProductWinModule = require('/ui/common/productWin'), productWin;
 
-	var productWin = new ProductWin(e.data);
-	Ti.App.catalogTab.open(productWin);
+    productWin = new ProductWinModule(e.data);
+    Ti.App.catalogTab.open(productWin);
 
-	Ti.App.addEventListener('closeProductWindow', function(e) {
+    Ti.App.addEventListener('closeProductWindow', function(e) {
 
-		Ti.App.catalogTab.close(productWin);
-	});
+        Ti.App.catalogTab.close(productWin);
+    });
 });
 
 Ti.App.addEventListener('openOrderProductsWindow', function(e) {
 
-	var orderProductsWin = require('/ui/common/orderProductsWin');
+    var OrderProductsWinModule = require('/ui/common/orderProductsWin');
 
-	Ti.App.orderTab.open(new orderProductsWin(e.data));
-	//var timer = setInterval(Ti.App.orderProductsTable.fireEvent('cleartable'), 10000);
-
+    Ti.App.orderTab.open(new OrderProductsWinModule(e.data));
 });
 
 Ti.App.addEventListener('cartAdd', function(e) {
 
-	var cart = Ti.App.Properties.getObject('cart', {});
+    var cart = Ti.App.Properties.getObject('cart', {});
 
-	if (e.quantity == 0) {
-		delete cart[e.productID];
-	} else {
+    if (e.quantity === 0) {
+        delete cart[e.productID];
+    } else {
 
-		cart[e.productID] = {
-			id : e.productID,
-			title : e.productTitle,
-			quantity : e.quantity
-		};
-	}
-	Ti.App.Properties.setObject('cart', cart);
+        cart[e.productID] = {
+            id : e.productID,
+            title : e.productTitle,
+            quantity : e.quantity
+        };
+    }
+    Ti.App.Properties.setObject('cart', cart);
 
-	Ti.App.cartTab.setBadge(cartQuantityCounter(cart).quantity);
+    Ti.App.cartTab.setBadge(cartQuantityCounter(cart).quantity);
 
-	Ti.API.log(cart);
+    Ti.API.log(cart);
 
-	Ti.App.cartTab.setActive(true);
+    Ti.App.cartTab.setActive(true);
 });
 
 Ti.App.addEventListener('cartEmpty', function(e) {
-	Ti.App.Properties.setObject('cart', {});
+    Ti.App.Properties.setObject('cart', {});
 });
 
 function cartQuantityByProductID(productID) {
 
-	var cart = Ti.App.Properties.getObject('cart', {});
+    var cart = Ti.App.Properties.getObject('cart', {});
 
-	return cart[productID] == undefined ? 0 : cart[productID].quantity;
+    return cart[productID] === undefined ? 0 : cart[productID].quantity;
 }
 
 function cartQuantityCounter(cart) {
 
-	if (cart == undefined) {
-		var cart = Ti.App.Properties.getObject('cart', {});
-	}
+    if (cart === undefined) {
+        cart = Ti.App.Properties.getObject('cart', {});
+    }
 
-	var data = {
-		quantity : 0,
-		count : 0
-	};
+    var data = {
+        quantity : 0,
+        count : 0
+    }, q;
 
-	for (q in cart) {
-		data.quantity += cart[q].quantity;
-		data.count++;
-	}
+    for (q in cart) {
+        data.quantity += cart[q].quantity;
+        data.count += 1;
+    }
 
-	return data;
+    return data;
 }
 
 function autoTextAlign(e) {
-	if (e.value.length == 0) {
-		e.source.setTextAlign('right');
-	} else {
-		e.source.setTextAlign('left');
-	}
+    if (e.value.length === 0) {
+        e.source.setTextAlign('right');
+    } else {
+        e.source.setTextAlign('left');
+    }
 }

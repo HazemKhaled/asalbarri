@@ -22,7 +22,7 @@ Ti.App.APIURL = 'http://demo.hgicom.com/asalbarri/asal/';
 // This is a single context application with mutliple windows in a stack
 //(function() {
 //determine platform and form factor and render approproate components
-var osname = Ti.Platform.osname, version = Ti.Platform.version, height = Ti.Platform.displayCaps.platformHeight, width = Ti.Platform.displayCaps.platformWidth;
+var osname = Ti.Platform.getOsname(), version = Ti.Platform.version, height = Ti.Platform.displayCaps.platformHeight, width = Ti.Platform.displayCaps.platformWidth;
 
 //considering tablet to have one dimension over 900px - this is imperfect, so you should feel free to decide
 //yourself what you consider a tablet form factor for android
@@ -33,7 +33,7 @@ Ti.include('/lib/events.js');
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 new ApplicationTabGroup().open();
 
-if (Ti.App.Properties.hasProperty('currency') == false) {
+if (Ti.App.Properties.hasProperty('currency') === false) {
 	Ti.App.Properties.setInt('currency', 0);
 	Ti.App.Properties.setString('currencyName', 'ريال سعودي');
 }

@@ -1,159 +1,159 @@
 function myOrdersWin() {
-	var self = Ti.UI.createWindow({
-		title : 'طلباتي',
-		backgroundColor : 'white'
-	});
 
-	function filterData() {
+    var self, tableView;
 
-		table.fireEvent('runLoading');
+    self = Ti.UI.createWindow({
+        title : 'طلباتي',
+        backgroundColor : 'white'
+    });
 
-		var tableRows = [];
+    function filterData() {
 
-		var xhr = Ti.Network.createHTTPClient();
+        tableView.fireEvent('runLoading');
 
-		xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1' + Ti.App.Properties.getInt('userID'));
+        var tableRows = [], xhr;
 
-		xhr.onerror = function() {
-			table.fireEvent('reloadData', {
-				rows : []
-			});
-		}
+        xhr = Ti.Network.createHTTPClient();
 
-		xhr.onload = function() {
-			var rows = JSON.parse(this.responseText);
+        xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1' + Ti.App.Properties.getInt('userID'));
 
-			for (i in rows ) {
-				var row = Ti.UI.createTableViewRow({
-					height : '110dp',
-					//hasChild : true,
-					myTitle : rows[i].title,
-					data : rows[i]
-				});
+        xhr.onerror = function() {
+            tableView.fireEvent('reloadData', {
+                rows : []
+            });
+        };
 
-				var dateTitleLbl = Ti.UI.createLabel({
-					text : 'التاريخ : ',
-					height : 'auto',
-					left : 0,
-					right : '10dp',
-					top : '10dp',
-					textAlign : 'right'
-				});
-				row.add(dateTitleLbl);
+        xhr.onload = function() {
 
-				var dateLbl = Ti.UI.createLabel({
-					text : rows[i].date,
-					height : 'auto',
-					left : 0,
-					right : '65dp',
-					top : '10dp',
-					textAlign : 'right'
-				});
-				row.add(dateLbl);
+            var rows, i, row, dateTitleLbl, dateLbl, totaltitleLbl, priceLbl, statusTitleLbl, statustxt = '', statusLbl;
 
-				var totaltitleLbl = Ti.UI.createLabel({
-					text : 'الاجمالي : ',
-					height : 'auto',
-					right : '10dp',
-					top : '35dp',
-					textAlign : 'right'
-				});
-				row.add(totaltitleLbl);
+            rows = JSON.parse(this.responseText);
 
-				var priceLbl = Ti.UI.createLabel({
-					text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
-					height : 'auto',
-					right : '75dp',
-					top : '35dp',
-					textAlign : 'right'
-				});
-				row.add(priceLbl);
+            for (i in rows ) {
+                row = Ti.UI.createTableViewRow({
+                    height : '110dp',
+                    myTitle : rows[i].title,
+                    data : rows[i]
+                });
 
-				var statusTitleLbl = Ti.UI.createLabel({
-					text : 'حالة الطلب : ',
-					height : 'auto',
-					right : '10dp',
-					top : '60dp',
-					textAlign : 'right'
-				});
-				row.add(statusTitleLbl);
+                dateTitleLbl = Ti.UI.createLabel({
+                    text : 'التاريخ : ',
+                    height : 'auto',
+                    left : 0,
+                    right : '10dp',
+                    top : '10dp',
+                    textAlign : 'right'
+                });
+                row.add(dateTitleLbl);
 
-				var statustxt = '';
-				if (rows[i].status == '0')
-					statustxt = 'لم يتم البدأ';
-				else if (rows[i].status == '1')
-					statustxt = 'جاري الشحن';
-				else if (rows[i].status == '2')
-					statustxt = 'تم الوصول';
+                dateLbl = Ti.UI.createLabel({
+                    text : rows[i].date,
+                    height : 'auto',
+                    left : 0,
+                    right : '65dp',
+                    top : '10dp',
+                    textAlign : 'right'
+                });
+                row.add(dateLbl);
 
-				var statusLbl = Ti.UI.createLabel({
-					text : statustxt,
-					height : 'auto',
-					right : '85dp',
-					top : '60dp',
-					textAlign : 'right'
-				});
-				row.add(statusLbl);
+                totaltitleLbl = Ti.UI.createLabel({
+                    text : 'الاجمالي : ',
+                    height : 'auto',
+                    right : '10dp',
+                    top : '35dp',
+                    textAlign : 'right'
+                });
+                row.add(totaltitleLbl);
 
-				tableRows.push(row);
-			}
+                priceLbl = Ti.UI.createLabel({
+                    text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
+                    height : 'auto',
+                    right : '75dp',
+                    top : '35dp',
+                    textAlign : 'right'
+                });
+                row.add(priceLbl);
 
-			table.fireEvent('reloadData', {
-				rows : tableRows
-			});
-		};
+                statusTitleLbl = Ti.UI.createLabel({
+                    text : 'حالة الطلب : ',
+                    height : 'auto',
+                    right : '10dp',
+                    top : '60dp',
+                    textAlign : 'right'
+                });
+                row.add(statusTitleLbl);
 
-		xhr.send();
-	}
+                statustxt = '';
+                if (rows[i].status === '0') {
+                    statustxt = 'لم يتم البدأ';
+                } else if (rows[i].status === '1') {
+                    statustxt = 'جاري الشحن';
+                } else if (rows[i].status === '2') {
+                    statustxt = 'تم الوصول';
+                }
 
-	var search = Ti.UI.createSearchBar({
-		hintText : 'بحث'
-	});
+                statusLbl = Ti.UI.createLabel({
+                    text : statustxt,
+                    height : 'auto',
+                    right : '85dp',
+                    top : '60dp',
+                    textAlign : 'right'
+                });
+                row.add(statusLbl);
 
-	var table = Ti.UI.createTableView({
-		height : 'auto',
-		//search : search,
-		filterAttribute : 'myTitle',
-		//searchHidden : true
-	});
+                tableRows.push(row);
+            }
 
-	table.addEventListener('runLoading', function() {
-		this.setData([{
-			title : 'جاري التحميل ....'
-		}]);
-	});
-	table.addEventListener('reloadData', function(e) {
-		this.setData(e.rows.length > 0 ? e.rows : [{
-			title : 'مشكلة تحميل، حاول بعد قليل.'
-		}]);
-	});
+            tableView.fireEvent('reloadData', {
+                rows : tableRows
+            });
+        };
 
-	table.addEventListener('click', function(e) {
+        xhr.send();
+    }
 
-		if (e.rowData.data) {
+    tableView = Ti.UI.createTableView({
+        height : 'auto',
+        filterAttribute : 'myTitle'
+    });
 
-			Ti.App.fireEvent('openOrderProductsWindow', {
-				data : e.rowData.data
-			});
-		}
-	});
+    tableView.addEventListener('runLoading', function() {
+        this.setData([{
+            title : 'جاري التحميل ....'
+        }]);
+    });
+    tableView.addEventListener('reloadData', function(e) {
+        this.setData(e.rows.length > 0 ? e.rows : [{
+            title : 'مشكلة تحميل، حاول بعد قليل.'
+        }]);
+    });
 
-	self.add(table);
+    tableView.addEventListener('click', function(e) {
 
-	self.addEventListener('focus', function() {
+        if (e.rowData.data) {
 
-		var auth = require('/lib/auth');
-		Ti.App.fireEvent('closeLoginWindow');
-		if (!auth.isLogedIn() && false) {
+            Ti.App.fireEvent('openOrderProductsWindow', {
+                data : e.rowData.data
+            });
+        }
+    });
 
-			Ti.App.fireEvent('openLoginWindow');
-		} else {
-			filterData();
-		}
+    self.add(tableView);
 
-	});
+    self.addEventListener('focus', function() {
 
-	return self;
-};
+        var auth = require('/lib/auth');
+        Ti.App.fireEvent('closeLoginWindow');
+        if (!auth.isLogedIn() && false) {
+
+            Ti.App.fireEvent('openLoginWindow');
+        } else {
+            filterData();
+        }
+
+    });
+
+    return self;
+}
 
 module.exports = myOrdersWin;

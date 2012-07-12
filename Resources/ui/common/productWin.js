@@ -1,175 +1,176 @@
 function productWin(product) {
-	var self = Ti.UI.createWindow({
-		title : product.title,
-		backgroundColor : 'white'
-	});
 
-	var mainScroll = Ti.UI.createScrollView();
-	self.add(mainScroll);
+    var self, mainScroll, productImg, titleLbl, quantityField, quantityMinusBtn, quantityPlusBtn, descLbl, addToCartBtn;
 
-	//var picWidth = Ti.Platform.displayCaps.platformWidth - 40;
-	var productImg = Ti.UI.createImageView({
-		image : Ti.App.APIURL + 'api/pic/product/' + product.id + '/90/90/1',
-		width : '90dp',
-		height : '90dp',
-		top : '10dp',
-		right : '10dp',
-		borderRadius : 45
-	});
+    self = Ti.UI.createWindow({
+        title : product.title,
+        backgroundColor : 'white'
+    });
 
-	productImg.addEventListener('click', function() {
+    mainScroll = Ti.UI.createScrollView();
+    self.add(mainScroll);
 
-		var fullscreen = require('ui/common/imageFullscreen');
-		new fullscreen({
-			title : product.title,
-			productID : product.id
-		}).open();
-	});
+    productImg = Ti.UI.createImageView({
+        image : Ti.App.APIURL + 'api/pic/product/' + product.id + '/90/90/1',
+        width : '90dp',
+        height : '90dp',
+        top : '10dp',
+        right : '10dp',
+        borderRadius : 45
+    });
 
-	mainScroll.add(productImg);
+    productImg.addEventListener('click', function() {
 
-	// description
-	var titleLbl = Ti.UI.createLabel({
-		text : product.title,
-		textAlign : 'right',
-		color : '#000000',
-		top : '20dp',
-		right : '110dp',
-		left : '10dp'
-	});
-	mainScroll.add(titleLbl);
+        var FullscreenWinModule = require('ui/common/imageFullscreen');
+        new FullscreenWinModule({
+            title : product.title,
+            productID : product.id
+        }).open();
+    });
 
-	// + and - buttons with product quantity
-	function getQuantityFieldValue() {
-		return parseInt(quantityField.getValue());
-	}
+    mainScroll.add(productImg);
 
-	function setQuantityFieldValue(newValue) {
-		var value = parseInt(newValue);
+    titleLbl = Ti.UI.createLabel({
+        text : product.title,
+        textAlign : 'right',
+        color : '#000000',
+        top : '20dp',
+        right : '110dp',
+        left : '10dp'
+    });
+    mainScroll.add(titleLbl);
 
-		// is it in minus ?
-		if (value < 0) {
-			value = 0;
-		}
+    // + and - buttons with product quantity
+    function getQuantityFieldValue() {
+        return parseInt(quantityField.getValue());
+    }
 
-		// is it more then inventory quantity
-		if (value > parseInt(product.quantity)) {
+    function setQuantityFieldValue(newValue) {
+        var value = parseInt(newValue);
 
-			Ti.UI.createAlertDialog({
-				title : 'الكمية لا تكفي',
-				message : 'متوفر الان فقط ' + product.quantity + ' وحدة من هذا المنتج',
-				cancel : 0,
-				buttonNames : ['موافق']
-			}).show();
+        // is it in minus ?
+        if (value < 0) {
+            value = 0;
+        }
 
-			value = parseInt(product.quantity);
-		}
+        // is it more then inventory quantity
+        if (value > parseInt(product.quantity)) {
 
-		quantityField.setValue(value);
-	}
+            Ti.UI.createAlertDialog({
+                title : 'الكمية لا تكفي',
+                message : 'متوفر الان فقط ' + product.quantity + ' وحدة من هذا المنتج',
+                cancel : 0,
+                buttonNames : ['موافق']
+            }).show();
 
-	var quantityField = Ti.UI.createTextField({
-		value : cartQuantityByProductID(product.id) > 0 ? cartQuantityByProductID(product.id) : 1,
-		textAlign : 'center',
-		width : '50dp',
-		height : '40dp',
-		left : '10dp',
-		top : '70dp',
-		editable : false,
-		enabled : false
-	});
+            value = parseInt(product.quantity);
+        }
 
-	quantityField.addEventListener('change', function(e) {
-		setQuantityFieldValue(getQuantityFieldValue());
-	});
+        quantityField.setValue(value);
+    }
 
-	self.add(quantityField);
+    quantityField = Ti.UI.createTextField({
+        value : cartQuantityByProductID(product.id) > 0 ? cartQuantityByProductID(product.id) : 1,
+        textAlign : 'center',
+        width : '50dp',
+        height : '40dp',
+        left : '10dp',
+        top : '70dp',
+        editable : false,
+        enabled : false
+    });
 
-	var quantityMinusBtn = Ti.UI.createButton({
-		title : '-',
-		textAlign : 'center',
-		width : '40dp',
-		height : '40dp',
-		left : '65dp',
-		top : '70dp'
-	});
-	self.add(quantityMinusBtn);
+    quantityField.addEventListener('change', function(e) {
+        setQuantityFieldValue(getQuantityFieldValue());
+    });
 
-	var quantityPlusBtn = Ti.UI.createButton({
-		title : '+',
-		textAlign : 'center',
-		width : '40dp',
-		height : '40dp',
-		left : '110dp',
-		top : '70dp'
-	});
-	self.add(quantityPlusBtn);
+    self.add(quantityField);
 
-	function plusMinusBtnsOnClick(e) {
+    quantityMinusBtn = Ti.UI.createButton({
+        title : '-',
+        textAlign : 'center',
+        width : '40dp',
+        height : '40dp',
+        left : '65dp',
+        top : '70dp'
+    });
+    self.add(quantityMinusBtn);
 
-		var value = getQuantityFieldValue();
+    quantityPlusBtn = Ti.UI.createButton({
+        title : '+',
+        textAlign : 'center',
+        width : '40dp',
+        height : '40dp',
+        left : '110dp',
+        top : '70dp'
+    });
+    self.add(quantityPlusBtn);
 
-		if (parseInt(product.quantity) <= 0) {
+    function plusMinusBtnsOnClick(e) {
 
-			Ti.UI.createAlertDialog({
-				title : 'غير متوفر',
-				message : 'عفواً هذا المنتج غير متوفر بالمخازن الان.'
-			}).show();
+        var value = getQuantityFieldValue();
 
-			return false;
-		}
+        if (parseInt(product.quantity) <= 0) {
 
-		if (e.source.title == '+') {
-			setQuantityFieldValue(value + 1);
-		} else {
-			setQuantityFieldValue(value - 1);
-		}
-	}
+            Ti.UI.createAlertDialog({
+                title : 'غير متوفر',
+                message : 'عفواً هذا المنتج غير متوفر بالمخازن الان.'
+            }).show();
+
+            return false;
+        }
+
+        if (e.source.title === '+') {
+            setQuantityFieldValue(value + 1);
+        } else {
+            setQuantityFieldValue(value - 1);
+        }
+    }
 
 
-	quantityMinusBtn.addEventListener('click', plusMinusBtnsOnClick);
-	quantityPlusBtn.addEventListener('click', plusMinusBtnsOnClick);
+    quantityMinusBtn.addEventListener('click', plusMinusBtnsOnClick);
+    quantityPlusBtn.addEventListener('click', plusMinusBtnsOnClick);
 
-	// description
-	var descLbl = Ti.UI.createLabel({
-		text : product.desc,
-		textAlign : 'right',
-		color : '#000000',
-		top : '120dp',
-		right : '10dp',
-		left : '10dp'
-	});
-	mainScroll.add(descLbl);
+    // description
+    descLbl = Ti.UI.createLabel({
+        text : product.desc,
+        textAlign : 'right',
+        color : '#000000',
+        top : '120dp',
+        right : '10dp',
+        left : '10dp'
+    });
+    mainScroll.add(descLbl);
 
-	// description
-	var addToCartBtn = Ti.UI.createButton({
-		title : 'اضف لسلة التسوق',
-		top : '180dp'
-	});
+    // description
+    addToCartBtn = Ti.UI.createButton({
+        title : 'اضف لسلة التسوق',
+        top : '180dp'
+    });
 
-	addToCartBtn.addEventListener('click', function() {
+    addToCartBtn.addEventListener('click', function() {
 
-		if (parseInt(product.quantity) < getQuantityFieldValue()) {
-			Ti.UI.createAlertDialog({
-				title : 'هفواً',
-				message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
-				buttonNames : ['موافق']
-			}).show();
-			return;
-		}
+        if (parseInt(product.quantity) < getQuantityFieldValue()) {
+            Ti.UI.createAlertDialog({
+                title : 'هفواً',
+                message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
+                buttonNames : ['موافق']
+            }).show();
+            return;
+        }
 
-		Ti.App.fireEvent('cartAdd', {
-			productID : product.id,
-			productTitle : product.title,
-			quantity : getQuantityFieldValue()
-		});
+        Ti.App.fireEvent('cartAdd', {
+            productID : product.id,
+            productTitle : product.title,
+            quantity : getQuantityFieldValue()
+        });
 
-		Ti.App.fireEvent('closeProductWindow');
-	});
+        Ti.App.fireEvent('closeProductWindow');
+    });
 
-	mainScroll.add(addToCartBtn);
+    mainScroll.add(addToCartBtn);
 
-	return self;
-};
+    return self;
+}
 
 module.exports = productWin;

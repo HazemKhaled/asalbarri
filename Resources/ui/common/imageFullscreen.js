@@ -1,61 +1,63 @@
 function imageFullscreenView(e) {
 
-	var self = Ti.UI.createWindow({
-		title : e.title,
-		modal : true
-	});
+    var self, closeBtn, scrollView, img;
 
-	var closeBtn = Ti.UI.createButton({
-		title : 'رجوع'
-	});
+    self = Ti.UI.createWindow({
+        title : e.title,
+        modal : true
+    });
 
-	closeBtn.addEventListener('click', function() {
-		self.close();
-	});
+    closeBtn = Ti.UI.createButton({
+        title : 'رجوع'
+    });
 
-	self.setLeftNavButton(closeBtn);
+    closeBtn.addEventListener('click', function() {
+        self.close();
+    });
 
-	var scrollView = Ti.UI.createScrollView({
-		width : '100%',
-		height : '100%',
-		verticalBounce : true,
-		horizontalBounce : true
-	});
-	//alert(Ti.App.APITHUMB + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3');
-	var img = Ti.UI.createImageView({
-		image : Ti.App.APIURL + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3',
-		width : 'auto',
-		height : 'auto'
-	});
+    self.setLeftNavButton(closeBtn);
 
-	img.addEventListener('dblclick', function(e) {
+    scrollView = Ti.UI.createScrollView({
+        width : '100%',
+        height : '100%',
+        verticalBounce : true,
+        horizontalBounce : true
+    });
 
-		if (img.getWidth() > Ti.Platform.displayCaps.getPlatformWidth()) {
+    img = Ti.UI.createImageView({
+        image : Ti.App.APIURL + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3',
+        width : 'auto',
+        height : 'auto'
+    });
 
-			img.setWidth('auto');
-			img.setHeight('auto');
+    img.addEventListener('dblclick', function(e) {
 
-			scrollView.setContentWidth('100%');
-			scrollView.setContentHeight('100%');
+        if (img.getWidth() > Ti.Platform.displayCaps.getPlatformWidth()) {
 
-		} else {
+            img.setWidth('auto');
+            img.setHeight('auto');
 
-			scrollView.setContentWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
-			scrollView.setContentHeight((Ti.Platform.displayCaps.getPlatformHeight() - 44) * 2);
+            scrollView.setContentWidth('100%');
+            scrollView.setContentHeight('100%');
 
-			img.setWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
+        } else {
 
-			scrollView.setContentOffset({
-				x : (e.x * 2) - (Ti.Platform.displayCaps.getPlatformWidth() / 2),
-				y : (e.y * 2) - ((Ti.Platform.displayCaps.getPlatformHeight() - 44) / 2)
-			}, true);
-		}
-	})
+            scrollView.setContentWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
+            scrollView.setContentHeight((Ti.Platform.displayCaps.getPlatformHeight() - 44) * 2);
 
-	scrollView.add(img);
+            img.setWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
 
-	self.add(scrollView);
-	return self;
-};
+            scrollView.setContentOffset({
+                x : (e.x * 2) - (Ti.Platform.displayCaps.getPlatformWidth() / 2),
+                y : (e.y * 2) - ((Ti.Platform.displayCaps.getPlatformHeight() - 44) / 2)
+            }, true);
+        }
+    });
+
+    scrollView.add(img);
+
+    self.add(scrollView);
+    return self;
+}
 
 module.exports = imageFullscreenView;

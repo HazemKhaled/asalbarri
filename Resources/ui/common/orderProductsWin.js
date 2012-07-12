@@ -1,145 +1,142 @@
 function orderProductsWin(parent) {
-	var self = Ti.UI.createWindow({
-		title : 'تفاصيل الطب',
-		backgroundColor : 'white',
-		backButtonTitle : 'طلباتي'
-	});
+    var self = Ti.UI.createWindow({
+        title : 'تفاصيل الطب',
+        backgroundColor : 'white',
+        backButtonTitle : 'طلباتي'
+    });
 
-	function filterData() {
+    function filterData() {
 
-		table.fireEvent('runLoading');
+        tableView.fireEvent('runLoading');
 
-		var tableRows = [];
+        var tableRows = [], xhr;
 
-		var xhr = Ti.Network.createHTTPClient();
+        xhr = Ti.Network.createHTTPClient();
 
-		xhr.open('GET', Ti.App.APIURL + 'api/productsByOrderID/' + parent.id);
+        xhr.open('GET', Ti.App.APIURL + 'api/productsByOrderID/' + parent.id);
 
-		xhr.onerror = function() {
-			table.fireEvent('reloadData', {
-				rows : []
-			});
-		}
+        xhr.onerror = function() {
+            tableView.fireEvent('reloadData', {
+                rows : []
+            });
+        };
 
-		xhr.onload = function() {
-			var rows = JSON.parse(this.responseText);
+        xhr.onload = function() {
 
-			for (i in rows ) {
-				var row = Ti.UI.createTableViewRow({
-					height : '110dp',
-					//hasChild : true,
-					myTitle : rows[i].title,
-					data : rows[i]
-				});
+            var rows, i, row, img, titleLbl, purchasesQtyLbl, priceLbl, priceLbl2;
 
-				var img = Ti.UI.createImageView({
-					image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-					width : '100dp',
-					height : '100p',
-					right : '5dp'
-				});
-				row.add(img);
+            rows = JSON.parse(this.responseText);
 
-				var titleLbl = Ti.UI.createLabel({
-					text : rows[i].title,
-					height : 'auto',
-					left : 0,
-					right : '110dp',
-					top : '10dp',
-					color : '#000000',
-					textAlign : 'right'
-				});
-				row.add(titleLbl);
+            for (i in rows) {
+                row = Ti.UI.createTableViewRow({
+                    height : '110dp',
+                    myTitle : rows[i].title,
+                    data : rows[i]
+                });
 
-				var purchasesQtyLbl = Ti.UI.createLabel({
-					text : 'الكمية : ',
-					height : 'auto',
-					left : 0,
-					right : '110dp',
-					top : '35dp',
-					textAlign : 'right'
-				});
-				row.add(purchasesQtyLbl);
+                img = Ti.UI.createImageView({
+                    image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
+                    width : '100dp',
+                    height : '100p',
+                    right : '5dp'
+                });
+                row.add(img);
 
-				var purchasesQty = Ti.UI.createLabel({
-					text : rows[i].purchases_quantity,
-					height : 'auto',
-					left : 0,
-					right : '190dp',
-					top : '35dp',
-					textAlign : 'right'
-				});
-				row.add(purchasesQty);
+                titleLbl = Ti.UI.createLabel({
+                    text : rows[i].title,
+                    height : 'auto',
+                    left : 0,
+                    right : '110dp',
+                    top : '10dp',
+                    color : '#000000',
+                    textAlign : 'right'
+                });
+                row.add(titleLbl);
 
-				var priceLbl = Ti.UI.createLabel({
-					text : 'سعر الوحدة : ',
-					height : 'auto',
-					left : 0,
-					right : '110dp',
-					top : '60dp',
-					textAlign : 'right'
-				});
-				row.add(priceLbl);
+                purchasesQtyLbl = Ti.UI.createLabel({
+                    text : 'الكمية : ',
+                    height : 'auto',
+                    left : 0,
+                    right : '110dp',
+                    top : '35dp',
+                    textAlign : 'right'
+                });
+                row.add(purchasesQtyLbl);
 
-				var price = Ti.UI.createLabel({
-					text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName'),
-					height : 'auto',
-					left : 0,
-					right : '190dp',
-					top : '60dp',
-					textAlign : 'right'
-				});
-				row.add(price);
+                purchasesQty = Ti.UI.createLabel({
+                    text : rows[i].purchases_quantity,
+                    height : 'auto',
+                    left : 0,
+                    right : '190dp',
+                    top : '35dp',
+                    textAlign : 'right'
+                });
+                row.add(purchasesQty);
 
-				tableRows.push(row);
-			}
+                priceLbl = Ti.UI.createLabel({
+                    text : 'سعر الوحدة : ',
+                    height : 'auto',
+                    left : 0,
+                    right : '110dp',
+                    top : '60dp',
+                    textAlign : 'right'
+                });
+                row.add(priceLbl);
 
-			table.fireEvent('reloadData', {
-				rows : tableRows
-			});
-		};
+                priceLbl2 = Ti.UI.createLabel({
+                    text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName'),
+                    height : 'auto',
+                    left : 0,
+                    right : '190dp',
+                    top : '60dp',
+                    textAlign : 'right'
+                });
+                row.add(price);
 
-		xhr.send();
-	}
+                tableRows.push(row);
+            }
 
-	var search = Ti.UI.createSearchBar({
-		hintText : 'بحث'
-	});
+            tableView.fireEvent('reloadData', {
+                rows : tableRows
+            });
+        };
 
-	var table = Ti.UI.createTableView({
-		height : 'auto',
-		//search : search,
-		filterAttribute : 'myTitle',
-		//searchHidden : true
-	});
+        xhr.send();
+    }
 
-	table.addEventListener('cleartable', function() {
+    tableView = Ti.UI.createTableView({
+        height : 'auto',
+        filterAttribute : 'myTitle'
+    });
 
-		if (this.data.length > 0) {
-			for (var i = this.data[0].rows.length - 1; i >= 0; i--) {
-				this.deleteRow(i);
-			}
-		}
+    tableView.addEventListener('cleartable', function() {
 
-	});
+        if (this.data.length > 0) {
+            var i = this.data[0].rows.length - 1;
+            for (i; i >= 0; i -= 1) {
+                this.deleteRow(i);
+            }
+        }
 
-	table.addEventListener('runLoading', function() {
-		this.setData([{
-			title : 'جاري التحميل ....'
-		}]);
-	});
-	table.addEventListener('reloadData', function(e) {
-		this.setData(e.rows.length > 0 ? e.rows : [{
-			title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
-		}]);
-	});
+    });
 
-	filterData();
+    tableView.addEventListener('runLoading', function() {
+        this.setData([{
+            title : 'جاري التحميل ....'
+        }]);
+    });
+    tableView.addEventListener('reloadData', function(e) {
+        this.setData(e.rows.length > 0 ? e.rows : [{
+            title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
+        }]);
+    });
 
-	Ti.App.orderProductsTable = table;
+    filterData();
 
-	self.add(table);
-	return self;
-};
+    //Ti.App.orderProductsTable = tableView;
+
+    self.add(tableView);
+    return self;
+}
 
 module.exports = orderProductsWin;

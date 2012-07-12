@@ -1,188 +1,188 @@
 function loginWin() {
-	var androidshift = 0;
-	var self = Ti.UI.createWindow({
-		title : 'دخول',
-		backgroundColor : 'white'
-	});
 
-	Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());
+    var androidshift = 0, self, auth = require('/lib/auth'), scrollview, userField, passField, submitBtn, registerBtn, forgetBtn;
 
-	var auth = require('/lib/auth');
+    self = Ti.UI.createWindow({
+        title : 'دخول',
+        backgroundColor : 'white'
+    });
 
-	var scrollview = Ti.UI.createScrollView({
-		contentWidth : Ti.Platform.displayCaps.platformWidth,
-		contentHeight : 'auto'
-	});
+    Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());
 
-	var userField = Ti.UI.createTextField({
-		hintText : 'اسم المستخدم',
-		textAlign : 'right',
-		height : '40dp',
-		width : '90%',
-		left : '5%',
-		top : (75 + androidshift) + 'dp',
-		returnKeyType : Ti.UI.RETURNKEY_NEXT,
-		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
-	});
+    scrollview = Ti.UI.createScrollView({
+        contentWidth : Ti.Platform.displayCaps.platformWidth,
+        contentHeight : 'auto'
+    });
 
-	userField.addEventListener('return', function() {
-		passField.focus();
-	});
-	scrollview.add(userField);
-	self.add(scrollview);
-	userField.focus();
-	var passField = Ti.UI.createTextField({
-		hintText : 'كلمة المرور',
-		textAlign : 'right',
-		height : '40dp',
-		width : '90%',
-		left : '5%',
-		top : (125 + androidshift) + 'dp',
-		passwordMask : true,
-		returnKeyType : Ti.UI.RETURNKEY_SEND,
-		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
-	});
-	passField.addEventListener('return', function() {
-		submit.fireEvent('click');
-	});
-	scrollview.add(passField);
+    userField = Ti.UI.createTextField({
+        hintText : 'اسم المستخدم',
+        textAlign : 'right',
+        height : '40dp',
+        width : '90%',
+        left : '5%',
+        top : (75 + androidshift) + 'dp',
+        returnKeyType : Ti.UI.RETURNKEY_NEXT,
+        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
 
-	var submit = Ti.UI.createButton({
-		title : 'دخول'
-	});
-	if (Ti.Platform.osname == 'iphone' || Ti.Platform.osname == 'ipad') {
-		self.setRightNavButton(submit);
-	} else {
-		scrollview.add(submit);
-	}
+    userField.addEventListener('return', function() {
+        passField.focus();
+    });
+    scrollview.add(userField);
 
-	submit.addEventListener('click', function() {
-		var email = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    self.add(scrollview);
 
-		if (userField.value.length < 4) {
-			Ti.UI.createAlertDialog({
-				title : 'اسم المستخدم',
-				message : 'تآكد من صحة اسم المستخدم',
-				cancel : 0,
-				buttonNames : ['موافق']
-			}).show();
-			userField.focus();
+    userField.focus();
 
-			return false;
-		}
+    passField = Ti.UI.createTextField({
+        hintText : 'كلمة المرور',
+        textAlign : 'right',
+        height : '40dp',
+        width : '90%',
+        left : '5%',
+        top : (125 + androidshift) + 'dp',
+        passwordMask : true,
+        returnKeyType : Ti.UI.RETURNKEY_SEND,
+        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+    });
+    passField.addEventListener('return', function() {
+        submit.fireEvent('click');
+    });
+    scrollview.add(passField);
 
-		if (passField.value.length < 3) {
-			Ti.UI.createAlertDialog({
-				title : 'كلمة المرور',
-				message : 'تآكد من صحة كلمة المرور',
-				cancel : 0,
-				buttonNames : ['موافق']
-			}).show();
-			passField.focus();
+    submitBtn = Ti.UI.createButton({
+        title : 'دخول'
+    });
+    if (Ti.Platform.getOsname() === 'iphone' || Ti.Platform.getOsname() === 'ipad') {
+        self.setRightNavButton(submitBtn);
+    } else {
+        scrollview.add(submitBtn);
+    }
 
-			return false;
-		}
+    submitBtn.addEventListener('click', function() {
 
-		var xhr = Ti.Network.createHTTPClient();
-		xhr.onerror = function() {
-			Ti.UI.createAlertDialog({
-				title : 'خطآ في الآتصال',
-				cancel : 0,
-				buttonNames : ['موافق']
-			}).show();
+        if (userField.value.length < 4) {
+            Ti.UI.createAlertDialog({
+                title : 'اسم المستخدم',
+                message : 'تآكد من صحة اسم المستخدم',
+                cancel : 0,
+                buttonNames : ['موافق']
+            }).show();
+            userField.focus();
 
-			Ti.App.fireEvent('hideLoading');
-		}
-		xhr.onload = function() {
+            return false;
+        }
 
-			Ti.App.fireEvent('hideLoading');
+        if (passField.value.length < 3) {
+            Ti.UI.createAlertDialog({
+                title : 'كلمة المرور',
+                message : 'تآكد من صحة كلمة المرور',
+                cancel : 0,
+                buttonNames : ['موافق']
+            }).show();
+            passField.focus();
 
-			try {
-				var response = JSON.parse(this.responseText);
-			} catch(e) {
-				Ti.UI.createAlertDialog({
-					message : 'خطآ في الآتصال وجاري آخبار الآداره',
-					cancel : 0,
-					buttonNames : ['موافق']
-				}).show();
+            return false;
+        }
 
-				return false;
-			}
+        var xhr = Ti.Network.createHTTPClient();
+        xhr.onerror = function() {
+            Ti.UI.createAlertDialog({
+                title : 'خطآ في الآتصال',
+                cancel : 0,
+                buttonNames : ['موافق']
+            }).show();
 
-			var k = null;
-			if (response.errors) {
-				for (k in response.errors) {
+            Ti.App.fireEvent('hideLoading');
+        };
 
-					if (response.errors[k] == response.errors.password) {
-						Ti.UI.createAlertDialog({
-							title : 'تآكد من صحة اسم المستخدم الخاص بك',
-							cancel : 0,
-							buttonNames : ['موافق']
-						}).show();
-						return false;
+        xhr.onload = function() {
 
-					} else if (response.errors[k] == response.errors.password) {
-						Ti.UI.createAlertDialog({
-							title : 'كلمة المرور',
-							message : 'تآكد من صحة كلمة المرور الخاصة بك',
-							cancel : 0,
-							buttonNames : ['موافق']
-						}).show();
-						return false;
+            var response, k = null, dialog;
 
-					} else {
-						var dialouge = Ti.UI.createAlertDialog({
-							title : 'خطآ في الدخول',
-							message : 'يمكنك التواصل معنا آذا واجهت مشكله',
-							cancel : 0,
-							buttonNames : ['الغاء', 'مراسله'],
-						})
-						dialouge.addEventListener('click', function(ev) {
-							switch(ev.index) {
-								case 1:
-									var emailDialog = Ti.UI.createEmailDialog()
-									emailDialog.subject = "";
-									emailDialog.toRecipients = ['support@eshtery.me'];
-									emailDialog.open();
-									break;
-							}
-						})
+            Ti.App.fireEvent('hideLoading');
 
-						dialouge.show();
-						return false;
-					}
+            try {
+                response = JSON.parse(this.responseText);
+            } catch(e) {
+                Ti.UI.createAlertDialog({
+                    message : 'خطآ في الآتصال وجاري آخبار الآداره',
+                    cancel : 0,
+                    buttonNames : ['موافق']
+                }).show();
 
-				}
-			}
-			Ti.App.Properties.setInt('userID', response.userID);
+                return false;
+            }
 
-			Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+            if (response.errors) {
+                for (k in response.errors) {
 
-			Ti.App.fireEvent('closeLoginWindow');
-		}
+                    if (response.errors[k] === response.errors.password) {
+                        Ti.UI.createAlertDialog({
+                            title : 'تآكد من صحة اسم المستخدم الخاص بك',
+                            cancel : 0,
+                            buttonNames : ['موافق']
+                        }).show();
 
-		xhr.open('POST', Ti.App.APIURL + 'authapi/login');
-		xhr.send({
-			login : userField.value,
-			password : passField.value
-		});
-		Ti.App.fireEvent('showLoading');
+                    } else if (response.errors[k] === response.errors.password) {
+                        Ti.UI.createAlertDialog({
+                            title : 'كلمة المرور',
+                            message : 'تآكد من صحة كلمة المرور الخاصة بك',
+                            cancel : 0,
+                            buttonNames : ['موافق']
+                        }).show();
 
-	});
-	var registerBtn = auth.registerBtn(Ti.UI.createButton({
-		title : 'تسجيل',
-		top : (215 + androidshift) + 'dp'
-	}));
-	scrollview.add(registerBtn);
+                    } else {
+                        dialog = Ti.UI.createAlertDialog({
+                            title : 'خطآ في الدخول',
+                            message : 'يمكنك التواصل معنا آذا واجهت مشكله',
+                            cancel : 0,
+                            buttonNames : ['الغاء', 'مراسله']
+                        });
 
-	var forgetBtn = auth.forgetBtn(Ti.UI.createButton({
-		title : 'استرجع كلمة المرور',
-		top : (255 + androidshift) + 'dp'
-	}));
+                        dialog.addEventListener('click', function(ev) {
+                            if (ev.index === 0) {
+                                var emailDialog = Ti.UI.createEmailDialog();
+                                emailDialog.subject = "";
+                                emailDialog.toRecipients = ['support@eshtery.me'];
+                                emailDialog.open();
+                            }
+                        });
 
-	scrollview.add(forgetBtn);
+                        dialog.show();
+                    }
 
-	return self;
-};
+                }
+            }
+            Ti.App.Properties.setInt('userID', response.userID);
+
+            Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+
+            Ti.App.fireEvent('closeLoginWindow');
+        };
+
+        xhr.open('POST', Ti.App.APIURL + 'authapi/login');
+        xhr.send({
+            login : userField.value,
+            password : passField.value
+        });
+        Ti.App.fireEvent('showLoading');
+
+    });
+    registerBtn = auth.registerBtn(Ti.UI.createButton({
+        title : 'تسجيل',
+        top : (215 + androidshift) + 'dp'
+    }));
+    scrollview.add(registerBtn);
+
+    forgetBtn = auth.forgetBtn(Ti.UI.createButton({
+        title : 'استرجع كلمة المرور',
+        top : (255 + androidshift) + 'dp'
+    }));
+
+    scrollview.add(forgetBtn);
+
+    return self;
+}
 
 module.exports = loginWin;

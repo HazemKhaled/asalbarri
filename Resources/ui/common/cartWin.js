@@ -1,92 +1,97 @@
 function cartWin() {
-	var self = Ti.UI.createWindow({
-		title : 'سلة التسوق',
-		backgroundColor : 'white'
-	});
 
-	var orderBtn = Ti.UI.createButton({
-		title : 'شراء'
-	});
-	orderBtn.addEventListener('click', function() {
-		alert('soon');
-	});
+    var self, orderBtn, actionBtnBar, tableHeaderView, productTable;
 
-	self.setRightNavButton(orderBtn);
+    self = Ti.UI.createWindow({
+        title : 'سلة التسوق',
+        backgroundColor : 'white'
+    });
 
-	var actionBtnBar = Ti.UI.createButtonBar({
-		labels : ['تفريغ', 'كوبون خصم'],
-		height : '35dp'
-	});
-	actionBtnBar.addEventListener('click', function(e) {
+    orderBtn = Ti.UI.createButton({
+        title : 'شراء'
+    });
+    orderBtn.addEventListener('click', function() {
+        alert('soon');
+    });
 
-		if (e.index == 0) {
-			var confirmDialog = Ti.UI.createAlertDialog({
-				title : 'متاكد',
-				message : 'سيتم افراغ سلة التسوق؟',
-				buttonNames : ['موافق', 'لا'],
-				cancel : 1
-			});
+    self.setRightNavButton(orderBtn);
 
-			confirmDialog.addEventListener('click', function(ec) {
-				if (ec.index == 0) {
-					Ti.App.fireEvent('cartEmpty');
-				}
-			});
+    actionBtnBar = Ti.UI.createButtonBar({
+        labels : ['تفريغ', 'كوبون خصم'],
+        height : '35dp'
+    });
+    actionBtnBar.addEventListener('click', function(e) {
 
-			confirmDialog.show();
-		}
-	});
+        if (e.index === 0) {
+            var confirmDialog = Ti.UI.createAlertDialog({
+                title : 'متاكد',
+                message : 'سيتم افراغ سلة التسوق؟',
+                buttonNames : ['موافق', 'لا'],
+                cancel : 1
+            });
 
-	var tableHeaderView = Ti.UI.createView({
-		height : '44dp'
-	});
-	tableHeaderView.add(actionBtnBar);
+            confirmDialog.addEventListener('click', function(ec) {
+                if (ec.index === 0) {
+                    Ti.App.fireEvent('cartEmpty');
+                }
+            });
 
-	var productTable = Ti.UI.createTableView({
-		headerView : tableHeaderView,
-		footerView : Ti.UI.createView({
-			height : '40dp',
-			backgroundColor : 'red'
-		}),
-	});
+            confirmDialog.show();
+        }
+    });
 
-	self.add(productTable);
+    tableHeaderView = Ti.UI.createView({
+        height : '44dp'
+    });
+    tableHeaderView.add(actionBtnBar);
 
-	self.addEventListener('focus', function() {
+    productTable = Ti.UI.createTableView({
+        headerView : tableHeaderView,
+        footerView : Ti.UI.createView({
+            height : '40dp',
+            backgroundColor : 'red'
+        })
+    });
 
-		var rows = Ti.App.Properties.getObject('cart', {});
+    self.add(productTable);
 
-		for (i in rows ) {
-			console.log(rows);
-			var rowView = Ti.UI.createTableViewRow({
-				height : '110dp',
-				myTitle : rows[i].title,
-				data : rows[i]
-			});
+    self.addEventListener('focus', function() {
 
-			var img = Ti.UI.createImageView({
-				image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-				width : '100dp',
-				height : '100p',
-				right : '5dp'
-			});
-			rowView.add(img);
+        var rows, i, rowView, img, titleLbl;
 
-			var titleLbl = Ti.UI.createLabel({
-				text : rows[i].title,
-				height : 'auto',
-				left : 0,
-				right : '110dp',
-				top : '10dp',
-				textAlign : 'right'
-			});
-			rowView.add(titleLbl);
+        rows = Ti.App.Properties.getObject('cart', {});
 
-			productTable.add(rowView);
-		}
-	});
+        for (i in rows) {
+            console.log(rows);
+            rowView = Ti.UI.createTableViewRow({
+                height : '110dp',
+                myTitle : rows[i].title,
+                data : rows[i]
+            });
 
-	return self;
-};
+            img = Ti.UI.createImageView({
+                image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
+                width : '100dp',
+                height : '100p',
+                right : '5dp'
+            });
+            rowView.add(img);
+
+            titleLbl = Ti.UI.createLabel({
+                text : rows[i].title,
+                height : 'auto',
+                left : 0,
+                right : '110dp',
+                top : '10dp',
+                textAlign : 'right'
+            });
+            rowView.add(titleLbl);
+
+            productTable.add(rowView);
+        }
+    });
+
+    return self;
+}
 
 module.exports = cartWin;

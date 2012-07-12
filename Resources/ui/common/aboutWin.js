@@ -1,36 +1,39 @@
 function aboutWin() {
-	var self = Ti.UI.createWindow({
-		title : 'الدعم الفني',
-		modal : true,
-		backgroundColor : 'white',
-		backgroundImage : 'images/common/bg_2.jpg',
-		barImage : 'images/common/Navigation_Bar.jpg',
-	});
 
-	var closeBtn = Ti.UI.createButton({
-		title : 'اغلاق   ',
-		height : '31dp',
-		width : '67dp',
-		color : '#000000',
-		font : {
-			fontFamily : 'Arial',
-			fontSize : '14dp',
-			fontWeight : 'bold'
-		},
-		backgroundImage : 'images/common/button_back.png'
-	});
+    var self, closeBtn;
 
-	closeBtn.addEventListener('click', function() {
-		self.close();
-	});
+    self = Ti.UI.createWindow({
+        title : 'الدعم الفني',
+        modal : true,
+        backgroundColor : 'white',
+        backgroundImage : 'images/common/bg_2.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg'
+    });
 
-	self.setLeftNavButton(closeBtn);
+    closeBtn = Ti.UI.createButton({
+        title : 'اغلاق   ',
+        height : '31dp',
+        width : '67dp',
+        color : '#000000',
+        font : {
+            fontFamily : 'Arial',
+            fontSize : '14dp',
+            fontWeight : 'bold'
+        },
+        backgroundImage : 'images/common/button_back.png'
+    });
 
-	self.add(Ti.UI.createLabel({
-		text : 'Hi all :)'
-	}));
+    closeBtn.addEventListener('click', function() {
+        self.close();
+    });
 
-	return self;
-};
+    self.setLeftNavButton(closeBtn);
+
+    self.add(Ti.UI.createLabel({
+        text : 'Hi all :)'
+    }));
+
+    return self;
+}
 
 module.exports = aboutWin;

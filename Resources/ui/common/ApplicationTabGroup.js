@@ -1,46 +1,49 @@
 function ApplicationTabGroup(Window) {
-	//create module instance
-	var self = Ti.UI.createTabGroup();
 
-	//create app tabs
-	var categoryWin = require('ui/common/categoryWin');
+    var self, CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule;
 
-	Ti.App.catalogTab = Ti.UI.createTab({
-		title : 'المنتجات',
-		icon : 'images/common/icon_6.png',
-		window : new categoryWin(0)
-	});
+    //create module instance
+    self = Ti.UI.createTabGroup();
 
-	var cartWindow = require('ui/common/cartWin');
-	Ti.App.cartTab = Ti.UI.createTab({
-		title : 'سلة التسوق',
-		icon : 'images/common/icon_5.png',
-		badge : cartQuantityCounter().quantity,
-		window : new cartWindow()
-	});
+    //create app tabs
+    CategoryWinModule = require('ui/common/categoryWin');
 
-	var walletWin = require('ui/common/walletWin');
-	Ti.App.walletTab = Ti.UI.createTab({
-		title : 'المحفظة',
-		icon : 'images/common/icon_4.png',
-		window : new walletWin()
-	});
+    Ti.App.catalogTab = Ti.UI.createTab({
+        title : 'المنتجات',
+        icon : 'images/common/icon_6.png',
+        window : new CategoryWinModule(0)
+    });
 
-	var myOrdersWindow = require('ui/common/myOrdersWin');
-	Ti.App.orderTab = Ti.UI.createTab({
-		title : 'الطلبات',
-		icon : 'images/common/icon_3.png',
-		window : new myOrdersWindow()
-	});
+    CartWinModule = require('ui/common/cartWin');
+    Ti.App.cartTab = Ti.UI.createTab({
+        title : 'سلة التسوق',
+        icon : 'images/common/icon_5.png',
+        badge : cartQuantityCounter().quantity,
+        window : new CartWinModule()
+    });
 
-	self.addTab(Ti.App.orderTab);
-	self.addTab(Ti.App.walletTab);
-	self.addTab(Ti.App.cartTab);
-	self.addTab(Ti.App.catalogTab);
+    WalletWinModule = require('ui/common/walletWin');
+    Ti.App.walletTab = Ti.UI.createTab({
+        title : 'المحفظة',
+        icon : 'images/common/icon_4.png',
+        window : new WalletWinModule()
+    });
 
-	self.setActiveTab(3);
+    MyOrdersWinModule = require('ui/common/myOrdersWin');
+    Ti.App.orderTab = Ti.UI.createTab({
+        title : 'الطلبات',
+        icon : 'images/common/icon_3.png',
+        window : new MyOrdersWinModule()
+    });
 
-	return self;
-};
+    self.addTab(Ti.App.orderTab);
+    self.addTab(Ti.App.walletTab);
+    self.addTab(Ti.App.cartTab);
+    self.addTab(Ti.App.catalogTab);
+
+    self.setActiveTab(3);
+
+    return self;
+}
 
 module.exports = ApplicationTabGroup;

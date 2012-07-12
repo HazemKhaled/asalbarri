@@ -1,94 +1,100 @@
 function currencyWin() {
-	var self = Ti.UI.createWindow({
-		title : 'تغيير العملة',
-		modal : true,
-		backgroundColor : 'white'
-	});
 
-	var closeBtn = Ti.UI.createButton({
-		title : 'اغلاق'
-	});
+    var self, closeBtn, label, picker, selectedRow = null;
 
-	closeBtn.addEventListener('click', function() {
-		self.close();
-	});
+    self = Ti.UI.createWindow({
+        title : 'تغيير العملة',
+        modal : true,
+        backgroundColor : 'white'
+    });
 
-	self.setLeftNavButton(closeBtn);
+    closeBtn = Ti.UI.createButton({
+        title : 'اغلاق'
+    });
 
-	var label = Ti.UI.createLabel();
-	self.add(label)
+    closeBtn.addEventListener('click', function() {
+        self.close();
+    });
 
-	var picker = Ti.UI.createPicker();
-	var selectedRow = null;
-	picker.selectionIndicator = true;
+    self.setLeftNavButton(closeBtn);
 
-	function filterData() {
+    label = Ti.UI.createLabel();
+    self.add(label);
 
-		picker.fireEvent('runLoading');
+    picker = Ti.UI.createPicker({
+        selectionIndicator : true
+    });
 
-		var pickerRows = [];
+    function filterData() {
 
-		var xhr = Ti.Network.createHTTPClient();
+        var pickerRows = [], xhr;
 
-		xhr.open('GET', Ti.App.APIURL + 'api/getCurrencies');
+        picker.fireEvent('runLoading');
 
-		xhr.onerror = function() {
+        xhr = Ti.Network.createHTTPClient();
 
-			picker.fireEvent('reloadData', {
-				rows : []
-			});
-		}
+        xhr.open('GET', Ti.App.APIURL + 'api/getCurrencies');
 
-		xhr.onload = function() {
+        xhr.onerror = function() {
 
-			var rows = JSON.parse(this.responseText);
-			for (i in rows ) {
+            picker.fireEvent('reloadData', {
+                rows : []
+            });
+        };
 
-				if (Ti.App.Properties.getInt('currency') == rows[i].id || (selectedRow == null && rows[i].is_default == 1))
-					selectedRow = i;
+        xhr.onload = function() {
 
-				var row = Ti.UI.createPickerRow({
-					title : rows[i].title,
-					data : rows[i]
-				});
+            var rows, i, row;
 
-				pickerRows.push(row);
-			}
+            rows = JSON.parse(this.responseText);
+            for (i in rows ) {
 
-			picker.fireEvent('reloadData', {
-				rows : pickerRows
-			});
-		};
+                if (Ti.App.Properties.getInt('currency') === rows[i].id || (selectedRow === null && rows[i].is_default === 1)) {
+                    selectedRow = i;
+                }
 
-		xhr.send();
-	}
+                row = Ti.UI.createPickerRow({
+                    title : rows[i].title,
+                    data : rows[i]
+                });
+
+                pickerRows.push(row);
+            }
+
+            picker.fireEvent('reloadData', {
+                rows : pickerRows
+            });
+        };
+
+        xhr.send();
+    }
 
 
-	picker.addEventListener('runLoading', function() {
-		label.text = 'جاري التحميل ....';
-	});
-	picker.addEventListener('reloadData', function(e) {
-		label.visible = false;
-		this.add(e.rows.length > 0 ? e.rows : [{
-			title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
-		}]);
-		picker.setSelectedRow(0, selectedRow, true);
-		self.add(picker);
-	});
-	picker.addEventListener('change', function(e) {
-		Ti.App.Properties.setInt('currency', e.row.data.id);
-		Ti.App.Properties.setString('currencyName', e.row.title);
+    picker.addEventListener('runLoading', function() {
+        label.setText('جاري التحميل ....');
+    });
+    picker.addEventListener('reloadData', function(e) {
+        label.setVisible(false);
+        this.add(e.rows.length > 0 ? e.rows : [{
+            title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
+        }]);
+        picker.setSelectedRow(0, selectedRow, true);
+        self.add(picker);
+    });
+    picker.addEventListener('change', function(e) {
+        Ti.App.Properties.setInt('currency', e.row.data.id);
+        Ti.App.Properties.setString('currencyName', e.row.title);
 
-		var auth = require('/lib/auth');
-		if (auth.isLogedIn() != false) {
-			Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
-		} else {
-			Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
-		}
-	});
-	filterData();
+        var auth = require('/lib/auth');
+        if (auth.isLogedIn() !== false) {
+            Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق']);
+        } else {
+            Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق']);
+        }
+    });
+    filterData();
 
-	return self;
-};
+    return self;
+}
 
 module.exports = currencyWin;
