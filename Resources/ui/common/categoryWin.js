@@ -278,7 +278,8 @@ function categoryWin(parent) {
             } else {
                 Ti.UI.createAlertDialog({
                     title : 'عفواً !',
-                    message : 'لا يوجد منتجات حالياً بهذا القسم'
+                    message : 'لا يوجد منتجات حالياً بهذا القسم',
+                    buttonNames : ['موافق']
                 }).show();
             }
         }
