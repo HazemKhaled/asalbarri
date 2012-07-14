@@ -43,7 +43,7 @@ function myOrdersWin() {
                         left : 0,
                         right : '10dp',
                         top : '10dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(dateTitleLbl);
 
@@ -53,7 +53,7 @@ function myOrdersWin() {
                         left : 0,
                         right : '65dp',
                         top : '10dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(dateLbl);
 
@@ -62,7 +62,7 @@ function myOrdersWin() {
                         height : 'auto',
                         right : '10dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(totaltitleLbl);
 
@@ -71,7 +71,7 @@ function myOrdersWin() {
                         height : 'auto',
                         right : '75dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(priceLbl);
 
@@ -80,7 +80,7 @@ function myOrdersWin() {
                         height : 'auto',
                         right : '10dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(statusTitleLbl);
 
@@ -98,7 +98,7 @@ function myOrdersWin() {
                         height : 'auto',
                         right : '85dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(statusLbl);
 

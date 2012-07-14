@@ -167,8 +167,8 @@ Ti.App.cartQuantityCounter = function(cart) {
 
 Ti.App.autoTextAlign = function(e) {
     if (e.value.length === 0) {
-        e.source.setTextAlign('right');
+        e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_RIGHT);
     } else {
-        e.source.setTextAlign('left');
+        e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_LEFT);
     }
 };

@@ -50,7 +50,7 @@ function orderProductsWin(parent) {
                         right : '110dp',
                         top : '10dp',
                         color : '#000000',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(titleLbl);
 
@@ -60,7 +60,7 @@ function orderProductsWin(parent) {
                         left : 0,
                         right : '110dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(purchasesQtyLbl);
 
@@ -70,7 +70,7 @@ function orderProductsWin(parent) {
                         left : 0,
                         right : '190dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(purchasesQty);
 
@@ -80,7 +80,7 @@ function orderProductsWin(parent) {
                         left : 0,
                         right : '110dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(priceLbl);
 
@@ -90,7 +90,7 @@ function orderProductsWin(parent) {
                         left : 0,
                         right : '190dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(price);
 

@@ -88,7 +88,7 @@ function cartWin() {
                     left : 0,
                     right : '110dp',
                     top : '10dp',
-                    textAlign : 'right'
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                 });
                 rowView.add(titleLbl);
 

@@ -197,7 +197,7 @@ function categoryWin(parent) {
                             fontSize : '17dp',
                             fontWeight : 'bold'
                         },
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(titleLbl);
 
@@ -226,7 +226,7 @@ function categoryWin(parent) {
                             font : {
                                 fontSize : '16dp'
                             },
-                            textAlign : 'right'
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                         });
                         row.add(titleLbl2);
 

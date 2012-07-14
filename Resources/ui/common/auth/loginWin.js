@@ -16,7 +16,7 @@ function loginWin() {
 
     userField = Ti.UI.createTextField({
         hintText : 'اسم المستخدم',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '40dp',
         width : '90%',
         left : '5%',
@@ -36,7 +36,7 @@ function loginWin() {
 
     passField = Ti.UI.createTextField({
         hintText : 'كلمة المرور',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '40dp',
         width : '90%',
         left : '5%',
