@@ -1,11 +1,26 @@
 /**
  *
  * @Auther Hazem Khaled <Hazem.Khald@gmail.com>
- **/
+ *
+ Ti.App.addEventListener('showLoading', function(e) {
+
+ var loading = require('lib/loading');
+
+ loading.show();
+
+ Ti.App.addEventListener('hideLoading', function(e) {
+ loading.hide();
+ });
+
+ Ti.App.addEventListener('msgLoading', function(e) {
+ loading.setMsg(e.text);
+ });
+ });
+ */
 
 var indWin = null, actInd = null;
 
-var messageLbl = Titanium.UI.createLabel({
+var messageLbl = Ti.UI.createLabel({
     text : 'جاري التحميل',
     color : '#fff',
     width : 'auto',
@@ -28,24 +43,18 @@ exports.hide = function() {
         }
         indWin = null;
     } else {
-        try {
+        if (actInd) {
             actInd.hide();
-        } catch(e) {
-
+            actInd = null;
         }
-        actInd = null;
     }
 };
 
 exports.show = function() {
 
-    if (actInd) {
-        return;
-    }
-
     if (Ti.Platform.getOsname() !== 'android') {
         // window container
-        indWin = Titanium.UI.createWindow({
+        indWin = Ti.UI.createWindow({
             //height : 150,
             //width : 150,
             backgroundColor : '#111111',
@@ -53,7 +62,7 @@ exports.show = function() {
         });
 
         // black view
-        var indView = Titanium.UI.createView({
+        var indView = Ti.UI.createView({
             height : 170,
             width : 150,
             backgroundColor : '#000000',
@@ -64,13 +73,13 @@ exports.show = function() {
     }
 
     // loading indicator
-    actInd = Titanium.UI.createActivityIndicator({
+    actInd = Ti.UI.createActivityIndicator({
         height : 30,
         width : 30
     });
 
     if (Ti.Platform.getOsname() !== 'android') {
-        actInd.style = Titanium.UI.iPhone.ActivityIndicatorStyle.BIG;
+        actInd.style = Ti.UI.iPhone.ActivityIndicatorStyle.BIG;
         indWin.add(actInd);
 
         indWin.add(messageLbl);
@@ -79,17 +88,17 @@ exports.show = function() {
         actInd.message = "جاري التحميل";
     }
     actInd.show();
-};
+}
 
 exports.setMsg = function(msg, loadingTxt) {
 
-    if (loadingTxt === undefined) {
+    if (loadingTxt == undefined) {
         loadingTxt = 'جاري التحميل';
     }
 
-    if (Ti.Platform.getOsname() !== 'android') {
+    if (Ti.Platform.getOsname() != 'android') {
         messageLbl.text = loadingTxt + "\n" + msg;
     } else {
         actInd.message = loadingTxt + "\n" + msg;
     }
-};
+}
