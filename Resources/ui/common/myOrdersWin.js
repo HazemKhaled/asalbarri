@@ -83,7 +83,8 @@ function myOrdersWin() {
                         text : 'حالة الطلب : ',
                         right : '10dp',
                         top : '60dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(statusTitleLbl);
 
@@ -100,7 +101,8 @@ function myOrdersWin() {
                         text : statustxt,
                         right : '85dp',
                         top : '60dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(statusLbl);
 

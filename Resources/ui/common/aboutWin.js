@@ -5,9 +5,9 @@ function aboutWin() {
     self = Ti.UI.createWindow({
         title : 'الدعم الفني',
         modal : true,
-        backgroundColor : 'white',
-        backgroundImage : 'images/common/bg_2.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     closeBtn = Ti.UI.createButton({
