@@ -1,7 +1,7 @@
 var loading = null;
 Ti.App.addEventListener('showLoading', function(e) {
 
-    if (!loading) {
+    if (loading === null) {
         loading = require('lib/loading');
     }
     loading.show();
@@ -12,7 +12,7 @@ Ti.App.addEventListener('showLoading', function(e) {
 });
 
 Ti.App.addEventListener('openLoginWindow', function() {
-    Ti.App.catalogTab.active = true;
+    Ti.App.catalogTab.setActive(true);
 
     var LoginModule = require('/ui/common/auth/loginWin');
 
@@ -26,11 +26,11 @@ Ti.App.addEventListener('openLoginWindow', function() {
 });
 
 Ti.App.addEventListener('openRegisterWindow', function(e) {
-    var RegisterWin = require('/ui/common/auth/registerWin');
+    var RegisterWinModule = require('/ui/common/auth/registerWin'), registerWin;
 
-    Ti.App.catalogTab.active = true;
+    Ti.App.catalogTab.setActive(true);
 
-    registerWin = new RegisterWin();
+    registerWin = new RegisterWinModule();
 
     Ti.App.catalogTab.open(registerWin);
 

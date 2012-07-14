@@ -16,7 +16,7 @@ function forgetpasswordWin() {
         width : '90%',
         top : (75 + androidshift) + 'dp',
         hintText : 'البريد الخاص بك',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,

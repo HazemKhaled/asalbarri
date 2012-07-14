@@ -48,7 +48,7 @@ function productsListWin(parent) {
                         left : 0,
                         right : '110dp',
                         top : '10dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                        textAlign : 'right'
                     });
                     row.add(titleLbl);
 
@@ -57,7 +57,7 @@ function productsListWin(parent) {
                         height : 'auto',
                         right : '160dp',
                         bottom : '10dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                        textAlign : 'right'
                     });
                     row.add(priceFitLbl);
 
@@ -66,7 +66,7 @@ function productsListWin(parent) {
                         height : 'auto',
                         right : '110dp',
                         bottom : '10dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                        textAlign : 'right'
                     });
                     row.add(priceLbl);
 

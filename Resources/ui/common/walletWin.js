@@ -26,7 +26,7 @@ function walletWin() {
         right : '10dp',
         top : '10dp',
         color : '#000000',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+        textAlign : 'right'
     });
     self.add(loadinLabel);
 
@@ -72,7 +72,7 @@ function walletWin() {
         top : '10dp',
         color : '#000000',
         visible : false,
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+        textAlign : 'right'
     });
     self.add(balanceTitle);
 
@@ -84,7 +84,7 @@ function walletWin() {
         top : '10dp',
         color : '#000000',
         visible : false,
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+        textAlign : 'right'
     });
     Ti.App.balanceLbl = balanceLbl;
     self.add(Ti.App.balanceLbl);

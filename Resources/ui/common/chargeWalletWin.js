@@ -87,7 +87,7 @@ function chargeWalletWin() {
 
     cardTxt = Ti.UI.createTextField({
         hintText : 'رقم الكارت',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         height : '40dp',
         width : '90%',
         left : '5%',
@@ -96,7 +96,7 @@ function chargeWalletWin() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
     cardTxt.addEventListener('return', function() {
-        submit.fireEvent('click');
+        submitBtn.fireEvent('click');
     });
     self.add(cardTxt);
 

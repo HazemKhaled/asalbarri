@@ -16,7 +16,7 @@ function loginWin() {
 
     userField = Ti.UI.createTextField({
         hintText : 'اسم المستخدم',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         height : '40dp',
         width : '90%',
         left : '5%',
@@ -36,7 +36,7 @@ function loginWin() {
 
     passField = Ti.UI.createTextField({
         hintText : 'كلمة المرور',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         height : '40dp',
         width : '90%',
         left : '5%',
@@ -46,7 +46,7 @@ function loginWin() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
     passField.addEventListener('return', function() {
-        submit.fireEvent('click');
+        submitBtn.fireEvent('click');
     });
     scrollview.add(passField);
 

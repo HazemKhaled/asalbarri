@@ -32,7 +32,7 @@ function productWin(product) {
 
     titleLbl = Ti.UI.createLabel({
         text : product.title,
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         color : '#000000',
         top : '20dp',
         right : '110dp',
@@ -134,7 +134,7 @@ function productWin(product) {
     // description
     descLbl = Ti.UI.createLabel({
         text : product.desc,
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : 'right',
         color : '#000000',
         top : '120dp',
         right : '10dp',
