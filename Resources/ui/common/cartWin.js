@@ -4,7 +4,9 @@ function cartWin() {
 
     self = Ti.UI.createWindow({
         title : 'سلة التسوق',
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     orderBtn = Ti.UI.createButton({
@@ -84,11 +86,10 @@ function cartWin() {
 
                 titleLbl = Ti.UI.createLabel({
                     text : rows[i].title,
-                    height : 'auto',
                     left : 0,
                     right : '110dp',
                     top : '10dp',
-                    textAlign : 'right'
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                 });
                 rowView.add(titleLbl);
 

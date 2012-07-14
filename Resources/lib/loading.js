@@ -23,8 +23,6 @@ var indWin = null, actInd = null;
 var messageLbl = Ti.UI.createLabel({
     text : 'جاري التحميل',
     color : '#fff',
-    width : 'auto',
-    height : 'auto',
     textAlign : 'center',
     font : {
         fontSize : 20,

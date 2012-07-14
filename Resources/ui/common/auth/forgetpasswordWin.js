@@ -4,7 +4,9 @@ function forgetpasswordWin() {
 
     self = Ti.UI.createWindow({
         title : 'آسترجاع كلمه المرور',
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     self.addEventListener('open', function() {
@@ -16,7 +18,7 @@ function forgetpasswordWin() {
         width : '90%',
         top : (75 + androidshift) + 'dp',
         hintText : 'البريد الخاص بك',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,

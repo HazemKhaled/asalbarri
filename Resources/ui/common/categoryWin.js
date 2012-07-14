@@ -4,10 +4,10 @@ function categoryWin(parent) {
 
     self = Ti.UI.createWindow({
         title : parent.title || 'عسل بري',
-        backgroundColor : 'white',
         backButtonTitle : 'عودة',
-        backgroundImage : 'images/common/bg_2.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     if (!parent.id) {// only on home window
@@ -27,27 +27,6 @@ function categoryWin(parent) {
             self.add(aboutBtn);
         } else {
             self.setLeftNavButton(aboutBtn);
-        }
-    } else {
-        backBtn = Ti.UI.createButton({
-            title : 'عودة   ',
-            height : '31dp',
-            width : '67dp',
-            color : '#000000',
-            font : {
-                fontFamily : 'Arial',
-                fontSize : '14dp',
-                fontWeight : 'bold'
-            },
-            backgroundImage : 'images/common/button_back.png'
-        });
-
-        backBtn.addEventListener('click', function() {
-            self.close();
-        });
-
-        if (Ti.Platform.getOsname() !== 'android') {
-            self.setLeftNavButton(backBtn);
         }
     }
 
@@ -143,7 +122,7 @@ function categoryWin(parent) {
 
         xhr.onload = function() {
 
-            var rows, i, row, rowSeparator, arrow, img, titleLbl, titleLbl2;
+            var rows, i, row, arrow, img, titleLbl, titleLbl2;
 
             self.removeEventListener('focus', filterData);
 
@@ -155,18 +134,9 @@ function categoryWin(parent) {
                         height : '95dp',
                         myTitle : rows[i].title,
                         data : rows[i],
-                        selectedBackgroundColor : 'transparent',
-                        selectedBackgroundImage : 'images/common/bg_h_one_item.png'
+                        backgroundImage : 'images/common/TableViewRowBG.png',
+                        selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                     });
-
-                    rowSeparator = Titanium.UI.createImageView({
-                        image : "images/common/bg_one_item.png",
-                        bottom : "0dp",
-                        left : "0dp",
-                        width : "auto",
-                        height : "auto"
-                    });
-                    row.add(rowSeparator);
 
                     arrow = Titanium.UI.createImageView({
                         image : "images/common/icon_7.png",
@@ -191,13 +161,13 @@ function categoryWin(parent) {
                         left : '10dp',
                         right : '110dp',
                         top : '23dp',
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                         color : '#ffffff',
                         font : {
                             fontFamily : 'Arial',
                             fontSize : '17dp',
                             fontWeight : 'bold'
-                        },
-                        textAlign : 'right'
+                        }
                     });
                     row.add(titleLbl);
 
@@ -226,7 +196,7 @@ function categoryWin(parent) {
                             font : {
                                 fontSize : '16dp'
                             },
-                            textAlign : 'right'
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                         });
                         row.add(titleLbl2);
 
@@ -245,22 +215,21 @@ function categoryWin(parent) {
     }
 
     tableView = Ti.UI.createTableView({
-        height : 'auto',
         filterAttribute : 'myTitle',
-        opacity : '1',
         backgroundColor : 'transparent',
-        rowBackgroundColor : 'transparent',
         separatorColor : 'transparent'
     });
 
     tableView.addEventListener('runLoading', function() {
         this.setData([{
-            title : 'جاري التحميل ....'
+            title : 'جاري التحميل ....',
+            color : '#ffffff'
         }]);
     });
     tableView.addEventListener('reloadData', function(e) {
         this.setData(e.rows.length > 0 ? e.rows : [{
-            title : 'لا يوجد نتائج هنا في الوقت الحالي !!'
+            title : 'لا يوجد نتائج هنا في الوقت الحالي !!',
+            color : '#ffffff'
         }]);
     });
     filterData();

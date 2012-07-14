@@ -5,7 +5,9 @@ function chargeWalletWin() {
     self = Ti.UI.createWindow({
         title : 'شحن المحفظة',
         modal : true,
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     closeBtn = Ti.UI.createButton({
@@ -87,7 +89,7 @@ function chargeWalletWin() {
 
     cardTxt = Ti.UI.createTextField({
         hintText : 'رقم الكارت',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '40dp',
         width : '90%',
         left : '5%',

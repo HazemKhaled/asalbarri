@@ -3,15 +3,16 @@ function openRegisterWindow() {
 
     self = Ti.UI.createWindow({
         title : 'تسجيل',
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     self.addEventListener('open', function() {
         mobileField.focus();
     });
     scrollview = Ti.UI.createScrollView({
-        contentWidth : Ti.Platform.displayCaps.platformWidth,
-        contentHeight : 'auto'
+        contentWidth : Ti.Platform.displayCaps.platformWidth
     });
 
     mobileField = Ti.UI.createTextField({
@@ -20,7 +21,7 @@ function openRegisterWindow() {
         width : '90%',
         top : (80 + androidshift) + 'dp',
         hintText : 'اسم المستخدم',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
     });
@@ -37,7 +38,7 @@ function openRegisterWindow() {
         width : '90%',
         top : (130 + androidshift) + 'dp',
         hintText : 'البريد الخاص بك',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -55,7 +56,7 @@ function openRegisterWindow() {
         width : '90%',
         top : (180 + androidshift) + 'dp',
         hintText : 'كلمة المرور',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -73,7 +74,7 @@ function openRegisterWindow() {
         width : '90%',
         top : (230 + androidshift) + 'dp',
         hintText : 'تآكيد كلمة المرور',
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_JOIN,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED

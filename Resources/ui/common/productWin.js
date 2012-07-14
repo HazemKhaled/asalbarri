@@ -4,7 +4,9 @@ function productWin(product) {
 
     self = Ti.UI.createWindow({
         title : product.title,
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     mainScroll = Ti.UI.createScrollView();
@@ -32,7 +34,7 @@ function productWin(product) {
 
     titleLbl = Ti.UI.createLabel({
         text : product.title,
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         color : '#000000',
         top : '20dp',
         right : '110dp',
@@ -134,7 +136,7 @@ function productWin(product) {
     // description
     descLbl = Ti.UI.createLabel({
         text : product.desc,
-        textAlign : 'right',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         color : '#000000',
         top : '120dp',
         right : '10dp',

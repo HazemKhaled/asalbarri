@@ -4,8 +4,9 @@ function walletWin() {
 
     self = Ti.UI.createWindow({
         title : 'المحفظة',
-        fullscreen : false,
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     self.addEventListener('focus', function() {
@@ -21,12 +22,11 @@ function walletWin() {
 
     loadinLabel = Ti.UI.createLabel({
         text : 'جاري التحميل ....',
-        height : 'auto',
         left : 0,
         right : '10dp',
         top : '10dp',
         color : '#000000',
-        textAlign : 'right'
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
     });
     self.add(loadinLabel);
 
@@ -66,25 +66,23 @@ function walletWin() {
 
     balanceTitle = Ti.UI.createLabel({
         text : 'الرصيد الحالي : ',
-        height : 'auto',
         left : 0,
         right : '10dp',
         top : '10dp',
         color : '#000000',
         visible : false,
-        textAlign : 'right'
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
     });
     self.add(balanceTitle);
 
     balanceLbl = Ti.UI.createLabel({
         text : '',
-        height : 'auto',
         left : 0,
         right : '120dp',
         top : '10dp',
         color : '#000000',
         visible : false,
-        textAlign : 'right'
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
     });
     Ti.App.balanceLbl = balanceLbl;
     self.add(Ti.App.balanceLbl);

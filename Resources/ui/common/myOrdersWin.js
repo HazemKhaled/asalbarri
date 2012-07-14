@@ -4,7 +4,9 @@ function myOrdersWin() {
 
     self = Ti.UI.createWindow({
         title : 'طلباتي',
-        backgroundColor : 'white'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     function filterData() {
@@ -15,7 +17,7 @@ function myOrdersWin() {
 
         xhr = Ti.Network.createHTTPClient();
 
-        xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1' + Ti.App.Properties.getInt('userID'));
+        xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID'));
 
         xhr.onerror = function() {
             tableView.fireEvent('reloadData', {
@@ -34,53 +36,54 @@ function myOrdersWin() {
                     row = Ti.UI.createTableViewRow({
                         height : '110dp',
                         myTitle : rows[i].title,
-                        data : rows[i]
+                        data : rows[i],
+                        backgroundImage : 'images/common/TableViewRowBG.png',
+                        selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                     });
 
                     dateTitleLbl = Ti.UI.createLabel({
                         text : 'التاريخ : ',
-                        height : 'auto',
                         left : 0,
                         right : '10dp',
                         top : '10dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(dateTitleLbl);
 
                     dateLbl = Ti.UI.createLabel({
                         text : rows[i].date,
-                        height : 'auto',
                         left : 0,
                         right : '65dp',
                         top : '10dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(dateLbl);
 
                     totaltitleLbl = Ti.UI.createLabel({
                         text : 'الاجمالي : ',
-                        height : 'auto',
                         right : '10dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(totaltitleLbl);
 
                     priceLbl = Ti.UI.createLabel({
                         text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
-                        height : 'auto',
                         right : '75dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                        color : '#ffffff'
                     });
                     row.add(priceLbl);
 
                     statusTitleLbl = Ti.UI.createLabel({
                         text : 'حالة الطلب : ',
-                        height : 'auto',
                         right : '10dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(statusTitleLbl);
 
@@ -95,10 +98,9 @@ function myOrdersWin() {
 
                     statusLbl = Ti.UI.createLabel({
                         text : statustxt,
-                        height : 'auto',
                         right : '85dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(statusLbl);
 
@@ -115,18 +117,21 @@ function myOrdersWin() {
     }
 
     tableView = Ti.UI.createTableView({
-        height : 'auto',
-        filterAttribute : 'myTitle'
+        filterAttribute : 'myTitle',
+        backgroundColor : 'transparent',
+        separatorColor : 'transparent'
     });
 
     tableView.addEventListener('runLoading', function() {
         this.setData([{
-            title : 'جاري التحميل ....'
+            title : 'جاري التحميل ....',
+            color : '#ffffff'
         }]);
     });
     tableView.addEventListener('reloadData', function(e) {
         this.setData(e.rows.length > 0 ? e.rows : [{
-            title : 'مشكلة تحميل، حاول بعد قليل.'
+            title : 'مشكلة تحميل، حاول بعد قليل.',
+            color : '#ffffff'
         }]);
     });
 

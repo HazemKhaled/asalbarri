@@ -1,8 +1,9 @@
 function orderProductsWin(parent) {
     var self = Ti.UI.createWindow({
         title : 'تفاصيل الطب',
-        backgroundColor : 'white',
-        backButtonTitle : 'طلباتي'
+        backgroundImage : 'images/common/bg.jpg',
+        barImage : 'images/common/Navigation_Bar.jpg',
+        barColor : '#d3d3d3'
     });
 
     function filterData() {
@@ -45,52 +46,47 @@ function orderProductsWin(parent) {
 
                     titleLbl = Ti.UI.createLabel({
                         text : rows[i].title,
-                        height : 'auto',
                         left : 0,
                         right : '110dp',
                         top : '10dp',
                         color : '#000000',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(titleLbl);
 
                     purchasesQtyLbl = Ti.UI.createLabel({
                         text : 'الكمية : ',
-                        height : 'auto',
                         left : 0,
                         right : '110dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(purchasesQtyLbl);
 
                     purchasesQty = Ti.UI.createLabel({
                         text : rows[i].purchases_quantity,
-                        height : 'auto',
                         left : 0,
                         right : '190dp',
                         top : '35dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(purchasesQty);
 
                     priceLbl = Ti.UI.createLabel({
                         text : 'سعر الوحدة : ',
-                        height : 'auto',
                         left : 0,
                         right : '110dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(priceLbl);
 
                     priceLbl2 = Ti.UI.createLabel({
                         text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName'),
-                        height : 'auto',
                         left : 0,
                         right : '190dp',
                         top : '60dp',
-                        textAlign : 'right'
+                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
                     row.add(price);
 
@@ -107,8 +103,9 @@ function orderProductsWin(parent) {
     }
 
     tableView = Ti.UI.createTableView({
-        height : 'auto',
-        filterAttribute : 'myTitle'
+        filterAttribute : 'myTitle',
+        backgroundColor : 'transparent',
+        separatorColor : 'transparent'
     });
 
     tableView.addEventListener('cleartable', function() {
