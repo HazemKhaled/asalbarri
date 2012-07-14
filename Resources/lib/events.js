@@ -128,7 +128,9 @@ Ti.App.addEventListener('cartAdd', function(e) {
     }
     Ti.App.Properties.setObject('cart', cart);
 
-    Ti.App.cartTab.setBadge(Ti.App.cartQuantityCounter(cart).quantity);
+    if (Ti.Platform.getOsname() !== 'android') {
+        Ti.App.cartTab.setBadge(Ti.App.cartQuantityCounter(cart).quantity);
+    }
 
     Ti.API.log(cart);
 

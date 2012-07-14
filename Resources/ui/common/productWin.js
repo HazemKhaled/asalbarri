@@ -47,48 +47,13 @@ function productWin(product) {
     });
     mainScroll.add(titleLbl);
 
-    // + and - buttons with product quantity
-    function getQuantityFieldValue() {
-        return parseInt(quantityField.getValue(), 10);
-    }
-
-    function setQuantityFieldValue(newValue) {
-        var value = parseInt(newValue, 10);
-
-        // is it in minus ?
-        if (value < 0) {
-            value = 0;
-        }
-
-        // is it more then inventory quantity
-        if (value > parseInt(product.quantity, 10)) {
-
-            Ti.UI.createAlertDialog({
-                title : 'الكمية لا تكفي',
-                message : 'متوفر الان فقط ' + product.quantity + ' وحدة من هذا المنتج',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-
-            value = parseInt(product.quantity, 10);
-        }
-
-        quantityField.setValue(value);
-    }
-
-    quantityField = Ti.UI.createTextField({
-        value : Ti.App.cartQuantityByProductID(product.id) > 0 ? Ti.App.cartQuantityByProductID(product.id) : 1,
+    quantityField = Ti.UI.createLabel({
+        text : Ti.App.cartQuantityByProductID(product.id) > 0 ? Ti.App.cartQuantityByProductID(product.id) : 1,
         textAlign : 'center',
         width : '50dp',
         height : '40dp',
         left : '10dp',
-        top : '70dp',
-        editable : false,
-        enabled : false
-    });
-
-    quantityField.addEventListener('change', function(e) {
-        setQuantityFieldValue(getQuantityFieldValue());
+        top : '70dp'
     });
 
     self.add(quantityField);
@@ -112,6 +77,35 @@ function productWin(product) {
         top : '70dp'
     });
     self.add(quantityPlusBtn);
+
+    // + and - buttons with product quantity
+    function getQuantityFieldValue() {
+        return parseInt(quantityField.getText(), 10);
+    }
+
+    function setQuantityFieldValue(newValue) {
+        var value = parseInt(newValue, 10);
+
+        // is it in minus ?
+        if (value < 0) {
+            value = 0;
+        }
+
+        // is it more then inventory quantity
+        if (value > parseInt(product.quantity, 10)) {
+
+            Ti.UI.createAlertDialog({
+                title : 'الكمية لا تكفي',
+                message : 'متوفر الان فقط ' + product.quantity + ' وحدة من هذا المنتج',
+                cancel : 0,
+                buttonNames : ['موافق']
+            }).show();
+
+            value = parseInt(product.quantity, 10);
+        }
+
+        quantityField.setText(value);
+    }
 
     function plusMinusBtnsOnClick(e) {
 
