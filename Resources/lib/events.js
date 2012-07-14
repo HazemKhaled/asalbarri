@@ -1,9 +1,9 @@
-var loading = null;
 Ti.App.addEventListener('showLoading', function(e) {
 
-    if (loading === null) {
-        loading = require('lib/loading');
-    }
+    var loading = null;
+
+    loading = require('lib/loading');
+
     loading.show();
 
     Ti.App.addEventListener('hideLoading', function(e) {
@@ -14,7 +14,7 @@ Ti.App.addEventListener('showLoading', function(e) {
 Ti.App.addEventListener('openLoginWindow', function() {
     Ti.App.catalogTab.setActive(true);
 
-    var LoginModule = require('/ui/common/auth/loginWin');
+    var LoginModule = require('/ui/common/auth/loginWin'), loginWin;
 
     loginWin = new LoginModule();
     Ti.App.catalogTab.open(loginWin);
@@ -63,19 +63,15 @@ Ti.App.addEventListener('openAboutWindow', function() {
 });
 
 Ti.App.addEventListener('openCurrencyWindow', function() {
-    var CurrencyWinModule = require('/ui/common/currencyWin'), currencyWin;
+    var CurrencyWinModule = require('/ui/common/currencyWin');
 
-    currencyWin = new CurrencyWinModule();
-
-    currencyWin.open();
+    new CurrencyWinModule().open();
 });
 
 Ti.App.addEventListener('openChargeWalletWindow', function() {
-    var ChargeWalletWinModule = require('/ui/common/chargeWalletWin'), chargeWalletWin;
+    var ChargeWalletWinModule = require('/ui/common/chargeWalletWin');
 
-    chargeWalletWin = new ChargeWalletWinModule();
-
-    chargeWalletWin.open();
+    new ChargeWalletWinModule().open();
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
