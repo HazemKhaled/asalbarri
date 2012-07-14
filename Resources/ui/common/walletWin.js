@@ -16,7 +16,6 @@ function walletWin() {
         if (!auth.isLogedIn()) {
 
             Ti.App.fireEvent('openLoginWindow');
-            return false;
         }
     });
 

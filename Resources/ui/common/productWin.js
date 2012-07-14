@@ -35,8 +35,13 @@ function productWin(product) {
     titleLbl = Ti.UI.createLabel({
         text : product.title,
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        color : '#000000',
-        top : '20dp',
+        color : '#ffffff',
+        font : {
+            fontFamily : 'Arial',
+            fontSize : '17dp',
+            fontWeight : 'bold'
+        },
+        top : '25dp',
         right : '110dp',
         left : '10dp'
     });

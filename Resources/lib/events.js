@@ -12,7 +12,10 @@ Ti.App.addEventListener('showLoading', function(e) {
 });
 
 Ti.App.addEventListener('openLoginWindow', function() {
-    Ti.App.catalogTab.setActive(true);
+
+    if (Ti.Platform.getOsname() !== 'android') {
+        Ti.App.catalogTab.setActive(true);
+    }
 
     var LoginModule = require('/ui/common/auth/loginWin'), loginWin;
 
@@ -26,9 +29,12 @@ Ti.App.addEventListener('openLoginWindow', function() {
 });
 
 Ti.App.addEventListener('openRegisterWindow', function(e) {
-    var RegisterWinModule = require('/ui/common/auth/registerWin'), registerWin;
 
-    Ti.App.catalogTab.setActive(true);
+    if (Ti.Platform.getOsname() !== 'android') {
+        Ti.App.catalogTab.setActive(true);
+    }
+
+    var RegisterWinModule = require('/ui/common/auth/registerWin'), registerWin;
 
     registerWin = new RegisterWinModule();
 
@@ -126,7 +132,9 @@ Ti.App.addEventListener('cartAdd', function(e) {
 
     Ti.API.log(cart);
 
-    Ti.App.cartTab.setActive(true);
+    if (Ti.Platform.getOsname() !== 'android') {
+        Ti.App.cartTab.setActive(true);
+    }
 });
 
 Ti.App.addEventListener('cartEmpty', function(e) {
