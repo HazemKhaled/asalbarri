@@ -27,49 +27,51 @@ function productsListWin(parent) {
             rows = JSON.parse(this.responseText);
 
             for (i in rows ) {
-                row = Ti.UI.createTableViewRow({
-                    height : '110dp',
-                    myTitle : rows[i].title,
-                    data : rows[i]
-                });
+                if (rows.hasOwnProperty(i)) {
+                    row = Ti.UI.createTableViewRow({
+                        height : '110dp',
+                        myTitle : rows[i].title,
+                        data : rows[i]
+                    });
 
-                img = Ti.UI.createImageView({
-                    image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-                    width : '100dp',
-                    height : '100p',
-                    right : '5dp'
-                });
-                row.add(img);
+                    img = Ti.UI.createImageView({
+                        image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
+                        width : '100dp',
+                        height : '100p',
+                        right : '5dp'
+                    });
+                    row.add(img);
 
-                titleLbl = Ti.UI.createLabel({
-                    text : rows[i].title,
-                    height : 'auto',
-                    left : 0,
-                    right : '110dp',
-                    top : '10dp',
-                    textAlign : 'right'
-                });
-                row.add(titleLbl);
+                    titleLbl = Ti.UI.createLabel({
+                        text : rows[i].title,
+                        height : 'auto',
+                        left : 0,
+                        right : '110dp',
+                        top : '10dp',
+                        textAlign : 'right'
+                    });
+                    row.add(titleLbl);
 
-                priceFitLbl = Ti.UI.createLabel({
-                    text : rows[i].price_shown_coupon,
-                    height : 'auto',
-                    right : '160dp',
-                    bottom : '10dp',
-                    textAlign : 'right'
-                });
-                row.add(priceFitLbl);
+                    priceFitLbl = Ti.UI.createLabel({
+                        text : rows[i].price_shown_coupon,
+                        height : 'auto',
+                        right : '160dp',
+                        bottom : '10dp',
+                        textAlign : 'right'
+                    });
+                    row.add(priceFitLbl);
 
-                priceLbl = Ti.UI.createLabel({
-                    text : rows[i].price,
-                    height : 'auto',
-                    right : '110dp',
-                    bottom : '10dp',
-                    textAlign : 'right'
-                });
-                row.add(priceLbl);
+                    priceLbl = Ti.UI.createLabel({
+                        text : rows[i].price,
+                        height : 'auto',
+                        right : '110dp',
+                        bottom : '10dp',
+                        textAlign : 'right'
+                    });
+                    row.add(priceLbl);
 
-                tableRows.push(row);
+                    tableRows.push(row);
+                }
             }
 
             tableView.fireEvent('reloadData', {

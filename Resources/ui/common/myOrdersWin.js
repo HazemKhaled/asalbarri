@@ -30,78 +30,80 @@ function myOrdersWin() {
             rows = JSON.parse(this.responseText);
 
             for (i in rows ) {
-                row = Ti.UI.createTableViewRow({
-                    height : '110dp',
-                    myTitle : rows[i].title,
-                    data : rows[i]
-                });
+                if (rows.hasOwnProperty(i)) {
+                    row = Ti.UI.createTableViewRow({
+                        height : '110dp',
+                        myTitle : rows[i].title,
+                        data : rows[i]
+                    });
 
-                dateTitleLbl = Ti.UI.createLabel({
-                    text : 'التاريخ : ',
-                    height : 'auto',
-                    left : 0,
-                    right : '10dp',
-                    top : '10dp',
-                    textAlign : 'right'
-                });
-                row.add(dateTitleLbl);
+                    dateTitleLbl = Ti.UI.createLabel({
+                        text : 'التاريخ : ',
+                        height : 'auto',
+                        left : 0,
+                        right : '10dp',
+                        top : '10dp',
+                        textAlign : 'right'
+                    });
+                    row.add(dateTitleLbl);
 
-                dateLbl = Ti.UI.createLabel({
-                    text : rows[i].date,
-                    height : 'auto',
-                    left : 0,
-                    right : '65dp',
-                    top : '10dp',
-                    textAlign : 'right'
-                });
-                row.add(dateLbl);
+                    dateLbl = Ti.UI.createLabel({
+                        text : rows[i].date,
+                        height : 'auto',
+                        left : 0,
+                        right : '65dp',
+                        top : '10dp',
+                        textAlign : 'right'
+                    });
+                    row.add(dateLbl);
 
-                totaltitleLbl = Ti.UI.createLabel({
-                    text : 'الاجمالي : ',
-                    height : 'auto',
-                    right : '10dp',
-                    top : '35dp',
-                    textAlign : 'right'
-                });
-                row.add(totaltitleLbl);
+                    totaltitleLbl = Ti.UI.createLabel({
+                        text : 'الاجمالي : ',
+                        height : 'auto',
+                        right : '10dp',
+                        top : '35dp',
+                        textAlign : 'right'
+                    });
+                    row.add(totaltitleLbl);
 
-                priceLbl = Ti.UI.createLabel({
-                    text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
-                    height : 'auto',
-                    right : '75dp',
-                    top : '35dp',
-                    textAlign : 'right'
-                });
-                row.add(priceLbl);
+                    priceLbl = Ti.UI.createLabel({
+                        text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
+                        height : 'auto',
+                        right : '75dp',
+                        top : '35dp',
+                        textAlign : 'right'
+                    });
+                    row.add(priceLbl);
 
-                statusTitleLbl = Ti.UI.createLabel({
-                    text : 'حالة الطلب : ',
-                    height : 'auto',
-                    right : '10dp',
-                    top : '60dp',
-                    textAlign : 'right'
-                });
-                row.add(statusTitleLbl);
+                    statusTitleLbl = Ti.UI.createLabel({
+                        text : 'حالة الطلب : ',
+                        height : 'auto',
+                        right : '10dp',
+                        top : '60dp',
+                        textAlign : 'right'
+                    });
+                    row.add(statusTitleLbl);
 
-                statustxt = '';
-                if (rows[i].status === '0') {
-                    statustxt = 'لم يتم البدأ';
-                } else if (rows[i].status === '1') {
-                    statustxt = 'جاري الشحن';
-                } else if (rows[i].status === '2') {
-                    statustxt = 'تم الوصول';
+                    statustxt = '';
+                    if (rows[i].status === '0') {
+                        statustxt = 'لم يتم البدأ';
+                    } else if (rows[i].status === '1') {
+                        statustxt = 'جاري الشحن';
+                    } else if (rows[i].status === '2') {
+                        statustxt = 'تم الوصول';
+                    }
+
+                    statusLbl = Ti.UI.createLabel({
+                        text : statustxt,
+                        height : 'auto',
+                        right : '85dp',
+                        top : '60dp',
+                        textAlign : 'right'
+                    });
+                    row.add(statusLbl);
+
+                    tableRows.push(row);
                 }
-
-                statusLbl = Ti.UI.createLabel({
-                    text : statustxt,
-                    height : 'auto',
-                    right : '85dp',
-                    top : '60dp',
-                    textAlign : 'right'
-                });
-                row.add(statusLbl);
-
-                tableRows.push(row);
             }
 
             tableView.fireEvent('reloadData', {

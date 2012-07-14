@@ -3,7 +3,7 @@ function categoryWin(parent) {
     var self, aboutBtn, backBtn, settingBtn, optionsDialogOpts, dialog, auth, tableView;
 
     self = Ti.UI.createWindow({
-        title : parent.title ? parent.title : 'عسل بري',
+        title : parent.title || 'عسل بري',
         backgroundColor : 'white',
         backButtonTitle : 'عودة',
         backgroundImage : 'images/common/bg_2.jpg',
@@ -150,88 +150,90 @@ function categoryWin(parent) {
             rows = JSON.parse(this.responseText);
 
             for (i in rows ) {
-                row = Ti.UI.createTableViewRow({
-                    height : '95dp',
-                    myTitle : rows[i].title,
-                    data : rows[i],
-                    selectedBackgroundColor : 'transparent',
-                    selectedBackgroundImage : 'images/common/bg_h_one_item.png'
-                });
-
-                rowSeparator = Titanium.UI.createImageView({
-                    image : "images/common/bg_one_item.png",
-                    bottom : "0dp",
-                    left : "0dp",
-                    width : "auto",
-                    height : "auto"
-                });
-                row.add(rowSeparator);
-
-                arrow = Titanium.UI.createImageView({
-                    image : "images/common/icon_7.png",
-                    top : "6dp",
-                    left : "0dp",
-                    width : "auto",
-                    height : "auto"
-                });
-                row.add(arrow);
-
-                img = Ti.UI.createImageView({
-                    image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-                    width : '85dp',
-                    height : '85dp',
-                    right : '10dp',
-                    borderRadius : 45
-                });
-                row.add(img);
-
-                titleLbl = Ti.UI.createLabel({
-                    text : rows[i].title,
-                    left : '10dp',
-                    right : '110dp',
-                    top : '23dp',
-                    color : '#ffffff',
-                    font : {
-                        fontFamily : 'Arial',
-                        fontSize : '17dp',
-                        fontWeight : 'bold'
-                    },
-                    textAlign : 'right'
-                });
-                row.add(titleLbl);
-
-                if (rows[i].products_count > 0) {
-                    titleLbl = Ti.UI.createLabel({
-                        text : rows[i].products_count,
-                        bottom : '10dp',
-                        right : '110dp',
-                        color : 'red',
-                        top : '30dp',
-                        width : '30dp',
-                        font : {
-                            fontSize : '16dp'
-                        },
-                        textAlign : 'center'
+                if (rows.hasOwnProperty(i)) {
+                    row = Ti.UI.createTableViewRow({
+                        height : '95dp',
+                        myTitle : rows[i].title,
+                        data : rows[i],
+                        selectedBackgroundColor : 'transparent',
+                        selectedBackgroundImage : 'images/common/bg_h_one_item.png'
                     });
-                    row.add(titleLbl);
 
-                    titleLbl2 = Ti.UI.createLabel({
-                        text : ' منتج',
+                    rowSeparator = Titanium.UI.createImageView({
+                        image : "images/common/bg_one_item.png",
+                        bottom : "0dp",
+                        left : "0dp",
+                        width : "auto",
+                        height : "auto"
+                    });
+                    row.add(rowSeparator);
+
+                    arrow = Titanium.UI.createImageView({
+                        image : "images/common/icon_7.png",
+                        top : "6dp",
+                        left : "0dp",
+                        width : "auto",
+                        height : "auto"
+                    });
+                    row.add(arrow);
+
+                    img = Ti.UI.createImageView({
+                        image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
+                        width : '85dp',
+                        height : '85dp',
+                        right : '10dp',
+                        borderRadius : 45
+                    });
+                    row.add(img);
+
+                    titleLbl = Ti.UI.createLabel({
+                        text : rows[i].title,
                         left : '10dp',
-                        bottom : '10dp',
-                        right : '140dp',
+                        right : '110dp',
+                        top : '23dp',
                         color : '#ffffff',
-                        top : '30dp',
                         font : {
-                            fontSize : '16dp'
+                            fontFamily : 'Arial',
+                            fontSize : '17dp',
+                            fontWeight : 'bold'
                         },
                         textAlign : 'right'
                     });
-                    row.add(titleLbl2);
+                    row.add(titleLbl);
 
+                    if (rows[i].products_count > 0) {
+                        titleLbl = Ti.UI.createLabel({
+                            text : rows[i].products_count,
+                            bottom : '10dp',
+                            right : '110dp',
+                            color : 'red',
+                            top : '30dp',
+                            width : '30dp',
+                            font : {
+                                fontSize : '16dp'
+                            },
+                            textAlign : 'center'
+                        });
+                        row.add(titleLbl);
+
+                        titleLbl2 = Ti.UI.createLabel({
+                            text : ' منتج',
+                            left : '10dp',
+                            bottom : '10dp',
+                            right : '140dp',
+                            color : '#ffffff',
+                            top : '30dp',
+                            font : {
+                                fontSize : '16dp'
+                            },
+                            textAlign : 'right'
+                        });
+                        row.add(titleLbl2);
+
+                    }
+
+                    tableRows.push(row);
                 }
-
-                tableRows.push(row);
             }
 
             tableView.fireEvent('reloadData', {

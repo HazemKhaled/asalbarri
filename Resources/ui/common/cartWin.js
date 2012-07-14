@@ -66,32 +66,34 @@ function cartWin() {
         rows = Ti.App.Properties.getObject('cart', {});
 
         for (i in rows) {
-            console.log(rows);
-            rowView = Ti.UI.createTableViewRow({
-                height : '110dp',
-                myTitle : rows[i].title,
-                data : rows[i]
-            });
+            if (rows.hasOwnProperty(i)) {
+                console.log(rows[i]);
+                rowView = Ti.UI.createTableViewRow({
+                    height : '110dp',
+                    myTitle : rows[i].title,
+                    data : rows[i]
+                });
 
-            img = Ti.UI.createImageView({
-                image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-                width : '100dp',
-                height : '100p',
-                right : '5dp'
-            });
-            rowView.add(img);
+                img = Ti.UI.createImageView({
+                    image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
+                    width : '100dp',
+                    height : '100p',
+                    right : '5dp'
+                });
+                rowView.add(img);
 
-            titleLbl = Ti.UI.createLabel({
-                text : rows[i].title,
-                height : 'auto',
-                left : 0,
-                right : '110dp',
-                top : '10dp',
-                textAlign : 'right'
-            });
-            rowView.add(titleLbl);
+                titleLbl = Ti.UI.createLabel({
+                    text : rows[i].title,
+                    height : 'auto',
+                    left : 0,
+                    right : '110dp',
+                    top : '10dp',
+                    textAlign : 'right'
+                });
+                rowView.add(titleLbl);
 
-            productTable.add(rowView);
+                productTable.add(rowView);
+            }
         }
     });
 

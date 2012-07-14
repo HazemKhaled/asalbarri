@@ -99,7 +99,7 @@ function loginWin() {
 
         xhr.onload = function() {
 
-            var response, k = null, dialog;
+            var response, k = null, dialog, sendSupportEmailDialogEvent;
 
             Ti.App.fireEvent('hideLoading');
 
@@ -116,41 +116,47 @@ function loginWin() {
             }
 
             if (response.errors) {
+
+                sendSupportEmailDialogEvent = function(ev) {
+                    if (ev.index === 0) {
+                        var emailDialog = Ti.UI.createEmailDialog({
+                            toRecipients : ['support@eshtery.me']
+                        });
+                        emailDialog.open();
+                    }
+                };
+
                 for (k in response.errors) {
 
-                    if (response.errors[k] === response.errors.password) {
-                        Ti.UI.createAlertDialog({
-                            title : 'تآكد من صحة اسم المستخدم الخاص بك',
-                            cancel : 0,
-                            buttonNames : ['موافق']
-                        }).show();
+                    if (response.errors.hasOwnProperty(k)) {
 
-                    } else if (response.errors[k] === response.errors.password) {
-                        Ti.UI.createAlertDialog({
-                            title : 'كلمة المرور',
-                            message : 'تآكد من صحة كلمة المرور الخاصة بك',
-                            cancel : 0,
-                            buttonNames : ['موافق']
-                        }).show();
+                        if (response.errors[k] === response.errors.password) {
+                            Ti.UI.createAlertDialog({
+                                title : 'تآكد من صحة اسم المستخدم الخاص بك',
+                                cancel : 0,
+                                buttonNames : ['موافق']
+                            }).show();
 
-                    } else {
-                        dialog = Ti.UI.createAlertDialog({
-                            title : 'خطآ في الدخول',
-                            message : 'يمكنك التواصل معنا آذا واجهت مشكله',
-                            cancel : 0,
-                            buttonNames : ['الغاء', 'مراسله']
-                        });
+                        } else if (response.errors[k] === response.errors.password) {
+                            Ti.UI.createAlertDialog({
+                                title : 'كلمة المرور',
+                                message : 'تآكد من صحة كلمة المرور الخاصة بك',
+                                cancel : 0,
+                                buttonNames : ['موافق']
+                            }).show();
 
-                        dialog.addEventListener('click', function(ev) {
-                            if (ev.index === 0) {
-                                var emailDialog = Ti.UI.createEmailDialog();
-                                emailDialog.subject = "";
-                                emailDialog.toRecipients = ['support@eshtery.me'];
-                                emailDialog.open();
-                            }
-                        });
+                        } else {
+                            dialog = Ti.UI.createAlertDialog({
+                                title : 'خطآ في الدخول',
+                                message : 'يمكنك التواصل معنا آذا واجهت مشكله',
+                                cancel : 0,
+                                buttonNames : ['الغاء', 'مراسله']
+                            });
 
-                        dialog.show();
+                            dialog.addEventListener('click', sendSupportRequestMailFormEvent);
+
+                            dialog.show();
+                        }
                     }
 
                 }

@@ -93,7 +93,7 @@ function openRegisterWindow() {
 
     submitBtn.addEventListener('click', function() {
 
-        var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/, mobileNumberRGX = /^[0-9]{9,12}$/;
+        var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/, mobileNumberRGX = /^[0-9]{9,12}$/;
 
         if (!mobileNumberRGX.test(mobileField.value)) {
             Ti.UI.createAlertDialog({

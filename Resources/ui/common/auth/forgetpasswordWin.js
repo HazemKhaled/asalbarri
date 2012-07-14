@@ -33,7 +33,7 @@ function forgetpasswordWin() {
     });
 
     submitBtn.addEventListener('click', function() {
-        var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
         if (emailRGX.test(emailField.value) === false) {
             Ti.UI.createAlertDialog({
@@ -103,7 +103,7 @@ function forgetpasswordWin() {
     });
 
     emailField.addEventListener('return', function() {
-        submit.fireEvent('click');
+        submitBtn.fireEvent('click');
     });
 
     if (Ti.Platform.getOsname() === 'android') {

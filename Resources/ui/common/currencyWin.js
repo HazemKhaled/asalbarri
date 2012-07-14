@@ -50,17 +50,19 @@ function currencyWin() {
 
             rows = JSON.parse(this.responseText);
             for (i in rows ) {
+                if (rows.hasOwnProperty(i)) {
 
-                if (Ti.App.Properties.getInt('currency') === rows[i].id || (selectedRow === null && rows[i].is_default === 1)) {
-                    selectedRow = i;
+                    if (Ti.App.Properties.getInt('currency') === rows[i].id || (selectedRow === null && rows[i].is_default === 1)) {
+                        selectedRow = i;
+                    }
+
+                    row = Ti.UI.createPickerRow({
+                        title : rows[i].title,
+                        data : rows[i]
+                    });
+
+                    pickerRows.push(row);
                 }
-
-                row = Ti.UI.createPickerRow({
-                    title : rows[i].title,
-                    data : rows[i]
-                });
-
-                pickerRows.push(row);
             }
 
             picker.fireEvent('reloadData', {

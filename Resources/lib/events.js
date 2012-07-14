@@ -156,8 +156,10 @@ Ti.App.cartQuantityCounter = function(cart) {
     }, q;
 
     for (q in cart) {
-        data.quantity += cart[q].quantity;
-        data.count += 1;
+        if (cart.hasOwnProperty(q)) {
+            data.quantity += cart[q].quantity;
+            data.count += 1;
+        }
     }
 
     return data;

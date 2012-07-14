@@ -42,11 +42,11 @@ function productWin(product) {
 
     // + and - buttons with product quantity
     function getQuantityFieldValue() {
-        return parseInt(quantityField.getValue());
+        return parseInt(quantityField.getValue(), 10);
     }
 
     function setQuantityFieldValue(newValue) {
-        var value = parseInt(newValue);
+        var value = parseInt(newValue, 10);
 
         // is it in minus ?
         if (value < 0) {
@@ -54,7 +54,7 @@ function productWin(product) {
         }
 
         // is it more then inventory quantity
-        if (value > parseInt(product.quantity)) {
+        if (value > parseInt(product.quantity, 10)) {
 
             Ti.UI.createAlertDialog({
                 title : 'الكمية لا تكفي',
@@ -63,7 +63,7 @@ function productWin(product) {
                 buttonNames : ['موافق']
             }).show();
 
-            value = parseInt(product.quantity);
+            value = parseInt(product.quantity, 10);
         }
 
         quantityField.setValue(value);
@@ -110,7 +110,7 @@ function productWin(product) {
 
         var value = getQuantityFieldValue();
 
-        if (parseInt(product.quantity) <= 0) {
+        if (parseInt(product.quantity, 10) <= 0) {
 
             Ti.UI.createAlertDialog({
                 title : 'غير متوفر',
@@ -150,7 +150,7 @@ function productWin(product) {
 
     addToCartBtn.addEventListener('click', function() {
 
-        if (parseInt(product.quantity) < getQuantityFieldValue()) {
+        if (parseInt(product.quantity, 10) < getQuantityFieldValue()) {
             Ti.UI.createAlertDialog({
                 title : 'هفواً',
                 message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
