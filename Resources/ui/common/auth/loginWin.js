@@ -56,7 +56,7 @@ function loginWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
-        self.add(submitBtn);
+        scrollview.add(submitBtn);
     } else {
         self.setRightNavButton(submitBtn);
     }
