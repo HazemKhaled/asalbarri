@@ -21,6 +21,7 @@ function imageFullscreenView(e) {
     if (Ti.Platform.getOsname() !== 'android') {
         self.setLeftNavButton(closeBtn);
     }
+
     scrollView = Ti.UI.createScrollView({
         width : '100%',
         height : '100%',
@@ -30,33 +31,37 @@ function imageFullscreenView(e) {
 
     img = Ti.UI.createImageView({
         image : Ti.App.APIURL + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3',
-        width : 'auto',
-        height : 'auto'
+        width : '100%',
+        height : 'auto',
+        canScale : true
     });
 
-    img.addEventListener('dblclick', function(e) {
+    if (Ti.Platform.getOsname() !== 'android') {
+        img.addEventListener('dblclick', function(e) {
 
-        if (img.getWidth() > Ti.Platform.displayCaps.getPlatformWidth()) {
+            if (img.getWidth() > Ti.Platform.displayCaps.getPlatformWidth()) {
 
-            img.setWidth('auto');
-            img.setHeight('auto');
+                img.setWidth('100%');
+                img.setHeight('100%');
 
-            scrollView.setContentWidth('100%');
-            scrollView.setContentHeight('100%');
+                scrollView.setContentWidth('100%');
+                scrollView.setContentHeight('100%');
 
-        } else {
+            } else {
 
-            scrollView.setContentWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
-            scrollView.setContentHeight((Ti.Platform.displayCaps.getPlatformHeight() - 44) * 2);
+                scrollView.setContentWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
+                scrollView.setContentHeight((Ti.Platform.displayCaps.getPlatformHeight() - 44) * 2);
 
-            img.setWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
+                img.setWidth(Ti.Platform.displayCaps.getPlatformWidth() * 2);
+                img.setHeight('auto');
 
-            scrollView.setContentOffset({
-                x : (e.x * 2) - (Ti.Platform.displayCaps.getPlatformWidth() / 2),
-                y : (e.y * 2) - ((Ti.Platform.displayCaps.getPlatformHeight() - 44) / 2)
-            }, true);
-        }
-    });
+                scrollView.setContentOffset({
+                    x : (e.x * 2) - (Ti.Platform.displayCaps.getPlatformWidth() / 2),
+                    y : (e.y * 2) - ((Ti.Platform.displayCaps.getPlatformHeight() - 44) / 2)
+                }, true);
+            }
+        });
+    }
 
     scrollView.add(img);
 
