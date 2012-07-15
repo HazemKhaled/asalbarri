@@ -28,21 +28,28 @@ function cartWin() {
     });
     actionBtnBar.addEventListener('click', function(e) {
 
-        if (e.index === 0) {
-            var confirmDialog = Ti.UI.createAlertDialog({
-                title : 'متاكد',
-                message : 'سيتم افراغ سلة التسوق؟',
-                buttonNames : ['موافق', 'لا'],
-                cancel : 1
-            });
+        switch (e.index) {
+            case 0 :
+                var confirmDialog = Ti.UI.createAlertDialog({
+                    title : 'متاكد',
+                    message : 'سيتم افراغ سلة التسوق؟',
+                    buttonNames : ['موافق', 'لا'],
+                    cancel : 1
+                });
 
-            confirmDialog.addEventListener('click', function(ec) {
-                if (ec.index === 0) {
-                    Ti.App.fireEvent('cartEmpty');
-                }
-            });
+                confirmDialog.addEventListener('click', function(ec) {
+                    if (ec.index === 0) {
+                        Ti.App.fireEvent('cartEmpty');
+                        self.fireEvent('focus');
+                    }
+                });
 
-            confirmDialog.show();
+                confirmDialog.show();
+                break;
+
+            case 1 :
+                alert('soon');
+                break;
         }
     });
 
@@ -96,8 +103,8 @@ function cartWin() {
                 rowViewArray.push(rowView);
             }
 
-            productTable.setData(rowViewArray);
         }
+        productTable.setData(rowViewArray);
     });
 
     return self;
