@@ -1,168 +1,212 @@
 function myOrdersWin() {
 
-    var self, tableView;
+	var self, tableView;
 
-    self = Ti.UI.createWindow({
-        title : 'طلباتي',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
-    });
+	self = Ti.UI.createWindow({
+		title : 'طلباتي',
+		backgroundImage : 'images/common/bg.jpg',
+		barImage : 'images/common/Navigation_Bar.jpg',
+		barColor : '#d3d3d3'
+	});
 
-    function filterData() {
+	function filterData() {
 
-        tableView.fireEvent('runLoading');
+		tableView.fireEvent('runLoading');
 
-        var tableRows = [], xhr;
+		var tableRows = [], xhr;
 
-        xhr = Ti.Network.createHTTPClient();
+		xhr = Ti.Network.createHTTPClient();
 
-        xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID'));
+		xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID'));
 
-        xhr.onerror = function() {
-            tableView.fireEvent('reloadData', {
-                rows : []
-            });
-        };
+		xhr.onerror = function() {
+			tableView.fireEvent('reloadData', {
+				rows : []
+			});
+		};
 
-        xhr.onload = function() {
+		xhr.onload = function() {
 
-            var rows, i, row, dateTitleLbl, dateLbl, totaltitleLbl, priceLbl, statusTitleLbl, statustxt = '', statusLbl;
+			var rows, i, row, dateTitleLbl, dateLbl, totaltitleLbl, priceLbl, statusTitleLbl, statustxt = '', statusLbl;
 
-            rows = JSON.parse(this.responseText);
+			rows = JSON.parse(this.responseText);
 
-            for (i in rows ) {
-                if (rows.hasOwnProperty(i)) {
-                    row = Ti.UI.createTableViewRow({
-                        height : '110dp',
-                        myTitle : rows[i].title,
-                        data : rows[i],
-                        backgroundImage : 'images/common/TableViewRowBG.png',
-                        selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
-                    });
+			for (i in rows ) {
+				if (rows.hasOwnProperty(i)) {
+					row = Ti.UI.createTableViewRow({
+						height : '95dp',
+						myTitle : rows[i].title,
+						data : rows[i],
+						backgroundImage : 'images/common/TableViewRowBG.png',
+						selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+					});
 
-                    dateTitleLbl = Ti.UI.createLabel({
-                        text : 'التاريخ : ',
-                        left : 0,
-                        right : '10dp',
-                        top : '10dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(dateTitleLbl);
+					arrow = Titanium.UI.createImageView({
+						image : "images/common/icon_7.png",
+						top : "6dp",
+						left : "0dp",
+						width : "auto",
+						height : "auto"
+					});
+					row.add(arrow);
 
-                    dateLbl = Ti.UI.createLabel({
-                        text : rows[i].date,
-                        left : 0,
-                        right : '65dp',
-                        top : '10dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(dateLbl);
+					totaltitleLbl = Ti.UI.createLabel({
+						text : 'الاجمالي : ',
+						right : '10dp',
+						top : '10dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Arial',
+							fontSize : '17dp',
+							fontWeight : 'bold'
+						}
+					});
+					row.add(totaltitleLbl);
 
-                    totaltitleLbl = Ti.UI.createLabel({
-                        text : 'الاجمالي : ',
-                        right : '10dp',
-                        top : '35dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(totaltitleLbl);
+					priceLbl = Ti.UI.createLabel({
+						text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
+						right : '85dp',
+						top : '10dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Arial',
+							fontSize : '17dp',
+							fontWeight : 'bold'
+						}
+					});
+					row.add(priceLbl);
 
-                    priceLbl = Ti.UI.createLabel({
-                        text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
-                        right : '75dp',
-                        top : '35dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(priceLbl);
+					datebackground = Titanium.UI.createImageView({
+						image : "images/common/bg_time.png",
+						top : "38dp",
+						right : "0dp",
+						width : "auto",
+						height : "auto"
+					});
+					row.add(datebackground);
 
-                    statusTitleLbl = Ti.UI.createLabel({
-                        text : 'حالة الطلب : ',
-                        right : '10dp',
-                        top : '60dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(statusTitleLbl);
+					dateTitleLbl = Ti.UI.createLabel({
+						text : 'التاريخ : ',
+						left : 0,
+						right : '10dp',
+						top : '38dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Tahoma',
+							fontSize : '15dp'
+						}
+					});
+					row.add(dateTitleLbl);
 
-                    statustxt = '';
-                    if (rows[i].status === '0') {
-                        statustxt = 'لم يتم البدأ';
-                    } else if (rows[i].status === '1') {
-                        statustxt = 'جاري الشحن';
-                    } else if (rows[i].status === '2') {
-                        statustxt = 'تم الوصول';
-                    }
+					dateLbl = Ti.UI.createLabel({
+						text : rows[i].date,
+						left : 0,
+						right : '60dp',
+						top : '38dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Tahoma',
+							fontSize : '15dp'
+						}
+					});
+					row.add(dateLbl);
 
-                    statusLbl = Ti.UI.createLabel({
-                        text : statustxt,
-                        right : '85dp',
-                        top : '60dp',
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff'
-                    });
-                    row.add(statusLbl);
+					statusTitleLbl = Ti.UI.createLabel({
+						text : 'حالة الطلب : ',
+						right : '10dp',
+						top : '63dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Tahoma',
+							fontSize : '15dp'
+						}
+					});
+					row.add(statusTitleLbl);
 
-                    tableRows.push(row);
-                }
-            }
+					statustxt = '';
+					if (rows[i].status === '0') {
+						statustxt = 'لم يتم البدأ';
+					} else if (rows[i].status === '1') {
+						statustxt = 'جاري الشحن';
+					} else if (rows[i].status === '2') {
+						statustxt = 'تم الوصول';
+					}
 
-            tableView.fireEvent('reloadData', {
-                rows : tableRows
-            });
-        };
+					statusLbl = Ti.UI.createLabel({
+						text : statustxt,
+						right : '80dp',
+						top : '63dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+						color : '#ffffff',
+						font : {
+							fontFamily : 'Tahoma',
+							fontSize : '15dp'
+						}
+					});
+					row.add(statusLbl);
 
-        xhr.send();
-    }
+					tableRows.push(row);
+				}
+			}
 
-    tableView = Ti.UI.createTableView({
-        filterAttribute : 'myTitle',
-        backgroundColor : 'transparent',
-        separatorColor : 'transparent'
-    });
+			tableView.fireEvent('reloadData', {
+				rows : tableRows
+			});
+		};
 
-    tableView.addEventListener('runLoading', function() {
-        this.setData([{
-            title : 'جاري التحميل ....',
-            color : '#ffffff'
-        }]);
-    });
-    tableView.addEventListener('reloadData', function(e) {
-        this.setData(e.rows.length > 0 ? e.rows : [{
-            title : 'مشكلة تحميل، حاول بعد قليل.',
-            color : '#ffffff'
-        }]);
-    });
+		xhr.send();
+	}
 
-    tableView.addEventListener('click', function(e) {
+	tableView = Ti.UI.createTableView({
+		filterAttribute : 'myTitle',
+		backgroundColor : 'transparent',
+		separatorColor : 'transparent'
+	});
 
-        if (e.rowData.data) {
+	tableView.addEventListener('runLoading', function() {
+		this.setData([{
+			title : 'جاري التحميل ....',
+			color : '#ffffff'
+		}]);
+	});
+	tableView.addEventListener('reloadData', function(e) {
+		this.setData(e.rows.length > 0 ? e.rows : [{
+			title : 'مشكلة تحميل، حاول بعد قليل.',
+			color : '#ffffff'
+		}]);
+	});
 
-            Ti.App.fireEvent('openOrderProductsWindow', {
-                data : e.rowData.data
-            });
-        }
-    });
+	tableView.addEventListener('click', function(e) {
 
-    self.add(tableView);
+		if (e.rowData.data) {
 
-    self.addEventListener('focus', function() {
+			Ti.App.fireEvent('openOrderProductsWindow', {
+				data : e.rowData.data
+			});
+		}
+	});
 
-        var auth = require('/lib/auth');
-        Ti.App.fireEvent('closeLoginWindow');
-        if (!auth.isLogedIn() && false) {
+	self.add(tableView);
 
-            Ti.App.fireEvent('openLoginWindow');
-        } else {
-            filterData();
-        }
+	self.addEventListener('focus', function() {
 
-    });
+		var auth = require('/lib/auth');
+		Ti.App.fireEvent('closeLoginWindow');
+		if (!auth.isLogedIn() && false) {
 
-    return self;
+			Ti.App.fireEvent('openLoginWindow');
+		} else {
+			filterData();
+		}
+
+	});
+
+	return self;
 }
 
 module.exports = myOrdersWin;
