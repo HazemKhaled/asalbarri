@@ -63,7 +63,7 @@ function cartWin() {
 
     self.addEventListener('focus', function() {
 
-        var rows, i, rowView, img, titleLbl;
+        var rows, i, rowView, img, titleLbl, rowViewArray = [];
 
         rows = Ti.App.Properties.getObject('cart', {});
 
@@ -93,8 +93,10 @@ function cartWin() {
                 });
                 rowView.add(titleLbl);
 
-                productTable.add(rowView);
+                rowViewArray.push(rowView);
             }
+
+            productTable.setData(rowViewArray);
         }
     });
 
