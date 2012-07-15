@@ -93,7 +93,6 @@ function productsListWin(parent) {
     }
 
     tableView = Ti.UI.createTableView({
-        filterAttribute : 'myTitle',
         backgroundColor : 'transparent',
         separatorColor : 'transparent'
     });
