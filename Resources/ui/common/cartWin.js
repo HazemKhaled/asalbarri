@@ -59,18 +59,14 @@ function cartWin() {
     tableHeaderView.add(actionBtnBar);
 
     productTable = Ti.UI.createTableView({
-        headerView : tableHeaderView,
-        footerView : Ti.UI.createView({
-            height : '40dp',
-            backgroundColor : 'red'
-        })
+        headerView : tableHeaderView
     });
 
     self.add(productTable);
 
     self.addEventListener('focus', function() {
 
-        var rows, i, rowView, img, titleLbl, priceLbl, priceRowLbl, quantityLbl, rowViewArray = [];
+        var rows, i, rowView, img, titleLbl, priceLbl, priceRowLbl, quantityLbl, rowViewArray = [], total = 0, coupon;
 
         rows = Ti.App.Properties.getObject('cart', {});
 
@@ -108,6 +104,7 @@ function cartWin() {
                 });
                 rowView.add(priceLbl);
 
+                total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
                 priceRowLbl = Ti.UI.createLabel({
                     text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
                     left : '10dp',
@@ -127,6 +124,22 @@ function cartWin() {
                 rowViewArray.push(rowView);
             }
 
+        }
+
+        coupon = Ti.App.Properties.getInt('coupon', 0);
+        if (coupon > 0) {
+            rowViewArray.push(Ti.UI.createTableViewRow({
+                title : 'قيمة الخصم : ' + coupon + ' جنية',
+                font : {
+                    fontSize : '15dp'
+                }
+            }));
+        }
+
+        if (total > 0) {
+            rowViewArray.push(Ti.UI.createTableViewRow({
+                title : 'الإجمالي : ' + (total - coupon) + ' جنية'
+            }));
         }
         productTable.setData(rowViewArray);
     });
