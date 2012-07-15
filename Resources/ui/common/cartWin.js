@@ -70,7 +70,7 @@ function cartWin() {
 
     self.addEventListener('focus', function() {
 
-        var rows, i, rowView, img, titleLbl, rowViewArray = [];
+        var rows, i, rowView, img, titleLbl, priceLbl, priceRowLbl, quantityLbl, rowViewArray = [];
 
         rows = Ti.App.Properties.getObject('cart', {});
 
@@ -93,12 +93,36 @@ function cartWin() {
 
                 titleLbl = Ti.UI.createLabel({
                     text : rows[i].title,
-                    left : 0,
+                    left : '40dp',
                     right : '110dp',
                     top : '10dp',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                 });
                 rowView.add(titleLbl);
+
+                priceLbl = Ti.UI.createLabel({
+                    text : 'السعر : ' + rows[i].price,
+                    right : '110dp',
+                    bottom : '10dp',
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+                });
+                rowView.add(priceLbl);
+
+                priceRowLbl = Ti.UI.createLabel({
+                    text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
+                    left : '10dp',
+                    bottom : '10dp',
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+                });
+                rowView.add(priceRowLbl);
+
+                quantityLbl = Ti.UI.createLabel({
+                    text : rows[i].quantity,
+                    left : '10dp',
+                    top : '10dp',
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+                });
+                rowView.add(quantityLbl);
 
                 rowViewArray.push(rowView);
             }

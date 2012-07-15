@@ -163,7 +163,8 @@ function productWin(product) {
         Ti.App.fireEvent('cartAdd', {
             productID : product.id,
             productTitle : product.title,
-            quantity : getQuantityFieldValue()
+            quantity : getQuantityFieldValue(),
+            price : product.price
         });
 
         Ti.App.fireEvent('closeProductWindow');

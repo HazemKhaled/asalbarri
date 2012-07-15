@@ -123,7 +123,8 @@ Ti.App.addEventListener('cartAdd', function(e) {
         cart[e.productID] = {
             id : e.productID,
             title : e.productTitle,
-            quantity : e.quantity
+            quantity : e.quantity,
+            price : e.price
         };
     }
     Ti.App.Properties.setObject('cart', cart);
