@@ -141,6 +141,14 @@ function cartWin() {
                 title : 'الإجمالي : ' + (total - coupon) + ' جنية'
             }));
         }
+        
+        if (rowViewArray.length === 0) { // cart is empty
+            
+            rowViewArray.push(Ti.UI.createTableViewRow({
+                title : 'سلة التسوق فارغة'
+            }));
+        }
+        
         productTable.setData(rowViewArray);
     });
 
