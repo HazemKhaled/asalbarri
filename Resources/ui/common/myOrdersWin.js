@@ -202,7 +202,7 @@ function myOrdersWin() {
 			Ti.App.fireEvent('openLoginWindow');
 		} else {
 			filterData();
-			setInterval(function(){filterData()},20000);
+			//setInterval(function(){filterData()},20000);
 		}
 
 	});
