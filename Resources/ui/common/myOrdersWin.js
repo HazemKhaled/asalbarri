@@ -176,7 +176,7 @@ function myOrdersWin() {
 	});
 	tableView.addEventListener('reloadData', function(e) {
 		this.setData(e.rows.length > 0 ? e.rows : [{
-			title : 'مشكلة تحميل، حاول بعد قليل.',
+			title : 'لا يوجد طلبات في الوقت الحالي !!',
 			color : '#ffffff'
 		}]);
 	});
@@ -197,11 +197,12 @@ function myOrdersWin() {
 
 		var auth = require('/lib/auth');
 		Ti.App.fireEvent('closeLoginWindow');
-		if (!auth.isLogedIn() && false) {
+		if (!auth.isLogedIn()) {
 
 			Ti.App.fireEvent('openLoginWindow');
 		} else {
 			filterData();
+			setInterval(function(){filterData()},20000);
 		}
 
 	});
