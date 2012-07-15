@@ -179,13 +179,19 @@ function loginWin() {
 	});
 	registerBtn = auth.registerBtn(Ti.UI.createButton({
 		title : 'تسجيل',
-		top : (215 + androidshift) + 'dp'
+		top : (215 + androidshift) + 'dp',
+		backgroundImage : 'images/common/button_ok.png',
+        paddingLeft : '5dp',
+        paddingRight : '5dp'
 	}));
 	scrollview.add(registerBtn);
 
 	forgetBtn = auth.forgetBtn(Ti.UI.createButton({
 		title : 'استرجع كلمة المرور',
-		top : (255 + androidshift) + 'dp'
+		top : (255 + androidshift) + 'dp',
+		backgroundImage : 'images/common/button_ok.png',
+        paddingLeft : '5dp',
+        paddingRight : '5dp'
 	}));
 
 	scrollview.add(forgetBtn);
