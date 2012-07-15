@@ -88,7 +88,7 @@ function orderProductsWin(parent) {
                         top : '60dp',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
                     });
-                    row.add(price);
+                    row.add(priceLbl2);
 
                     tableRows.push(row);
                 }
@@ -102,7 +102,7 @@ function orderProductsWin(parent) {
         xhr.send();
     }
 
-    tableView = Ti.UI.createTableView({
+    var tableView = Ti.UI.createTableView({
         filterAttribute : 'myTitle',
         backgroundColor : 'transparent',
         separatorColor : 'transparent'
