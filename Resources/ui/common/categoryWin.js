@@ -178,8 +178,10 @@ function categoryWin(parent) {
 							bottom : '10dp',
 							right : '110dp',
 							color : 'red',
-							top : '30dp',
-							width : '30dp',
+							height : '23dp',
+							top : '50dp',
+							width : '43dp',
+							backgroundImage : 'images/common/bg_product_quantity.png',
 							font : {
 								fontSize : '16dp'
 							},
@@ -191,7 +193,7 @@ function categoryWin(parent) {
 							text : ' منتج',
 							left : '10dp',
 							bottom : '10dp',
-							right : '140dp',
+							right : '155dp',
 							color : '#ffffff',
 							top : '30dp',
 							font : {
