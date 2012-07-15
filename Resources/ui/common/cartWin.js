@@ -59,6 +59,8 @@ function cartWin() {
     tableHeaderView.add(actionBtnBar);
 
     productTable = Ti.UI.createTableView({
+        backgroundColor : 'transparent',
+        separatorColor : 'transparent',
         headerView : tableHeaderView
     });
 
@@ -76,19 +78,23 @@ function cartWin() {
                 rowView = Ti.UI.createTableViewRow({
                     height : '110dp',
                     myTitle : rows[i].title,
-                    data : rows[i]
+                    data : rows[i],
+                    backgroundImage : 'images/common/TableViewRowBG.png',
+                    selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                 });
 
                 img = Ti.UI.createImageView({
                     image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
                     width : '100dp',
                     height : '100p',
-                    right : '5dp'
+                    right : '5dp',
+                    borderRadius : 45
                 });
                 rowView.add(img);
 
                 titleLbl = Ti.UI.createLabel({
                     text : rows[i].title,
+                    color : '#ffffff',
                     left : '40dp',
                     right : '110dp',
                     top : '10dp',
@@ -98,6 +104,7 @@ function cartWin() {
 
                 priceLbl = Ti.UI.createLabel({
                     text : 'السعر : ' + rows[i].price,
+                    color : '#ffffff',
                     right : '110dp',
                     bottom : '10dp',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
@@ -107,6 +114,7 @@ function cartWin() {
                 total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
                 priceRowLbl = Ti.UI.createLabel({
                     text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
+                    color : '#ffffff',
                     left : '10dp',
                     bottom : '10dp',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -115,6 +123,7 @@ function cartWin() {
 
                 quantityLbl = Ti.UI.createLabel({
                     text : rows[i].quantity,
+                    color : '#ffffff',
                     left : '10dp',
                     top : '10dp',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -130,6 +139,7 @@ function cartWin() {
         if (coupon > 0) {
             rowViewArray.push(Ti.UI.createTableViewRow({
                 title : 'قيمة الخصم : ' + coupon + ' جنية',
+                color : '#ffffff',
                 font : {
                     fontSize : '15dp'
                 }
@@ -138,17 +148,18 @@ function cartWin() {
 
         if (total > 0) {
             rowViewArray.push(Ti.UI.createTableViewRow({
-                title : 'الإجمالي : ' + (total - coupon) + ' جنية'
+                title : 'الإجمالي : ' + (total - coupon) + ' جنية',
+                color : '#ffffff'
             }));
         }
-        
-        if (rowViewArray.length === 0) { // cart is empty
-            
+
+        if (rowViewArray.length === 0) {// cart is empty
+
             rowViewArray.push(Ti.UI.createTableViewRow({
                 title : 'سلة التسوق فارغة'
             }));
         }
-        
+
         productTable.setData(rowViewArray);
     });
 
