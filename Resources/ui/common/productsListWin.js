@@ -115,7 +115,7 @@ function productsListWin(parent) {
 					} else {
 
 						pricebackground = Titanium.UI.createImageView({
-							image : "images/common/sss.png",
+							image : "images/common/bg_price_2.png",
 							bottom : "11dp",
 							right : "110dp",
 							width : "auto",
@@ -126,7 +126,7 @@ function productsListWin(parent) {
 
 					priceLbl = Ti.UI.createLabel({
 						text : rows[i].price,
-						right : '116dp',
+						right : '120dp',
 						width : '60dp',
 						bottom : '27dp',
 						textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
