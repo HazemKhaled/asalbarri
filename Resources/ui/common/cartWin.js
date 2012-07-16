@@ -80,7 +80,8 @@ function cartWin() {
                     image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
                     width : '100dp',
                     height : '100p',
-                    right : '5dp'
+                    right : '5dp',
+                    defaultImage : 'images/common/default.png'
                 });
                 rowView.add(img);
 

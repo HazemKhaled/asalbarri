@@ -33,7 +33,8 @@ function imageFullscreenView(e) {
         image : Ti.App.APIURL + 'api/pic/product/' + e.productID + '/' + (Ti.Platform.displayCaps.getPlatformWidth() * 2) + '/' + (Ti.Platform.displayCaps.getPlatformHeight() * 2) + '/3',
         width : '100%',
         height : 'auto',
-        canScale : true
+        canScale : true,
+        defaultImage : 'images/common/default.png'
     });
 
     if (Ti.Platform.getOsname() !== 'android') {
