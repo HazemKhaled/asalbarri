@@ -53,7 +53,7 @@ function chargeWalletWin() {
                 dialouge.show();
             } else {
 
-                Ti.App.balanceLbl.text = row.balance + ' ' + Ti.App.Properties.getString('currencyName');
+                Ti.App.balanceLbl.text = row.balance ;
                 dialouge = Ti.UI.createAlertDialog({
                     title : 'تم شحن المحفظة',
                     message : 'رصيدك الآن : ' + row.balance + ' ' + Ti.App.Properties.getString('currencyName'),
