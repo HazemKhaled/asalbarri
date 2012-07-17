@@ -34,8 +34,7 @@ function loginMsgWindow() {
 
 	self.addEventListener('focus', function() {
 
-		var auth = require('/lib/auth');
-		if (!auth.isLogedIn()) {
+		if (auth.isLogedIn()) {
 
 			self.close();
 		}
