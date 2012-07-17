@@ -88,7 +88,11 @@ function cartWin() {
                     width : '100dp',
                     height : '100p',
                     right : '5dp',
+<<<<<<< HEAD
                     borderRadius : 45
+=======
+                    defaultImage : 'images/common/default.png'
+>>>>>>> 8d90e84cc6b93b55854296f878c9cb01cb3fd706
                 });
                 rowView.add(img);
 

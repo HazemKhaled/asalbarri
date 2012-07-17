@@ -43,7 +43,8 @@ function orderProductsWin(parent) {
 						width : '85dp',
 						height : '85dp',
 						right : '10dp',
-						borderRadius : 45
+						borderRadius : 45,
+						defaultImage : 'images/common/default.png'
 					});
 					row.add(img);
 

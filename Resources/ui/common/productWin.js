@@ -18,7 +18,8 @@ function productWin(product) {
         height : '90dp',
         top : '10dp',
         right : '10dp',
-        borderRadius : 45
+        borderRadius : 45,
+        defaultImage : 'images/common/default.png'
     });
 
     productImg.addEventListener('click', function() {

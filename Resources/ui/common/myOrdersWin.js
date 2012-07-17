@@ -196,10 +196,9 @@ function myOrdersWin() {
 	self.addEventListener('focus', function() {
 
 		var auth = require('/lib/auth');
-		Ti.App.fireEvent('closeLoginWindow');
 		if (!auth.isLogedIn()) {
 
-			Ti.App.fireEvent('openLoginWindow');
+			Ti.App.fireEvent('openLoginMsgWindowOrderTab');
 		} else {
 			filterData();
 			//setInterval(function(){filterData()},20000);
