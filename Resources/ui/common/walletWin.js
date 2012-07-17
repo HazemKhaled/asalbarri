@@ -12,10 +12,9 @@ function walletWin() {
 	self.addEventListener('focus', function() {
 
 		var auth = require('/lib/auth');
-		Ti.App.fireEvent('closeLoginWindow');
 		if (!auth.isLogedIn()) {
 
-			Ti.App.fireEvent('openLoginWindow');
+			Ti.App.fireEvent('openLoginMsgWindowWalletTab');
 		}
 	});
 
