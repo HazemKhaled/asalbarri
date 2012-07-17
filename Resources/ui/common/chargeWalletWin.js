@@ -95,7 +95,10 @@ function chargeWalletWin() {
         left : '5%',
         top : '10dp',
         returnKeyType : Ti.UI.RETURNKEY_SEND,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        backgroundImage : 'images/common/bg_total_price.png',
+        paddingLeft : '5dp',
+        paddingRight : '5dp'
     });
     cardTxt.addEventListener('return', function() {
         submitBtn.fireEvent('click');
