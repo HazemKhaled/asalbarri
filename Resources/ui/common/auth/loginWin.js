@@ -165,6 +165,7 @@ function loginWin() {
 				}
 			}
 			Ti.App.Properties.setInt('userID', response.userID);
+			Ti.App.fireEvent('showWalletAfterLogin');
 			Ti.App.dialog.destructive = 0;
 			Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
 
@@ -180,7 +181,7 @@ function loginWin() {
 
 	});
 	registerBtn = auth.registerBtn(Ti.UI.createButton({
-		title : 'تسجيل',
+		title : 'تسجيل جديد',
 		height : '33dp',
 		width : '90%',
 		top : (115 + androidshift) + 'dp',

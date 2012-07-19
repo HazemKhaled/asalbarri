@@ -76,6 +76,7 @@ function categoryWin(parent) {
                 case 0:
 
                     Ti.App.Properties.removeProperty('userID');
+                    Ti.App.fireEvent('showWalletBeforLogin');
                     Ti.App.dialog.destructive = null;
                     Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
                     break;
