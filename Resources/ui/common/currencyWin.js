@@ -54,7 +54,7 @@ function currencyWin() {
 			for (i in rows ) {
 				if (rows.hasOwnProperty(i)) {
 
-					if (Ti.App.Properties.getInt('currency') === rows[i].id || (selectedRow === null && rows[i].is_default === 1)) {
+					if (Ti.App.Properties.getInt('currency') == rows[i].id || (selectedRow === null && rows[i].is_default == 1)) {
 						selectedRow = i;
 					}
 
