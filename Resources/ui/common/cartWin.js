@@ -76,11 +76,12 @@ function cartWin() {
 
         for (i in rows) {
             if (rows.hasOwnProperty(i)) {
-                console.log(rows[i]);
+                //console.log(rows[i]);
                 rowView = Ti.UI.createTableViewRow({
                     height : '110dp',
                     myTitle : rows[i].title,
                     data : rows[i],
+                    className : 'cartRow',
                     backgroundImage : 'images/common/TableViewRowBG.png',
                     selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                 });

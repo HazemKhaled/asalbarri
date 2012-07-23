@@ -34,6 +34,7 @@ function orderProductsWin(parent) {
                         height : '95dp',
                         myTitle : rows[i].title,
                         data : rows[i],
+                        className : 'orderRow',
                         backgroundImage : 'images/common/TableViewRowBG.png',
                         selectedBackgroundImage : 'transparent'
                     });

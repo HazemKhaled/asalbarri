@@ -36,6 +36,7 @@ function productsListWin(parent) {
                         height : '95dp',
                         myTitle : rows[i].title,
                         data : rows[i],
+                        className : 'productRow',
                         backgroundImage : 'images/common/TableViewRowBG.png',
                         selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                     });

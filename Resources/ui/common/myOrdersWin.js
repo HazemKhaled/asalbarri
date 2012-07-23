@@ -37,6 +37,7 @@ function myOrdersWin() {
                         height : '95dp',
                         myTitle : rows[i].title,
                         data : rows[i],
+                        className : 'myOrderRow',
                         backgroundImage : 'images/common/TableViewRowBG.png',
                         selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                     });

@@ -136,6 +136,7 @@ function categoryWin(parent) {
                         height : '95dp',
                         myTitle : rows[i].title,
                         data : rows[i],
+                        className : 'categoryRow',
                         backgroundImage : 'images/common/TableViewRowBG.png',
                         selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
                     });
