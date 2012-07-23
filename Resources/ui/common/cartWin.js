@@ -1,6 +1,6 @@
 function cartWin() {
 
-    var self, orderBtn, actionBtnBar, tableHeaderView, productTable;
+    var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule;
 
     self = Ti.UI.createWindow({
         title : 'سلة التسوق',
@@ -48,7 +48,9 @@ function cartWin() {
                 break;
 
             case 1 :
-                alert('soon');
+
+                CouponWinModule = require('/ui/common/couponWin');
+                new CouponWinModule().open();
                 break;
         }
     });
