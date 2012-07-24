@@ -23,7 +23,7 @@ function couponWin() {
         backgroundImage : 'images/common/button_back.png'
     });
 
-    closeBtn.addEventListener('close', function() {
+    closeBtn.addEventListener('click', function() {
         self.close();
     });
 
