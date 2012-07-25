@@ -162,6 +162,20 @@ Ti.App.addEventListener('cartEmpty', function(e) {
     Ti.App.cartTab.setBadge(0);
 });
 
+Ti.App.addEventListener('openShippingWindow', function() {
+
+    var ShippingWinModule = require('/ui/common/shippingWin'), shippingWin;
+
+    shippingWin = new ShippingWinModule();
+    Ti.App.cartTab.open(shippingWin);
+
+    Ti.App.addEventListener('closeShippingWindow', function(e) {
+
+        Ti.App.cartTab.close(shippingWin);
+    });
+
+});
+
 Ti.App.cartQuantityByProductID = function(productID) {
 
     var cart = Ti.App.Properties.getObject('cart', {});
@@ -197,3 +211,40 @@ Ti.App.autoTextAlign = function(e) {
         e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_LEFT);
     }
 };
+
+Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {
+    //http://www.asalbarri.com/asalbarri/asal/api/walletBalance/1/1
+
+    Ti.App.fireEvent('showLoading');
+
+    var xhr = Ti.Network.createHTTPClient({
+        timeout : 45000
+    });
+
+    xhr.open('GET', Ti.App.APIURL + action);
+    xhr.setOnerror(function() {
+        Ti.App.fireEvent('hideLoading');
+
+        Ti.UI.createAlertDialog({
+            title : 'خطأ',
+            message : 'خطا في الاتصال، تاكد من اتصال الانترنت لديك وحاول مرة اخرى',
+            buttonNames : ['موافق']
+        }).show();
+
+        if ( typeof errorCallBack === 'function') {
+            errorCallBack();
+        }
+    });
+
+    xhr.setOnload(function() {
+        var results = JSON.parse(this.responseText);
+
+        if ( typeof loadCallBack === 'function') {
+            loadCallBack(results);
+        }
+
+        Ti.App.fireEvent('hideLoading');
+    });
+
+    xhr.send();
+}
