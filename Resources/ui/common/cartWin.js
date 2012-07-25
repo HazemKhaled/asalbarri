@@ -1,6 +1,6 @@
 function cartWin() {
 
-    var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule;
+    var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule, auth;
 
     self = Ti.UI.createWindow({
         title : 'سلة التسوق',
@@ -13,7 +13,16 @@ function cartWin() {
         title : 'شراء'
     });
     orderBtn.addEventListener('click', function() {
-        alert('soon');
+
+        auth = require('/lib/auth');
+        if (auth.isLogedIn() === false) {
+
+            Ti.App.fireEvent('closeLoginWindow');
+            Ti.App.fireEvent('openLoginWindow');
+            return;
+        }
+
+        Ti.App.fireEvent('openShippingWindow');
     });
 
     if (Ti.Platform.getOsname() === 'android') {
