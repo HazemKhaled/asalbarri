@@ -176,7 +176,7 @@ Ti.App.cartQuantityCounter = function(cart) {
     }
 
     var data = {
-        quantity : 0,
+        quantity : null,
         count : 0
     }, q;
 

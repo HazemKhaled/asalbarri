@@ -140,19 +140,21 @@ function cartWin() {
         }
 
         coupon = Ti.App.Properties.getInt('coupon', 0);
-        if (coupon > 0) {
-            rowViewArray.push(Ti.UI.createTableViewRow({
-                title : 'قيمة الخصم : ' + coupon + ' جنية',
-                color : '#ffffff',
-                font : {
-                    fontSize : '15dp'
-                }
-            }));
-        }
 
         if (total > 0) {
+            if (coupon > 0) {
+                rowViewArray.push(Ti.UI.createTableViewRow({
+                    title : 'قيمة الخصم : ' + coupon + ' جنية',
+                    color : '#ffffff',
+                    font : {
+                        fontSize : '15dp'
+                    }
+                }));
+            }
+
+            total = total - coupon < 0 ? 0 : total - coupon;
             rowViewArray.push(Ti.UI.createTableViewRow({
-                title : 'الإجمالي : ' + (total - coupon) + ' جنية',
+                title : 'الإجمالي : ' + total + ' جنية',
                 color : '#ffffff'
             }));
         }
