@@ -6,12 +6,19 @@ function ApplicationTabGroup(Window) {
     self = Ti.UI.createTabGroup();
 
     //create app tabs
-    CategoryWinModule = require('ui/common/categoryWin');
 
-    Ti.App.catalogTab = Ti.UI.createTab({
-        title : 'المنتجات',
-        icon : 'images/common/icon_6.png',
-        window : new CategoryWinModule(0)
+    MyOrdersWinModule = require('ui/common/myOrdersWin');
+    Ti.App.orderTab = Ti.UI.createTab({
+        title : 'الطلبات',
+        icon : 'images/common/icon_3.png',
+        window : new MyOrdersWinModule()
+    });
+
+    WalletWinModule = require('ui/common/walletWin');
+    Ti.App.walletTab = Ti.UI.createTab({
+        title : 'المحفظة',
+        icon : 'images/common/icon_4.png',
+        window : new WalletWinModule()
     });
 
     CartWinModule = require('ui/common/cartWin');
@@ -22,18 +29,11 @@ function ApplicationTabGroup(Window) {
         window : new CartWinModule()
     });
 
-    WalletWinModule = require('ui/common/walletWin');
-    Ti.App.walletTab = Ti.UI.createTab({
-        title : 'المحفظة',
-        icon : 'images/common/icon_4.png',
-        window : new WalletWinModule()
-    });
-
-    MyOrdersWinModule = require('ui/common/myOrdersWin');
-    Ti.App.orderTab = Ti.UI.createTab({
-        title : 'الطلبات',
-        icon : 'images/common/icon_3.png',
-        window : new MyOrdersWinModule()
+    CategoryWinModule = require('ui/common/categoryWin');
+    Ti.App.catalogTab = Ti.UI.createTab({
+        title : 'المنتجات',
+        icon : 'images/common/icon_6.png',
+        window : new CategoryWinModule(0)
     });
 
     self.addTab(Ti.App.orderTab);
@@ -41,7 +41,7 @@ function ApplicationTabGroup(Window) {
     self.addTab(Ti.App.cartTab);
     self.addTab(Ti.App.catalogTab);
 
-    self.setActiveTab(3);
+    self.setActiveTab(Ti.App.catalogTab);
 
     return self;
 }
