@@ -48,9 +48,10 @@ function walletWin() {
 		chargeBtn = Ti.UI.createButton({
 			title : 'شحن المحفظة',
 			top : '200dp',
-			right : '1%',
-			left : '1%',
-			width : '98%',
+			textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+			height : '33dp',
+			width : '90%',
+			left : '5%',
 			color : '#000000',
 			backgroundImage : 'images/common/button_ok.png'
 		});
@@ -144,6 +145,10 @@ function walletWin() {
 		loginBtn = auth.loginBtn(Ti.UI.createButton({
 			title : 'تسجيل دخول',
 			top : (100 + androidshift) + 'dp',
+			textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+			height : '33dp',
+			width : '90%',
+			left : '5%',
 			backgroundImage : 'images/common/button_ok.png',
 			paddingLeft : '5dp',
 			paddingRight : '5dp',
