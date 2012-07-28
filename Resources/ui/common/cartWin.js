@@ -80,7 +80,8 @@ function cartWin() {
     });
 
     tableHeaderView = Ti.UI.createView({
-        layout : 'horizontal'
+        layout : 'horizontal',
+        height : '44dp'
     });
     tableHeaderView.add(emptyBtn);
     tableHeaderView.add(couponBtn);
@@ -88,9 +89,12 @@ function cartWin() {
     productTable = Ti.UI.createTableView({
         backgroundColor : 'transparent',
         separatorColor : 'transparent',
-        headerView : tableHeaderView,
-        bottom : '44dp'
+        headerView : tableHeaderView
     });
+
+    if (Ti.Platform.getOsname() === 'android') {
+        productTable.bottom = '44dp';
+    }
 
     self.add(productTable);
 
