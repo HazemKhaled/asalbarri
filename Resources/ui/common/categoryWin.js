@@ -1,6 +1,6 @@
 function categoryWin(parent) {
 
-    var self, aboutBtn, backBtn, settingBtn, optionsDialogOpts, dialog, auth, tableView;
+    var self, menu, aboutBtn, backBtn, settingBtn, optionsDialogOpts, dialog, auth, tableView;
 
     self = Ti.UI.createWindow({
         title : parent.title || 'عسل بري',
@@ -10,8 +10,28 @@ function categoryWin(parent) {
         barColor : '#d3d3d3'
     });
 
-    if (!parent.id) {// only on home window
-        //openAboutWindow
+    //openAboutWindow
+    if (Ti.Platform.getOsname() === 'android') {
+        self.activity.onCreateOptionsMenu = function(e) {
+            aboutBtn = e.menu.add({
+                title : 'اعدادات',
+                icon : '/images/common/icon_1.png'
+            });
+
+            aboutBtn.addEventListener('click', function() {
+                dialog.show();
+            });
+
+            aboutBtn = e.menu.add({
+                title : 'عن عسل بري',
+                icon : '/images/common/icon_2.png'
+            });
+
+            aboutBtn.addEventListener('click', function() {
+                Ti.App.fireEvent('openAboutWindow');
+            });
+        };
+    } else {
         aboutBtn = Ti.UI.createButton({
             height : '31dp',
             width : '31dp',
@@ -22,21 +42,22 @@ function categoryWin(parent) {
         aboutBtn.addEventListener('click', function() {
             Ti.App.fireEvent('openAboutWindow');
         });
-
-        if (Ti.Platform.getOsname() === 'android') {
-            self.add(aboutBtn);
-        } else {
+        if (!parent.id) {// only on home window
             self.setLeftNavButton(aboutBtn);
         }
-    }
+        //openSettingWindow
+        settingBtn = Ti.UI.createButton({
+            height : '31dp',
+            width : '31dp',
+            color : '#000000',
+            backgroundImage : '/images/common/icon_1.png'
+        });
+        settingBtn.addEventListener('click', function() {
+            dialog.show();
+        });
 
-    //openSettingWindow
-    settingBtn = Ti.UI.createButton({
-        height : '31dp',
-        width : '31dp',
-        color : '#000000',
-        backgroundImage : '/images/common/icon_1.png'
-    });
+        self.setRightNavButton(settingBtn);
+    }
 
     // options dialog
     optionsDialogOpts = {
@@ -95,15 +116,6 @@ function categoryWin(parent) {
     });
 
     Ti.App.dialog = dialog;
-    settingBtn.addEventListener('click', function() {
-        Ti.App.dialog.show();
-    });
-
-    if (Ti.Platform.getOsname() === 'android') {
-        self.add(settingBtn);
-    } else {
-        self.setRightNavButton(settingBtn);
-    }
 
     // called after recive new data, from main request or if we want to add remote search
     function filterData() {
