@@ -61,6 +61,7 @@ function shippingWin() {
                                 } else {
                                     Ti.UI.createAlertDialog({
                                         title : 'اضغط على المحفظة من الاعلى',
+                                        message : 'عد للخلف ثم اضغط على المحفظة من الاعلى.',
                                         cancel : 0,
                                         buttonNames : ['موافق']
                                     }).show();
@@ -98,6 +99,13 @@ function shippingWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+
+        nextBtn.height = '33dp';
+        nextBtn.width = '90%';
+        nextBtn.bottom = '4dp';
+        nextBtn.backgroundImage = '/images/common/button_ok.png';
+        nextBtn.color = '#ffffff';
+
         self.add(nextBtn);
     } else {
         self.setRightNavButton(nextBtn);

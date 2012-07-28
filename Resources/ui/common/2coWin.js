@@ -3,7 +3,7 @@ function towcoWin(orderID, totalPrice) {
     var self, closeBtn, webView;
 
     self = Ti.UI.createWindow({
-        title : 'ادخل كوبون',
+        title : 'الدفع الالكتروني',
         modal : true,
         backgroundImage : '/images/common/bg.jpg',
         barImage : '/images/common/Navigation_Bar.jpg',

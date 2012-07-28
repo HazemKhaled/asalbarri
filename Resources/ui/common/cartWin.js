@@ -36,6 +36,13 @@ function cartWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+
+        orderBtn.height = '33dp';
+        orderBtn.width = '90%';
+        orderBtn.bottom = '4dp';
+        orderBtn.backgroundImage = '/images/common/button_ok.png';
+        orderBtn.color = '#ffffff';
+
         self.add(orderBtn);
     } else {
         self.setRightNavButton(orderBtn);
@@ -81,7 +88,8 @@ function cartWin() {
     productTable = Ti.UI.createTableView({
         backgroundColor : 'transparent',
         separatorColor : 'transparent',
-        headerView : tableHeaderView
+        headerView : tableHeaderView,
+        bottom : '44dp'
     });
 
     self.add(productTable);
