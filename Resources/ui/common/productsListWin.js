@@ -55,8 +55,8 @@ function productsListWin(parent) {
                         image : '/images/common/icon_7.png',
                         top : "6dp",
                         left : "0dp",
-                        width : "auto",
-                        height : "auto"
+                        width : '23dp',
+                        height : '79dp'
                     });
                     row.add(arrow);
 
@@ -79,10 +79,10 @@ function productsListWin(parent) {
 
                         pricebackground = Titanium.UI.createImageView({
                             image : '/images/common/sss.png',
-                            bottom : "11dp",
-                            right : "110dp",
-                            width : "auto",
-                            height : "auto"
+                            bottom : '11dp',
+                            right : '110dp',
+                            width : '170dp',
+                            height : '38dp'
                         });
                         row.add(pricebackground);
 
@@ -108,6 +108,7 @@ function productsListWin(parent) {
                             bottom : '16dp',
                             color : '#ffffff',
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#ffffff',
                             font : {
                                 fontFamily : 'Arial',
                                 fontSize : '14dp'
@@ -118,10 +119,10 @@ function productsListWin(parent) {
 
                         pricebackground = Titanium.UI.createImageView({
                             image : '/images/common/bg_price_2.png',
-                            bottom : "11dp",
-                            right : "110dp",
-                            width : "auto",
-                            height : "auto"
+                            bottom : '11dp',
+                            right : '110dp',
+                            width : '83dp',
+                            height : '38dp'
                         });
                         row.add(pricebackground);
                     }
@@ -132,6 +133,7 @@ function productsListWin(parent) {
                         width : '60dp',
                         bottom : '27dp',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                        color : '#000000',
                         font : {
                             fontFamily : 'Arial',
                             fontSize : '17dp',
@@ -146,6 +148,7 @@ function productsListWin(parent) {
                         width : '80dp',
                         bottom : '16dp',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                        color : '#000000',
                         font : {
                             fontFamily : 'Arial',
                             fontSize : '14dp'

@@ -145,10 +145,9 @@ function categoryWin(parent) {
 
                     arrow = Titanium.UI.createImageView({
                         image : '/images/common/icon_7.png',
-                        top : "6dp",
-                        left : "0dp",
-                        width : "auto",
-                        height : "auto"
+                        left : 0,
+                        width : '23dp',
+                        height : '79dp'
                     });
                     row.add(arrow);
 

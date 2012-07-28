@@ -46,8 +46,8 @@ function myOrdersWin() {
                             image : '/images/common/icon_7.png',
                             top : "6dp",
                             left : "0dp",
-                            width : "auto",
-                            height : "auto"
+                            width : '23dp',
+                            height : '79dp'
                         });
                         row.add(arrow);
 
@@ -83,8 +83,8 @@ function myOrdersWin() {
                             image : '/images/common/bg_time.png',
                             top : "38dp",
                             right : "0dp",
-                            width : "auto",
-                            height : "auto"
+                            width : "239dp",
+                            height : "22dp"
                         });
                         row.add(datebackground);
 
@@ -220,7 +220,6 @@ function myOrdersWin() {
         loginBtn = auth.loginBtn(Ti.UI.createButton({
             title : 'تسجيل دخول',
             top : (100 + androidshift) + 'dp',
-            textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
             height : '33dp',
             width : '90%',
             left : '5%',
