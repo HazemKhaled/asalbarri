@@ -10,24 +10,24 @@ function aboutWin() {
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'اغلاق   ',
-        height : '31dp',
-        width : '67dp',
-        color : '#000000',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : '14dp',
-            fontWeight : 'bold'
-        },
-        backgroundImage : '/images/common/button_back.png'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'اغلاق   ',
+            height : '31dp',
+            width : '67dp',
+            color : '#000000',
+            font : {
+                fontFamily : 'Arial',
+                fontSize : '14dp',
+                fontWeight : 'bold'
+            },
+            backgroundImage : '/images/common/button_back.png'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 

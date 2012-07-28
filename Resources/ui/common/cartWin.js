@@ -1,6 +1,6 @@
 function cartWin() {
 
-    var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule, auth;
+    var self, orderBtn, emptyBtn, couponBtn, tableHeaderView, productTable, CouponWinModule, auth;
 
     self = Ti.UI.createWindow({
         title : 'سلة التسوق',
@@ -41,43 +41,42 @@ function cartWin() {
         self.setRightNavButton(orderBtn);
     }
 
-    actionBtnBar = Ti.UI.createButtonBar({
-        labels : ['تفريغ', 'كوبون خصم'],
-        height : '35dp'
+    emptyBtn = Ti.UI.createButton({
+        title : 'تفريغ'
     });
-    actionBtnBar.addEventListener('click', function(e) {
+    emptyBtn.addEventListener('click', function() {
 
-        switch (e.index) {
-            case 0 :
-                var confirmDialog = Ti.UI.createAlertDialog({
-                    title : 'متاكد',
-                    message : 'سيتم افراغ سلة التسوق؟',
-                    buttonNames : ['موافق', 'لا'],
-                    cancel : 1
-                });
+        var confirmDialog = Ti.UI.createAlertDialog({
+            title : 'متاكد',
+            message : 'سيتم افراغ سلة التسوق؟',
+            buttonNames : ['موافق', 'لا'],
+            cancel : 1
+        });
 
-                confirmDialog.addEventListener('click', function(ec) {
-                    if (ec.index === 0) {
-                        Ti.App.fireEvent('cartEmpty');
-                        self.fireEvent('focus');
-                    }
-                });
+        confirmDialog.addEventListener('click', function(ec) {
+            if (ec.index === 0) {
+                Ti.App.fireEvent('cartEmpty');
+                self.fireEvent('focus');
+            }
+        });
 
-                confirmDialog.show();
-                break;
+        confirmDialog.show();
+    });
 
-            case 1 :
+    couponBtn = Ti.UI.createButton({
+        title : 'كوبون خصم'
+    });
+    couponBtn.addEventListener('click', function(e) {
 
-                CouponWinModule = require('/ui/common/couponWin');
-                new CouponWinModule().open();
-                break;
-        }
+        CouponWinModule = require('/ui/common/couponWin');
+        new CouponWinModule().open();
     });
 
     tableHeaderView = Ti.UI.createView({
-        height : '44dp'
+        layout : 'horizontal'
     });
-    tableHeaderView.add(actionBtnBar);
+    tableHeaderView.add(emptyBtn);
+    tableHeaderView.add(couponBtn);
 
     productTable = Ti.UI.createTableView({
         backgroundColor : 'transparent',

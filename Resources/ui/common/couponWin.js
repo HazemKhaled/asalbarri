@@ -10,24 +10,24 @@ function couponWin() {
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'اغلاق   ',
-        height : '31dp',
-        width : '67dp',
-        color : '#000000',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : '14dp',
-            fontWeight : 'bold'
-        },
-        backgroundImage : '/images/common/button_back.png'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'اغلاق   ',
+            height : '31dp',
+            width : '67dp',
+            color : '#000000',
+            font : {
+                fontFamily : 'Arial',
+                fontSize : '14dp',
+                fontWeight : 'bold'
+            },
+            backgroundImage : '/images/common/button_back.png'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 
@@ -93,9 +93,9 @@ function couponWin() {
         hintText : 'كود بطاقة الخصم',
         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
         height : '33dp',
-        width : '60%',
+        width : '90%',
         top : '80dp',
-        autocapitalization : false,
+        //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_DONE,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         backgroundImage : '/images/common/bg_total_price.png'
@@ -109,15 +109,7 @@ function couponWin() {
     self.add(couponTxt);
 
     submitBtn = Ti.UI.createButton({
-        title : 'ارسال',
-        height : '31dp',
-        width : '67dp',
-        color : '#000000',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : '14dp',
-            fontWeight : 'bold'
-        }
+        title : 'ارسال'
     });
 
     submitBtn.addEventListener('click', submitEvent);
@@ -125,6 +117,12 @@ function couponWin() {
     if (Ti.Platform.getOsname() !== 'android') {
         self.setRightNavButton(submitBtn);
     } else {
+        submitBtn.top = '120dp';
+        submitBtn.height = '33dp';
+        submitBtn.width = '90%';
+        submitBtn.color = '#ffffff';
+        submitBtn.backgroundImage = '/images/common/button_ok.png';
+
         self.add(submitBtn);
     }
 

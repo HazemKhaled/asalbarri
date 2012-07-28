@@ -10,15 +10,15 @@ function imageFullscreenView(e) {
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'رجوع'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'رجوع'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 
