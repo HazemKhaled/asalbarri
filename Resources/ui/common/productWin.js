@@ -50,7 +50,7 @@ function productWin(product) {
 
     quantityField = Ti.UI.createLabel({
         text : Ti.App.cartQuantityByProductID(product.id) > 0 ? Ti.App.cartQuantityByProductID(product.id) : 1,
-        textAlign : 'center',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
         width : '50dp',
         height : '40dp',
         left : '10dp',
@@ -61,7 +61,7 @@ function productWin(product) {
 
     quantityMinusBtn = Ti.UI.createButton({
         title : '-',
-        textAlign : 'center',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
         width : '40dp',
         height : '40dp',
         left : '65dp',
@@ -71,7 +71,7 @@ function productWin(product) {
 
     quantityPlusBtn = Ti.UI.createButton({
         title : '+',
-        textAlign : 'center',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
         width : '40dp',
         height : '40dp',
         left : '110dp',

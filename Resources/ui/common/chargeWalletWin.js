@@ -92,13 +92,11 @@ function chargeWalletWin() {
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '40dp',
         width : '90%',
-        left : '5%',
         top : '10dp',
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         backgroundImage : '/images/common/bg_total_price.png',
-        paddingLeft : '5dp',
-        paddingRight : '5dp'
+        color : '#ffffff'
     });
 
     self.addEventListener('open', function() {

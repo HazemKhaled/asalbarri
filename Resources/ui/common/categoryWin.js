@@ -144,7 +144,7 @@ function categoryWin(parent) {
                     });
 
                     arrow = Titanium.UI.createImageView({
-                        image : "/images/common/icon_7.png",
+                        image : '/images/common/icon_7.png',
                         top : "6dp",
                         left : "0dp",
                         width : "auto",
@@ -190,7 +190,7 @@ function categoryWin(parent) {
                             font : {
                                 fontSize : '16dp'
                             },
-                            textAlign : 'center'
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
                         });
                         row.add(titleLbl);
 

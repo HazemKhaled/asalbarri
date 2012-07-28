@@ -52,7 +52,7 @@ function productsListWin(parent) {
                     row.add(img);
 
                     arrow = Titanium.UI.createImageView({
-                        image : "images/common/icon_7.png",
+                        image : '/images/common/icon_7.png',
                         top : "6dp",
                         left : "0dp",
                         width : "auto",
@@ -78,7 +78,7 @@ function productsListWin(parent) {
                     if (rows[i].price_shown_coupon > 0) {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : "images/common/sss.png",
+                            image : '/images/common/sss.png',
                             bottom : "11dp",
                             right : "110dp",
                             width : "auto",
@@ -117,7 +117,7 @@ function productsListWin(parent) {
                     } else {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : "images/common/bg_price_2.png",
+                            image : '/images/common/bg_price_2.png',
                             bottom : "11dp",
                             right : "110dp",
                             width : "auto",

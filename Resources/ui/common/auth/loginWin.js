@@ -187,9 +187,7 @@ function loginWin() {
         width : '90%',
         top : (115 + androidshift) + 'dp',
         backgroundImage : '/images/common/button_ok.png',
-        paddingLeft : '5dp',
-        paddingRight : '5dp',
-        color : '#000000'
+        color : '#ffffff'
     }));
     scrollview.add(registerBtn);
 
@@ -199,8 +197,7 @@ function loginWin() {
         width : '90%',
         top : (155 + androidshift) + 'dp',
         backgroundImage : '/images/common/button_cancel.png',
-        paddingLeft : '5dp',
-        paddingRight : '5dp'
+        color : '#ffffff'
     }));
 
     scrollview.add(forgetBtn);

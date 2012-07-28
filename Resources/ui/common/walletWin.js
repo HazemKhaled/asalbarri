@@ -145,14 +145,11 @@ function walletWin() {
         loginBtn = auth.loginBtn(Ti.UI.createButton({
             title : 'تسجيل دخول',
             top : (100 + androidshift) + 'dp',
-            textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
             height : '33dp',
             width : '90%',
-            left : '5%',
             backgroundImage : '/images/common/button_ok.png',
-            paddingLeft : '5dp',
-            paddingRight : '5dp',
-            color : '#000000'
+            color : '#ffffff'
         }));
         self.add(loginBtn);
 

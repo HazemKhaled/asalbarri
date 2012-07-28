@@ -43,7 +43,7 @@ function myOrdersWin() {
                         });
 
                         arrow = Titanium.UI.createImageView({
-                            image : "images/common/icon_7.png",
+                            image : '/images/common/icon_7.png',
                             top : "6dp",
                             left : "0dp",
                             width : "auto",
@@ -80,7 +80,7 @@ function myOrdersWin() {
                         row.add(priceLbl);
 
                         datebackground = Titanium.UI.createImageView({
-                            image : "images/common/bg_time.png",
+                            image : '/images/common/bg_time.png',
                             top : "38dp",
                             right : "0dp",
                             width : "auto",
@@ -225,9 +225,7 @@ function myOrdersWin() {
             width : '90%',
             left : '5%',
             backgroundImage : '/images/common/button_ok.png',
-            paddingLeft : '5dp',
-            paddingRight : '5dp',
-            color : '#000000'
+            color : '#ffffff'
         }));
         self.add(loginBtn);
 
