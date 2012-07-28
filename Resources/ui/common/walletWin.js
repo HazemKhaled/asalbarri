@@ -1,6 +1,6 @@
 function walletWin() {
 
-    var self, androidshift = 0, loadinLabel, chargeBtn, balanceLbl, balancCurr, img, loginBtn, msgLabel, auth = require('/lib/auth'), balanceTitle;
+    var self, loadinLabel, chargeBtn, balanceLbl, balancCurr, img, loginBtn, msgLabel, auth = require('/lib/auth'), balanceTitle;
 
     self = Ti.UI.createWindow({
         title : 'المحفظة',
@@ -13,11 +13,11 @@ function walletWin() {
 
         loadinLabel = Ti.UI.createLabel({
             text : 'جاري التحميل ....',
-            left : 0,
-            right : '10dp',
-            top : '10dp',
+            //left : 0,
+            //right : '10dp',
+            //top : '10dp',
             color : '#000000',
-            textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
+            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
         });
         self.add(loadinLabel);
 
@@ -48,11 +48,9 @@ function walletWin() {
         chargeBtn = Ti.UI.createButton({
             title : 'شحن المحفظة',
             top : '200dp',
-            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
             height : '33dp',
             width : '90%',
-            //left : '5%',
-            color : '#000000',
+            color : '#ffffff',
             backgroundImage : '/images/common/button_ok.png'
         });
 
@@ -64,10 +62,9 @@ function walletWin() {
 
         img = Ti.UI.createImageView({
             image : '/images/common/wallet_balance.png',
-            width : '144dp',
-            height : '166dp',
-            //right : '100dp',
-            top : '20px'
+            width : '169dp',
+            height : '148dp',
+            top : '40px'
         });
         self.add(img);
 
@@ -131,7 +128,7 @@ function walletWin() {
         msgLabel = Ti.UI.createLabel({
             text : 'يرجى تسجيل الدخول',
             width : '100%',
-            top : (40 + androidshift) + 'dp',
+            top : '40dp',
             color : '#ffffff',
             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
             font : {
@@ -144,8 +141,7 @@ function walletWin() {
 
         loginBtn = auth.loginBtn(Ti.UI.createButton({
             title : 'تسجيل دخول',
-            top : (100 + androidshift) + 'dp',
-            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+            top : '100dp',
             height : '33dp',
             width : '90%',
             backgroundImage : '/images/common/button_ok.png',

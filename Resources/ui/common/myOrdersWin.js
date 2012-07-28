@@ -1,6 +1,6 @@
 function myOrdersWin() {
 
-    var self, androidshift = 0, tableView, auth = require('/lib/auth'), rows, i, row, dateTitleLbl, dateLbl, totaltitleLbl, priceLbl, statusTitleLbl, statustxt = '', statusLbl, loginBtn, msgLabel;
+    var self, tableView, auth = require('/lib/auth'), rows, i, row, dateTitleLbl, dateLbl, totaltitleLbl, priceLbl, statusTitleLbl, statustxt = '', statusLbl, loginBtn, msgLabel;
 
     self = Ti.UI.createWindow({
         title : 'طلباتي',
@@ -206,7 +206,7 @@ function myOrdersWin() {
         msgLabel = Ti.UI.createLabel({
             text : 'يرجى تسجيل الدخول',
             width : '100%',
-            top : (40 + androidshift) + 'dp',
+            top : '40dp',
             color : '#ffffff',
             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
             font : {
@@ -219,7 +219,7 @@ function myOrdersWin() {
 
         loginBtn = auth.loginBtn(Ti.UI.createButton({
             title : 'تسجيل دخول',
-            top : (100 + androidshift) + 'dp',
+            top : '40dp',
             height : '33dp',
             width : '90%',
             left : '5%',
