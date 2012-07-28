@@ -1,6 +1,6 @@
 function forgetpasswordWin() {
 
-    var androidshift = 0, self, emailField, submitBtn;
+    var self, emailField, submitBtn;
 
     self = Ti.UI.createWindow({
         title : 'آسترجاع كلمه المرور',
@@ -14,10 +14,10 @@ function forgetpasswordWin() {
     });
 
     emailField = Ti.UI.createTextField({
-        top : (25 + androidshift) + 'dp',
+        top : '25dp',
         hintText : 'البريد الخاص بك',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        autocapitalization : false,
+        //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -110,6 +110,13 @@ function forgetpasswordWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+
+        submitBtn.height = '33dp';
+        submitBtn.width = '90%';
+        submitBtn.top = '65dp';
+        submitBtn.backgroundImage = '/images/common/button_ok.png';
+        submitBtn.color = '#ffffff';
+
         self.add(submitBtn);
     } else {
         self.setRightNavButton(submitBtn);

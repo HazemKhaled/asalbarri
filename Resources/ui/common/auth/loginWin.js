@@ -1,6 +1,6 @@
 function loginWin() {
 
-    var androidshift = 0, self, auth = require('/lib/auth'), scrollview, userField, passField, submitBtn, registerBtn, forgetBtn;
+    var self, auth = require('/lib/auth'), scrollview, userField, passField, submitBtn, registerBtn, forgetBtn, androidOffset = 0;
 
     self = Ti.UI.createWindow({
         title : 'دخول',
@@ -21,7 +21,7 @@ function loginWin() {
         height : '33dp',
         width : '90%',
         left : '5%',
-        top : (25 + androidshift) + 'dp',
+        top : '25dp',
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         backgroundImage : '/images/common/bg_total_price.png'
@@ -42,7 +42,7 @@ function loginWin() {
         height : '33dp',
         width : '90%',
         left : '5%',
-        top : (65 + androidshift) + 'dp',
+        top : '65dp',
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -58,6 +58,14 @@ function loginWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+        androidOffset = 44;
+
+        submitBtn.height = '33dp';
+        submitBtn.width = '90%';
+        submitBtn.top = '115dp';
+        submitBtn.backgroundImage = '/images/common/button_ok.png';
+        submitBtn.color = '#ffffff';
+
         scrollview.add(submitBtn);
     } else {
         self.setRightNavButton(submitBtn);
@@ -185,7 +193,7 @@ function loginWin() {
         title : 'تسجيل جديد',
         height : '33dp',
         width : '90%',
-        top : (115 + androidshift) + 'dp',
+        top : (115 + androidOffset) + 'dp',
         backgroundImage : '/images/common/button_ok.png',
         color : '#ffffff'
     }));
@@ -195,7 +203,7 @@ function loginWin() {
         title : 'استرجع كلمة المرور',
         height : '33dp',
         width : '90%',
-        top : (155 + androidshift) + 'dp',
+        top : (155 + androidOffset) + 'dp',
         backgroundImage : '/images/common/button_cancel.png',
         color : '#ffffff'
     }));
