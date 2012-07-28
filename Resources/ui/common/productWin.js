@@ -154,7 +154,7 @@ function productWin(product) {
 
         if (parseInt(product.quantity, 10) < getQuantityFieldValue()) {
             Ti.UI.createAlertDialog({
-                title : 'هفواً',
+                title : 'عفواً',
                 message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
                 buttonNames : ['موافق']
             }).show();
