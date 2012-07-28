@@ -14,6 +14,16 @@ function cartWin() {
     });
     orderBtn.addEventListener('click', function() {
 
+        if (Ti.App.cartQuantityCounter().count === 0) {
+
+            Ti.UI.createAlertDialog({
+                title : 'لا يوجد؟',
+                message : 'لا يوجد منتجات في سلة التسوق حتى الان.',
+                buttonNames : ['موافق']
+            }).show();
+            return;
+        }
+
         auth = require('/lib/auth');
         if (auth.isLogedIn() === false) {
 
