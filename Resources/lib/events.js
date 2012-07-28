@@ -1,8 +1,6 @@
 Ti.App.addEventListener('showLoading', function(e) {
 
-    var loading = null;
-
-    loading = require('lib/loading');
+    var loading = require('lib/loading');
 
     loading.show();
 
@@ -149,7 +147,9 @@ Ti.App.addEventListener('cartAdd', function(e) {
 Ti.App.addEventListener('cartEmpty', function(e) {
     Ti.App.Properties.setObject('cart', {});
 
-    Ti.App.cartTab.setBadge(0);
+    if (Ti.Platform.getOsname() !== 'android') {
+        Ti.App.cartTab.setBadge(0);
+    }
 });
 
 Ti.App.addEventListener('openShippingWindow', function() {
