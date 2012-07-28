@@ -10,15 +10,14 @@ function currencyWin() {
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'اغلاق'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'اغلاق'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
         self.setLeftNavButton(closeBtn);
     }
 
