@@ -3,8 +3,8 @@ function openRegisterWindow() {
 
     self = Ti.UI.createWindow({
         title : 'تسجيل',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -23,7 +23,7 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
     mobileField.addEventListener('change', Ti.App.autoTextAlign);
     mobileField.addEventListener('return', function() {
@@ -42,7 +42,7 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
     emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
@@ -54,7 +54,7 @@ function openRegisterWindow() {
     passField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png',
+        backgroundImage : '/images/common/bg_total_price.png',
         top : (105 + androidshift) + 'dp',
         hintText : 'كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -72,7 +72,7 @@ function openRegisterWindow() {
     confirmpassField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png',
+        backgroundImage : '/images/common/bg_total_price.png',
         top : (145 + androidshift) + 'dp',
         hintText : 'تآكيد كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,

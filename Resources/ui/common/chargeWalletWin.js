@@ -5,8 +5,8 @@ function chargeWalletWin() {
     self = Ti.UI.createWindow({
         title : 'شحن المحفظة',
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -96,7 +96,7 @@ function chargeWalletWin() {
         top : '10dp',
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : 'images/common/bg_total_price.png',
+        backgroundImage : '/images/common/bg_total_price.png',
         paddingLeft : '5dp',
         paddingRight : '5dp'
     });

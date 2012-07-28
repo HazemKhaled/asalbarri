@@ -5,8 +5,8 @@ function couponWin() {
     self = Ti.UI.createWindow({
         title : 'ادخل كوبون',
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -20,7 +20,7 @@ function couponWin() {
             fontSize : '14dp',
             fontWeight : 'bold'
         },
-        backgroundImage : 'images/common/button_back.png'
+        backgroundImage : '/images/common/button_back.png'
     });
 
     closeBtn.addEventListener('click', function() {
@@ -98,7 +98,7 @@ function couponWin() {
         autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_DONE,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
 
     self.addEventListener('open', function() {

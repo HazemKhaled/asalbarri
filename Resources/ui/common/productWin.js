@@ -4,8 +4,8 @@ function productWin(product) {
 
     self = Ti.UI.createWindow({
         title : product.title,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -19,7 +19,7 @@ function productWin(product) {
         top : '10dp',
         right : '10dp',
         borderRadius : 45,
-        defaultImage : 'images/common/default.png'
+        defaultImage : '/images/common/default.png'
     });
 
     productImg.addEventListener('click', function() {

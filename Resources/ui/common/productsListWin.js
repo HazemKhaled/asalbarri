@@ -4,8 +4,8 @@ function productsListWin(parent) {
     self = Ti.UI.createWindow({
         title : parent.title,
         backButtonTitle : 'عودة',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -37,8 +37,8 @@ function productsListWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'productRow',
-                        backgroundImage : 'images/common/TableViewRowBG.png',
-                        selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+                        backgroundImage : '/images/common/TableViewRowBG.png',
+                        selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
                     });
 
                     img = Ti.UI.createImageView({
@@ -47,7 +47,7 @@ function productsListWin(parent) {
                         height : '85dp',
                         right : '10dp',
                         borderRadius : 45,
-                        defaultImage : 'images/common/default.png'
+                        defaultImage : '/images/common/default.png'
                     });
                     row.add(img);
 

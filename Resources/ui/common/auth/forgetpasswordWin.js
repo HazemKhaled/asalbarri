@@ -4,8 +4,8 @@ function forgetpasswordWin() {
 
     self = Ti.UI.createWindow({
         title : 'آسترجاع كلمه المرور',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -23,7 +23,7 @@ function forgetpasswordWin() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
 
     // align left if empty

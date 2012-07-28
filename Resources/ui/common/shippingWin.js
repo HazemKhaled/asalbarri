@@ -4,8 +4,8 @@ function shippingWin() {
 
     self = Ti.UI.createWindow({
         title : 'اختر الدولة',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 

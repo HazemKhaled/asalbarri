@@ -5,8 +5,8 @@ function imageFullscreenView(e) {
     self = Ti.UI.createWindow({
         title : e.title,
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -34,7 +34,7 @@ function imageFullscreenView(e) {
         width : '100%',
         height : 'auto',
         canScale : true,
-        defaultImage : 'images/common/default.png'
+        defaultImage : '/images/common/default.png'
     });
 
     if (Ti.Platform.getOsname() !== 'android') {

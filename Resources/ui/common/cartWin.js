@@ -4,8 +4,8 @@ function cartWin() {
 
     self = Ti.UI.createWindow({
         title : 'سلة التسوق',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -101,8 +101,8 @@ function cartWin() {
                     myTitle : rows[i].title,
                     data : rows[i],
                     className : 'cartRow',
-                    backgroundImage : 'images/common/TableViewRowBG.png',
-                    selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+                    backgroundImage : '/images/common/TableViewRowBG.png',
+                    selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
                 });
 
                 img = Ti.UI.createImageView({
@@ -111,7 +111,7 @@ function cartWin() {
                     height : '100p',
                     right : '5dp',
                     borderRadius : 45,
-                    defaultImage : 'images/common/default.png'
+                    defaultImage : '/images/common/default.png'
                 });
                 rowView.add(img);
 
