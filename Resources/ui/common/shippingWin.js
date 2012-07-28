@@ -14,6 +14,9 @@ function shippingWin() {
     });
 
     nextBtn.addEventListener('click', function() {
+
+        var walletFlag = false;
+
         Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
 
         Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'), function(results) {
@@ -36,8 +39,36 @@ function shippingWin() {
                         break;
                     case 1:
 
-                        alert(results.balance);
-                        paymentAlert.show();
+                        // is it enoph cash into wallet?
+                        if (results.balance < Ti.App.cartQuantityCounter().total) {
+
+                            // if wallet not enph and he want to recharge his cridit
+                            if (walletFlag === true && Ti.Platform.getOsname() !== 'android') {
+                                Ti.App.walletTab.setActive(true);
+                            } else {
+                                Ti.UI.createAlertDialog({
+                                    title : 'اضغط على المحفظة من الاعلى',
+                                    cancel : 0,
+                                    buttonNames : ['موافق']
+                                }).show();
+                            }
+
+                            // next time open wallet directly
+                            walletFlag = true;
+
+                            // change alert msgs
+                            paymentAlert.buttonNames = ['الدفع بالفيزا عبر 2CO', 'شحن المحفظة', 'عودة لسلة التسوق'];
+                            paymentAlert.setTitle('الرصيد لا يكفي !');
+                            paymentAlert.setMessage('رصيد المحفظة لا يكفي، يمكنك شحن المحفظة او اختيار وسيلة دفع اخرى.');
+
+                            paymentAlert.show();
+                            break;
+                        }
+
+                        Ti.App.fireEvent('orderRequest', {
+                            paymentMethod : 'wallet'
+                        });
+
                         break;
                     case 2:
 
