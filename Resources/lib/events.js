@@ -165,20 +165,81 @@ Ti.App.addEventListener('openShippingWindow', function() {
     });
 
 });
+
 Ti.App.addEventListener('orderRequest', function(e) {
 
-    alert('send order to server');
+    var auth, orderData, cartProducts, xhr;
 
-    if (Ti.Platform.getOsname() !== 'android') {
-        Ti.App.orderTab.setActive(true);
-    } else {
+    auth = require('/lib/auth');
+
+    orderData = {
+        products : [],
+        userID : auth.isLogedIn(),
+        countryID : e.countryID,
+        couponCode : Ti.App.Properties.getString('couponCode', null),
+        paymentMethod : e.paymentMethod
+    };
+
+    cartProducts = Ti.App.Properties.getObject('cart', {});
+
+    for (i in cartProducts) {
+        if (cartProducts.hasOwnProperty(i)) {
+
+            orderData.products.push({
+                id : cartProducts[i].id,
+                q : cartProducts[i].quantity
+            });
+        }
+    }
+
+    alert(orderData);
+
+    Ti.App.fireEvent('showLoading');
+
+    xhr = Ti.Network.createHTTPClient({
+        timeout : 45000
+    });
+
+    xhr.open('POST', Ti.App.APIURL + 'api/AddOrder');
+    xhr.setOnerror(function() {
+        Ti.App.fireEvent('hideLoading');
+
         Ti.UI.createAlertDialog({
-            title : 'مبروك',
-            message : 'تم ارسال طلبك بنجاح، يمكنك متابعة الطلب بالظغط على "الطلبات" في الاعلى.',
-            cancel : 0,
+            title : 'خطأ',
+            message : 'خطا في الاتصال، تاكد من اتصال الانترنت لديك وحاول مرة اخرى',
             buttonNames : ['موافق']
         }).show();
-    }
+    });
+
+    xhr.setOnload(function() {
+        var results = JSON.parse(this.responseText), TowcoWinModule;
+
+        alert(results);
+        Ti.App.fireEvent('hideLoading');
+
+        if (e.paymentMethod === 'tocheckout') {
+
+            TowcoWinModule = require('/ui/common/2coWin');
+            new TowcoWinModule(results.orderID, results.totalPrice).open();
+
+        } else {
+
+            if (Ti.Platform.getOsname() !== 'android') {
+                Ti.App.orderTab.setActive(true);
+            } else {
+                Ti.UI.createAlertDialog({
+                    title : 'مبروك',
+                    message : 'تم ارسال طلبك بنجاح، يمكنك متابعة الطلب بالظغط على "الطلبات" في الاعلى.',
+                    cancel : 0,
+                    buttonNames : ['موافق']
+                }).show();
+            }
+            Ti.App.fireEvent('closeShippingWindow');
+            Ti.App.fireEvent('cartEmpty');
+        }
+    });
+
+    xhr.send(orderData);
 
 });
 

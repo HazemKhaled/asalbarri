@@ -27,6 +27,10 @@ function couponWin() {
         self.close();
     });
 
+    if (Ti.Platform.getOsname() !== 'android') {
+        self.setLeftNavButton(closeBtn);
+    }
+
     submitEvent = function() {
 
         if (couponTxt.getValue().length <= 0) {
@@ -77,6 +81,7 @@ function couponWin() {
             }
             alert(row[0].discount);
             Ti.App.Properties.setInt('coupon', row[0].discount);
+            Ti.App.Properties.setString('couponCode', couponTxt.getValue());
 
             self.close();
         });
@@ -102,10 +107,6 @@ function couponWin() {
     couponTxt.addEventListener('return', submitEvent);
 
     self.add(couponTxt);
-
-    if (Ti.Platform.getOsname() !== 'android') {
-        self.setLeftNavButton(closeBtn);
-    }
 
     submitBtn = Ti.UI.createButton({
         title : 'ارسال',

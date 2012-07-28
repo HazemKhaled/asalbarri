@@ -17,7 +17,7 @@ function shippingWin() {
 
         var walletFlag = false;
 
-        Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
+        //Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
 
         Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'), function(results) {
 
@@ -35,7 +35,10 @@ function shippingWin() {
                 switch (e.index) {
                     case 0:
 
-                        Ti.App.fireEvent('open2COWindow');
+                        Ti.App.fireEvent('orderRequest', {
+                            paymentMethod : 'tocheckout',
+                            countryID : countriesPicker.getSelectedRow(0).myId
+                        });
                         break;
                     case 1:
 
@@ -43,14 +46,18 @@ function shippingWin() {
                         if (results.balance < Ti.App.cartQuantityCounter().total) {
 
                             // if wallet not enph and he want to recharge his cridit
-                            if (walletFlag === true && Ti.Platform.getOsname() !== 'android') {
-                                Ti.App.walletTab.setActive(true);
-                            } else {
-                                Ti.UI.createAlertDialog({
-                                    title : 'اضغط على المحفظة من الاعلى',
-                                    cancel : 0,
-                                    buttonNames : ['موافق']
-                                }).show();
+                            if (walletFlag === true) {
+                                if (Ti.Platform.getOsname() !== 'android') {
+                                    Ti.App.walletTab.setActive(true);
+                                } else {
+                                    Ti.UI.createAlertDialog({
+                                        title : 'اضغط على المحفظة من الاعلى',
+                                        cancel : 0,
+                                        buttonNames : ['موافق']
+                                    }).show();
+                                }
+                                
+                                return;
                             }
 
                             // next time open wallet directly
@@ -66,7 +73,8 @@ function shippingWin() {
                         }
 
                         Ti.App.fireEvent('orderRequest', {
-                            paymentMethod : 'wallet'
+                            paymentMethod : 'wallet',
+                            countryID : countriesPicker.getSelectedRow(0).myId
                         });
 
                         break;
