@@ -17,6 +17,15 @@ function shippingWin() {
 
         var walletFlag = false;
 
+        // if total = 0
+        if (Ti.App.cartQuantityCounter().totalNet <= 0) {
+            Ti.App.fireEvent('orderRequest', {
+                paymentMethod : 'wallet',
+                countryID : countriesPicker.getSelectedRow(0).myId
+            });
+            return;
+        }
+
         //Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
 
         Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'), function(results) {
@@ -43,7 +52,7 @@ function shippingWin() {
                     case 1:
 
                         // is it enoph cash into wallet?
-                        if (results.balance < Ti.App.cartQuantityCounter().total) {
+                        if (results.balance < Ti.App.cartQuantityCounter().totalNet) {
 
                             // if wallet not enph and he want to recharge his cridit
                             if (walletFlag === true) {
@@ -56,7 +65,7 @@ function shippingWin() {
                                         buttonNames : ['موافق']
                                     }).show();
                                 }
-                                
+
                                 return;
                             }
 

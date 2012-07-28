@@ -192,7 +192,7 @@ Ti.App.addEventListener('orderRequest', function(e) {
         }
     }
 
-    alert(orderData);
+    //alert(orderData);
 
     Ti.App.fireEvent('showLoading');
 
@@ -214,7 +214,7 @@ Ti.App.addEventListener('orderRequest', function(e) {
     xhr.setOnload(function() {
         var results = JSON.parse(this.responseText), TowcoWinModule;
 
-        alert(results);
+        //alert(results);
         Ti.App.fireEvent('hideLoading');
 
         if (e.paymentMethod === 'tocheckout') {
@@ -236,6 +236,8 @@ Ti.App.addEventListener('orderRequest', function(e) {
             }
             Ti.App.fireEvent('closeShippingWindow');
             Ti.App.fireEvent('cartEmpty');
+            Ti.App.Properties.removeProperty('coupon');
+            Ti.App.Properties.removeProperty('couponCode');
         }
     });
 
@@ -259,7 +261,9 @@ Ti.App.cartQuantityCounter = function(cart) {
     var data = {
         quantity : null,
         count : 0,
-        total : 0
+        total : 0,
+        coupon : Ti.App.Properties.getInt('coupon', 0),
+        totalNet : 0
     }, q;
 
     for (q in cart) {
@@ -269,6 +273,8 @@ Ti.App.cartQuantityCounter = function(cart) {
             data.total += parseFloat(cart[q].price) * parseInt(cart[q].quantity, 10);
         }
     }
+
+    data.totalNet = data.total - data.coupon;
 
     return data;
 };

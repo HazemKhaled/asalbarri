@@ -4,8 +4,8 @@ function walletWin() {
 
 	self = Ti.UI.createWindow({
 		title : 'المحفظة',
-		backgroundImage : 'images/common/bg.jpg',
-		barImage : 'images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/common/bg.jpg',
+		barImage : '/images/common/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -48,12 +48,12 @@ function walletWin() {
 		chargeBtn = Ti.UI.createButton({
 			title : 'شحن المحفظة',
 			top : '200dp',
-			textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 			height : '33dp',
 			width : '90%',
-			left : '5%',
+			//left : '5%',
 			color : '#000000',
-			backgroundImage : 'images/common/button_ok.png'
+			backgroundImage : '/images/common/button_ok.png'
 		});
 
 		chargeBtn.addEventListener('click', function() {

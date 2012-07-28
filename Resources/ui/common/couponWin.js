@@ -79,7 +79,7 @@ function couponWin() {
 
                 return false;
             }
-            alert(row[0].discount);
+            //alert(row[0].discount);
             Ti.App.Properties.setInt('coupon', row[0].discount);
             Ti.App.Properties.setString('couponCode', couponTxt.getValue());
 

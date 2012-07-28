@@ -52,6 +52,8 @@ function towcoWin(orderID, totalPrice) {
             }
             Ti.App.fireEvent('closeShippingWindow');
             Ti.App.fireEvent('cartEmpty');
+            Ti.App.Properties.removeProperty('coupon');
+            Ti.App.Properties.removeProperty('couponCode');
             closeBtn.fireEvent('click');
         } else {
             Ti.API.info(webView.getUrl().indexOf('order_approve'));
