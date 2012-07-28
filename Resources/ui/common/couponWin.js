@@ -96,7 +96,9 @@ function couponWin() {
         backgroundImage : 'images/common/bg_total_price.png'
     });
 
-    couponTxt.focus();
+    self.addEventListener('open', function() {
+        couponTxt.focus();
+    });
     couponTxt.addEventListener('return', submitEvent);
 
     self.add(couponTxt);

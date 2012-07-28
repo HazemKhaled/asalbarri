@@ -100,6 +100,10 @@ function chargeWalletWin() {
         paddingLeft : '5dp',
         paddingRight : '5dp'
     });
+
+    self.addEventListener('open', function() {
+        cardTxt.focus();
+    });
     cardTxt.addEventListener('return', function() {
         submitBtn.fireEvent('click');
     });

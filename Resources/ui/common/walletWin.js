@@ -66,15 +66,15 @@ function walletWin() {
 			image : 'images/common/wallet_balance.png',
 			width : '144dp',
 			height : '166dp',
-			right : '100dp',
+			//right : '100dp',
 			top : '20px'
 		});
 		self.add(img);
 
 		balanceTitle = Ti.UI.createLabel({
 			text : 'الرصيد',
-			left : 0,
-			right : '150dp',
+			//left : 0,
+			//right : '150dp',
 			top : '60dp',
 			color : '#000000',
 			visible : false,
@@ -89,8 +89,8 @@ function walletWin() {
 
 		balanceLbl = Ti.UI.createLabel({
 			text : '',
-			left : 0,
-			right : '155dp',
+			//left : 0,
+			//right : '155dp',
 			top : '85dp',
 			visible : false,
 			textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -106,8 +106,8 @@ function walletWin() {
 
 		balancCurr = Ti.UI.createLabel({
 			text : Ti.App.Properties.getString('currencyName'),
-			left : 0,
-			right : '127dp',
+			//left : 0,
+			//right : '127dp',
 			top : '110dp',
 			color : '#000000',
 			visible : false,
