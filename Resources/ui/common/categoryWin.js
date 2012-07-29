@@ -76,6 +76,7 @@ function categoryWin(parent) {
 				case 0:
 
 					Ti.App.Properties.removeProperty('userID');
+					Ti.App.fireEvent('cartEmpty');
 					Ti.App.fireEvent('showWalletBeforLogin');
 					Ti.App.fireEvent('showMyordersBeforLogin');
 					Ti.App.fireEvent('closeOrderProductsWindow');
