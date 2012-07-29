@@ -180,7 +180,8 @@ function productWin(product) {
 			productID : product.id,
 			productTitle : product.title,
 			quantity : getQuantityFieldValue(),
-			price : product.price
+			price : product.price,
+			price_shown_coupon : product.price_shown_coupon
 		});
 
 		Ti.App.fireEvent('closeProductWindow');

@@ -149,21 +149,39 @@ function cartWin() {
 					height : "auto"
 				});
 				rowView.add(pricebackground);
+				
+				if (rows[i].price_shown_coupon > 0) {
+					
+					priceLbl = Ti.UI.createLabel({
+						text : rows[i].price_shown_coupon,
+						right : '120dp',
+						width : '60dp',
+						bottom : '27dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+						font : {
+							fontFamily : 'Arial',
+							fontSize : '17dp',
+							fontWeight : 'bold'
+						}
+					});
+					rowView.add(priceLbl);
+				} else {
 
-				priceLbl = Ti.UI.createLabel({
-					text : rows[i].price,
-					right : '120dp',
-					width : '60dp',
-					bottom : '27dp',
-					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-					font : {
-						fontFamily : 'Arial',
-						fontSize : '17dp',
-						fontWeight : 'bold'
-					}
-				});
-				rowView.add(priceLbl);
-
+					priceLbl = Ti.UI.createLabel({
+						text : rows[i].price,
+						right : '120dp',
+						width : '60dp',
+						bottom : '27dp',
+						textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+						font : {
+							fontFamily : 'Arial',
+							fontSize : '17dp',
+							fontWeight : 'bold'
+						}
+					});
+					rowView.add(priceLbl);
+				}
+				
 				priceLblCurr = Ti.UI.createLabel({
 					text : Ti.App.Properties.getString('currencyName'),
 					right : '110dp',
