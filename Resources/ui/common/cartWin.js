@@ -49,7 +49,8 @@ function cartWin() {
 	}
 
 	emptyBtn = Ti.UI.createButton({
-		title : 'تفريغ'
+		title : 'تفريغ',
+		left : '75dp'
 	});
 	emptyBtn.addEventListener('click', function() {
 
@@ -81,7 +82,8 @@ function cartWin() {
 
 	tableHeaderView = Ti.UI.createView({
 		layout : 'horizontal',
-		height : '44dp'
+		height : '44dp',
+		width : '100%'
 	});
 	tableHeaderView.add(emptyBtn);
 	tableHeaderView.add(couponBtn);
@@ -89,7 +91,9 @@ function cartWin() {
 	productTable = Ti.UI.createTableView({
 		backgroundColor : 'transparent',
 		separatorColor : 'transparent',
-		headerView : tableHeaderView
+		headerView : tableHeaderView,
+		width : '100%',
+		right : '0dp'
 	});
 
 	if (Ti.Platform.getOsname() === 'android') {
