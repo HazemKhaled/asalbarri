@@ -190,7 +190,7 @@ function openRegisterWindow() {
             }
 
             Ti.UI.createAlertDialog({
-                title : request.msg + "يمكنك تسجيل الدخول الآن",
+                title : request.msg ,
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
