@@ -1,184 +1,275 @@
 function cartWin() {
 
-    var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule, auth;
+	var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule, auth, priceLblCurr, pricebackground, totalLable, totalText, descountlable, descount;
 
-    self = Ti.UI.createWindow({
-        title : 'سلة التسوق',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
-    });
+	self = Ti.UI.createWindow({
+		title : 'سلة التسوق',
+		backgroundImage : 'images/common/bg.jpg',
+		barImage : 'images/common/Navigation_Bar.jpg',
+		barColor : '#d3d3d3'
+	});
 
-    orderBtn = Ti.UI.createButton({
-        title : 'شراء'
-    });
-    orderBtn.addEventListener('click', function() {
+	orderBtn = Ti.UI.createButton({
+		title : 'شراء'
+	});
+	orderBtn.addEventListener('click', function() {
 
-        auth = require('/lib/auth');
-        if (auth.isLogedIn() === false) {
+		auth = require('/lib/auth');
+		if (auth.isLogedIn() === false) {
 
-            Ti.App.fireEvent('closeLoginWindow');
-            Ti.App.fireEvent('openLoginWindow');
-            return;
-        }
+			Ti.App.fireEvent('closeLoginWindow');
+			Ti.App.fireEvent('openLoginWindow');
+			return;
+		}
 
-        Ti.App.fireEvent('openShippingWindow');
-    });
+		Ti.App.fireEvent('openShippingWindow');
+	});
 
-    if (Ti.Platform.getOsname() === 'android') {
-        self.add(orderBtn);
-    } else {
-        self.setRightNavButton(orderBtn);
-    }
+	if (Ti.Platform.getOsname() === 'android') {
+		self.add(orderBtn);
+	} else {
+		self.setRightNavButton(orderBtn);
+	}
 
-    actionBtnBar = Ti.UI.createButtonBar({
-        labels : ['تفريغ', 'كوبون خصم'],
-        height : '35dp'
-    });
-    actionBtnBar.addEventListener('click', function(e) {
+	actionBtnBar = Ti.UI.createButtonBar({
+		labels : ['تفريغ', 'كوبون خصم'],
+		height : '35dp'
+	});
+	actionBtnBar.addEventListener('click', function(e) {
 
-        switch (e.index) {
-            case 0 :
-                var confirmDialog = Ti.UI.createAlertDialog({
-                    title : 'متاكد',
-                    message : 'سيتم افراغ سلة التسوق؟',
-                    buttonNames : ['موافق', 'لا'],
-                    cancel : 1
-                });
+		switch (e.index) {
+			case 0 :
+				var confirmDialog = Ti.UI.createAlertDialog({
+					title : 'متاكد',
+					message : 'سيتم افراغ سلة التسوق؟',
+					buttonNames : ['موافق', 'لا'],
+					cancel : 1
+				});
 
-                confirmDialog.addEventListener('click', function(ec) {
-                    if (ec.index === 0) {
-                        Ti.App.fireEvent('cartEmpty');
-                        self.fireEvent('focus');
-                    }
-                });
+				confirmDialog.addEventListener('click', function(ec) {
+					if (ec.index === 0) {
+						Ti.App.fireEvent('cartEmpty');
+						self.fireEvent('focus');
+					}
+				});
 
-                confirmDialog.show();
-                break;
+				confirmDialog.show();
+				break;
 
-            case 1 :
+			case 1 :
 
-                CouponWinModule = require('/ui/common/couponWin');
-                new CouponWinModule().open();
-                break;
-        }
-    });
+				CouponWinModule = require('/ui/common/couponWin');
+				new CouponWinModule().open();
+				break;
+		}
+	});
 
-    tableHeaderView = Ti.UI.createView({
-        height : '44dp'
-    });
-    tableHeaderView.add(actionBtnBar);
+	tableHeaderView = Ti.UI.createView({
+		height : '44dp'
+	});
+	tableHeaderView.add(actionBtnBar);
 
-    productTable = Ti.UI.createTableView({
-        backgroundColor : 'transparent',
-        separatorColor : 'transparent',
-        headerView : tableHeaderView
-    });
+	productTable = Ti.UI.createTableView({
+		backgroundColor : 'transparent',
+		separatorColor : 'transparent',
+		headerView : tableHeaderView
+	});
 
-    self.add(productTable);
+	self.add(productTable);
 
-    self.addEventListener('focus', function() {
+	self.addEventListener('focus', function() {
 
-        var rows, i, rowView, img, titleLbl, priceLbl, priceRowLbl, quantityLbl, rowViewArray = [], total = 0, coupon;
+		var rows, i, rowView, img, titleLbl, priceLbl, priceRowLbl, quantityLbl, rowViewArray = [], total = 0, coupon;
 
-        rows = Ti.App.Properties.getObject('cart', {});
+		rows = Ti.App.Properties.getObject('cart', {});
 
-        for (i in rows) {
-            if (rows.hasOwnProperty(i)) {
-                //console.log(rows[i]);
-                rowView = Ti.UI.createTableViewRow({
-                    height : '110dp',
-                    myTitle : rows[i].title,
-                    data : rows[i],
-                    className : 'cartRow',
-                    backgroundImage : 'images/common/TableViewRowBG.png',
-                    selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
-                });
+		for (i in rows) {
+			if (rows.hasOwnProperty(i)) {
+				//console.log(rows[i]);
+				rowView = Ti.UI.createTableViewRow({
+					height : '95dp',
+					myTitle : rows[i].title,
+					data : rows[i],
+					className : 'cartRow',
+					backgroundImage : 'images/common/TableViewRowBG.png',
+					selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+				});
 
-                img = Ti.UI.createImageView({
-                    image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-                    width : '100dp',
-                    height : '100p',
-                    right : '5dp',
-                    borderRadius : 45,
-                    defaultImage : 'images/common/default.png'
-                });
-                rowView.add(img);
+				img = Ti.UI.createImageView({
+					image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
+					width : '85dp',
+					height : '85dp',
+					right : '10dp',
+					borderRadius : 45,
+					defaultImage : 'images/common/default.png'
+				});
+				rowView.add(img);
 
-                titleLbl = Ti.UI.createLabel({
-                    text : rows[i].title,
-                    color : '#ffffff',
-                    left : '40dp',
-                    right : '110dp',
-                    top : '10dp',
-                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
-                });
-                rowView.add(titleLbl);
+				titleLbl = Ti.UI.createLabel({
+					text : rows[i].title,
+					left : '10dp',
+					right : '110dp',
+					top : '12dp',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+					color : '#ffffff',
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '17dp',
+						fontWeight : 'bold'
+					}
+				});
+				rowView.add(titleLbl);
 
-                priceLbl = Ti.UI.createLabel({
-                    text : 'السعر : ' + rows[i].price,
-                    color : '#ffffff',
-                    right : '110dp',
-                    bottom : '10dp',
-                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
-                });
-                rowView.add(priceLbl);
+				pricebackground = Titanium.UI.createImageView({
+					image : "images/common/bg_price.png",
+					bottom : "11dp",
+					right : "110dp",
+					width : "auto",
+					height : "auto"
+				});
+				rowView.add(pricebackground);
 
-                total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
-                priceRowLbl = Ti.UI.createLabel({
-                    text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
-                    color : '#ffffff',
-                    left : '10dp',
-                    bottom : '10dp',
-                    textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-                });
-                rowView.add(priceRowLbl);
+				priceLbl = Ti.UI.createLabel({
+					text : rows[i].price,
+					right : '120dp',
+					width : '60dp',
+					bottom : '27dp',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '17dp',
+						fontWeight : 'bold'
+					}
+				});
+				rowView.add(priceLbl);
 
-                quantityLbl = Ti.UI.createLabel({
-                    text : rows[i].quantity,
-                    color : '#ffffff',
-                    left : '10dp',
-                    top : '10dp',
-                    textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
-                });
-                rowView.add(quantityLbl);
+				priceLblCurr = Ti.UI.createLabel({
+					text : Ti.App.Properties.getString('currencyName'),
+					right : '110dp',
+					width : '80dp',
+					bottom : '16dp',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '14dp'
+					}
+				});
+				rowView.add(priceLblCurr);
 
-                rowViewArray.push(rowView);
-            }
+				total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
+				priceRowLbl = Ti.UI.createLabel({
+					text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
+					color : '#ffffff',
+					left : '10dp',
+					bottom : '10dp',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+				});
+				//rowView.add(priceRowLbl);
 
-        }
+				quantityLbl = Ti.UI.createLabel({
+					text : rows[i].quantity,
+					textAlign : 'center',
+					width : '55dp',
+					height : '25dp',
+					right : '205dp',
+					top : '50dp',
+					backgroundImage : 'images/common/bg_input_quantity.png'
+				});
+				rowView.add(quantityLbl);
 
-        coupon = Ti.App.Properties.getInt('coupon', 0);
+				rowViewArray.push(rowView);
+			}
 
-        if (total > 0) {
-            if (coupon > 0) {
-                rowViewArray.push(Ti.UI.createTableViewRow({
-                    title : 'قيمة الخصم : ' + coupon + ' جنية',
-                    color : '#ffffff',
-                    font : {
-                        fontSize : '15dp'
-                    }
-                }));
-            }
+		}
 
-            total = total - coupon < 0 ? 0 : total - coupon;
-            rowViewArray.push(Ti.UI.createTableViewRow({
-                title : 'الإجمالي : ' + total + ' جنية',
-                color : '#ffffff'
-            }));
-        }
+		coupon = Ti.App.Properties.getInt('coupon', 0);
 
-        if (rowViewArray.length === 0) {// cart is empty
+		if (total > 0) {
+			if (coupon > 0) {
 
-            rowViewArray.push(Ti.UI.createTableViewRow({
-                title : 'سلة التسوق فارغة'
-            }));
-        }
+				var rowView2 = Ti.UI.createTableViewRow({
+					height : '35dp',
+				});
 
-        productTable.setData(rowViewArray);
-    });
+				descountlable = Ti.UI.createLabel({
+					text : 'قيمة الخصم  ',
+					color : '#ffffff',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '18dp',
+						fontWeight : 'bold'
+					},
+					right : '10dp'
+				});
+				rowView2.add(descountlable);
 
-    return self;
+				descount = Ti.UI.createLabel({
+					text : ' ' + coupon + ' ' + Ti.App.Properties.getString('currencyName'),
+					color : '#ffffff',
+					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+					font : {
+						fontFamily : 'Arial',
+						fontSize : '17dp'
+					},
+					right : '100dp',
+					width : '150dp',
+					height : '27dp',
+					backgroundImage : 'images/common/button_discount_enter.png'
+				});
+				rowView2.add(descount);
+
+				rowViewArray.push(rowView2);
+			}
+
+			var rowView3 = Ti.UI.createTableViewRow({
+				height : '35dp'
+			});
+
+			total = total - coupon < 0 ? 0 : total - coupon;
+			totalLable = Ti.UI.createLabel({
+				text : 'الإجمالي  ',
+				color : '#ffffff',
+				textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+				font : {
+					fontFamily : 'Arial',
+					fontSize : '18dp',
+					fontWeight : 'bold'
+				},
+				right : '10dp'
+			});
+			rowView3.add(totalLable);
+
+			totalText = Ti.UI.createLabel({
+				text : ' ' + total + ' ' + Ti.App.Properties.getString('currencyName'),
+				color : '#ffffff',
+				textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+				font : {
+					fontFamily : 'Arial',
+					fontSize : '17dp'
+				},
+				right : '100dp',
+				width : '150dp',
+				height : '27dp',
+				backgroundImage : 'images/common/bg_total_account.png'
+			});
+			rowView3.add(totalText);
+
+			rowViewArray.push(rowView3);
+		}
+
+		if (rowViewArray.length === 0) {// cart is empty
+
+			rowViewArray.push(Ti.UI.createTableViewRow({
+				title : 'سلة التسوق فارغة',
+				color : '#ffffff'
+			}));
+		}
+
+		productTable.setData(rowViewArray);
+	});
+
+	return self;
 }
 
 module.exports = cartWin;
