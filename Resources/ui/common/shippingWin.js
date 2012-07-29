@@ -4,8 +4,8 @@ function shippingWin() {
 
     self = Ti.UI.createWindow({
         title : 'اختر الدولة',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -16,6 +16,15 @@ function shippingWin() {
     nextBtn.addEventListener('click', function() {
 
         var walletFlag = false;
+
+        // if total = 0
+        if (Ti.App.cartQuantityCounter().totalNet <= 0) {
+            Ti.App.fireEvent('orderRequest', {
+                paymentMethod : 'wallet',
+                countryID : countriesPicker.getSelectedRow(0).myId
+            });
+            return;
+        }
 
         //Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
 
@@ -43,7 +52,7 @@ function shippingWin() {
                     case 1:
 
                         // is it enoph cash into wallet?
-                        if (results.balance < Ti.App.cartQuantityCounter().total) {
+                        if (results.balance < Ti.App.cartQuantityCounter().totalNet) {
 
                             // if wallet not enph and he want to recharge his cridit
                             if (walletFlag === true) {
@@ -52,11 +61,12 @@ function shippingWin() {
                                 } else {
                                     Ti.UI.createAlertDialog({
                                         title : 'اضغط على المحفظة من الاعلى',
+                                        message : 'عد للخلف ثم اضغط على المحفظة من الاعلى.',
                                         cancel : 0,
                                         buttonNames : ['موافق']
                                     }).show();
                                 }
-                                
+
                                 return;
                             }
 
@@ -89,6 +99,13 @@ function shippingWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+
+        nextBtn.height = '33dp';
+        nextBtn.width = '90%';
+        nextBtn.bottom = '4dp';
+        nextBtn.backgroundImage = '/images/common/button_ok.png';
+        nextBtn.color = '#ffffff';
+
         self.add(nextBtn);
     } else {
         self.setRightNavButton(nextBtn);

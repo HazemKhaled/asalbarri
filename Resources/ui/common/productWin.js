@@ -4,8 +4,8 @@ function productWin(product) {
 
 	self = Ti.UI.createWindow({
 		title : product.title,
-		backgroundImage : 'images/common/bg.jpg',
-		barImage : 'images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/common/bg.jpg',
+		barImage : '/images/common/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -18,7 +18,7 @@ function productWin(product) {
 		height : '85dp',
 		right : '10dp',
 		borderRadius : 45,
-		defaultImage : 'images/common/default.png',
+		defaultImage : '/images/common/default.png',
 		top : '10dp'
 	});
 
@@ -50,35 +50,35 @@ function productWin(product) {
 
 	quantityField = Ti.UI.createLabel({
 		text : Ti.App.cartQuantityByProductID(product.id) > 0 ? Ti.App.cartQuantityByProductID(product.id) : 1,
-		textAlign : 'center',
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		width : '55dp',
 		height : '25dp',
 		right : '210dp',
 		top : '50dp',
-		backgroundImage : 'images/common/bg_input_quantity.png'
+		backgroundImage : '/images/common/bg_input_quantity.png'
 	});
 
 	self.add(quantityField);
 
 	quantityMinusBtn = Ti.UI.createButton({
 		title : '-',
-		textAlign : 'center',
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		width : '39dp',
 		height : '24dp',
 		right : '160dp',
 		top : '50dp',
-		backgroundImage : 'images/common/icon_min.png'
+		backgroundImage : '/images/common/icon_min.png'
 	});
 	self.add(quantityMinusBtn);
 
 	quantityPlusBtn = Ti.UI.createButton({
 		title : '+',
-		textAlign : 'center',
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		width : '39dp',
 		height : '24dp',
 		right : '110dp',
 		top : '50dp',
-		backgroundImage : 'images/common/icon_plus.png'
+		backgroundImage : '/images/common/icon_plus.png'
 	});
 	self.add(quantityPlusBtn);
 
@@ -146,7 +146,7 @@ function productWin(product) {
 		left : '2%',
 		width : '96%',
 		height : '199dp',
-		backgroundImage : 'images/common/textarea_bg.png',
+		backgroundImage : '/images/common/textarea_bg.png',
 		paddingLeft : '5dp',
 		paddingRight : '5dp'
 	});
@@ -159,7 +159,7 @@ function productWin(product) {
 		width : '96%',
 		left : '2%',
 		top : '100dp',
-		backgroundImage : 'images/common/button_ok.png',
+		backgroundImage : '/images/common/button_ok.png',
 		paddingLeft : '5dp',
 		paddingRight : '5dp',
 		color : '#000000'
@@ -169,7 +169,7 @@ function productWin(product) {
 
 		if (parseInt(product.quantity, 10) < getQuantityFieldValue()) {
 			Ti.UI.createAlertDialog({
-				title : 'هفواً',
+				title : 'عفوا',
 				message : 'متوفر في مخازننا فقط ' + product.quantity + ' وحدة.',
 				buttonNames : ['موافق']
 			}).show();
@@ -189,7 +189,7 @@ function productWin(product) {
 	mainScroll.add(addToCartBtn);
 
 	cartImg = Ti.UI.createImageView({
-		image : 'images/common/icon_add_cart.png',
+		image : '/images/common/icon_add_cart.png',
 		width : '32dp',
 		height : '30dp',
 		right : '60dp',

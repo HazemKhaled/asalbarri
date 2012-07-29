@@ -5,34 +5,34 @@ function aboutWin() {
     self = Ti.UI.createWindow({
         title : 'الدعم الفني',
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'اغلاق   ',
-        height : '31dp',
-        width : '67dp',
-        color : '#000000',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : '14dp',
-            fontWeight : 'bold'
-        },
-        backgroundImage : 'images/common/button_back.png'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'اغلاق   ',
+            height : '31dp',
+            width : '67dp',
+            color : '#000000',
+            font : {
+                fontFamily : 'Arial',
+                fontSize : '14dp',
+                fontWeight : 'bold'
+            },
+            backgroundImage : '/images/common/button_back.png'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 
     logo = Ti.UI.createImageView({
-        image : 'images/common/logo.png',
+        image : '/images/common/logo.png',
         width : '218dp',
         height : '106dp',
         right : '50dp',
@@ -41,7 +41,7 @@ function aboutWin() {
     self.add(logo);
 
     icon1 = Ti.UI.createImageView({
-        image : 'images/common/icon_info_1.png',
+        image : '/images/common/icon_info_1.png',
         width : '39dp',
         height : '39dp',
         right : '10dp',
@@ -50,7 +50,7 @@ function aboutWin() {
     self.add(icon1);
 
     icon2 = Ti.UI.createImageView({
-        image : 'images/common/icon_info_2.png',
+        image : '/images/common/icon_info_2.png',
         width : '40dp',
         height : '40dp',
         right : '10dp',
@@ -59,7 +59,7 @@ function aboutWin() {
     self.add(icon2);
 
     icon3 = Ti.UI.createImageView({
-        image : 'images/common/icon_info_3.png',
+        image : '/images/common/icon_info_3.png',
         width : '40dp',
         height : '40dp',
         right : '10dp',

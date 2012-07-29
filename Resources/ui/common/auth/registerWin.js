@@ -1,29 +1,29 @@
 function openRegisterWindow() {
-    var androidshift = 0, self, scrollview, mobileField, emailField, passField, confirmpassField, submitBtn;
+    var self, scrollview, mobileField, emailField, passField, confirmpassField, submitBtn;
 
     self = Ti.UI.createWindow({
         title : 'تسجيل',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
-    });
-
-    self.addEventListener('open', function() {
-        mobileField.focus();
     });
     scrollview = Ti.UI.createScrollView({
         contentWidth : Ti.Platform.displayCaps.platformWidth
     });
 
     mobileField = Ti.UI.createTextField({
-        top : (25 + androidshift) + 'dp',
+        top : '25dp',
         hintText : 'اسم المستخدم',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
+    });
+
+    self.addEventListener('open', function() {
+        mobileField.focus();
     });
     mobileField.addEventListener('change', Ti.App.autoTextAlign);
     mobileField.addEventListener('return', function() {
@@ -31,18 +31,18 @@ function openRegisterWindow() {
     });
 
     scrollview.add(mobileField);
-    mobileField.focus();
+
     emailField = Ti.UI.createTextField({
-        top : (65 + androidshift) + 'dp',
+        top : '65dp',
         hintText : 'البريد الخاص بك',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        autocapitalization : false,
+        //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
     emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
@@ -54,8 +54,8 @@ function openRegisterWindow() {
     passField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png',
-        top : (105 + androidshift) + 'dp',
+        backgroundImage : '/images/common/bg_total_price.png',
+        top : '105dp',
         hintText : 'كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
@@ -72,8 +72,8 @@ function openRegisterWindow() {
     confirmpassField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : 'images/common/bg_total_price.png',
-        top : (145 + androidshift) + 'dp',
+        backgroundImage : '/images/common/bg_total_price.png',
+        top : '145dp',
         hintText : 'تآكيد كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
@@ -88,9 +88,7 @@ function openRegisterWindow() {
     scrollview.add(confirmpassField);
 
     submitBtn = Ti.UI.createButton({
-        title : 'تسجيل',
-        top : (280 + androidshift) + 'dp',
-        right : Ti.Platform.getOsname() === 'iphone' ? '5%' : '50%'
+        title : 'تسجيل'
     });
 
     submitBtn.addEventListener('click', function() {
@@ -212,6 +210,13 @@ function openRegisterWindow() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+
+        submitBtn.height = '33dp';
+        submitBtn.width = '90%';
+        submitBtn.top = '185dp';
+        submitBtn.backgroundImage = '/images/common/button_ok.png';
+        submitBtn.color = '#ffffff';
+
         scrollview.add(submitBtn);
     } else {
         self.setRightNavButton(submitBtn);

@@ -5,20 +5,20 @@ function chargeWalletWin() {
     self = Ti.UI.createWindow({
         title : 'شحن المحفظة',
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'اغلاق'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'اغلاق'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 
@@ -73,8 +73,7 @@ function chargeWalletWin() {
     }
 
     submitBtn = Ti.UI.createButton({
-        title : 'شحن المحفظة',
-        top : '60dp'
+        title : 'شحن المحفظة'
     });
 
     submitBtn.addEventListener('click', function() {
@@ -82,6 +81,12 @@ function chargeWalletWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
+        submitBtn.top = '60dp';
+        submitBtn.height = '33dp';
+        submitBtn.width = '90%';
+        submitBtn.color = '#ffffff';
+        submitBtn.backgroundImage = '/images/common/button_ok.png';
+
         self.add(submitBtn);
     } else {
         self.setRightNavButton(submitBtn);
@@ -92,13 +97,10 @@ function chargeWalletWin() {
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '40dp',
         width : '90%',
-        left : '5%',
         top : '10dp',
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : 'images/common/bg_total_price.png',
-        paddingLeft : '5dp',
-        paddingRight : '5dp'
+        backgroundImage : '/images/common/bg_total_price.png'
     });
 
     self.addEventListener('open', function() {

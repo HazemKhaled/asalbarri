@@ -1,11 +1,11 @@
 function cartWin() {
 
-	var self, orderBtn, actionBtnBar, tableHeaderView, productTable, CouponWinModule, auth, priceLblCurr, pricebackground, totalLable, totalText, descountlable, descount;
+	var self, orderBtn, emptyBtn, couponBtn, tableHeaderView, productTable, CouponWinModule, auth, priceLblCurr, pricebackground, totalLable, totalText, descountlable, descount;
 
 	self = Ti.UI.createWindow({
 		title : 'سلة التسوق',
-		backgroundImage : 'images/common/bg.jpg',
-		barImage : 'images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/common/bg.jpg',
+		barImage : '/images/common/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -13,6 +13,16 @@ function cartWin() {
 		title : 'شراء'
 	});
 	orderBtn.addEventListener('click', function() {
+
+		if (Ti.App.cartQuantityCounter().count === 0) {
+
+			Ti.UI.createAlertDialog({
+				title : 'لا يوجد؟',
+				message : 'لا يوجد منتجات في سلة التسوق حتى الان.',
+				buttonNames : ['موافق']
+			}).show();
+			return;
+		}
 
 		auth = require('/lib/auth');
 		if (auth.isLogedIn() === false) {
@@ -26,54 +36,65 @@ function cartWin() {
 	});
 
 	if (Ti.Platform.getOsname() === 'android') {
+
+		orderBtn.height = '33dp';
+		orderBtn.width = '90%';
+		orderBtn.bottom = '4dp';
+		orderBtn.backgroundImage = '/images/common/button_ok.png';
+		orderBtn.color = '#ffffff';
+
 		self.add(orderBtn);
 	} else {
 		self.setRightNavButton(orderBtn);
 	}
 
-	actionBtnBar = Ti.UI.createButtonBar({
-		labels : ['تفريغ', 'كوبون خصم'],
-		height : '35dp'
+	emptyBtn = Ti.UI.createButton({
+		title : 'تفريغ'
 	});
-	actionBtnBar.addEventListener('click', function(e) {
+	emptyBtn.addEventListener('click', function() {
 
-		switch (e.index) {
-			case 0 :
-				var confirmDialog = Ti.UI.createAlertDialog({
-					title : 'متاكد',
-					message : 'سيتم افراغ سلة التسوق؟',
-					buttonNames : ['موافق', 'لا'],
-					cancel : 1
-				});
+		var confirmDialog = Ti.UI.createAlertDialog({
+			title : 'متاكد',
+			message : 'سيتم افراغ سلة التسوق؟',
+			buttonNames : ['موافق', 'لا'],
+			cancel : 1
+		});
 
-				confirmDialog.addEventListener('click', function(ec) {
-					if (ec.index === 0) {
-						Ti.App.fireEvent('cartEmpty');
-						self.fireEvent('focus');
-					}
-				});
+		confirmDialog.addEventListener('click', function(ec) {
+			if (ec.index === 0) {
+				Ti.App.fireEvent('cartEmpty');
+				self.fireEvent('focus');
+			}
+		});
 
-				confirmDialog.show();
-				break;
+		confirmDialog.show();
+	});
 
-			case 1 :
+	couponBtn = Ti.UI.createButton({
+		title : 'كوبون خصم'
+	});
+	couponBtn.addEventListener('click', function(e) {
 
-				CouponWinModule = require('/ui/common/couponWin');
-				new CouponWinModule().open();
-				break;
-		}
+		CouponWinModule = require('/ui/common/couponWin');
+		new CouponWinModule().open();
 	});
 
 	tableHeaderView = Ti.UI.createView({
+		layout : 'horizontal',
 		height : '44dp'
 	});
-	tableHeaderView.add(actionBtnBar);
+	tableHeaderView.add(emptyBtn);
+	tableHeaderView.add(couponBtn);
 
 	productTable = Ti.UI.createTableView({
 		backgroundColor : 'transparent',
 		separatorColor : 'transparent',
 		headerView : tableHeaderView
 	});
+
+	if (Ti.Platform.getOsname() === 'android') {
+		productTable.bottom = '44dp';
+	}
 
 	self.add(productTable);
 
@@ -91,8 +112,8 @@ function cartWin() {
 					myTitle : rows[i].title,
 					data : rows[i],
 					className : 'cartRow',
-					backgroundImage : 'images/common/TableViewRowBG.png',
-					selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+					backgroundImage : '/images/common/TableViewRowBG.png',
+					selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
 				});
 
 				img = Ti.UI.createImageView({
@@ -101,7 +122,7 @@ function cartWin() {
 					height : '85dp',
 					right : '10dp',
 					borderRadius : 45,
-					defaultImage : 'images/common/default.png'
+					defaultImage : '/images/common/default.png'
 				});
 				rowView.add(img);
 
@@ -121,7 +142,7 @@ function cartWin() {
 				rowView.add(titleLbl);
 
 				pricebackground = Titanium.UI.createImageView({
-					image : "images/common/bg_price.png",
+					image : "/images/common/bg_price.png",
 					bottom : "11dp",
 					right : "110dp",
 					width : "auto",
@@ -173,7 +194,7 @@ function cartWin() {
 					height : '25dp',
 					right : '205dp',
 					top : '50dp',
-					backgroundImage : 'images/common/bg_input_quantity.png'
+					backgroundImage : '/images/common/bg_input_quantity.png'
 				});
 				rowView.add(quantityLbl);
 
@@ -189,6 +210,7 @@ function cartWin() {
 
 				var rowView2 = Ti.UI.createTableViewRow({
 					height : '35dp',
+					selectedBackgroundImage : 'transparent'
 				});
 
 				descountlable = Ti.UI.createLabel({
@@ -215,7 +237,7 @@ function cartWin() {
 					right : '100dp',
 					width : '150dp',
 					height : '27dp',
-					backgroundImage : 'images/common/button_discount_enter.png'
+					backgroundImage : '/images/common/button_discount_enter.png'
 				});
 				rowView2.add(descount);
 
@@ -223,7 +245,8 @@ function cartWin() {
 			}
 
 			var rowView3 = Ti.UI.createTableViewRow({
-				height : '35dp'
+				height : '35dp',
+				selectedBackgroundImage : 'transparent'
 			});
 
 			total = total - coupon < 0 ? 0 : total - coupon;
@@ -251,7 +274,7 @@ function cartWin() {
 				right : '100dp',
 				width : '150dp',
 				height : '27dp',
-				backgroundImage : 'images/common/bg_total_account.png'
+				backgroundImage : '/images/common/bg_total_account.png'
 			});
 			rowView3.add(totalText);
 

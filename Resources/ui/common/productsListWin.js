@@ -4,8 +4,8 @@ function productsListWin(parent) {
     self = Ti.UI.createWindow({
         title : parent.title,
         backButtonTitle : 'عودة',
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -37,8 +37,8 @@ function productsListWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'productRow',
-                        backgroundImage : 'images/common/TableViewRowBG.png',
-                        selectedBackgroundImage : 'images/common/TableViewRowSelectedBG.png'
+                        backgroundImage : '/images/common/TableViewRowBG.png',
+                        selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
                     });
 
                     img = Ti.UI.createImageView({
@@ -47,16 +47,16 @@ function productsListWin(parent) {
                         height : '85dp',
                         right : '10dp',
                         borderRadius : 45,
-                        defaultImage : 'images/common/default.png'
+                        defaultImage : '/images/common/default.png'
                     });
                     row.add(img);
 
                     arrow = Titanium.UI.createImageView({
-                        image : "images/common/icon_7.png",
+                        image : '/images/common/icon_7.png',
                         top : "6dp",
                         left : "0dp",
-                        width : "auto",
-                        height : "auto"
+                        width : '23dp',
+                        height : '79dp'
                     });
                     row.add(arrow);
 
@@ -78,11 +78,11 @@ function productsListWin(parent) {
                     if (rows[i].price_shown_coupon > 0) {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : "images/common/sss.png",
-                            bottom : "11dp",
-                            right : "110dp",
-                            width : "auto",
-                            height : "auto"
+                            image : '/images/common/sss.png',
+                            bottom : '11dp',
+                            right : '110dp',
+                            width : '170dp',
+                            height : '38dp'
                         });
                         row.add(pricebackground);
 
@@ -108,6 +108,7 @@ function productsListWin(parent) {
                             bottom : '16dp',
                             color : '#ffffff',
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#ffffff',
                             font : {
                                 fontFamily : 'Arial',
                                 fontSize : '14dp'
@@ -117,11 +118,11 @@ function productsListWin(parent) {
                     } else {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : "images/common/bg_price_2.png",
-                            bottom : "11dp",
-                            right : "110dp",
-                            width : "auto",
-                            height : "auto"
+                            image : '/images/common/bg_price_2.png',
+                            bottom : '11dp',
+                            right : '110dp',
+                            width : '83dp',
+                            height : '38dp'
                         });
                         row.add(pricebackground);
                     }
@@ -132,6 +133,7 @@ function productsListWin(parent) {
                         width : '60dp',
                         bottom : '27dp',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                        color : '#000000',
                         font : {
                             fontFamily : 'Arial',
                             fontSize : '17dp',
@@ -146,6 +148,7 @@ function productsListWin(parent) {
                         width : '80dp',
                         bottom : '16dp',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                        color : '#000000',
                         font : {
                             fontFamily : 'Arial',
                             fontSize : '14dp'

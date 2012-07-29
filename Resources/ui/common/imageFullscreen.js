@@ -5,20 +5,20 @@ function imageFullscreenView(e) {
     self = Ti.UI.createWindow({
         title : e.title,
         modal : true,
-        backgroundImage : 'images/common/bg.jpg',
-        barImage : 'images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/common/bg.jpg',
+        barImage : '/images/common/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
-    closeBtn = Ti.UI.createButton({
-        title : 'رجوع'
-    });
-
-    closeBtn.addEventListener('click', function() {
-        self.close();
-    });
-
     if (Ti.Platform.getOsname() !== 'android') {
+        closeBtn = Ti.UI.createButton({
+            title : 'رجوع'
+        });
+
+        closeBtn.addEventListener('click', function() {
+            self.close();
+        });
+
         self.setLeftNavButton(closeBtn);
     }
 
@@ -34,7 +34,7 @@ function imageFullscreenView(e) {
         width : '100%',
         height : 'auto',
         canScale : true,
-        defaultImage : 'images/common/default.png'
+        defaultImage : '/images/common/default.png'
     });
 
     if (Ti.Platform.getOsname() !== 'android') {
