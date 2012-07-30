@@ -173,6 +173,7 @@ function loginWin() {
                 }
             }
             Ti.App.Properties.setInt('userID', response.userID);
+            Ti.App.Properties.setString('userName', userField.value);
             Ti.App.fireEvent('showWalletAfterLogin');
             Ti.App.fireEvent('showMyordersAfterLogin');
             Ti.App.dialog.destructive = 0;
