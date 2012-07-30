@@ -239,6 +239,10 @@ Ti.App.addEventListener('orderRequest', function(e) {
 			Ti.App.fireEvent('cartEmpty');
 			Ti.App.Properties.removeProperty('coupon');
 			Ti.App.Properties.removeProperty('couponCode');
+			Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'), function(results) {
+
+				Ti.App.balanceLbl.text = results.balance;
+			});
 		}
 	});
 
