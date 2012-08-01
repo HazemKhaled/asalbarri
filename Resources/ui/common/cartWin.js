@@ -149,13 +149,13 @@ function cartWin() {
 					image : "/images/common/bg_price.png",
 					bottom : "11dp",
 					right : "110dp",
-					width : "auto",
-					height : "auto"
+					width : '170dp',
+					height : '38dp'
 				});
 				rowView.add(pricebackground);
-				
+
 				if (rows[i].price_shown_coupon > 0) {
-					
+
 					priceLbl = Ti.UI.createLabel({
 						text : rows[i].price_shown_coupon,
 						right : '120dp',
@@ -185,7 +185,7 @@ function cartWin() {
 					});
 					rowView.add(priceLbl);
 				}
-				
+
 				priceLblCurr = Ti.UI.createLabel({
 					text : Ti.App.Properties.getString('currencyName'),
 					right : '110dp',
