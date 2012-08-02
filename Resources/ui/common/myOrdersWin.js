@@ -19,7 +19,7 @@ function myOrdersWin() {
 
 			xhr = Ti.Network.createHTTPClient();
 
-			xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID'));
+			xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'));
 
 			xhr.onerror = function() {
 				tableView.fireEvent('reloadData', {
@@ -137,8 +137,11 @@ function myOrdersWin() {
 						} else if (rows[i].status === '2') {
 							statustxt = 'تم الوصول';
 						}
-						statustxt += ' (اضغط لمتابعة الشحن)';
-						
+
+						if (rows[i].url) {
+							statustxt += ' (اضغط لمتابعة الشحن)';
+						}
+
 						statusLbl = Ti.UI.createLabel({
 							text : statustxt,
 							right : '80dp',
