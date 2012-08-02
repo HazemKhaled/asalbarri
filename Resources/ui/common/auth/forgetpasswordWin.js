@@ -16,7 +16,7 @@ function forgetpasswordWin() {
     emailField = Ti.UI.createTextField({
         top : '25dp',
         hintText : 'البريد الخاص بك',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,

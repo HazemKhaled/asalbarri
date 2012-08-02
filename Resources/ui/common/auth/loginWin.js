@@ -17,7 +17,7 @@ function loginWin() {
 
     userField = Ti.UI.createTextField({
         hintText : 'اسم المستخدم',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '33dp',
         width : '90%',
         left : '5%',
@@ -38,7 +38,7 @@ function loginWin() {
 
     passField = Ti.UI.createTextField({
         hintText : 'كلمة المرور',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '33dp',
         width : '90%',
         left : '5%',
@@ -164,7 +164,14 @@ function loginWin() {
                                 buttonNames : ['الغاء', 'مراسله']
                             });
 
-                            dialog.addEventListener('click', sendSupportRequestMailFormEvent);
+                            dialog.addEventListener('click', function(ev) {
+                                if (ev.index === 1) {
+                                    var emailDialog = Ti.UI.createEmailDialog({
+                                        toRecipients : ['support@eshtery.me']
+                                    });
+                                    emailDialog.open();
+                                }
+                            });
 
                             dialog.show();
                         }

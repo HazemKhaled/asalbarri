@@ -91,7 +91,7 @@ function couponWin() {
 
     couponTxt = Ti.UI.createTextField({
         hintText : 'كود بطاقة الخصم',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         height : '33dp',
         width : '90%',
         top : '80dp',

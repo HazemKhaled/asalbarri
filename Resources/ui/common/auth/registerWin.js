@@ -14,7 +14,7 @@ function openRegisterWindow() {
     mobileField = Ti.UI.createTextField({
         top : '25dp',
         hintText : 'اسم المستخدم',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
@@ -35,7 +35,7 @@ function openRegisterWindow() {
     emailField = Ti.UI.createTextField({
         top : '65dp',
         hintText : 'البريد الخاص بك',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
@@ -57,7 +57,7 @@ function openRegisterWindow() {
         backgroundImage : '/images/bg_total_price.png',
         top : '105dp',
         hintText : 'كلمة المرور',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
@@ -75,7 +75,7 @@ function openRegisterWindow() {
         backgroundImage : '/images/bg_total_price.png',
         top : '145dp',
         hintText : 'تآكيد كلمة المرور',
-        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_JOIN,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
