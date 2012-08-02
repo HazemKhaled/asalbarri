@@ -50,7 +50,16 @@ function cartWin() {
 
 	emptyBtn = Ti.UI.createButton({
 		title : 'تفريغ',
-		left : '75dp'
+		left : '75dp',
+		height : '31dp',
+		width : '70dp',
+		color : '#000000',
+		font : {
+			fontFamily : 'Arial',
+			fontSize : '14dp',
+			fontWeight : 'bold'
+		},
+		backgroundImage : '/images/common/button_discount_enter.png'
 	});
 	emptyBtn.addEventListener('click', function() {
 
@@ -72,7 +81,16 @@ function cartWin() {
 	});
 
 	couponBtn = Ti.UI.createButton({
-		title : 'كوبون خصم'
+		title : 'كوبون خصم',
+		height : '31dp',
+		width : '110dp',
+		color : '#000000',
+		font : {
+			fontFamily : 'Arial',
+			fontSize : '14dp',
+			fontWeight : 'bold'
+		},
+		backgroundImage : '/images/common/bg_total_account.png'
 	});
 	couponBtn.addEventListener('click', function(e) {
 
@@ -286,7 +304,7 @@ function cartWin() {
 			rowView3.add(totalLable);
 
 			totalText = Ti.UI.createLabel({
-				text : ' ' + total + ' ' + Ti.App.Properties.getString('currencyName'),
+				text : ' ' + total + ' ' + 'دولار أمريكي',
 				color : '#ffffff',
 				textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				font : {
