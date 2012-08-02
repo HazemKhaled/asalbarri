@@ -5,8 +5,8 @@ function currencyWin() {
 	self = Ti.UI.createWindow({
 		title : 'تغيير العملة',
 		modal : true,
-		backgroundImage : '/images/common/bg.jpg',
-		barImage : '/images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 

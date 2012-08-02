@@ -5,8 +5,8 @@ function categoryWin(parent) {
 	self = Ti.UI.createWindow({
 		title : parent.title || 'عسل بري',
 		backButtonTitle : 'عودة',
-		backgroundImage : '/images/common/bg.jpg',
-		barImage : '/images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -15,7 +15,7 @@ function categoryWin(parent) {
 		self.activity.onCreateOptionsMenu = function(e) {
 			aboutBtn = e.menu.add({
 				title : 'اعدادات',
-				icon : '/images/common/icon_1.png'
+				icon : '/images/icon_1.png'
 			});
 
 			aboutBtn.addEventListener('click', function() {
@@ -24,7 +24,7 @@ function categoryWin(parent) {
 
 			aboutBtn = e.menu.add({
 				title : 'عن عسل بري',
-				icon : '/images/common/icon_2.png'
+				icon : '/images/icon_2.png'
 			});
 
 			aboutBtn.addEventListener('click', function() {
@@ -36,7 +36,7 @@ function categoryWin(parent) {
 			height : '31dp',
 			width : '31dp',
 			color : '#000000',
-			backgroundImage : '/images/common/icon_2.png'
+			backgroundImage : '/images/icon_2.png'
 		});
 
 		aboutBtn.addEventListener('click', function() {
@@ -50,7 +50,7 @@ function categoryWin(parent) {
 			height : '31dp',
 			width : '31dp',
 			color : '#000000',
-			backgroundImage : '/images/common/icon_1.png'
+			backgroundImage : '/images/icon_1.png'
 		});
 		settingBtn.addEventListener('click', function() {
 			dialog.show();
@@ -156,12 +156,12 @@ function categoryWin(parent) {
 						myTitle : rows[i].title,
 						data : rows[i],
 						className : 'categoryRow',
-						backgroundImage : '/images/common/TableViewRowBG.png',
-						selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
+						backgroundImage : '/images/TableViewRowBG.png',
+						selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
 					});
 
 					arrow = Titanium.UI.createImageView({
-						image : '/images/common/icon_7.png',
+						image : '/images/icon_7.png',
 						left : 0,
 						width : '23dp',
 						height : '79dp'
@@ -174,7 +174,7 @@ function categoryWin(parent) {
 						height : '85dp',
 						right : '10dp',
 						borderRadius : 45,
-						defaultImage : '/images/common/default.png'
+						defaultImage : '/images/default.png'
 					});
 					row.add(img);
 
@@ -202,7 +202,7 @@ function categoryWin(parent) {
 							height : '23dp',
 							top : '50dp',
 							width : '43dp',
-							backgroundImage : '/images/common/bg_product_quantity.png',
+							backgroundImage : '/images/bg_product_quantity.png',
 							font : {
 								fontSize : '16dp'
 							},

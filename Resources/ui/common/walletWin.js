@@ -4,8 +4,8 @@ function walletWin() {
 
     self = Ti.UI.createWindow({
         title : 'المحفظة',
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -51,7 +51,7 @@ function walletWin() {
             height : '33dp',
             width : '90%',
             color : '#ffffff',
-            backgroundImage : '/images/common/button_ok.png'
+            backgroundImage : '/images/button_ok.png'
         });
 
         chargeBtn.addEventListener('click', function() {
@@ -61,7 +61,7 @@ function walletWin() {
         self.add(chargeBtn);
 
         img = Ti.UI.createImageView({
-            image : '/images/common/wallet_balance.png',
+            image : '/images/wallet_balance.png',
             width : '169dp',
             height : '148dp',
             top : '40px'
@@ -144,7 +144,7 @@ function walletWin() {
             top : '100dp',
             height : '33dp',
             width : '90%',
-            backgroundImage : '/images/common/button_ok.png',
+            backgroundImage : '/images/button_ok.png',
             color : '#ffffff'
         }));
         self.add(loginBtn);

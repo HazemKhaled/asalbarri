@@ -4,8 +4,8 @@ function shippingWin() {
 
     self = Ti.UI.createWindow({
         title : 'اختر الدولة',
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -103,7 +103,7 @@ function shippingWin() {
         nextBtn.height = '33dp';
         nextBtn.width = '90%';
         nextBtn.bottom = '4dp';
-        nextBtn.backgroundImage = '/images/common/button_ok.png';
+        nextBtn.backgroundImage = '/images/button_ok.png';
         nextBtn.color = '#ffffff';
 
         self.add(nextBtn);

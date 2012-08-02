@@ -5,8 +5,8 @@ function followshippingWin(url) {
     self = Ti.UI.createWindow({
         title : 'متابعة الشحن',
         modal : true,
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -21,7 +21,7 @@ function followshippingWin(url) {
                 fontSize : '14dp',
                 fontWeight : 'bold'
             },
-            backgroundImage : '/images/common/button_back.png'
+            backgroundImage : '/images/button_back.png'
         });
 
         closeBtn.addEventListener('click', function() {

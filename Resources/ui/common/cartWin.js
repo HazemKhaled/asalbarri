@@ -4,8 +4,8 @@ function cartWin() {
 
 	self = Ti.UI.createWindow({
 		title : 'سلة التسوق',
-		backgroundImage : '/images/common/bg.jpg',
-		barImage : '/images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -40,7 +40,7 @@ function cartWin() {
 		orderBtn.height = '33dp';
 		orderBtn.width = '90%';
 		orderBtn.bottom = '4dp';
-		orderBtn.backgroundImage = '/images/common/button_ok.png';
+		orderBtn.backgroundImage = '/images/button_ok.png';
 		orderBtn.color = '#ffffff';
 
 		self.add(orderBtn);
@@ -59,7 +59,7 @@ function cartWin() {
 			fontSize : '14dp',
 			fontWeight : 'bold'
 		},
-		backgroundImage : '/images/common/button_discount_enter.png'
+		backgroundImage : '/images/button_discount_enter.png'
 	});
 	emptyBtn.addEventListener('click', function() {
 
@@ -90,7 +90,7 @@ function cartWin() {
 			fontSize : '14dp',
 			fontWeight : 'bold'
 		},
-		backgroundImage : '/images/common/bg_total_account.png'
+		backgroundImage : '/images/bg_total_account.png'
 	});
 	couponBtn.addEventListener('click', function(e) {
 
@@ -134,8 +134,8 @@ function cartWin() {
 					myTitle : rows[i].title,
 					data : rows[i],
 					className : 'cartRow',
-					backgroundImage : '/images/common/TableViewRowBG.png',
-					selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
+					backgroundImage : '/images/TableViewRowBG.png',
+					selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
 				});
 
 				img = Ti.UI.createImageView({
@@ -144,7 +144,7 @@ function cartWin() {
 					height : '85dp',
 					right : '10dp',
 					borderRadius : 45,
-					defaultImage : '/images/common/default.png'
+					defaultImage : '/images/default.png'
 				});
 				rowView.add(img);
 
@@ -164,7 +164,7 @@ function cartWin() {
 				rowView.add(titleLbl);
 
 				pricebackground = Titanium.UI.createImageView({
-					image : "/images/common/bg_price.png",
+					image : "/images/bg_price.png",
 					bottom : "11dp",
 					right : "110dp",
 					width : '170dp',
@@ -234,7 +234,7 @@ function cartWin() {
 					height : '25dp',
 					right : '205dp',
 					top : '50dp',
-					backgroundImage : '/images/common/bg_input_quantity.png'
+					backgroundImage : '/images/bg_input_quantity.png'
 				});
 				rowView.add(quantityLbl);
 
@@ -277,7 +277,7 @@ function cartWin() {
 					right : '100dp',
 					width : '150dp',
 					height : '27dp',
-					backgroundImage : '/images/common/button_discount_enter.png'
+					backgroundImage : '/images/button_discount_enter.png'
 				});
 				rowView2.add(descount);
 
@@ -314,7 +314,7 @@ function cartWin() {
 				right : '100dp',
 				width : '150dp',
 				height : '27dp',
-				backgroundImage : '/images/common/bg_total_account.png'
+				backgroundImage : '/images/bg_total_account.png'
 			});
 			rowView3.add(totalText);
 

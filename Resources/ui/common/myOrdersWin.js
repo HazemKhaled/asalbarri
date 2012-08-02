@@ -4,8 +4,8 @@ function myOrdersWin() {
 
 	self = Ti.UI.createWindow({
 		title : 'طلباتي',
-		backgroundImage : '/images/common/bg.jpg',
-		barImage : '/images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 
@@ -38,12 +38,12 @@ function myOrdersWin() {
 							myTitle : rows[i].title,
 							data : rows[i],
 							className : 'myOrderRow',
-							backgroundImage : '/images/common/TableViewRowBG.png',
-							selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
+							backgroundImage : '/images/TableViewRowBG.png',
+							selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
 						});
 
 						arrow = Titanium.UI.createImageView({
-							image : '/images/common/icon_7.png',
+							image : '/images/icon_7.png',
 							top : "6dp",
 							left : "0dp",
 							width : '23dp',
@@ -80,7 +80,7 @@ function myOrdersWin() {
 						row.add(priceLbl);
 
 						datebackground = Titanium.UI.createImageView({
-							image : '/images/common/bg_time.png',
+							image : '/images/bg_time.png',
 							top : "38dp",
 							right : "0dp",
 							width : "239dp",
@@ -212,7 +212,7 @@ function myOrdersWin() {
 			submitBtn.height = '33dp';
 			submitBtn.width = '90%';
 			submitBtn.color = '#ffffff';
-			submitBtn.backgroundImage = '/images/common/button_ok.png';
+			submitBtn.backgroundImage = '/images/button_ok.png';
 
 			self.add(submitBtn);
 		} else {
@@ -246,7 +246,7 @@ function myOrdersWin() {
 			height : '33dp',
 			width : '90%',
 			left : '5%',
-			backgroundImage : '/images/common/button_ok.png',
+			backgroundImage : '/images/button_ok.png',
 			color : '#ffffff'
 		}));
 

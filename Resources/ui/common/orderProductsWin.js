@@ -1,8 +1,8 @@
 function orderProductsWin(parent) {
 	var self = Ti.UI.createWindow({
 		title : 'تفاصيل الطب',
-		backgroundImage : '/images/common/bg.jpg',
-		barImage : '/images/common/Navigation_Bar.jpg',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
 		barColor : '#d3d3d3'
 	});
 	var followBtn, row2;
@@ -35,7 +35,7 @@ function orderProductsWin(parent) {
 						myTitle : rows[i].title,
 						data : rows[i],
 						className : 'orderRow',
-						backgroundImage : '/images/common/TableViewRowBG.png',
+						backgroundImage : '/images/TableViewRowBG.png',
 						selectedBackgroundImage : 'transparent'
 					});
 
@@ -45,7 +45,7 @@ function orderProductsWin(parent) {
 						height : '85dp',
 						right : '10dp',
 						borderRadius : 45,
-						defaultImage : '/images/common/default.png'
+						defaultImage : '/images/default.png'
 					});
 					row.add(img);
 
@@ -126,7 +126,7 @@ function orderProductsWin(parent) {
 			}
 			row2 = Ti.UI.createTableViewRow({
 				height : '95dp',
-				backgroundImage : '/images/common/TableViewRowBG.png',
+				backgroundImage : '/images/TableViewRowBG.png',
 				selectedBackgroundImage : 'transparent'
 			});
 
@@ -143,7 +143,7 @@ function orderProductsWin(parent) {
 						fontSize : '14dp',
 						fontWeight : 'bold'
 					},
-					backgroundImage : '/images/common/bg_total_account.png'
+					backgroundImage : '/images/bg_total_account.png'
 				});
 				followBtn.addEventListener('click', function() {
 					Ti.App.fireEvent('openfollowshippingWinndow', {

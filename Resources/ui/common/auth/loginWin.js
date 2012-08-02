@@ -4,8 +4,8 @@ function loginWin() {
 
     self = Ti.UI.createWindow({
         title : 'دخول',
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -24,7 +24,7 @@ function loginWin() {
         top : '25dp',
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/common/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png'
     });
 
     userField.addEventListener('return', function() {
@@ -46,7 +46,7 @@ function loginWin() {
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/common/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png'
     });
     passField.addEventListener('return', function() {
         submitBtn.fireEvent('click');
@@ -63,7 +63,7 @@ function loginWin() {
         submitBtn.height = '33dp';
         submitBtn.width = '90%';
         submitBtn.top = '115dp';
-        submitBtn.backgroundImage = '/images/common/button_ok.png';
+        submitBtn.backgroundImage = '/images/button_ok.png';
         submitBtn.color = '#ffffff';
 
         scrollview.add(submitBtn);
@@ -195,7 +195,7 @@ function loginWin() {
         height : '33dp',
         width : '90%',
         top : (115 + androidOffset) + 'dp',
-        backgroundImage : '/images/common/button_ok.png',
+        backgroundImage : '/images/button_ok.png',
         color : '#ffffff'
     }));
     scrollview.add(registerBtn);
@@ -205,7 +205,7 @@ function loginWin() {
         height : '33dp',
         width : '90%',
         top : (155 + androidOffset) + 'dp',
-        backgroundImage : '/images/common/button_cancel.png',
+        backgroundImage : '/images/button_cancel.png',
         color : '#ffffff'
     }));
 

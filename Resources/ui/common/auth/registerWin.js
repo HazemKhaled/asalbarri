@@ -3,8 +3,8 @@ function openRegisterWindow() {
 
     self = Ti.UI.createWindow({
         title : 'تسجيل',
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
     scrollview = Ti.UI.createScrollView({
@@ -19,7 +19,7 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : '/images/common/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png'
     });
 
     self.addEventListener('open', function() {
@@ -42,7 +42,7 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : '33dp',
         width : '90%',
-        backgroundImage : '/images/common/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png'
     });
     emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
@@ -54,7 +54,7 @@ function openRegisterWindow() {
     passField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : '/images/common/bg_total_price.png',
+        backgroundImage : '/images/bg_total_price.png',
         top : '105dp',
         hintText : 'كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -72,7 +72,7 @@ function openRegisterWindow() {
     confirmpassField = Ti.UI.createTextField({
         height : '33dp',
         width : '90%',
-        backgroundImage : '/images/common/bg_total_price.png',
+        backgroundImage : '/images/bg_total_price.png',
         top : '145dp',
         hintText : 'تآكيد كلمة المرور',
         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -214,7 +214,7 @@ function openRegisterWindow() {
         submitBtn.height = '33dp';
         submitBtn.width = '90%';
         submitBtn.top = '185dp';
-        submitBtn.backgroundImage = '/images/common/button_ok.png';
+        submitBtn.backgroundImage = '/images/button_ok.png';
         submitBtn.color = '#ffffff';
 
         scrollview.add(submitBtn);

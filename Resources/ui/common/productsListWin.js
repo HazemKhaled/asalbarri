@@ -4,8 +4,8 @@ function productsListWin(parent) {
     self = Ti.UI.createWindow({
         title : parent.title,
         backButtonTitle : 'عودة',
-        backgroundImage : '/images/common/bg.jpg',
-        barImage : '/images/common/Navigation_Bar.jpg',
+        backgroundImage : '/images/bg.jpg',
+        barImage : '/images/Navigation_Bar.jpg',
         barColor : '#d3d3d3'
     });
 
@@ -37,8 +37,8 @@ function productsListWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'productRow',
-                        backgroundImage : '/images/common/TableViewRowBG.png',
-                        selectedBackgroundImage : '/images/common/TableViewRowSelectedBG.png'
+                        backgroundImage : '/images/TableViewRowBG.png',
+                        selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                     });
 
                     img = Ti.UI.createImageView({
@@ -47,12 +47,12 @@ function productsListWin(parent) {
                         height : '85dp',
                         right : '10dp',
                         borderRadius : 45,
-                        defaultImage : '/images/common/default.png'
+                        defaultImage : '/images/default.png'
                     });
                     row.add(img);
 
                     arrow = Titanium.UI.createImageView({
-                        image : '/images/common/icon_7.png',
+                        image : '/images/icon_7.png',
                         top : "6dp",
                         left : "0dp",
                         width : '23dp',
@@ -78,7 +78,7 @@ function productsListWin(parent) {
                     if (rows[i].price_shown_coupon > 0) {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : '/images/common/sss.png',
+                            image : '/images/sss.png',
                             bottom : '11dp',
                             right : '110dp',
                             width : '170dp',
@@ -118,7 +118,7 @@ function productsListWin(parent) {
                     } else {
 
                         pricebackground = Titanium.UI.createImageView({
-                            image : '/images/common/bg_price_2.png',
+                            image : '/images/bg_price_2.png',
                             bottom : '11dp',
                             right : '110dp',
                             width : '83dp',
