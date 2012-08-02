@@ -137,7 +137,8 @@ function myOrdersWin() {
 						} else if (rows[i].status === '2') {
 							statustxt = 'تم الوصول';
 						}
-
+						statustxt += ' (اضغط لمتابعة الشحن)';
+						
 						statusLbl = Ti.UI.createLabel({
 							text : statustxt,
 							right : '80dp',

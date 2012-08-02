@@ -167,6 +167,15 @@ Ti.App.addEventListener('openShippingWindow', function() {
 
 });
 
+Ti.App.addEventListener('openfollowshippingWinndow', function(e) {
+
+	var followshippingWinModule = require('/ui/common/followshippingWin'), followshippingWin;
+
+	followshippingWin = new followshippingWinModule(e.url);
+	//Ti.App.myOrders.open(followshippingWin);
+	followshippingWin.open();
+});
+
 Ti.App.addEventListener('orderRequest', function(e) {
 
 	var auth, orderData, cartProducts, xhr;
