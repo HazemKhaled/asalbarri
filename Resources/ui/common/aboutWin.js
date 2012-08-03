@@ -13,12 +13,12 @@ function aboutWin() {
     if (Ti.Platform.getOsname() !== 'android') {
         closeBtn = Ti.UI.createButton({
             title : 'اغلاق   ',
-            height : '31dp',
-            width : '67dp',
+            height : 31,
+            width : 67,
             color : '#000000',
             font : {
                 fontFamily : 'Arial',
-                fontSize : '14dp',
+                fontSize : 14,
                 fontWeight : 'bold'
             },
             backgroundImage : '/images/button_back.png'
@@ -33,108 +33,108 @@ function aboutWin() {
 
     logo = Ti.UI.createImageView({
         image : '/images/logo.png',
-        width : '218dp',
-        height : '106dp',
-        right : '50dp',
-        top : '20dp'
+        width : 218,
+        height : 106,
+        right : 50,
+        top : 20
     });
     self.add(logo);
 
     icon1 = Ti.UI.createImageView({
         image : '/images/icon_info_1.png',
-        width : '39dp',
-        height : '39dp',
-        right : '10dp',
-        top : '165dp'
+        width : 39,
+        height : 39,
+        right : 10,
+        top : 165
     });
     self.add(icon1);
 
     icon2 = Ti.UI.createImageView({
         image : '/images/icon_info_2.png',
-        width : '40dp',
-        height : '40dp',
-        right : '10dp',
-        top : '235dp'
+        width : 40,
+        height : 40,
+        right : 10,
+        top : 235
     });
     self.add(icon2);
 
     icon3 = Ti.UI.createImageView({
         image : '/images/icon_info_3.png',
-        width : '40dp',
-        height : '40dp',
-        right : '10dp',
-        top : '305dp'
+        width : 40,
+        height : 40,
+        right : 10,
+        top : 305
     });
     self.add(icon3);
 
     self.add(Ti.UI.createLabel({
         text : 'البديد الالكتروني',
-        right : '55dp',
-        top : '155dp',
+        right : 55,
+        top : 155,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));
 
     self.add(Ti.UI.createLabel({
         text : 'info@asalbarri.com',
-        right : '55dp',
-        top : '180dp',
+        right : 55,
+        top : 180,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));
 
     self.add(Ti.UI.createLabel({
         text : 'صفحة تويتر',
-        right : '55dp',
-        top : '225dp',
+        right : 55,
+        top : 225,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));
 
     self.add(Ti.UI.createLabel({
         text : '@asalbarri',
-        right : '55dp',
-        top : '250dp',
+        right : 55,
+        top : 250,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));
 
     self.add(Ti.UI.createLabel({
         text : 'رقم الجوال',
-        right : '55dp',
-        top : '295dp',
+        right : 55,
+        top : 295,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));
 
     self.add(Ti.UI.createLabel({
         text : '0592972777',
-        right : '55dp',
-        top : '320dp',
+        right : 55,
+        top : 320,
         color : '#ffffff',
         font : {
             fontFamily : 'Arial',
-            fontSize : '17dp',
+            fontSize : 17,
             fontWeight : 'bold'
         }
     }));

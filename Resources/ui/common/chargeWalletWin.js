@@ -95,9 +95,9 @@ function chargeWalletWin() {
     cardTxt = Ti.UI.createTextField({
         hintText : 'رقم الكارت',
         textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        height : '40dp',
+        height : 40,
         width : '90%',
-        top : '10dp',
+        top : 10,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         backgroundImage : '/images/bg_total_price.png'

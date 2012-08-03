@@ -50,13 +50,13 @@ function cartWin() {
 
 	emptyBtn = Ti.UI.createButton({
 		title : 'تفريغ',
-		left : '75dp',
-		height : '31dp',
-		width : '70dp',
+		left : 75,
+		height : 31,
+		width : 70,
 		color : '#000000',
 		font : {
 			fontFamily : 'Arial',
-			fontSize : '14dp',
+			fontSize : 14,
 			fontWeight : 'bold'
 		},
 		backgroundImage : '/images/button_discount_enter.png'
@@ -82,12 +82,12 @@ function cartWin() {
 
 	couponBtn = Ti.UI.createButton({
 		title : 'كوبون خصم',
-		height : '31dp',
-		width : '110dp',
+		height : 31,
+		width : 110,
 		color : '#000000',
 		font : {
 			fontFamily : 'Arial',
-			fontSize : '14dp',
+			fontSize : 14,
 			fontWeight : 'bold'
 		},
 		backgroundImage : '/images/bg_total_account.png'
@@ -100,7 +100,7 @@ function cartWin() {
 
 	tableHeaderView = Ti.UI.createView({
 		layout : 'horizontal',
-		height : '44dp',
+		height : 44,
 		width : '100%'
 	});
 	tableHeaderView.add(emptyBtn);
@@ -111,7 +111,7 @@ function cartWin() {
 		separatorColor : 'transparent',
 		headerView : tableHeaderView,
 		width : '100%',
-		right : '0dp'
+		right : 0
 	});
 
 	if (Ti.Platform.getOsname() === 'android') {
@@ -130,7 +130,7 @@ function cartWin() {
 			if (rows.hasOwnProperty(i)) {
 				//console.log(rows[i]);
 				rowView = Ti.UI.createTableViewRow({
-					height : '95dp',
+					height : 95,
 					myTitle : rows[i].title,
 					data : rows[i],
 					className : 'cartRow',
@@ -140,9 +140,9 @@ function cartWin() {
 
 				img = Ti.UI.createImageView({
 					image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-					width : '85dp',
-					height : '85dp',
-					right : '10dp',
+					width : 85,
+					height : 85,
+					right : 10,
 					borderRadius : 45,
 					defaultImage : '/images/default.png'
 				});
@@ -150,14 +150,14 @@ function cartWin() {
 
 				titleLbl = Ti.UI.createLabel({
 					text : rows[i].title,
-					left : '10dp',
-					right : '110dp',
-					top : '12dp',
+					left : 10,
+					right : 110,
+					top : 12,
 					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 					color : '#ffffff',
 					font : {
 						fontFamily : 'Arial',
-						fontSize : '17dp',
+						fontSize : 17,
 						fontWeight : 'bold'
 					}
 				});
@@ -165,10 +165,10 @@ function cartWin() {
 
 				pricebackground = Titanium.UI.createImageView({
 					image : "/images/bg_price.png",
-					bottom : "11dp",
-					right : "110dp",
-					width : '170dp',
-					height : '38dp'
+					bottom : 11,
+					right : 110,
+					width : 170,
+					height : 38
 				});
 				rowView.add(pricebackground);
 
@@ -176,13 +176,13 @@ function cartWin() {
 
 					priceLbl = Ti.UI.createLabel({
 						text : rows[i].price_shown_coupon,
-						right : '120dp',
-						width : '60dp',
-						bottom : '27dp',
+						right : 120,
+						width : 60,
+						bottom : 27,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 						font : {
 							fontFamily : 'Arial',
-							fontSize : '17dp',
+							fontSize : 17,
 							fontWeight : 'bold'
 						}
 					});
@@ -191,13 +191,13 @@ function cartWin() {
 
 					priceLbl = Ti.UI.createLabel({
 						text : rows[i].price,
-						right : '120dp',
-						width : '60dp',
-						bottom : '27dp',
+						right : 120,
+						width : 60,
+						bottom : 27,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 						font : {
 							fontFamily : 'Arial',
-							fontSize : '17dp',
+							fontSize : 17,
 							fontWeight : 'bold'
 						}
 					});
@@ -206,13 +206,13 @@ function cartWin() {
 
 				priceLblCurr = Ti.UI.createLabel({
 					text : Ti.App.Properties.getString('currencyName'),
-					right : '110dp',
-					width : '80dp',
-					bottom : '16dp',
+					right : 110,
+					width : 80,
+					bottom : 16,
 					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 					font : {
 						fontFamily : 'Arial',
-						fontSize : '14dp'
+						fontSize : 14
 					}
 				});
 				rowView.add(priceLblCurr);
@@ -221,8 +221,8 @@ function cartWin() {
 				priceRowLbl = Ti.UI.createLabel({
 					text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
 					color : '#ffffff',
-					left : '10dp',
-					bottom : '10dp',
+					left : 10,
+					bottom : 10,
 					textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
 				});
 				//rowView.add(priceRowLbl);
@@ -230,10 +230,10 @@ function cartWin() {
 				quantityLbl = Ti.UI.createLabel({
 					text : rows[i].quantity,
 					textAlign : 'center',
-					width : '55dp',
-					height : '25dp',
-					right : '205dp',
-					top : '50dp',
+					width : 55,
+					height : 25,
+					right : 205,
+					top : 50,
 					backgroundImage : '/images/bg_input_quantity.png'
 				});
 				rowView.add(quantityLbl);
@@ -249,7 +249,7 @@ function cartWin() {
 			if (coupon > 0) {
 
 				var rowView2 = Ti.UI.createTableViewRow({
-					height : '35dp',
+					height : 35,
 					selectedBackgroundImage : 'transparent'
 				});
 
@@ -259,10 +259,10 @@ function cartWin() {
 					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 					font : {
 						fontFamily : 'Arial',
-						fontSize : '18dp',
+						fontSize : 18,
 						fontWeight : 'bold'
 					},
-					right : '10dp'
+					right : 10
 				});
 				rowView2.add(descountlable);
 
@@ -272,11 +272,11 @@ function cartWin() {
 					textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 					font : {
 						fontFamily : 'Arial',
-						fontSize : '17dp'
+						fontSize : 17
 					},
-					right : '100dp',
-					width : '150dp',
-					height : '27dp',
+					right : 100,
+					width : 150,
+					height : 27,
 					backgroundImage : '/images/button_discount_enter.png'
 				});
 				rowView2.add(descount);
@@ -285,7 +285,7 @@ function cartWin() {
 			}
 
 			var rowView3 = Ti.UI.createTableViewRow({
-				height : '35dp',
+				height : 35,
 				selectedBackgroundImage : 'transparent'
 			});
 
@@ -296,10 +296,10 @@ function cartWin() {
 				textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				font : {
 					fontFamily : 'Arial',
-					fontSize : '18dp',
+					fontSize : 18,
 					fontWeight : 'bold'
 				},
-				right : '10dp'
+				right : 10
 			});
 			rowView3.add(totalLable);
 
@@ -309,11 +309,11 @@ function cartWin() {
 				textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 				font : {
 					fontFamily : 'Arial',
-					fontSize : '17dp'
+					fontSize : 17
 				},
-				right : '100dp',
-				width : '150dp',
-				height : '27dp',
+				right : 100,
+				width : 150,
+				height : 27,
 				backgroundImage : '/images/bg_total_account.png'
 			});
 			rowView3.add(totalText);

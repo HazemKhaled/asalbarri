@@ -13,12 +13,12 @@ function followshippingWin(url) {
     if (Ti.Platform.getOsname() !== 'android') {
         closeBtn = Ti.UI.createButton({
             title : 'اغلاق   ',
-            height : '31dp',
-            width : '67dp',
+            height : 31,
+            width : 67,
             color : '#000000',
             font : {
                 fontFamily : 'Arial',
-                fontSize : '14dp',
+                fontSize : 14,
                 fontWeight : 'bold'
             },
             backgroundImage : '/images/button_back.png'

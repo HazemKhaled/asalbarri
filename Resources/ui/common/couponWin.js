@@ -13,12 +13,12 @@ function couponWin() {
     if (Ti.Platform.getOsname() !== 'android') {
         closeBtn = Ti.UI.createButton({
             title : 'اغلاق   ',
-            height : '31dp',
-            width : '67dp',
+            height : 31,
+            width : 67,
             color : '#000000',
             font : {
                 fontFamily : 'Arial',
-                fontSize : '14dp',
+                fontSize : 14,
                 fontWeight : 'bold'
             },
             backgroundImage : '/images/button_back.png'
@@ -92,9 +92,9 @@ function couponWin() {
     couponTxt = Ti.UI.createTextField({
         hintText : 'كود بطاقة الخصم',
         textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        height : '33dp',
+        height : 33,
         width : '90%',
-        top : '80dp',
+        top : 80,
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_DONE,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,

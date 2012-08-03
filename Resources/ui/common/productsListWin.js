@@ -33,7 +33,7 @@ function productsListWin(parent) {
             for (i in rows) {
                 if (rows.hasOwnProperty(i)) {
                     row = Ti.UI.createTableViewRow({
-                        height : '95dp',
+                        height : 95,
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'productRow',
@@ -43,9 +43,9 @@ function productsListWin(parent) {
 
                     img = Ti.UI.createImageView({
                         image : Ti.App.APIURL + 'api/pic/product/' + rows[i].id + '/100/100/1',
-                        width : '85dp',
-                        height : '85dp',
-                        right : '10dp',
+                        width : 85,
+                        height : 85,
+                        right : 10,
                         borderRadius : 45,
                         defaultImage : '/images/default.png'
                     });
@@ -53,23 +53,23 @@ function productsListWin(parent) {
 
                     arrow = Titanium.UI.createImageView({
                         image : '/images/icon_7.png',
-                        top : "6dp",
-                        left : "0dp",
-                        width : '23dp',
-                        height : '79dp'
+                        top : 6,
+                        left : 0,
+                        width : 23,
+                        height : 79
                     });
                     row.add(arrow);
 
                     titleLbl = Ti.UI.createLabel({
                         text : rows[i].title,
                         left : 0,
-                        right : '110dp',
-                        top : '10dp',
+                        right : 110,
+                        top : 10,
                         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                         color : '#ffffff',
                         font : {
                             fontFamily : 'Arial',
-                            fontSize : '17dp',
+                            fontSize : 17,
                             fontWeight : 'bold'
                         }
                     });
@@ -79,23 +79,23 @@ function productsListWin(parent) {
 
                         pricebackground = Titanium.UI.createImageView({
                             image : '/images/sss.png',
-                            bottom : '11dp',
-                            right : '110dp',
-                            width : '170dp',
-                            height : '38dp'
+                            bottom : 11,
+                            right : 110,
+                            width : 170,
+                            height : 38
                         });
                         row.add(pricebackground);
 
                         priceFitLbl = Ti.UI.createLabel({
                             text : rows[i].price_shown_coupon,
-                            right : '205dp',
-                            width : '60dp',
-                            bottom : '27dp',
+                            right : 205,
+                            width : 60,
+                            bottom : 27,
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                             color : '#ffffff',
                             font : {
                                 fontFamily : 'Arial',
-                                fontSize : '17dp',
+                                fontSize : 17,
                                 fontWeight : 'bold'
                             }
                         });
@@ -103,15 +103,15 @@ function productsListWin(parent) {
 
                         priceFitLblCurr = Ti.UI.createLabel({
                             text : Ti.App.Properties.getString('currencyName'),
-                            right : '195dp',
-                            width : '80dp',
-                            bottom : '16dp',
+                            right : 195,
+                            width : 80,
+                            bottom : 16,
                             color : '#ffffff',
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                             color : '#ffffff',
                             font : {
                                 fontFamily : 'Arial',
-                                fontSize : '14dp'
+                                fontSize : 14
                             }
                         });
                         row.add(priceFitLblCurr);
@@ -119,24 +119,24 @@ function productsListWin(parent) {
 
                         pricebackground = Titanium.UI.createImageView({
                             image : '/images/bg_price_2.png',
-                            bottom : '11dp',
-                            right : '110dp',
-                            width : '83dp',
-                            height : '38dp'
+                            bottom : 11,
+                            right : 110,
+                            width : 83,
+                            height : 38
                         });
                         row.add(pricebackground);
                     }
 
                     priceLbl = Ti.UI.createLabel({
                         text : rows[i].price,
-                        right : '120dp',
-                        width : '60dp',
-                        bottom : '27dp',
+                        right : 120,
+                        width : 60,
+                        bottom : 27,
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                         color : '#000000',
                         font : {
                             fontFamily : 'Arial',
-                            fontSize : '17dp',
+                            fontSize : 17,
                             fontWeight : 'bold'
                         }
                     });
@@ -144,14 +144,14 @@ function productsListWin(parent) {
 
                     priceLblCurr = Ti.UI.createLabel({
                         text : Ti.App.Properties.getString('currencyName'),
-                        right : '110dp',
-                        width : '80dp',
-                        bottom : '16dp',
+                        right : 110,
+                        width : 80,
+                        bottom : 16,
                         textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                         color : '#000000',
                         font : {
                             fontFamily : 'Arial',
-                            fontSize : '14dp'
+                            fontSize : 14
                         }
                     });
                     row.add(priceLblCurr);

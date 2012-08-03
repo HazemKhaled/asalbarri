@@ -18,10 +18,10 @@ function loginWin() {
     userField = Ti.UI.createTextField({
         hintText : 'اسم المستخدم',
         textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        height : '33dp',
+        height : 33,
         width : '90%',
         left : '5%',
-        top : '25dp',
+        top : 25,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         backgroundImage : '/images/bg_total_price.png'
@@ -39,10 +39,10 @@ function loginWin() {
     passField = Ti.UI.createTextField({
         hintText : 'كلمة المرور',
         textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
-        height : '33dp',
+        height : 33,
         width : '90%',
         left : '5%',
-        top : '65dp',
+        top : 65,
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
@@ -199,7 +199,7 @@ function loginWin() {
     });
     registerBtn = auth.registerBtn(Ti.UI.createButton({
         title : 'تسجيل جديد',
-        height : '33dp',
+        height : 33,
         width : '90%',
         top : (115 + androidOffset) + 'dp',
         backgroundImage : '/images/button_ok.png',
@@ -209,7 +209,7 @@ function loginWin() {
 
     forgetBtn = auth.forgetBtn(Ti.UI.createButton({
         title : 'استرجع كلمة المرور',
-        height : '33dp',
+        height : 33,
         width : '90%',
         top : (155 + androidOffset) + 'dp',
         backgroundImage : '/images/button_cancel.png',

@@ -33,8 +33,8 @@ function categoryWin(parent) {
 		};
 	} else {
 		aboutBtn = Ti.UI.createButton({
-			height : '31dp',
-			width : '31dp',
+			height : 31,
+			width : 31,
 			color : '#000000',
 			backgroundImage : '/images/icon_2.png'
 		});
@@ -47,8 +47,8 @@ function categoryWin(parent) {
 		}
 		//openSettingWindow
 		settingBtn = Ti.UI.createButton({
-			height : '31dp',
-			width : '31dp',
+			height : 31,
+			width : 31,
 			color : '#000000',
 			backgroundImage : '/images/icon_1.png'
 		});
@@ -152,7 +152,7 @@ function categoryWin(parent) {
 			for (i in rows ) {
 				if (rows.hasOwnProperty(i)) {
 					row = Ti.UI.createTableViewRow({
-						height : '95dp',
+						height : 95,
 						myTitle : rows[i].title,
 						data : rows[i],
 						className : 'categoryRow',
@@ -163,16 +163,16 @@ function categoryWin(parent) {
 					arrow = Titanium.UI.createImageView({
 						image : '/images/icon_7.png',
 						left : 0,
-						width : '23dp',
-						height : '79dp'
+						width : 23,
+						height : 79
 					});
 					row.add(arrow);
 
 					img = Ti.UI.createImageView({
 						image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-						width : '85dp',
-						height : '85dp',
-						right : '10dp',
+						width : 85,
+						height : 85,
+						right : 10,
 						borderRadius : 45,
 						defaultImage : '/images/default.png'
 					});
@@ -180,14 +180,14 @@ function categoryWin(parent) {
 
 					titleLbl = Ti.UI.createLabel({
 						text : rows[i].title,
-						left : '10dp',
-						right : '110dp',
-						top : '23dp',
+						left : 10,
+						right : 110,
+						top : 23,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Arial',
-							fontSize : '17dp',
+							fontSize : 17,
 							fontWeight : 'bold'
 						}
 					});
@@ -196,15 +196,15 @@ function categoryWin(parent) {
 					if (rows[i].products_count > 0) {
 						titleLbl = Ti.UI.createLabel({
 							text : rows[i].products_count,
-							bottom : '10dp',
-							right : '110dp',
+							bottom : 10,
+							right : 110,
 							color : 'red',
-							height : '23dp',
-							top : '50dp',
-							width : '43dp',
+							height : 23,
+							top : 50,
+							width : 43,
 							backgroundImage : '/images/bg_product_quantity.png',
 							font : {
-								fontSize : '16dp'
+								fontSize : 16
 							},
 							textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
 						});
@@ -212,13 +212,13 @@ function categoryWin(parent) {
 
 						titleLbl2 = Ti.UI.createLabel({
 							text : ' منتج',
-							left : '10dp',
-							bottom : '10dp',
-							right : '155dp',
+							left : 10,
+							bottom : 10,
+							right : 155,
 							color : '#ffffff',
-							top : '30dp',
+							top : 30,
 							font : {
-								fontSize : '16dp'
+								fontSize : 16
 							},
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT
 						});

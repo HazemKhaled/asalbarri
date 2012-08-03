@@ -14,8 +14,8 @@ function walletWin() {
         loadinLabel = Ti.UI.createLabel({
             text : 'جاري التحميل ....',
             //left : 0,
-            //right : '10dp',
-            //top : '10dp',
+            //right : 10,
+            //top : 10,
             color : '#000000',
             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
         });
@@ -47,8 +47,8 @@ function walletWin() {
 
         chargeBtn = Ti.UI.createButton({
             title : 'شحن المحفظة',
-            top : '200dp',
-            height : '33dp',
+            top : 200,
+            height : 33,
             width : '90%',
             color : '#ffffff',
             backgroundImage : '/images/button_ok.png'
@@ -62,8 +62,8 @@ function walletWin() {
 
         img = Ti.UI.createImageView({
             image : '/images/wallet_balance.png',
-            width : '169dp',
-            height : '148dp',
+            width : 169,
+            height : 148,
             top : '40px'
         });
         self.add(img);
@@ -71,14 +71,14 @@ function walletWin() {
         balanceTitle = Ti.UI.createLabel({
             text : 'الرصيد',
             //left : 0,
-            //right : '150dp',
-            top : '60dp',
+            //right : 150,
+            top : 60,
             color : '#000000',
             visible : false,
             textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
             font : {
                 fontFamily : 'Arial',
-                fontSize : '16dp',
+                fontSize : 16,
                 fontWeight : 'bold'
             }
         });
@@ -87,14 +87,14 @@ function walletWin() {
         balanceLbl = Ti.UI.createLabel({
             text : '',
             //left : 0,
-            //right : '155dp',
-            top : '85dp',
+            //right : 155,
+            top : 85,
             visible : false,
             textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
             color : 'red',
             font : {
                 fontFamily : 'Arial',
-                fontSize : '20dp',
+                fontSize : 20,
                 fontWeight : 'bold'
             }
         });
@@ -104,14 +104,14 @@ function walletWin() {
         balancCurr = Ti.UI.createLabel({
             text : Ti.App.Properties.getString('currencyName'),
             //left : 0,
-            //right : '127dp',
-            top : '110dp',
+            //right : 127,
+            top : 110,
             color : '#000000',
             visible : false,
             textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
             font : {
                 fontFamily : 'Arial',
-                fontSize : '15dp',
+                fontSize : 15,
                 fontWeight : 'bold'
             }
         });
@@ -128,12 +128,12 @@ function walletWin() {
         msgLabel = Ti.UI.createLabel({
             text : 'يرجى تسجيل الدخول',
             width : '100%',
-            top : '40dp',
+            top : 40,
             color : '#ffffff',
             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
             font : {
                 fontFamily : 'Arial',
-                fontSize : '17dp',
+                fontSize : 17,
                 fontWeight : 'bold'
             }
         });
@@ -141,8 +141,8 @@ function walletWin() {
 
         loginBtn = auth.loginBtn(Ti.UI.createButton({
             title : 'تسجيل دخول',
-            top : '100dp',
-            height : '33dp',
+            top : 100,
+            height : 33,
             width : '90%',
             backgroundImage : '/images/button_ok.png',
             color : '#ffffff'

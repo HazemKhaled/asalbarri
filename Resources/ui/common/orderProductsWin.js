@@ -31,7 +31,7 @@ function orderProductsWin(parent) {
 			for (i in rows) {
 				if (rows.hasOwnProperty(i)) {
 					row = Ti.UI.createTableViewRow({
-						height : '95dp',
+						height : 95,
 						myTitle : rows[i].title,
 						data : rows[i],
 						className : 'orderRow',
@@ -41,9 +41,9 @@ function orderProductsWin(parent) {
 
 					img = Ti.UI.createImageView({
 						image : Ti.App.APIURL + 'api/pic/cat/' + rows[i].id + '/100/100/1',
-						width : '85dp',
-						height : '85dp',
-						right : '10dp',
+						width : 85,
+						height : 85,
+						right : 10,
 						borderRadius : 45,
 						defaultImage : '/images/default.png'
 					});
@@ -52,14 +52,14 @@ function orderProductsWin(parent) {
 					titleLbl = Ti.UI.createLabel({
 						text : rows[i].title,
 						left : 0,
-						right : '110dp',
-						top : '10dp',
+						right : 110,
+						top : 10,
 						color : '#000000',
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Arial',
-							fontSize : '17dp',
+							fontSize : 17,
 							fontWeight : 'bold'
 						}
 					});
@@ -68,13 +68,13 @@ function orderProductsWin(parent) {
 					purchasesQtyLbl = Ti.UI.createLabel({
 						text : 'الكمية : ',
 						left : 0,
-						right : '110dp',
-						top : '35dp',
+						right : 110,
+						top : 35,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Tahoma',
-							fontSize : '15dp'
+							fontSize : 15
 						}
 					});
 					row.add(purchasesQtyLbl);
@@ -82,13 +82,13 @@ function orderProductsWin(parent) {
 					purchasesQty = Ti.UI.createLabel({
 						text : rows[i].purchases_quantity,
 						left : 0,
-						right : '155dp',
-						top : '35dp',
+						right : 155,
+						top : 35,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Tahoma',
-							fontSize : '15dp'
+							fontSize : 15
 						}
 					});
 					row.add(purchasesQty);
@@ -96,13 +96,13 @@ function orderProductsWin(parent) {
 					priceLbl = Ti.UI.createLabel({
 						text : 'سعر الوحدة : ',
 						left : 0,
-						right : '110dp',
-						top : '60dp',
+						right : 110,
+						top : 60,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Tahoma',
-							fontSize : '15dp'
+							fontSize : 15
 						}
 					});
 					row.add(priceLbl);
@@ -110,13 +110,13 @@ function orderProductsWin(parent) {
 					priceLbl2 = Ti.UI.createLabel({
 						text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName'),
 						left : 0,
-						right : '190dp',
-						top : '60dp',
+						right : 190,
+						top : 60,
 						textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 						color : '#ffffff',
 						font : {
 							fontFamily : 'Tahoma',
-							fontSize : '15dp'
+							fontSize : 15
 						}
 					});
 					row.add(priceLbl2);
@@ -125,7 +125,7 @@ function orderProductsWin(parent) {
 				}
 			}
 			row2 = Ti.UI.createTableViewRow({
-				height : '95dp',
+				height : 95,
 				backgroundImage : '/images/TableViewRowBG.png',
 				selectedBackgroundImage : 'transparent'
 			});
@@ -133,14 +133,14 @@ function orderProductsWin(parent) {
 			if (parent.url) {
 				followBtn = Ti.UI.createButton({
 					title : 'متابعة الشحن',
-					height : '31dp',
-					width : '110dp',
+					height : 31,
+					width : 110,
 					color : '#000000',
 					top : '10dep',
-					right : '10dp',
+					right : 10,
 					font : {
 						fontFamily : 'Arial',
-						fontSize : '14dp',
+						fontSize : 14,
 						fontWeight : 'bold'
 					},
 					backgroundImage : '/images/bg_total_account.png'

@@ -14,14 +14,14 @@ function forgetpasswordWin() {
     });
 
     emailField = Ti.UI.createTextField({
-        top : '25dp',
+        top : 25,
         hintText : 'البريد الخاص بك',
         textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        height : '33dp',
+        height : 33,
         width : '90%',
         backgroundImage : '/images/bg_total_price.png'
     });

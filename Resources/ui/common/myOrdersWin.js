@@ -34,7 +34,7 @@ function myOrdersWin() {
 				for (i in rows ) {
 					if (rows.hasOwnProperty(i)) {
 						row = Ti.UI.createTableViewRow({
-							height : '95dp',
+							height : 95,
 							myTitle : rows[i].title,
 							data : rows[i],
 							className : 'myOrderRow',
@@ -44,22 +44,22 @@ function myOrdersWin() {
 
 						arrow = Titanium.UI.createImageView({
 							image : '/images/icon_7.png',
-							top : "6dp",
-							left : "0dp",
-							width : '23dp',
-							height : '79dp'
+							top : 6,
+							left : 0,
+							width : 23,
+							height : 79
 						});
 						row.add(arrow);
 
 						totaltitleLbl = Ti.UI.createLabel({
 							text : 'الاجمالي : ',
-							right : '10dp',
-							top : '10dp',
+							right : 10,
+							top : 10,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Arial',
-								fontSize : '17dp',
+								fontSize : 17,
 								fontWeight : 'bold'
 							}
 						});
@@ -67,13 +67,13 @@ function myOrdersWin() {
 
 						priceLbl = Ti.UI.createLabel({
 							text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
-							right : '85dp',
-							top : '10dp',
+							right : 85,
+							top : 10,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Arial',
-								fontSize : '17dp',
+								fontSize : 17,
 								fontWeight : 'bold'
 							}
 						});
@@ -81,23 +81,23 @@ function myOrdersWin() {
 
 						datebackground = Titanium.UI.createImageView({
 							image : '/images/bg_time.png',
-							top : "38dp",
-							right : "0dp",
-							width : "239dp",
-							height : "22dp"
+							top : 38,
+							right : 0,
+							width : 239,
+							height : 22
 						});
 						row.add(datebackground);
 
 						dateTitleLbl = Ti.UI.createLabel({
 							text : 'التاريخ : ',
 							left : 0,
-							right : '10dp',
-							top : '38dp',
+							right : 10,
+							top : 38,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Tahoma',
-								fontSize : '15dp'
+								fontSize : 15
 							}
 						});
 						row.add(dateTitleLbl);
@@ -105,26 +105,26 @@ function myOrdersWin() {
 						dateLbl = Ti.UI.createLabel({
 							text : rows[i].date,
 							left : 0,
-							right : '60dp',
-							top : '38dp',
+							right : 60,
+							top : 38,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Tahoma',
-								fontSize : '15dp'
+								fontSize : 15
 							}
 						});
 						row.add(dateLbl);
 
 						statusTitleLbl = Ti.UI.createLabel({
 							text : 'حالة الطلب : ',
-							right : '10dp',
-							top : '63dp',
+							right : 10,
+							top : 63,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Tahoma',
-								fontSize : '15dp'
+								fontSize : 15
 							}
 						});
 						row.add(statusTitleLbl);
@@ -144,13 +144,13 @@ function myOrdersWin() {
 
 						statusLbl = Ti.UI.createLabel({
 							text : statustxt,
-							right : '80dp',
-							top : '63dp',
+							right : 80,
+							top : 63,
 							textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 							color : '#ffffff',
 							font : {
 								fontFamily : 'Tahoma',
-								fontSize : '15dp'
+								fontSize : 15
 							}
 						});
 						row.add(statusLbl);
@@ -229,12 +229,12 @@ function myOrdersWin() {
 		msgLabel = Ti.UI.createLabel({
 			text : 'يرجى تسجيل الدخول',
 			width : '100%',
-			top : '40dp',
+			top : 40,
 			color : '#ffffff',
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 			font : {
 				fontFamily : 'Arial',
-				fontSize : '17dp',
+				fontSize : 17,
 				fontWeight : 'bold'
 			}
 		});
@@ -242,8 +242,8 @@ function myOrdersWin() {
 
 		loginBtn = auth.loginBtn(Ti.UI.createButton({
 			title : 'تسجيل دخول',
-			top : '40dp',
-			height : '33dp',
+			top : 40,
+			height : 33,
 			width : '90%',
 			left : '5%',
 			backgroundImage : '/images/button_ok.png',
