@@ -32,7 +32,7 @@ function towcoWin(orderID, totalPrice) {
     }
 
     webView = Ti.UI.createWebView({
-        url : 'http://www.asalbarri.com/asalbarri/asal/api/tocheckout/' + orderID + '/' + totalPrice
+        url : 'http://www.asalbarri.com/asalbarri/asal/api/tocheckout/' + orderID + '/' + parceInt(totalPrice)
     });
 
     self.add(webView);
