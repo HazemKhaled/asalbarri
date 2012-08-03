@@ -60,9 +60,9 @@ function loginWin() {
     if (Ti.Platform.getOsname() === 'android') {
         androidOffset = 44;
 
-        submitBtn.height = '33dp';
+        submitBtn.height = 33;
         submitBtn.width = '90%';
-        submitBtn.top = '115dp';
+        submitBtn.top = 115;
         submitBtn.backgroundImage = '/images/button_ok.png';
         submitBtn.color = '#ffffff';
 
@@ -201,7 +201,7 @@ function loginWin() {
         title : 'تسجيل جديد',
         height : 33,
         width : '90%',
-        top : (115 + androidOffset) + 'dp',
+        top : 115 + androidOffset,
         backgroundImage : '/images/button_ok.png',
         color : '#ffffff'
     }));
@@ -211,7 +211,7 @@ function loginWin() {
         title : 'استرجع كلمة المرور',
         height : 33,
         width : '90%',
-        top : (155 + androidOffset) + 'dp',
+        top : 155 + androidOffset,
         backgroundImage : '/images/button_cancel.png',
         color : '#ffffff'
     }));

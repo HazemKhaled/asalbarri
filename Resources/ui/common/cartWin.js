@@ -37,9 +37,9 @@ function cartWin() {
 
 	if (Ti.Platform.getOsname() === 'android') {
 
-		orderBtn.height = '33dp';
+		orderBtn.height = 33;
 		orderBtn.width = '90%';
-		orderBtn.bottom = '4dp';
+		orderBtn.bottom = 4;
 		orderBtn.backgroundImage = '/images/button_ok.png';
 		orderBtn.color = '#ffffff';
 
@@ -115,7 +115,7 @@ function cartWin() {
 	});
 
 	if (Ti.Platform.getOsname() === 'android') {
-		productTable.bottom = '44dp';
+		productTable.bottom = 44;
 	}
 
 	self.add(productTable);

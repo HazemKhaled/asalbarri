@@ -211,9 +211,9 @@ function openRegisterWindow() {
 
     if (Ti.Platform.getOsname() === 'android') {
 
-        submitBtn.height = '33dp';
+        submitBtn.height = 33;
         submitBtn.width = '90%';
-        submitBtn.top = '185dp';
+        submitBtn.top = 185;
         submitBtn.backgroundImage = '/images/button_ok.png';
         submitBtn.color = '#ffffff';
 

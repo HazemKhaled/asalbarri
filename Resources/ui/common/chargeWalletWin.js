@@ -81,8 +81,8 @@ function chargeWalletWin() {
     });
 
     if (Ti.Platform.getOsname() === 'android') {
-        submitBtn.top = '60dp';
-        submitBtn.height = '33dp';
+        submitBtn.top = 60;
+        submitBtn.height = 33;
         submitBtn.width = '90%';
         submitBtn.color = '#ffffff';
         submitBtn.backgroundImage = '/images/button_ok.png';

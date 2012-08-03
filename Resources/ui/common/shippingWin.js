@@ -100,9 +100,9 @@ function shippingWin() {
 
     if (Ti.Platform.getOsname() === 'android') {
 
-        nextBtn.height = '33dp';
+        nextBtn.height = 33;
         nextBtn.width = '90%';
-        nextBtn.bottom = '4dp';
+        nextBtn.bottom = 4;
         nextBtn.backgroundImage = '/images/button_ok.png';
         nextBtn.color = '#ffffff';
 

@@ -111,9 +111,9 @@ function forgetpasswordWin() {
 
     if (Ti.Platform.getOsname() === 'android') {
 
-        submitBtn.height = '33dp';
+        submitBtn.height = 33;
         submitBtn.width = '90%';
-        submitBtn.top = '65dp';
+        submitBtn.top = 65;
         submitBtn.backgroundImage = '/images/button_ok.png';
         submitBtn.color = '#ffffff';
 

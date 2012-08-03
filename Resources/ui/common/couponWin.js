@@ -117,8 +117,8 @@ function couponWin() {
     if (Ti.Platform.getOsname() !== 'android') {
         self.setRightNavButton(submitBtn);
     } else {
-        submitBtn.top = '120dp';
-        submitBtn.height = '33dp';
+        submitBtn.top = 120;
+        submitBtn.height = 33;
         submitBtn.width = '90%';
         submitBtn.color = '#ffffff';
         submitBtn.backgroundImage = '/images/button_ok.png';
