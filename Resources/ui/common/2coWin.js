@@ -37,7 +37,7 @@ function towcoWin(orderID, totalPrice) {
 
     self.add(webView);
     //alert(webView.getUrl());
-    setInterval(function() {
+    function closeLoop() {
         if (webView.getUrl().indexOf('order_approve') !== -1) {
 
             if (Ti.Platform.getOsname() !== 'android') {
@@ -54,11 +54,13 @@ function towcoWin(orderID, totalPrice) {
             Ti.App.fireEvent('cartEmpty');
             Ti.App.Properties.removeProperty('coupon');
             Ti.App.Properties.removeProperty('couponCode');
-            self.close();
+            clearInterval();
+            self.close(webView);
         } else {
             Ti.API.info(webView.getUrl().indexOf('order_approve'));
         }
-    }, 1000);
+    }
+    setInterval(closeLoop, 1000);
 
     return self;
 }
