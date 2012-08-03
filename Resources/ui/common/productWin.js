@@ -61,7 +61,7 @@ function productWin(product) {
 	self.add(quantityField);
 
 	quantityMinusBtn = Ti.UI.createButton({
-		title : '-',
+		title : '',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		width : '39dp',
 		height : '24dp',
@@ -72,7 +72,7 @@ function productWin(product) {
 	self.add(quantityMinusBtn);
 
 	quantityPlusBtn = Ti.UI.createButton({
-		title : '+',
+		title : '',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		width : '39dp',
 		height : '24dp',
