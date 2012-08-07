@@ -79,12 +79,12 @@ function forgetpasswordWin() {
 
             Ti.App.fireEvent('hideLoading');
 
-            alertWindow.addEventListener('click', function(ev) {
+            alertMsg.addEventListener('click', function(ev) {
                 if (ev.index === 0) {
                     Ti.App.fireEvent('closeForgetpasswordWindow');
                 }
             });
-            alertWindow.show();
+            alertMsg.show();
         };
 
         xhr.onerror = function(e) {
