@@ -185,6 +185,14 @@ function productWin(product) {
         });
 
         Ti.App.fireEvent('closeProductWindow');
+
+        if (Ti.Platform.getOsname() === 'android') {
+            Ti.UI.createAlertDialog({
+                title : 'تم الاضافة لسلة التسوق',
+                message : 'عد للشاشة الرئيسية في اي وقت وانتقل لسلة التسوق لإنهاء عملية الشراء.',
+                buttonNames : ['موافق']
+            }).show();
+        }
     });
 
     mainScroll.add(addToCartBtn);
