@@ -12,12 +12,24 @@
 
 //bootstrap and check dependencies
 if (Ti.version < 1.8) {
-	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
+    alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
 }
 
 Ti.App.APIURL = 'http://www.asalbarri.com/asalbarri/asal/';
 //Ti.App.APIURL = 'http://192.168.1.16/hgicms_1.3.0/asal/';
 //Ti.App.APIURL = 'http://169.254.175.156/hgicms_1.3.0/asal/';
+
+Ti.App.autoAlignHintext = function () {
+    if (Ti.Platform.getOsname() !== 'android') {
+        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
+    }
+
+    if (Ti.Platform.Android.API_LEVEL >= 14) {
+        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
+    }
+
+    return Ti.UI.TEXT_ALIGNMENT_LEFT;
+}
 
 // This is a single context application with mutliple windows in a stack
 //(function() {
@@ -33,13 +45,14 @@ Ti.include('/lib/events.js');
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 var tabGroup = new ApplicationTabGroup();
 
-setTimeout(function (){
+setTimeout(function() {
     tabGroup.open()
 }, 500);
 
 if (Ti.App.Properties.hasProperty('currency') === false) {
-	Ti.App.Properties.setInt('currency', 0);
-	Ti.App.Properties.setString('currencyName', 'ريال سعودي');
+    Ti.App.Properties.setInt('currency', 0);
+    Ti.App.Properties.setString('currencyName', 'ريال سعودي');
 }
+
 //Ti.UI.currentTab
 //})();
