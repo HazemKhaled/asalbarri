@@ -28,7 +28,15 @@ function productsListWin(parent) {
         xhr.onload = function() {
             var rows, i, row, img, titleLbl, purchasesQtyLbl, priceFitLbl, priceLbl, arrow, pricebackground, priceLblCurr, priceFitLbl;
 
-            rows = JSON.parse(this.responseText);
+            try {
+                rows = JSON.parse(this.responseText);
+            } catch (e) {
+
+                tableView.fireEvent('reloadData', {
+                    rows : []
+                });
+                return false;
+            }
 
             for (i in rows) {
                 if (rows.hasOwnProperty(i)) {

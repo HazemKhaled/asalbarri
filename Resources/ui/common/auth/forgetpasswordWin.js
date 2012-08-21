@@ -16,14 +16,17 @@ function forgetpasswordWin() {
     emailField = Ti.UI.createTextField({
         top : 25,
         hintText : 'البريد الخاص بك',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
 
     // align left if empty
@@ -54,9 +57,21 @@ function forgetpasswordWin() {
 
         xhr.onload = function() {
 
-            var request = JSON.parse(this.responseText), alertMsg;
-
             Ti.App.fireEvent('hideLoading');
+
+            var request, alertMsg;
+            try {
+                request = JSON.parse(this.responseText);
+            } catch (e) {
+                Ti.UI.createAlertDialog({
+                    title : 'خطآ',
+                    message : request.errors.login,
+                    cancel : 0,
+                    buttonNames : ['موافق']
+                }).show();
+
+                return false;
+            }
 
             if (request.errors.login) {
 
@@ -67,7 +82,6 @@ function forgetpasswordWin() {
                     buttonNames : ['موافق']
                 }).show();
 
-                Ti.App.fireEvent('hideLoading');
                 return false;
             }
 
@@ -76,8 +90,6 @@ function forgetpasswordWin() {
                 cancel : 0,
                 buttonNames : ['موافق']
             });
-
-            Ti.App.fireEvent('hideLoading');
 
             alertMsg.addEventListener('click', function(ev) {
                 if (ev.index === 0) {

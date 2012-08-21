@@ -41,16 +41,27 @@ function chargeWalletWin() {
 
             var row, dialouge;
 
-            row = JSON.parse(this.responseText);
+            try {
+                row = JSON.parse(this.responseText);
+            } catch (e) {
+
+                Ti.UI.createAlertDialog({
+                    title : 'خطأ',
+                    message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                    cancel : 0,
+                    buttonNames : ['اغلاق']
+                }).show();
+                return false;
+            }
+
             if (row.done === false) {
 
-                dialouge = Ti.UI.createAlertDialog({
+                Ti.UI.createAlertDialog({
                     title : 'خطأ',
                     message : 'خطأ في الرقم المدخل .. يرجي التأكد من إدخال رقم الكارت بشكل صحيح ...',
                     cancel : 0,
                     buttonNames : ['اغلاق']
-                });
-                dialouge.show();
+                }).show();
             } else {
 
                 Ti.App.balanceLbl.text = row.balance;
@@ -94,13 +105,16 @@ function chargeWalletWin() {
 
     cardTxt = Ti.UI.createTextField({
         hintText : 'رقم الكارت',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         height : 40,
         width : '90%',
         top : 10,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
 
     self.addEventListener('open', function() {

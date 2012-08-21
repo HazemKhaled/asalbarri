@@ -222,7 +222,18 @@ Ti.App.addEventListener('orderRequest', function(e) {
     });
 
     xhr.setOnload(function() {
-        var results = JSON.parse(this.responseText), TowcoWinModule;
+        var results, TowcoWinModule;
+        try {
+            results = JSON.parse(this.responseText);
+        } catch (e) {
+            Ti.App.fireEvent('hideLoading');
+
+            Ti.UI.createAlertDialog({
+                title : 'خطأ',
+                message : 'خطا في الاتصال، تاكد من اتصال الانترنت لديك وحاول مرة اخرى',
+                buttonNames : ['موافق']
+            }).show();
+        }
 
         //alert(results);
         Ti.App.fireEvent('hideLoading');

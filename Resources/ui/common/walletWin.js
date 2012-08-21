@@ -33,8 +33,17 @@ function walletWin() {
             };
 
             xhr.onload = function() {
+                try {
+                    var row = JSON.parse(this.responseText);
+                } catch(e) {
+                    Ti.UI.createAlertDialog({
+                        message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                        cancel : 0,
+                        buttonNames : ['موافق']
+                    }).show();
 
-                var row = JSON.parse(this.responseText);
+                    return false;
+                }
                 balanceLbl.setText(row.balance);
                 loadinLabel.setVisible(false);
                 balanceTitle.setVisible(true);

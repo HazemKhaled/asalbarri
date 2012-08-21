@@ -63,11 +63,20 @@ function couponWin() {
 
         xhr.setOnload(function() {
 
-            var row;
-
             Ti.App.fireEvent('hideLoading');
 
-            row = JSON.parse(this.responseText);
+            try {
+                var row = JSON.parse(this.responseText);
+            } catch (e) {
+
+                Ti.UI.createAlertDialog({
+                    title : 'خطأ',
+                    message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                    cancel : 0,
+                    buttonNames : ['اغلاق']
+                }).show();
+                return false;
+            }
 
             if (row.length === 0) {
 
@@ -91,14 +100,17 @@ function couponWin() {
 
     couponTxt = Ti.UI.createTextField({
         hintText : 'كود بطاقة الخصم',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         height : 33,
         width : '90%',
         top : 80,
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_DONE,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
 
     self.addEventListener('open', function() {

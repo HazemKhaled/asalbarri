@@ -14,12 +14,15 @@ function openRegisterWindow() {
     mobileField = Ti.UI.createTextField({
         top : 25,
         hintText : 'اسم المستخدم',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
 
     self.addEventListener('open', function() {
@@ -35,14 +38,17 @@ function openRegisterWindow() {
     emailField = Ti.UI.createTextField({
         top : 65,
         hintText : 'البريد الخاص بك',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         keyboardType : Ti.UI.KEYBOARD_EMAIL,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
     emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
@@ -57,10 +63,13 @@ function openRegisterWindow() {
         backgroundImage : '/images/bg_total_price.png',
         top : 105,
         hintText : 'كلمة المرور',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        font : {
+            fontSize : '13dp'
+        }
     });
     passField.addEventListener('change', Ti.App.autoTextAlign);
     passField.addEventListener('return', function() {
@@ -75,10 +84,13 @@ function openRegisterWindow() {
         backgroundImage : '/images/bg_total_price.png',
         top : 145,
         hintText : 'تآكيد كلمة المرور',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_JOIN,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED
+        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        font : {
+            fontSize : '13dp'
+        }
     });
     confirmpassField.addEventListener('change', Ti.App.autoTextAlign);
     confirmpassField.addEventListener('return', function() {
@@ -154,6 +166,8 @@ function openRegisterWindow() {
         };
         xhr.onload = function() {
 
+            Ti.App.fireEvent('hideLoading');
+
             var request, msgBox;
 
             try {
@@ -165,7 +179,6 @@ function openRegisterWindow() {
                     cancel : 0,
                     buttonNames : ['موافق']
                 }).show();
-                Ti.App.fireEvent('hideLoading');
 
                 return false;
             }
@@ -184,13 +197,12 @@ function openRegisterWindow() {
                         Ti.App.fireEvent('openForgetpasswordWindow');
                     }
                 });
-                Ti.App.fireEvent('hideLoading');
 
                 return false;
             }
 
             Ti.UI.createAlertDialog({
-                title : request.msg ,
+                title : request.msg,
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();

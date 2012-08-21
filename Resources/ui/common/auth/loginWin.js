@@ -17,14 +17,17 @@ function loginWin() {
 
     userField = Ti.UI.createTextField({
         hintText : 'اسم المستخدم',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         height : 33,
         width : '90%',
         left : '5%',
         top : 25,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
 
     userField.addEventListener('return', function() {
@@ -38,7 +41,7 @@ function loginWin() {
 
     passField = Ti.UI.createTextField({
         hintText : 'كلمة المرور',
-        textAlign : Ti.Platform.getOsname() === 'android' || Ti.UI.TEXT_ALIGNMENT_RIGHT,
+        textAlign : Ti.App.autoAlignHintext(),
         height : 33,
         width : '90%',
         left : '5%',
@@ -46,7 +49,10 @@ function loginWin() {
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png'
+        backgroundImage : '/images/bg_total_price.png',
+        font : {
+            fontSize : '13dp'
+        }
     });
     passField.addEventListener('return', function() {
         submitBtn.fireEvent('click');
@@ -118,7 +124,7 @@ function loginWin() {
                 response = JSON.parse(this.responseText);
             } catch(e) {
                 Ti.UI.createAlertDialog({
-                    message : 'خطآ في الآتصال وجاري آخبار الآداره',
+                    message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
                     cancel : 0,
                     buttonNames : ['موافق']
                 }).show();
