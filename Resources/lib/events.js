@@ -307,14 +307,22 @@ Ti.App.cartQuantityCounter = function(cart) {
 Ti.App.autoTextAlign = function(e) {
 
     if (e.value.length === 0) {
-        if (Ti.Platform.getOsname() === 'android') {
-            e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_LEFT);
-        } else {
-            e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_RIGHT);
-        }
+        e.source.setTextAlign(Ti.App.autoAlignHintext());
     } else {
         e.source.setTextAlign(Ti.UI.TEXT_ALIGNMENT_LEFT);
     }
+};
+
+Ti.App.autoAlignHintext = function() {
+    if (Ti.Platform.getOsname() !== 'android') {
+        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
+    }
+
+    if (Ti.Platform.Android.API_LEVEL >= 14) {
+        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
+    }
+
+    return Ti.UI.TEXT_ALIGNMENT_LEFT;
 };
 
 Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {

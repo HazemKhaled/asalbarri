@@ -19,18 +19,6 @@ Ti.App.APIURL = 'http://www.asalbarri.com/asalbarri/asal/';
 //Ti.App.APIURL = 'http://192.168.1.16/hgicms_1.3.0/asal/';
 //Ti.App.APIURL = 'http://169.254.175.156/hgicms_1.3.0/asal/';
 
-Ti.App.autoAlignHintext = function () {
-    if (Ti.Platform.getOsname() !== 'android') {
-        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
-    }
-
-    if (Ti.Platform.Android.API_LEVEL >= 14) {
-        return Ti.UI.TEXT_ALIGNMENT_RIGHT;
-    }
-
-    return Ti.UI.TEXT_ALIGNMENT_LEFT;
-}
-
 // This is a single context application with mutliple windows in a stack
 //(function() {
 //determine platform and form factor and render approproate components
