@@ -166,7 +166,7 @@ function categoryWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'categoryRow',
-                        backgroundImage : '/images/TableViewRowBG.png',
+                        backgroundImage : '/images/TableViewRowBG.jpg',
                         selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                     });
 

@@ -43,7 +43,7 @@ function orderProductsWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'orderRow',
-                        backgroundImage : '/images/TableViewRowBG.png',
+                        backgroundImage : '/images/TableViewRowBG.jpg',
                         selectedBackgroundImage : 'transparent'
                     });
 
@@ -134,7 +134,7 @@ function orderProductsWin(parent) {
             }
             row2 = Ti.UI.createTableViewRow({
                 height : 95,
-                backgroundImage : '/images/TableViewRowBG.png',
+                backgroundImage : '/images/TableViewRowBG.jpg',
                 selectedBackgroundImage : 'transparent'
             });
 

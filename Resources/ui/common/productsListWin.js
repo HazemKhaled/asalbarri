@@ -45,7 +45,7 @@ function productsListWin(parent) {
                         myTitle : rows[i].title,
                         data : rows[i],
                         className : 'productRow',
-                        backgroundImage : '/images/TableViewRowBG.png',
+                        backgroundImage : '/images/TableViewRowBG.jpg',
                         selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                     });
 
@@ -176,8 +176,11 @@ function productsListWin(parent) {
         xhr.send();
     }
 
+    var searchBar = Ti.UI.createSearchBar();
+
     tableView = Ti.UI.createTableView({
         filterAttribute : 'myTitle',
+        search : searchBar,
         backgroundColor : 'transparent',
         separatorColor : 'transparent'
     });
@@ -193,6 +196,7 @@ function productsListWin(parent) {
             title : 'مشكلة تحميل، حاول بعد قليل.',
             color : '#ffffff'
         }]);
+        searchBar.blur();
     });
     filterData();
 
@@ -207,6 +211,7 @@ function productsListWin(parent) {
     });
 
     self.add(tableView);
+
     return self;
 }
 

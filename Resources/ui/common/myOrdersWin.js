@@ -45,7 +45,7 @@ function myOrdersWin() {
                             myTitle : rows[i].title,
                             data : rows[i],
                             className : 'myOrderRow',
-                            backgroundImage : '/images/TableViewRowBG.png',
+                            backgroundImage : '/images/TableViewRowBG.jpg',
                             selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                         });
 
