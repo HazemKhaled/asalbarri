@@ -22,7 +22,7 @@
 		<activity android:configChanges="keyboardHidden|orientation" android:name="ti.modules.titanium.ui.TiTabActivity"/>
 		<activity android:name="ti.modules.titanium.ui.android.TiPreferencesActivity"/>
 
-		<service android:exported="false" android:name="org.appcelerator.titanium.analytics.TiAnalyticsService"/>
+		<service android:exported="true" android:name="org.appcelerator.titanium.analytics.TiAnalyticsService"/>
 		
 
 	</application>
