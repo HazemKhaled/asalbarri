@@ -31,7 +31,11 @@ Ti.App.isTablet = osname === 'ipad' || (osname === 'android' && (width > 899 || 
 Ti.include('/lib/events.js');
 
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
-new ApplicationTabGroup().open();
+var tabGroup = new ApplicationTabGroup();
+
+setTimeout(function (){
+    tabGroup.open()
+}, 500);
 
 if (Ti.App.Properties.hasProperty('currency') === false) {
 	Ti.App.Properties.setInt('currency', 0);
