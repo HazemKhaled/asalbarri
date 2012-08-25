@@ -6,7 +6,7 @@ function productWin(product) {
         title : product.title,
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     mainScroll = Ti.UI.createScrollView();

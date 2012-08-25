@@ -7,7 +7,7 @@ function categoryWin(parent) {
         backButtonTitle : 'عودة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     //openAboutWindow

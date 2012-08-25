@@ -6,7 +6,7 @@ function forgetpasswordWin() {
         title : 'آسترجاع كلمه المرور',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     self.addEventListener('open', function() {

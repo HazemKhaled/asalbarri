@@ -3,7 +3,7 @@ function orderProductsWin(parent) {
         title : 'تفاصيل الطب',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
     var followBtn, row2;
     function filterData() {

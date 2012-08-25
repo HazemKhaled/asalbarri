@@ -6,7 +6,7 @@ function loginWin() {
         title : 'دخول',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     Ti.App.Properties.setDouble('loginOpendOn', new Date().getTime());

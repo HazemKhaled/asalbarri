@@ -6,7 +6,7 @@ function cartWin() {
         title : 'سلة التسوق',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     orderBtn = Ti.UI.createButton({

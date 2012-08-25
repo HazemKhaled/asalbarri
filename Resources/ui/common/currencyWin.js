@@ -7,7 +7,7 @@ function currencyWin() {
         modal : true,
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     if (Ti.Platform.getOsname() !== 'android') {

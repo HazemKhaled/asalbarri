@@ -5,7 +5,7 @@ function openRegisterWindow() {
         title : 'تسجيل',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
     scrollview = Ti.UI.createScrollView({
         contentWidth : Ti.Platform.displayCaps.platformWidth

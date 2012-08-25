@@ -6,7 +6,7 @@ function shippingWin() {
         title : 'اختر الدولة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     nextBtn = Ti.UI.createButton({
