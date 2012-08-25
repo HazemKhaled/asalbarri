@@ -3,69 +3,50 @@ function xml_rss() {
         title : 'اخبارنا',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : '#d3d3d3'
+        barColor : 'gray'
     });
 
     // create table view data object
     var data = [];
 
     var xhr = Ti.Network.createHTTPClient();
-    xhr.open("GET", "http://v2.0.news.tmg.s3.amazonaws.com/feeds/news.xml");
+    xhr.open("GET", "http://www.asalbarri.com/asalbarri/plugins-rss-news.html");
     xhr.onload = function() {
         try {
             var doc = this.responseXML.documentElement;
             var items = doc.getElementsByTagName("item");
             var x = 0;
-            var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
+            //var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
+
             for (var c = 0; c < items.length; c++) {
                 var item = items.item(c);
-                var thumbnails = item.getElementsByTagName("media:thumbnail");
-                if (thumbnails && thumbnails.length > 0) {
-                    var media = thumbnails.item(0).getAttribute("url");
-                    var title = item.getElementsByTagName("title").item(0).text;
-                    var row = Ti.UI.createTableViewRow({
-                        height : 95,
-                        backgroundImage : '/images/TableViewRowBG.jpg',
-                        selectedBackgroundImage : '/images/TableViewRowSelectedBG.png',
-                    });
-                    var label = Ti.UI.createLabel({
-                        text : title,
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
-                        color : '#ffffff',
-                        font : {
-                            fontFamily : 'Arial',
-                            fontSize : 17,
-                            fontWeight : 'bold'
-                        },
-                        right : 72,
-                        top : 5,
-                        bottom : 5,
-                        right : 5
-                    });
-                    row.add(label);
-                    var img;
-                    if (Titanium.Platform.name == 'android') {
-                        // iphone moved to a single image property - android needs to do the same
-                        img = Ti.UI.createImageView({
-                            image : media,
-                            right : 5,
-                            height : 60,
-                            width : 60
-                        });
 
-                    } else {
-                        img = Ti.UI.createImageView({
-                            image : media,
-                            right : 5,
-                            height : 60,
-                            width : 60
-                        });
+                var title = item.getElementsByTagName("title").item(0).text;
+                var row = Ti.UI.createTableViewRow({
+                    height : 95,
+                    titleText : title,
+                    description : item.getElementsByTagName("description").item(0).text,
+                    url : item.getElementsByTagName("link").item(0).text,
+                    backgroundImage : '/images/TableViewRowBG.jpg',
+                    selectedBackgroundImage : '/images/TableViewRowSelectedBG.png',
+                });
+                var label = Ti.UI.createLabel({
+                    text : title,
+                    textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                    color : '#ffffff',
+                    font : {
+                        fontFamily : 'Arial',
+                        fontSize : 17,
+                        fontWeight : 'bold'
+                    },
+                    right : 5,
+                    top : 5,
+                    bottom : 5,
+                    left : 5
+                });
+                row.add(label);
+                data[x++] = row;
 
-                    }
-                    row.add(img);
-                    data[x++] = row;
-                    row.url = item.getElementsByTagName("link").item(0).text;
-                }
             }
             var tableview = Titanium.UI.createTableView({
                 data : data,
@@ -75,12 +56,13 @@ function xml_rss() {
             win.add(tableview);
             tableview.addEventListener('click', function(e) {
                 var w = Ti.UI.createWindow({
-                    title : doctitle,
+                    title : e.row.titleText,
                     barImage : '/images/Navigation_Bar.jpg',
-                    barColor : '#d3d3d3'
+                    barColor : 'gray'
                 });
                 var wb = Ti.UI.createWebView({
                     url : e.row.url
+                    //html : " " + e.row.description
                 });
                 w.add(wb);
                 var b = Titanium.UI.createButton({
