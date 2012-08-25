@@ -7,6 +7,13 @@ function ApplicationTabGroup(Window) {
 
     //create app tabs
 
+    MyOrdersWinModule = require('ui/common/newsWin');
+    Ti.App.newsTab = Ti.UI.createTab({
+        title : 'اخبارنا',
+        icon : '/images/icon_8.png',
+        window : new MyOrdersWinModule()
+    });
+
     MyOrdersWinModule = require('ui/common/myOrdersWin');
     Ti.App.orderTab = Ti.UI.createTab({
         title : 'الطلبات',
@@ -36,6 +43,7 @@ function ApplicationTabGroup(Window) {
         window : new CategoryWinModule(0)
     });
 
+    self.addTab(Ti.App.newsTab);
     self.addTab(Ti.App.orderTab);
     self.addTab(Ti.App.walletTab);
     self.addTab(Ti.App.cartTab);
