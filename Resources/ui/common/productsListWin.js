@@ -94,35 +94,57 @@ function productsListWin(parent) {
                         });
                         row.add(pricebackground);
 
-                        priceFitLbl = Ti.UI.createLabel({
-                            text : rows[i].price_shown_coupon,
-                            right : 205,
-                            width : 60,
-                            bottom : 27,
+                        pricebackground.add(Ti.UI.createLabel({
+                            text : rows[i].price,
+                            left : 0,
+                            top : 0,
+                            width : 85,
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                             color : '#ffffff',
                             font : {
-                                fontFamily : 'Arial',
                                 fontSize : 17,
                                 fontWeight : 'bold'
                             }
-                        });
-                        row.add(priceFitLbl);
+                        }));
 
-                        priceFitLblCurr = Ti.UI.createLabel({
+                        pricebackground.add(Ti.UI.createLabel({
                             text : Ti.App.Properties.getString('currencyName'),
-                            right : 195,
-                            width : 80,
-                            bottom : 16,
-                            color : '#ffffff',
+                            left : 0,
+                            bottom : -5,
+                            width : 85,
+                            height : 38,
                             textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                             color : '#ffffff',
                             font : {
-                                fontFamily : 'Arial',
                                 fontSize : 14
                             }
-                        });
-                        row.add(priceFitLblCurr);
+                        }));
+
+                        pricebackground.add(Ti.UI.createLabel({
+                            text : rows[i].price_shown_coupon,
+                            right : 0,
+                            top : 0,
+                            width : 85,
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#000000',
+                            font : {
+                                fontSize : 17,
+                                fontWeight : 'bold'
+                            }
+                        }));
+
+                        pricebackground.add(Ti.UI.createLabel({
+                            text : Ti.App.Properties.getString('currencyName'),
+                            right : 0,
+                            bottom : -5,
+                            width : 85,
+                            height : 38,
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#000000',
+                            font : {
+                                fontSize : 14
+                            }
+                        }));
                     } else {
 
                         pricebackground = Titanium.UI.createImageView({
@@ -133,36 +155,33 @@ function productsListWin(parent) {
                             height : 38
                         });
                         row.add(pricebackground);
+
+                        pricebackground.add(Ti.UI.createLabel({
+                            text : rows[i].price,
+                            left : 0,
+                            top : 0,
+                            width : 85,
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#000000',
+                            font : {
+                                fontSize : 17,
+                                fontWeight : 'bold'
+                            }
+                        }));
+
+                        pricebackground.add(Ti.UI.createLabel({
+                            text : Ti.App.Properties.getString('currencyName'),
+                            left : 0,
+                            bottom : -5,
+                            width : 85,
+                            height : 38,
+                            textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+                            color : '#000000',
+                            font : {
+                                fontSize : 14
+                            }
+                        }));
                     }
-
-                    priceLbl = Ti.UI.createLabel({
-                        text : rows[i].price,
-                        right : 120,
-                        width : 60,
-                        bottom : 27,
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-                        color : '#000000',
-                        font : {
-                            fontFamily : 'Arial',
-                            fontSize : 17,
-                            fontWeight : 'bold'
-                        }
-                    });
-                    row.add(priceLbl);
-
-                    priceLblCurr = Ti.UI.createLabel({
-                        text : Ti.App.Properties.getString('currencyName'),
-                        right : 110,
-                        width : 80,
-                        bottom : 16,
-                        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-                        color : '#000000',
-                        font : {
-                            fontFamily : 'Arial',
-                            fontSize : 14
-                        }
-                    });
-                    row.add(priceLblCurr);
 
                     tableRows.push(row);
                 }
