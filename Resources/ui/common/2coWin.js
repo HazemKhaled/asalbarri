@@ -1,6 +1,6 @@
 function towcoWin(orderID, totalPrice) {
 
-    var self, closeBtn, webView;
+    var self, closeBtn, webView, interval;
 
     self = Ti.UI.createWindow({
         title : 'الدفع الالكتروني',
@@ -25,7 +25,8 @@ function towcoWin(orderID, totalPrice) {
         });
 
         closeBtn.addEventListener('click', function() {
-            closeLoop();
+            clearInterval(interval);
+            self.close();
         });
 
         self.setLeftNavButton(closeBtn);
@@ -52,15 +53,17 @@ function towcoWin(orderID, totalPrice) {
             }
             Ti.App.fireEvent('closeShippingWindow');
             Ti.App.fireEvent('cartEmpty');
+            Ti.App.fireEvent('showMyordersAfterLogin');
             Ti.App.Properties.removeProperty('coupon');
             Ti.App.Properties.removeProperty('couponCode');
-            clearInterval();
-            self.close(webView);
+            clearInterval(interval);
+            self.close();
         } else {
             Ti.API.info(webView.getUrl().indexOf('order_approve'));
         }
     }
-    setInterval(closeLoop, 1000);
+
+    interval = setInterval(closeLoop, 1000);
 
     return self;
 }
