@@ -225,7 +225,7 @@ Ti.App.addEventListener('orderRequest', function(e) {
         var results, TowcoWinModule;
         try {
             results = JSON.parse(this.responseText);
-        } catch (e) {
+        } catch (error) {
             Ti.App.fireEvent('hideLoading');
 
             Ti.UI.createAlertDialog({
