@@ -25,14 +25,14 @@ function towcoWin(orderID, totalPrice) {
         });
 
         closeBtn.addEventListener('click', function() {
-            self.close();
+            closeLoop();
         });
 
         self.setLeftNavButton(closeBtn);
     }
 
     webView = Ti.UI.createWebView({
-        url : 'http://www.asalbarri.com/asalbarri/asal/api/tocheckout/' + orderID + '/' + parceInt(totalPrice)
+        url : Ti.App.APIURL + 'api/tocheckout/' + orderID// + '/' + parseInt(totalPrice)
     });
 
     self.add(webView);
