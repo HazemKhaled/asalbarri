@@ -19,7 +19,7 @@ function myOrdersWin() {
 
             xhr = Ti.Network.createHTTPClient();
 
-            xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/1/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'));
+            xhr.open('GET', Ti.App.APIURL + 'api/ordersByUserID/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency', 1));
 
             xhr.onerror = function() {
                 tableView.fireEvent('reloadData', {
@@ -73,7 +73,7 @@ function myOrdersWin() {
                         row.add(totaltitleLbl);
 
                         priceLbl = Ti.UI.createLabel({
-                            text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName'),
+                            text : rows[i].total_price + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
                             right : 85,
                             top : 10,
                             textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
@@ -177,7 +177,8 @@ function myOrdersWin() {
         tableView = Ti.UI.createTableView({
             filterAttribute : 'myTitle',
             backgroundColor : 'transparent',
-            separatorColor : 'transparent'
+            separatorColor : 'transparent',
+            bottom : Ti.Platform.getOsname() == 'android' && 44
         });
 
         tableView.addEventListener('runLoading', function() {
