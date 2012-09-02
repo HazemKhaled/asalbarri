@@ -211,7 +211,7 @@ function cartWin() {
                 }
 
                 priceLblCurr = Ti.UI.createLabel({
-                    text : Ti.App.Properties.getString('currencyName'),
+                    text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
                     right : 110,
                     width : 80,
                     bottom : 16,
@@ -275,7 +275,7 @@ function cartWin() {
                 rowView2.add(descountlable);
 
                 descount = Ti.UI.createLabel({
-                    text : ' ' + coupon + ' ' + Ti.App.Properties.getString('currencyName'),
+                    text : ' ' + coupon + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
                     color : '#ffffff',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                     font : {

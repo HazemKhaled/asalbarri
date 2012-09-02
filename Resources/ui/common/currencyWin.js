@@ -65,7 +65,7 @@ function currencyWin() {
             for (i in rows ) {
                 if (rows.hasOwnProperty(i)) {
 
-                    if (Ti.App.Properties.getInt('currency') == rows[i].id || (selectedRow === null && rows[i].is_default == 1)) {
+                    if (Ti.App.Properties.getInt('currency', 1) == rows[i].id || (selectedRow === null && rows[i].is_default == 1)) {
                         selectedRow = i;
                     }
 
@@ -104,9 +104,9 @@ function currencyWin() {
 
         var auth = require('/lib/auth');
         if (auth.isLogedIn() !== false) {
-            Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق']);
+            Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق']);
         } else {
-            Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق']);
+            Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق']);
         }
     });
     filterData();

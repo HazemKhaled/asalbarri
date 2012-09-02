@@ -28,13 +28,13 @@ function shippingWin() {
 
         //Ti.App.Properties.setInt('country', countriesPicker.getSelectedRow(0).myId);
 
-        Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'), function(results) {
+        Ti.App.getHttpRequest('api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency', 1), function(results) {
 
             var paymentAlert = Ti.UI.createAlertDialog({
                 title : 'اختر وسيلة الدفع',
                 message : 'اي هذه الوسائل تريد ان تدفع من خلالها؟',
                 cancel : 2,
-                buttonNames : ['الدفع بالفيزا عبر 2CO', 'المحفظة ' + results.balance + ' ' + Ti.App.Properties.getString('currencyName'), 'عودة لسلة التسوق']
+                buttonNames : ['الدفع بالفيزا عبر 2CO', 'المحفظة ' + results.balance + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'), 'عودة لسلة التسوق']
             });
 
             paymentAlert.show();

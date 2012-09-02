@@ -190,7 +190,7 @@ function loginWin() {
             Ti.App.fireEvent('showWalletAfterLogin');
             Ti.App.fireEvent('showMyordersAfterLogin');
             Ti.App.dialog.destructive = 0;
-            Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+            Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'];
 
             Ti.App.fireEvent('closeLoginWindow');
         };

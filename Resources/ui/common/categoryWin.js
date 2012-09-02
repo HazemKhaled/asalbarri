@@ -61,7 +61,7 @@ function categoryWin(parent) {
 
     // options dialog
     optionsDialogOpts = {
-        options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'],
+        options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'],
         cancel : 3,
         title : 'اعدادات'
     };
@@ -70,7 +70,7 @@ function categoryWin(parent) {
 
     auth = require('/lib/auth');
     if (auth.isLogedIn() !== false) {
-        dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+        dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'];
         dialog.destructive = 0;
     }
 
@@ -102,7 +102,7 @@ function categoryWin(parent) {
                     Ti.App.fireEvent('showMyordersBeforLogin');
                     Ti.App.fireEvent('closeOrderProductsWindow');
                     Ti.App.dialog.destructive = null;
-                    Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اغلاق'];
+                    Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'];
                     break;
                 case 1:
 

@@ -25,7 +25,7 @@ function walletWin() {
 
             var xhr = Ti.Network.createHTTPClient();
 
-            xhr.open('GET', Ti.App.APIURL + 'api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency'));
+            xhr.open('GET', Ti.App.APIURL + 'api/walletBalance/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency', 1));
 
             xhr.onerror = function() {
 
@@ -111,7 +111,7 @@ function walletWin() {
         self.add(Ti.App.balanceLbl);
 
         balancCurr = Ti.UI.createLabel({
-            text : Ti.App.Properties.getString('currencyName'),
+            text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
             //left : 0,
             //right : 127,
             top : 110,
