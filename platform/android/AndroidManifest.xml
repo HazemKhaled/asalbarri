@@ -1,4 +1,4 @@
-<?xml version="1.0" ?><manifest android:installLocation="auto" android:versionCode="3" android:versionName="1.3" package="com.hgi.asalbarri" xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" ?><manifest android:installLocation="auto" android:versionCode="5" android:versionName="1.4" package="com.asalbarri" xmlns:android="http://schemas.android.com/apk/res/android">
 	<supports-screens android:anyDensity="false"/><uses-sdk android:minSdkVersion="8"/>
 
 	<!-- TI_MANIFEST -->
