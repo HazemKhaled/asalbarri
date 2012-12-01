@@ -106,7 +106,7 @@ function loginWin() {
         var xhr = Ti.Network.createHTTPClient();
         xhr.onerror = function() {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في الآتصال',
+                title : 'خطأ في الآتصال',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
@@ -124,7 +124,7 @@ function loginWin() {
                 response = JSON.parse(this.responseText);
             } catch(e) {
                 Ti.UI.createAlertDialog({
-                    message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                    message : 'خطأ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
                     cancel : 0,
                     buttonNames : ['موافق']
                 }).show();
@@ -164,7 +164,7 @@ function loginWin() {
 
                         } else {
                             dialog = Ti.UI.createAlertDialog({
-                                title : 'خطآ في الدخول',
+                                title : 'خطأ في الدخول',
                                 message : 'يمكنك التواصل معنا آذا واجهت مشكله',
                                 cancel : 0,
                                 buttonNames : ['الغاء', 'مراسله']

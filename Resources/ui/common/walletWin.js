@@ -37,7 +37,7 @@ function walletWin() {
                     var row = JSON.parse(this.responseText);
                 } catch(e) {
                     Ti.UI.createAlertDialog({
-                        message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                        message : 'خطأ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
                         cancel : 0,
                         buttonNames : ['موافق']
                     }).show();

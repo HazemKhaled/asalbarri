@@ -71,7 +71,7 @@ function couponWin() {
 
                 Ti.UI.createAlertDialog({
                     title : 'خطأ',
-                    message : 'خطآ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+                    message : 'خطأ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
                     cancel : 0,
                     buttonNames : ['اغلاق']
                 }).show();

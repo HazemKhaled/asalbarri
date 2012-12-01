@@ -109,7 +109,7 @@ function openRegisterWindow() {
 
         if (mobileField.getValue().length < 4) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ',
+                title : 'خطأ',
                 message : 'تحقق من اسم المستخدم',
                 cancel : 0,
                 buttonNames : ['موافق']
@@ -121,8 +121,8 @@ function openRegisterWindow() {
 
         if (!emailRGX.test(emailField.value)) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ',
-                message : 'خطآ في البريد الآلكتروني',
+                title : 'خطأ',
+                message : 'خطأ في البريد الآلكتروني',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
@@ -133,7 +133,7 @@ function openRegisterWindow() {
 
         if (passField.value.length < 3) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في كلمة المرور',
+                title : 'خطأ في كلمة المرور',
                 message : 'يجب آن تكون كلمة المرور آكبر من ٣ آحرف',
                 cancel : 0,
                 buttonNames : ['موافق']
@@ -145,7 +145,7 @@ function openRegisterWindow() {
 
         if (passField.value !== confirmpassField.value) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في كلمة المرور',
+                title : 'خطأ في كلمة المرور',
                 message : 'يجب آن تكون كلمة المرور و تآكيدها متطابقين',
                 cancel : 0,
                 buttonNames : ['موافق']
@@ -158,7 +158,7 @@ function openRegisterWindow() {
         xhr = Ti.Network.createHTTPClient({});
         xhr.onerror = function() {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في الآتصال',
+                title : 'خطأ في الآتصال',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
@@ -174,8 +174,8 @@ function openRegisterWindow() {
                 request = JSON.parse(this.responseText);
             } catch(e) {
                 Ti.UI.createAlertDialog({
-                    title : 'خطآ',
-                    message : 'خطآ في الآتصال، حاول مرة اخرى.',
+                    title : 'خطأ',
+                    message : 'خطأ في الآتصال، حاول مرة اخرى.',
                     cancel : 0,
                     buttonNames : ['موافق']
                 }).show();
@@ -184,7 +184,7 @@ function openRegisterWindow() {
             }
             if (request.errors) {
                 msgBox = Ti.UI.createAlertDialog({
-                    title : 'خطآ',
+                    title : 'خطأ',
                     message : 'هذا البريد او اسم المستخدم مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
                     cancel : 0,
                     buttonNames : ['موافق', 'نسيت كلمة المرور؟']

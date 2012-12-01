@@ -43,7 +43,7 @@ function forgetpasswordWin() {
 
         if (emailRGX.test(emailField.value) === false) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في البريد',
+                title : 'خطأ في البريد',
                 message : '"آستخدم بريدك المسجل لدينا"تحقق من بريدك',
                 cancel : 0,
                 buttonNames : ['موافق']
@@ -64,7 +64,7 @@ function forgetpasswordWin() {
                 request = JSON.parse(this.responseText);
             } catch (e) {
                 Ti.UI.createAlertDialog({
-                    title : 'خطآ',
+                    title : 'خطأ',
                     message : request.errors.login,
                     cancel : 0,
                     buttonNames : ['موافق']
@@ -76,7 +76,7 @@ function forgetpasswordWin() {
             if (request.errors.login) {
 
                 Ti.UI.createAlertDialog({
-                    title : 'خطآ',
+                    title : 'خطأ',
                     message : request.errors.login,
                     cancel : 0,
                     buttonNames : ['موافق']
@@ -101,7 +101,7 @@ function forgetpasswordWin() {
 
         xhr.onerror = function(e) {
             Ti.UI.createAlertDialog({
-                title : 'خطآ في الآتصال',
+                title : 'خطأ في الآتصال',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
