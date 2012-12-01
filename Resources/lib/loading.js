@@ -86,7 +86,7 @@ exports.show = function() {
         actInd.message = "جاري التحميل";
     }
     actInd.show();
-}
+};
 
 exports.setMsg = function(msg, loadingTxt) {
 
@@ -99,4 +99,4 @@ exports.setMsg = function(msg, loadingTxt) {
     } else {
         actInd.message = loadingTxt + "\n" + msg;
     }
-}
+};

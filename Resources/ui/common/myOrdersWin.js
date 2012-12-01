@@ -49,7 +49,7 @@ function myOrdersWin() {
                             selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                         });
 
-                        arrow = Titanium.UI.createImageView({
+                        var arrow = Titanium.UI.createImageView({
                             image : '/images/icon_7.png',
                             top : 6,
                             left : 0,
@@ -86,7 +86,7 @@ function myOrdersWin() {
                         });
                         row.add(priceLbl);
 
-                        datebackground = Titanium.UI.createImageView({
+                        var datebackground = Titanium.UI.createImageView({
                             image : '/images/bg_time.png',
                             top : 38,
                             right : 0,
@@ -260,14 +260,16 @@ function myOrdersWin() {
 
         self.add(loginBtn);
 
-        self.remove(tableView);
-        self.remove(dateTitleLbl);
-        self.remove(dateLbl);
-        self.remove(totaltitleLbl);
-        self.remove(priceLbl);
-        self.remove(statusTitleLbl);
-        self.remove(statusLbl);
-        self.remove(submitBtn);
+        if (tableView) {
+            self.remove(tableView);
+            self.remove(dateTitleLbl);
+            self.remove(dateLbl);
+            self.remove(totaltitleLbl);
+            self.remove(priceLbl);
+            self.remove(statusTitleLbl);
+            self.remove(statusLbl);
+            self.remove(submitBtn);
+        }
     });
 
     if (!auth.isLogedIn()) {

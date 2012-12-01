@@ -17,8 +17,9 @@ function xml_rss() {
             var items = doc.getElementsByTagName("item");
             var x = 0;
             //var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
-
-            for (var c = 0; c < items.length; c++) {
+            
+            var c = 0
+            for (c; c < items.length; c++) {
                 var item = items.item(c);
 
                 var title = item.getElementsByTagName("title").item(0).text;

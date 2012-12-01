@@ -158,12 +158,14 @@ function walletWin() {
         }));
         self.add(loginBtn);
 
-        self.remove(balancCurr);
-        self.remove(Ti.App.balanceLbl);
-        self.remove(balanceTitle);
-        self.remove(img);
-        self.remove(loadinLabel);
-        self.remove(chargeBtn);
+        if (balancCurr) {
+            self.remove(balancCurr);
+            self.remove(Ti.App.balanceLbl);
+            self.remove(balanceTitle);
+            self.remove(img);
+            self.remove(loadinLabel);
+            self.remove(chargeBtn);
+        }
     });
 
     if (!auth.isLogedIn()) {

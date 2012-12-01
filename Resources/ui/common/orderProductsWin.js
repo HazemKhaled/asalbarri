@@ -87,7 +87,7 @@ function orderProductsWin(parent) {
                     });
                     row.add(purchasesQtyLbl);
 
-                    purchasesQty = Ti.UI.createLabel({
+                    var purchasesQty = Ti.UI.createLabel({
                         text : rows[i].purchases_quantity,
                         left : 0,
                         right : 155,

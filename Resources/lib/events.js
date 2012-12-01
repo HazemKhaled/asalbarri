@@ -361,4 +361,4 @@ Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {
     });
 
     xhr.send();
-}
+};
