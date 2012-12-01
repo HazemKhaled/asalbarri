@@ -136,23 +136,6 @@ function productWin(product) {
     quantityMinusBtn.addEventListener('click', plusMinusBtnsOnClick);
     quantityPlusBtn.addEventListener('click', plusMinusBtnsOnClick);
 
-    // description
-    descLbl = Ti.UI.createLabel({
-        text : product.desc,
-        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-        verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
-        color : '#000000',
-        top : 140,
-        left : '2%',
-        width : '96%',
-        height : 199,
-        backgroundImage : '/images/textarea_bg.png',
-        paddingLeft : 5,
-        paddingRight : 5
-    });
-    mainScroll.add(descLbl);
-
-    // description
     addToCartBtn = Ti.UI.createButton({
         title : 'اضف لسلة التسوق',
         height : 33,
@@ -196,6 +179,82 @@ function productWin(product) {
     });
 
     mainScroll.add(addToCartBtn);
+
+    // description
+    descLbl = Ti.UI.createLabel({
+        text : product.desc,
+        textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+        verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
+        color : '#000000',
+        top : 140,
+        left : '2%',
+        width : '96%',
+        height : 199,
+        backgroundImage : '/images/textarea_bg.png',
+        paddingLeft : 5,
+        paddingRight : 5
+    });
+    mainScroll.add(descLbl);
+    var shareBtn = Ti.UI.createButton({
+        image : '/images/share_icon.png',
+        width : 40,
+        height : 40,
+        top : 350
+    });
+    mainScroll.add(shareBtn);
+
+    if (Ti.Platform.getOsname() == 'android') {
+        shareBtn.addEventListener('click', function() {
+            var activity = Ti.Android.currentActivity;
+            var intent = Ti.Android.createIntent({
+                action : Ti.Android.ACTION_SEND,
+                type : 'text/plain'
+            });
+
+            intent.putExtra(Ti.Android.EXTRA_TEXT, product.title + ' http://www.asalbarri.com/beta/asal-product-' + product.id + '.html');
+            intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.description + "\n\nمزيد من المعلومات:\n node/" + product.id);
+            activity.startActivity(Ti.Android.createIntentChooser(intent, 'Share'));
+        });
+    } else {
+
+        var Social = require('dk.napp.social');
+        var shareSocial = Ti.UI.createOptionDialog({
+            title : 'Select Service',
+            options : ['Facebook', 'Twitter', 'Cancel'],
+            cancel : 2
+        });
+
+        shareSocial.addEventListener("click", function(e) {
+
+            switch (e.index) {
+                case 0:
+                    if (Social.isFacebookSupported()) {//min iOS6 required
+                        Social.facebook({
+                            text : product.title,
+                            url : 'http://www.asalbarri.com/beta/asal-product-' + product.id + '.html'
+                        });
+                    } else {
+                        //implement Ti.Facebook Method - iOS5
+                    }
+
+                    break;
+                case 1:
+                    if (Social.isTwitterSupported()) {//min iOS6 required
+                        Social.twitter({
+                            text : product.title,
+                            url : 'http://www.asalbarri.com/beta/asal-product-' + product.id + '.html'
+                        });
+                    } else {
+                        //implement iOS5 Twitter method
+                    }
+                    break;
+            }
+        });
+
+        shareBtn.addEventListener('click', function() {
+            shareSocial.show();
+        });
+    }
 
     cartImg = Ti.UI.createImageView({
         image : '/images/icon_add_cart.png',
