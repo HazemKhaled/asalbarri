@@ -1,9 +1,9 @@
-<?xml version="1.0" ?><manifest android:installLocation="auto" android:versionCode="5" android:versionName="1.4" package="com.asalbarri" xmlns:android="http://schemas.android.com/apk/res/android">
-	<supports-screens android:anyDensity="false"/><uses-sdk android:minSdkVersion="8"/>
+<?xml version="1.0" ?><manifest android:installLocation="auto" android:versionCode="6" android:versionName="2" package="com.asalbarri" xmlns:android="http://schemas.android.com/apk/res/android">
+	<supports-screens android:anyDensity="false"/><uses-sdk android:minSdkVersion="5" android:targetSdkVersion="11"/>
 
 	<!-- TI_MANIFEST -->
 
-	<application android:debuggable="false" android:icon="@drawable/appicon" android:label="@string/appname" android:name="AsalbarriApplication">
+	<application android:debuggable="false" android:icon="@drawable/appicon" android:label="@string/appname" android:name="AsalbarriApplication" android:theme="@android:style/Theme.DeviceDefault">
 
 		<!-- TI_APPLICATION -->
 

@@ -3,7 +3,9 @@ function ApplicationTabGroup(Window) {
     var self, CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule;
 
     //create module instance
-    self = Ti.UI.createTabGroup();
+    self = Ti.UI.createTabGroup({
+        exitOnClose : true
+    });
 
     //create app tabs
 
