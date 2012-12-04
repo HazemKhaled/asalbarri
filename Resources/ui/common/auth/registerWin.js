@@ -126,7 +126,7 @@ function openRegisterWindow() {
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
-            email.focus();
+            emailField.focus();
 
             return false;
         }
