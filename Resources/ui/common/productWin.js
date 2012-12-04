@@ -58,7 +58,7 @@ function productWin(product) {
         backgroundImage : '/images/bg_input_quantity.png'
     });
 
-    self.add(quantityField);
+    mainScroll.add(quantityField);
 
     quantityMinusBtn = Ti.UI.createButton({
         title : '',
@@ -69,7 +69,7 @@ function productWin(product) {
         top : 50,
         backgroundImage : '/images/icon_min.png'
     });
-    self.add(quantityMinusBtn);
+    mainScroll.add(quantityMinusBtn);
 
     quantityPlusBtn = Ti.UI.createButton({
         title : '',
@@ -80,7 +80,7 @@ function productWin(product) {
         top : 50,
         backgroundImage : '/images/icon_plus.png'
     });
-    self.add(quantityPlusBtn);
+    mainScroll.add(quantityPlusBtn);
 
     // + and - buttons with product quantity
     function getQuantityFieldValue() {
