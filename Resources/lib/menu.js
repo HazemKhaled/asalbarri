@@ -6,7 +6,7 @@ function menusGenerator(self) {
         self.activity.onCreateOptionsMenu = function(e) {
             aboutBtn = e.menu.add({
                 title : 'اعدادات',
-                icon : '/images/icon_1.png',
+                icon : '/images/action_settings.png',
                 showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM
             });
 
@@ -16,7 +16,7 @@ function menusGenerator(self) {
 
             aboutBtn = e.menu.add({
                 title : 'عن البرنامج',
-                icon : '/images/icon_2.png',
+                icon : '/images/action_about.png',
                 showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM
             });
 
@@ -59,7 +59,7 @@ function menusGenerator(self) {
         title : 'اعدادات'
     };
 
-    dialog = Titanium.UI.createOptionDialog(optionsDialogOpts);
+    dialog = Ti.UI.createOptionDialog(optionsDialogOpts);
 
     auth = require('/lib/auth');
     if (auth.isLogedIn() !== false) {
