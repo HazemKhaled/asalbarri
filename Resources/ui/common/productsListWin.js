@@ -59,7 +59,7 @@ function productsListWin(parent) {
                     });
                     row.add(img);
 
-                    arrow = Titanium.UI.createImageView({
+                    arrow = Ti.UI.createImageView({
                         image : '/images/icon_7.png',
                         top : 6,
                         left : 0,
@@ -85,7 +85,7 @@ function productsListWin(parent) {
 
                     if (rows[i].price_shown_coupon > 0) {
 
-                        pricebackground = Titanium.UI.createView({
+                        pricebackground = Ti.UI.createView({
                             backgroundImage : '/images/sss.png',
                             bottom : 11,
                             right : 110,
@@ -147,7 +147,7 @@ function productsListWin(parent) {
                         }));
                     } else {
 
-                        pricebackground = Titanium.UI.createView({
+                        pricebackground = Ti.UI.createView({
                             backgroundImage : '/images/bg_price_2.png',
                             bottom : 11,
                             right : 110,

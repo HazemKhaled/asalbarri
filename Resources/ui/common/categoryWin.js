@@ -61,7 +61,7 @@ function categoryWin(parent) {
                         selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                     });
 
-                    arrow = Titanium.UI.createImageView({
+                    arrow = Ti.UI.createImageView({
                         image : '/images/icon_7.png',
                         left : 0,
                         width : 23,

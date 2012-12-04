@@ -49,7 +49,7 @@ function myOrdersWin() {
                             selectedBackgroundImage : '/images/TableViewRowSelectedBG.png'
                         });
 
-                        var arrow = Titanium.UI.createImageView({
+                        var arrow = Ti.UI.createImageView({
                             image : '/images/icon_7.png',
                             top : 6,
                             left : 0,
@@ -86,7 +86,7 @@ function myOrdersWin() {
                         });
                         row.add(priceLbl);
 
-                        var datebackground = Titanium.UI.createImageView({
+                        var datebackground = Ti.UI.createImageView({
                             image : '/images/bg_time.png',
                             top : 38,
                             right : 0,

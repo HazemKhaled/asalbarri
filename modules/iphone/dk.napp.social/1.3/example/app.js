@@ -44,7 +44,7 @@ btnContainer.add(weibobtn);
 
 win.add(btnContainer);
 
-if (Titanium.Platform.name == 'iPhone OS'){
+if (Ti.Platform.name == 'iPhone OS'){
 	//iOS only module
 	
 	var Social = require('dk.napp.social');

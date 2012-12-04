@@ -167,7 +167,7 @@ function cartWin() {
                 });
                 rowView.add(titleLbl);
 
-                pricebackground = Titanium.UI.createImageView({
+                pricebackground = Ti.UI.createImageView({
                     image : "/images/bg_price.png",
                     bottom : 11,
                     right : 110,

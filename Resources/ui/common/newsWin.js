@@ -49,7 +49,7 @@ function xml_rss() {
                 data[x++] = row;
 
             }
-            var tableview = Titanium.UI.createTableView({
+            var tableview = Ti.UI.createTableView({
                 data : data,
                 backgroundColor : 'transparent',
                 separatorColor : 'transparent'
@@ -66,9 +66,9 @@ function xml_rss() {
                     //html : " " + e.row.description
                 });
                 w.add(wb);
-                var b = Titanium.UI.createButton({
+                var b = Ti.UI.createButton({
                     title : 'Close',
-                    style : Titanium.UI.iPhone.SystemButtonStyle.PLAIN
+                    style : Ti.UI.iPhone.SystemButtonStyle.PLAIN
                 });
                 w.setLeftNavButton(b);
                 b.addEventListener('click', function() {
