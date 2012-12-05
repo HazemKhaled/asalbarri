@@ -1,10 +1,10 @@
 function aboutWin() {
 
-    var self, closeBtn, logo, icon1, icon2, icon3;
+    var self, closeBtn, logo, icon1, icon2, icon3, mailLbl, twitterLbl, mobileNumberLbl;
 
     self = Ti.UI.createWindow({
         title : 'الدعم الفني',
-        modal : true,
+        navBarHidden : false,
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
         barColor : 'gray'
@@ -67,77 +67,59 @@ function aboutWin() {
     });
     self.add(icon3);
 
-    self.add(Ti.UI.createLabel({
-        text : 'البديد الالكتروني',
+    mailLbl = Ti.UI.createLabel({
+        text : 'البريد الالكتروني\ninfo@asalbarri.com',
         right : 55,
-        top : 155,
+        top : 165,
         color : '#ffffff',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         font : {
             fontFamily : 'Arial',
             fontSize : 17,
             fontWeight : 'bold'
         }
-    }));
+    });
+    mailLbl.addEventListener('click', function() {
+        Ti.UI.createEmailDialog({
+            toRecipients : ['info@asalbarri.com']
+        }).open();
+    });
 
-    self.add(Ti.UI.createLabel({
-        text : 'info@asalbarri.com',
-        right : 55,
-        top : 180,
-        color : '#ffffff',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : 17,
-            fontWeight : 'bold'
-        }
-    }));
+    self.add(mailLbl);
 
-    self.add(Ti.UI.createLabel({
-        text : 'صفحة تويتر',
+    twitterLbl = Ti.UI.createLabel({
+        text : 'صفحة تويتر\n@asalbarri',
         right : 55,
-        top : 225,
+        top : 235,
         color : '#ffffff',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         font : {
             fontFamily : 'Arial',
             fontSize : 17,
             fontWeight : 'bold'
         }
-    }));
+    });
+    twitterLbl.addEventListener('click', function() {
+        Ti.Platform.openURL('http://twitter.com/asalbarri');
+    });
+    self.add(twitterLbl);
 
-    self.add(Ti.UI.createLabel({
-        text : '@asalbarri',
+    mobileNumberLbl = Ti.UI.createLabel({
+        text : 'رقم الجوال\n0592972777',
         right : 55,
-        top : 250,
+        top : 305,
         color : '#ffffff',
+        textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
         font : {
             fontFamily : 'Arial',
             fontSize : 17,
             fontWeight : 'bold'
         }
-    }));
-
-    self.add(Ti.UI.createLabel({
-        text : 'رقم الجوال',
-        right : 55,
-        top : 295,
-        color : '#ffffff',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : 17,
-            fontWeight : 'bold'
-        }
-    }));
-
-    self.add(Ti.UI.createLabel({
-        text : '0592972777',
-        right : 55,
-        top : 320,
-        color : '#ffffff',
-        font : {
-            fontFamily : 'Arial',
-            fontSize : 17,
-            fontWeight : 'bold'
-        }
-    }));
+    });
+    mobileNumberLbl.addEventListener('click', function() {
+        Ti.Platform.openURL('tel:0592972777');
+    });
+    self.add(mobileNumberLbl);
     return self;
 }
 
