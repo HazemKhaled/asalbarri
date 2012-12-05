@@ -17,7 +17,7 @@ function xml_rss() {
             var items = doc.getElementsByTagName("item");
             var x = 0;
             //var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
-            
+
             var c = 0
             for (c; c < items.length; c++) {
                 var item = items.item(c);
@@ -58,8 +58,10 @@ function xml_rss() {
             tableview.addEventListener('click', function(e) {
                 var w = Ti.UI.createWindow({
                     title : e.row.titleText,
+                    backgroundImage : '/images/bg.jpg',
                     barImage : '/images/Navigation_Bar.jpg',
-                    barColor : 'gray'
+                    barColor : 'gray',
+                    navBarHidden : false
                 });
                 var wb = Ti.UI.createWebView({
                     url : e.row.url
@@ -67,19 +69,17 @@ function xml_rss() {
                 });
                 w.add(wb);
                 var b = Ti.UI.createButton({
-                    title : 'Close',
+                    title : 'اغلاق',
                     style : Ti.UI.iPhone.SystemButtonStyle.PLAIN
                 });
                 w.setLeftNavButton(b);
                 b.addEventListener('click', function() {
                     w.close();
                 });
-                w.open({
-                    modal : true
-                });
+                w.open();
             });
         } catch(E) {
-            alert(E);
+            Ti.API.log(E);
         }
     };
     xhr.send();
