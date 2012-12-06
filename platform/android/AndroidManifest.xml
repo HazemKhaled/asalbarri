@@ -3,7 +3,7 @@
 
 	<!-- TI_MANIFEST -->
 
-	<application android:debuggable="false" android:icon="@drawable/appicon" android:label="@string/appname" android:name="AsalbarriApplication" android:theme="@android:style/Theme.DeviceDefault">
+	<application android:debuggable="false" android:icon="@drawable/appicon" android:label="@string/appname" android:name="AsalbarriApplication" android:theme="@android:style/Theme.Holo">
 
 		<!-- TI_APPLICATION -->
 
