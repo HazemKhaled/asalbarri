@@ -9,6 +9,9 @@ function productsListWin(parent) {
         barColor : 'gray'
     });
 
+    Ti.include('/lib/menu.js');
+    menusGenerator(self);
+
     function filterData() {
 
         tableView.fireEvent('runLoading');

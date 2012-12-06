@@ -195,27 +195,37 @@ function productWin(product) {
         paddingRight : 5
     });
     mainScroll.add(descLbl);
-    var shareBtn = Ti.UI.createButton({
-        image : '/images/share_icon.png',
-        width : 40,
-        height : 40,
-        top : 350
-    });
-    mainScroll.add(shareBtn);
 
     if (Ti.Platform.getOsname() == 'android') {
-        shareBtn.addEventListener('click', function() {
-            var activity = Ti.Android.currentActivity;
-            var intent = Ti.Android.createIntent({
-                action : Ti.Android.ACTION_SEND,
-                type : 'text/plain'
+
+        self.activity.onCreateOptionsMenu = function(e) {
+            shareBtn = e.menu.add({
+                title : 'نشر',
+                icon : '/images/share_icon.png',
+                showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM
             });
 
-            intent.putExtra(Ti.Android.EXTRA_TEXT, product.title + ' http://www.asalbarri.com/beta/asal-product-' + product.id + '.html');
-            intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.description + "\n\nمزيد من المعلومات:\n node/" + product.id);
-            activity.startActivity(Ti.Android.createIntentChooser(intent, 'Share'));
-        });
+            shareBtn.addEventListener('click', function() {
+                var activity = Ti.Android.currentActivity;
+                var intent = Ti.Android.createIntent({
+                    action : Ti.Android.ACTION_SEND,
+                    type : 'text/plain'
+                });
+
+                intent.putExtra(Ti.Android.EXTRA_TEXT, product.title + ' http://www.asalbarri.com/beta/asal-product-' + product.id + '.html');
+                intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.description + "\n\nمزيد من المعلومات:\n node/" + product.id);
+                activity.startActivity(Ti.Android.createIntentChooser(intent, 'Share'));
+            });
+        };
     } else {
+
+        var shareBtn = Ti.UI.createButton({
+            image : '/images/share_icon.png',
+            width : 40,
+            height : 40,
+            top : 350
+        });
+        mainScroll.add(shareBtn);
 
         var Social = require('dk.napp.social');
         var shareSocial = Ti.UI.createOptionDialog({

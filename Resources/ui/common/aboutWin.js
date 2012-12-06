@@ -7,7 +7,8 @@ function aboutWin() {
         navBarHidden : false,
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : 'gray'
+        barColor : 'gray',
+        modal : Ti.Platform.getOsname() === 'iphone'
     });
 
     if (Ti.Platform.getOsname() !== 'android') {

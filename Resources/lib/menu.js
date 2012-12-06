@@ -1,5 +1,5 @@
 function menusGenerator(self) {
-    var menu, aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
+    var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
 
     //openAboutWindow
     if (Ti.Platform.getOsname() === 'android') {
@@ -25,17 +25,17 @@ function menusGenerator(self) {
             });
         };
     } else {
-        aboutBtn = Ti.UI.createButton({
-            height : 31,
-            width : 31,
-            color : '#000000',
-            backgroundImage : '/images/icon_2.png'
-        });
+        if (!self.showAboutBtn) {// only on home window
+            aboutBtn = Ti.UI.createButton({
+                height : 31,
+                width : 31,
+                color : '#000000',
+                backgroundImage : '/images/icon_2.png'
+            });
 
-        aboutBtn.addEventListener('click', function() {
-            Ti.App.fireEvent('openAboutWindow');
-        });
-        if (!parent.id) {// only on home window
+            aboutBtn.addEventListener('click', function() {
+                Ti.App.fireEvent('openAboutWindow');
+            });
             self.setLeftNavButton(aboutBtn);
         }
         //openSettingWindow
@@ -54,8 +54,8 @@ function menusGenerator(self) {
 
     // options dialog
     optionsDialogOpts = {
-        options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'],
-        cancel : 3,
+        options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق'],
+        cancel : 5,
         title : 'اعدادات'
     };
 
@@ -63,7 +63,7 @@ function menusGenerator(self) {
 
     auth = require('/lib/auth');
     if (auth.isLogedIn() !== false) {
-        dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'];
+        dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق'];
         dialog.destructive = 0;
     }
 
@@ -80,10 +80,6 @@ function menusGenerator(self) {
 
                     Ti.App.fireEvent('openRegisterWindow');
                     break;
-                case 2:
-
-                    Ti.App.fireEvent('openCurrencyWindow');
-                    break;
             }
         } else {
             switch(e.index) {
@@ -95,7 +91,7 @@ function menusGenerator(self) {
                     Ti.App.fireEvent('showMyordersBeforLogin');
                     Ti.App.fireEvent('closeOrderProductsWindow');
                     Ti.App.dialog.destructive = null;
-                    Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق'];
+                    Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق'];
                     break;
                 case 1:
 
@@ -105,11 +101,19 @@ function menusGenerator(self) {
                     });
                     userNameMsg.show();
                     break;
-                case 2:
-
-                    Ti.App.fireEvent('openCurrencyWindow');
-                    break;
             }
+        }
+
+        switch(e.index) {
+            case 2:
+                Ti.App.fireEvent('openCurrencyWindow');
+                break;
+            case 3:
+                Ti.App.fireEvent('openNewsWindow');
+                break;
+            case 4:
+                Ti.App.fireEvent('openFaqWindow');
+                break;
         }
     });
 
