@@ -18,7 +18,7 @@ function xml_rss() {
             var x = 0;
             //var doctitle = doc.evaluate("//channel/title/text()").item(0).nodeValue;
 
-            var c = 0
+            var c = 0;
             for (c; c < items.length; c++) {
                 var item = items.item(c);
 
@@ -61,7 +61,8 @@ function xml_rss() {
                     backgroundImage : '/images/bg.jpg',
                     barImage : '/images/Navigation_Bar.jpg',
                     barColor : 'gray',
-                    navBarHidden : false
+                    navBarHidden : false,
+                    modal : Ti.Platform.getOsname() === 'iphone'
                 });
                 var wb = Ti.UI.createWebView({
                     url : e.row.url
@@ -69,8 +70,7 @@ function xml_rss() {
                 });
                 w.add(wb);
                 var b = Ti.UI.createButton({
-                    title : 'اغلاق',
-                    style : Ti.UI.iPhone.SystemButtonStyle.PLAIN
+                    title : 'اغلاق'
                 });
                 w.setLeftNavButton(b);
                 b.addEventListener('click', function() {

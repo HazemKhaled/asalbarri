@@ -72,6 +72,18 @@ Ti.App.addEventListener('openCurrencyWindow', function() {
     new CurrencyWinModule().open();
 });
 
+Ti.App.addEventListener('openNewsWindow', function() {
+    var WinModule = require('/ui/common/newsWin');
+
+    Ti.App.catalogTab.open(new WinModule());
+});
+
+Ti.App.addEventListener('openFaqWindow', function() {
+    var WinModule = require('/ui/common/faqWin');
+
+    Ti.App.catalogTab.open(new WinModule());
+});
+
 Ti.App.addEventListener('openChargeWalletWindow', function() {
     var ChargeWalletWinModule = require('/ui/common/chargeWalletWin');
 

@@ -1,25 +1,11 @@
 function ApplicationTabGroup(Window) {
 
-    var self, CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule, NewsWinModule, FaqWinModule, newsTab, faqTab;
+    var self, CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule, NewsWinModule, FaqWinModule;
 
     //create module instance
     self = Ti.UI.createTabGroup({
         exitOnClose : true,
         backgroundImage : '/images/bg.jpg'
-    });
-
-    FaqWinModule = require('ui/common/faqWin');
-    faqTab = Ti.UI.createTab({
-        title : 'س و ج',
-        icon : '/images/icon_8.png',
-        window : new FaqWinModule()
-    });
-
-    NewsWinModule = require('ui/common/newsWin');
-    newsTab = Ti.UI.createTab({
-        title : 'اخبارنا',
-        icon : '/images/icon_8.png',
-        window : new NewsWinModule()
     });
 
     MyOrdersWinModule = require('ui/common/myOrdersWin');
@@ -51,8 +37,6 @@ function ApplicationTabGroup(Window) {
         window : new CategoryWinModule(0)
     });
 
-    self.addTab(faqTab);
-    self.addTab(newsTab);
     self.addTab(Ti.App.orderTab);
     self.addTab(Ti.App.walletTab);
     self.addTab(Ti.App.cartTab);

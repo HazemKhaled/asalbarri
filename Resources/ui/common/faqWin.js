@@ -61,7 +61,8 @@ function xml_rss() {
                     backgroundImage : '/images/bg.jpg',
                     barImage : '/images/Navigation_Bar.jpg',
                     barColor : 'gray',
-                    navBarHidden : false
+                    navBarHidden : false,
+                    modal : Ti.Platform.getOsname() === 'iphone'
                 });
                 var wb = Ti.UI.createWebView({
                     html : "<div style='width: " + Ti.Platform.displayCaps.getPlatformWidth() + "'>" + e.row.description + '</div>',
@@ -69,8 +70,7 @@ function xml_rss() {
                 });
                 w.add(wb);
                 var b = Ti.UI.createButton({
-                    title : 'اغلاق',
-                    style : Ti.UI.iPhone.SystemButtonStyle.PLAIN
+                    title : 'اغلاق'
                 });
                 w.setLeftNavButton(b);
                 b.addEventListener('click', function() {
