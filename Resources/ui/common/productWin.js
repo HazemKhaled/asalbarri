@@ -199,7 +199,7 @@ function productWin(product) {
     if (Ti.Platform.getOsname() == 'android') {
 
         self.activity.onCreateOptionsMenu = function(e) {
-            shareBtn = e.menu.add({
+            var shareBtn = e.menu.add({
                 title : 'نشر',
                 icon : '/images/share_icon.png',
                 showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM
