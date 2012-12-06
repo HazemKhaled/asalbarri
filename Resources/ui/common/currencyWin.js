@@ -7,7 +7,8 @@ function currencyWin() {
         modal : true,
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : 'gray'
+        barColor : 'gray',
+        navBarHidden : false
     });
 
     if (Ti.Platform.getOsname() !== 'android') {
@@ -48,7 +49,7 @@ function currencyWin() {
         xhr.onload = function() {
 
             var rows, i, row;
-            
+
             try {
                 rows = JSON.parse(this.responseText);
             } catch (e) {
@@ -61,7 +62,7 @@ function currencyWin() {
                 }).show();
                 return false;
             }
-            
+
             for (i in rows ) {
                 if (rows.hasOwnProperty(i)) {
 
@@ -104,9 +105,9 @@ function currencyWin() {
 
         var auth = require('/lib/auth');
         if (auth.isLogedIn() !== false) {
-            Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق']);
+            Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق']);
         } else {
-            Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اغلاق']);
+            Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق']);
         }
     });
     filterData();
