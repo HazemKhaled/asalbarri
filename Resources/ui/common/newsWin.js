@@ -6,6 +6,9 @@ function xml_rss() {
         barColor : 'gray'
     });
 
+    Ti.include('/lib/menu.js');
+    menusGenerator(win);
+
     // create table view data object
     var data = [];
 
@@ -24,7 +27,6 @@ function xml_rss() {
 
                 var title = item.getElementsByTagName("title").item(0).text;
                 var row = Ti.UI.createTableViewRow({
-                    height : 95,
                     titleText : title,
                     description : item.getElementsByTagName("description").item(0).text,
                     url : item.getElementsByTagName("link").item(0).text,
@@ -34,10 +36,11 @@ function xml_rss() {
                 var label = Ti.UI.createLabel({
                     text : title,
                     textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                    height : 50,
                     color : '#ffffff',
                     font : {
                         fontFamily : 'Arial',
-                        fontSize : 17,
+                        fontSize : 24,
                         fontWeight : 'bold'
                     },
                     right : 5,
@@ -66,7 +69,6 @@ function xml_rss() {
                 });
                 var wb = Ti.UI.createWebView({
                     url : e.row.url
-                    //html : " " + e.row.description
                 });
                 w.add(wb);
                 var b = Ti.UI.createButton({

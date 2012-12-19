@@ -6,6 +6,9 @@ function xml_rss() {
         barColor : 'gray'
     });
 
+    Ti.include('/lib/menu.js');
+    menusGenerator(win);
+
     var xhr = Ti.Network.createHTTPClient();
     xhr.open("GET", "http://www.asalbarri.com/asal/api/faq");
     xhr.onload = function() {
@@ -56,8 +59,7 @@ function xml_rss() {
             });
 
             var scrollView = Ti.UI.createScrollView({
-                layout : 'vertical',
-                size : Ti.UI.FILL
+                layout : 'vertical'
             });
             w.add(scrollView);
 
