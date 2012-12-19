@@ -50,7 +50,7 @@ function cartWin() {
 
     emptyBtn = Ti.UI.createButton({
         title : 'تفريغ',
-        left : 75,
+        //left : '40%',
         height : 31,
         width : 70,
         color : '#000000',
@@ -84,6 +84,7 @@ function cartWin() {
         title : 'كوبون خصم',
         height : 31,
         width : 110,
+        left : 5,
         color : '#000000',
         font : {
             fontFamily : 'Arial',
@@ -102,7 +103,8 @@ function cartWin() {
         layout : 'horizontal',
         top : 0,
         height : 44,
-        width : '100%'
+        //width : '100%'
+        left : '25%'
     });
     tableHeaderView.add(emptyBtn);
     tableHeaderView.add(couponBtn);
