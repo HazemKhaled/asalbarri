@@ -4,7 +4,7 @@ function categoryWin(parent) {
 
     self = Ti.UI.createWindow({
         title : parent.title || 'عسل بري',
-        showAboutBtn : parent.hasOwnProperty('title'),
+        hideAboutBtn : parent.hasOwnProperty('title'),
         backButtonTitle : 'عودة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',

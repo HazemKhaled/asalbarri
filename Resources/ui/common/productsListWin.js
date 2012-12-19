@@ -3,6 +3,7 @@ function productsListWin(parent) {
     var self, tableView;
     self = Ti.UI.createWindow({
         title : parent.title,
+        hideAboutBtn : true,
         backButtonTitle : 'عودة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
