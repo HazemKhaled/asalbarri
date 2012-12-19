@@ -118,7 +118,7 @@ function aboutWin() {
         }
     });
     mobileNumberLbl.addEventListener('click', function() {
-        Ti.Platform.openURL('tel:0592972777');
+        Ti.Platform.openURL('tel:+966592972777');
     });
     self.add(mobileNumberLbl);
     return self;
