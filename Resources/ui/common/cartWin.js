@@ -179,7 +179,7 @@ function cartWin() {
                 if (rows[i].price_shown_coupon > 0) {
 
                     priceLbl = Ti.UI.createLabel({
-                        text : rows[i].price_shown_coupon,
+                        text : parseFloat(rows[i].price_shown_coupon).toFixed(2),
                         right : 120,
                         width : 60,
                         bottom : 27,
@@ -195,7 +195,7 @@ function cartWin() {
                 } else {
 
                     priceLbl = Ti.UI.createLabel({
-                        text : rows[i].price,
+                        text : parseFloat(rows[i].price).toFixed(2),
                         right : 120,
                         width : 60,
                         bottom : 27,
@@ -226,7 +226,7 @@ function cartWin() {
 
                 total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
                 priceRowLbl = Ti.UI.createLabel({
-                    text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10),
+                    text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10).toFixed(2),
                     color : '#ffffff',
                     left : 10,
                     bottom : 10,
@@ -312,9 +312,9 @@ function cartWin() {
             rowView3.add(totalLable);
 
             totalText = Ti.UI.createLabel({
-                text : ' ' + total + ' ' + 'دولار أمريكي',
+                text : ' ' + total.toFixed(2) + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
                 color : '#ffffff',
-                textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
+                textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                 font : {
                     fontFamily : 'Arial',
                     fontSize : 17

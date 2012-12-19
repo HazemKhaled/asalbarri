@@ -99,7 +99,7 @@ function productsListWin(parent) {
                         row.add(pricebackground);
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : rows[i].price,
+                            text : parseFloat(rows[i].price).toFixed(2),
                             left : 0,
                             top : 0,
                             width : 85,
@@ -125,7 +125,7 @@ function productsListWin(parent) {
                         }));
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : rows[i].price_shown_coupon,
+                            text : parseFloat(rows[i].price_shown_coupon).toFixed(2),
                             right : 0,
                             top : 0,
                             width : 85,
@@ -161,7 +161,7 @@ function productsListWin(parent) {
                         row.add(pricebackground);
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : rows[i].price,
+                            text : 'test' + parseFloat(rows[i].price).toFixed(2),
                             left : 0,
                             top : 0,
                             width : 85,
