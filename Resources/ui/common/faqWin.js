@@ -14,8 +14,6 @@ function xml_rss() {
     xhr.onload = function() {
         var rows, i, row, tableview, data = [];
 
-        Ti.API.log(this.responseText);
-
         try {
             rows = JSON.parse(this.responseText);
         } catch (e) {

@@ -98,7 +98,7 @@ function productsListWin(parent) {
                         row.add(pricebackground);
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : parseFloat(rows[i].price).toFixed(2),
+                            text : parseFloat(rows[i].price).toFixed(0),
                             left : 0,
                             top : 0,
                             width : 85,
