@@ -45,8 +45,13 @@ function ApplicationTabGroup(Window) {
     self.setActiveTab(Ti.App.catalogTab);
 
     self.addEventListener('open', function() {
-        var OffersListWinModule = require('ui/common/offersListWin');
-        new OffersListWinModule().open();
+
+        if (!Ti.App.Properties.hasProperty('currencyName')) {
+            Ti.App.fireEvent('openCurrencyWindow');
+        } else {
+            var OffersListWinModule = require('ui/common/offersListWin');
+            new OffersListWinModule().open();
+        }
     });
 
     return self;
