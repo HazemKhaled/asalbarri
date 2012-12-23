@@ -150,8 +150,6 @@ Ti.App.addEventListener('cartAdd', function(e) {
         Ti.App.cartTab.setBadge(Ti.App.cartQuantityCounter(cart).total);
     }
 
-    Ti.API.log(cart);
-
     if (Ti.Platform.getOsname() !== 'android') {
         Ti.App.cartTab.setActive(true);
     }

@@ -134,7 +134,7 @@ function cartWin() {
 
         for (i in rows) {
             if (rows.hasOwnProperty(i)) {
-                //console.log(rows[i]);
+
                 rowView = Ti.UI.createTableViewRow({
                     height : 95,
                     myTitle : rows[i].title,

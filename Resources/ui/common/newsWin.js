@@ -81,7 +81,7 @@ function xml_rss() {
                 w.open();
             });
         } catch(E) {
-            Ti.API.log(E);
+            Ti.API.debug(E);
         }
     };
     xhr.send();
