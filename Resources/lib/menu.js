@@ -1,5 +1,10 @@
 function menusGenerator(self) {
-    var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
+    var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth, linksArray = [
+            Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)',
+            'اخبارنا',
+            'س و ج',
+            'عروض خاصة'
+        ];
 
     //openAboutWindow
     if (Ti.Platform.getOsname() === 'android') {
@@ -54,7 +59,7 @@ function menusGenerator(self) {
 
     // options dialog
     optionsDialogOpts = {
-        options : ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'اغلاق'],
+        options : linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
         cancel : 6,
         title : 'اعدادات'
     };
@@ -63,8 +68,8 @@ function menusGenerator(self) {
 
     auth = require('/lib/auth');
     if (auth.isLogedIn() !== false) {
-        dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'اغلاق'];
-        dialog.destructive = 0;
+        dialog.options = linksArray.concat(['تسجيل خروج', 'بيانات المستخدم', 'اغلاق']);
+        dialog.destructive = 4;
     }
 
     // add event listener
@@ -72,28 +77,27 @@ function menusGenerator(self) {
         //aboutBtn.title = 'You selected ' + e.index;
         if (auth.isLogedIn() === false) {
             switch(e.index) {
-                case 0:
+                case 4:
 
                     Ti.App.fireEvent('openLoginWindow');
                     break;
-                case 1:
+                case 5:
 
                     Ti.App.fireEvent('openRegisterWindow');
                     break;
             }
         } else {
             switch(e.index) {
-                case 0:
+                case 4:
 
                     Ti.App.Properties.removeProperty('userID');
                     Ti.App.fireEvent('cartEmpty');
                     Ti.App.fireEvent('showWalletBeforLogin');
                     Ti.App.fireEvent('showMyordersBeforLogin');
                     Ti.App.fireEvent('closeOrderProductsWindow');
-                    Ti.App.dialog.destructive = null;
-                    Ti.App.dialog.options = ['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'اغلاق'];
+                    dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']);
                     break;
-                case 1:
+                case 5:
 
                     var userNameMsg = Ti.UI.createAlertDialog({
                         title : 'بيانات المستخدم',
@@ -105,21 +109,19 @@ function menusGenerator(self) {
         }
 
         switch(e.index) {
-            case 2:
+            case 0:
                 Ti.App.fireEvent('openCurrencyWindow');
                 break;
-            case 3:
+            case 1:
                 Ti.App.fireEvent('openNewsWindow');
                 break;
-            case 4:
+            case 2:
                 Ti.App.fireEvent('openFaqWindow');
                 break;
-            case 5:
+            case 3:
                 var OffersListWinModule = require('ui/common/offersListWin');
                 new OffersListWinModule().open();
                 break;
         }
     });
-
-    Ti.App.dialog = dialog;
 }

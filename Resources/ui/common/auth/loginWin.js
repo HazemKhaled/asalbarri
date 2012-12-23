@@ -181,6 +181,7 @@ function loginWin() {
 
                             dialog.show();
                         }
+                        return false;
                     }
 
                 }
@@ -189,8 +190,6 @@ function loginWin() {
             Ti.App.Properties.setString('userName', userField.value);
             Ti.App.fireEvent('showWalletAfterLogin');
             Ti.App.fireEvent('showMyordersAfterLogin');
-            Ti.App.dialog.destructive = 0;
-            Ti.App.dialog.options = ['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق'];
 
             Ti.App.fireEvent('closeLoginWindow');
         };
