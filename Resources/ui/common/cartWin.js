@@ -181,7 +181,7 @@ function cartWin() {
                 if (rows[i].price_shown_coupon > 0) {
 
                     priceLbl = Ti.UI.createLabel({
-                        text : parseFloat(rows[i].price_shown_coupon).toFixed(0),
+                        text : parseFloat(rows[i].price_shown_coupon).toFixed(2),
                         right : 120,
                         width : 60,
                         bottom : 27,
