@@ -30,7 +30,7 @@ function menusGenerator(self) {
             });
         };
     } else {
-        if (!self.hideAboutBtn) {// only on home window
+        if (self.hideAboutBtn == false) {// only on home window
             aboutBtn = Ti.UI.createButton({
                 height : 31,
                 width : 31,
