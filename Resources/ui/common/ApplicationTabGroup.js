@@ -44,6 +44,11 @@ function ApplicationTabGroup(Window) {
 
     self.setActiveTab(Ti.App.catalogTab);
 
+    self.addEventListener('open', function() {
+        var OffersListWinModule = require('ui/common/offersListWin');
+        new OffersListWinModule().open();
+    });
+
     return self;
 }
 
