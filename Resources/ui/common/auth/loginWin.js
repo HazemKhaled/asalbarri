@@ -81,8 +81,8 @@ function loginWin() {
 
         if (userField.value.length < 4) {
             Ti.UI.createAlertDialog({
-                title : 'اسم المستخدم',
-                message : 'تآكد من صحة اسم المستخدم',
+                title : 'خطأ',
+                message : 'تأكد من صحة اسم المستخدم',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
@@ -93,8 +93,8 @@ function loginWin() {
 
         if (passField.value.length < 3) {
             Ti.UI.createAlertDialog({
-                title : 'كلمة المرور',
-                message : 'تآكد من صحة كلمة المرور',
+                title : 'خطأ',
+                message : 'تأكد من صحة كلمة المرور',
                 cancel : 0,
                 buttonNames : ['موافق']
             }).show();
@@ -149,15 +149,16 @@ function loginWin() {
 
                         if (response.errors[k] === response.errors.password) {
                             Ti.UI.createAlertDialog({
-                                title : 'تآكد من صحة اسم المستخدم الخاص بك',
+                            	title : 'خطأ',
+                                message : 'تأكد من صحة اسم المستخدم الخاص بك',
                                 cancel : 0,
                                 buttonNames : ['موافق']
                             }).show();
 
                         } else if (response.errors[k] === response.errors.password) {
                             Ti.UI.createAlertDialog({
-                                title : 'كلمة المرور',
-                                message : 'تآكد من صحة كلمة المرور الخاصة بك',
+                                title : 'خطأ',
+                                message : 'تأكد من صحة كلمة المرور الخاصة بك',
                                 cancel : 0,
                                 buttonNames : ['موافق']
                             }).show();
