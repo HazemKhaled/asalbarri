@@ -213,7 +213,7 @@ function productWin(product) {
                 });
 
                 intent.putExtra(Ti.Android.EXTRA_TEXT, product.title);
-                intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.title + "\n\n" + product.desc + "\n\nمزيد من المعلومات:\n http://www.asalbarri.com/beta/asal-product-" + product.id + '.html');
+                intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.title + "\n\n" + product.desc + "\n\nمزيد من المعلومات:\n http://www.asalbarri.com/asal-product-" + product.id + '.html');
                 activity.startActivity(Ti.Android.createIntentChooser(intent, 'Share'));
             });
         };
@@ -241,7 +241,7 @@ function productWin(product) {
                     if (Social.isFacebookSupported()) {//min iOS6 required
                         Social.facebook({
                             text : product.title,
-                            url : 'http://www.asalbarri.com/beta/asal-product-' + product.id + '.html'
+                            url : 'http://www.asalbarri.com/asal-product-' + product.id + '.html'
                         });
                     } else {
                         //implement Ti.Facebook Method - iOS5
@@ -252,7 +252,7 @@ function productWin(product) {
                     if (Social.isTwitterSupported()) {//min iOS6 required
                         Social.twitter({
                             text : product.title,
-                            url : 'http://www.asalbarri.com/beta/asal-product-' + product.id + '.html'
+                            url : 'http://www.asalbarri.com/asal-product-' + product.id + '.html'
                         });
                     } else {
                         //implement iOS5 Twitter method
