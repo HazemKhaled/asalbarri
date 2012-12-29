@@ -1,241 +1,280 @@
 function openRegisterWindow() {
-    var self, scrollview, mobileField, emailField, passField, confirmpassField, submitBtn;
+	var self, scrollview, mobileField, usernameField, emailField, passField, confirmpassField, submitBtn;
 
-    self = Ti.UI.createWindow({
-        title : 'تسجيل',
-        backgroundImage : '/images/bg.jpg',
-        barImage : '/images/Navigation_Bar.jpg',
-        barColor : 'gray'
-    });
-    scrollview = Ti.UI.createScrollView({
-        contentWidth : Ti.Platform.displayCaps.platformWidth
-    });
+	self = Ti.UI.createWindow({
+		title : 'تسجيل',
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
+		barColor : 'gray'
+	});
 
-    mobileField = Ti.UI.createTextField({
-        top : 25,
-        hintText : 'اسم المستخدم',
-        textAlign : Ti.App.autoAlignHintext(),
-        returnKeyType : Ti.UI.RETURNKEY_NEXT,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        height : 33,
-        width : '90%',
-        font : {
-            fontSize : '13dp'
-        },
+	self.addEventListener('open', function() {
+		mobileField.focus();
+	});
+
+	scrollview = Ti.UI.createScrollView({
+		contentWidth : Ti.Platform.displayCaps.platformWidth,
+		layout : 'vertical'
+	});
+
+	mobileField = Ti.UI.createTextField({
+		top : 15,
+		hintText : 'رقم الجوال',
+		textAlign : Ti.App.autoAlignHintext(),
+		returnKeyType : Ti.UI.RETURNKEY_NEXT,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		keyboardType : Ti.UI.KEYBOARD_PHONE_PAD,
+		height : 33,
+		width : '90%',
+		font : {
+			fontSize : '13dp'
+		},
 		color : '#000000'
-    });
+	});
+	mobileField.addEventListener('change', Ti.App.autoTextAlign);
+	mobileField.addEventListener('return', function() {
+		usernameField.focus();
+	});
 
-    self.addEventListener('open', function() {
-        mobileField.focus();
-    });
-    mobileField.addEventListener('change', Ti.App.autoTextAlign);
-    mobileField.addEventListener('return', function() {
-        emailField.focus();
-    });
+	scrollview.add(mobileField);
 
-    scrollview.add(mobileField);
-
-    emailField = Ti.UI.createTextField({
-        top : 65,
-        hintText : 'البريد الخاص بك',
-        textAlign : Ti.App.autoAlignHintext(),
-        //autocapitalization : false,
-        returnKeyType : Ti.UI.RETURNKEY_SEND,
-        keyboardType : Ti.UI.KEYBOARD_EMAIL,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        height : 33,
-        width : '90%',
-        font : {
-            fontSize : '13dp'
-        },
+	usernameField = Ti.UI.createTextField({
+		top : 15,
+		hintText : 'اسم المستخدم',
+		textAlign : Ti.App.autoAlignHintext(),
+		returnKeyType : Ti.UI.RETURNKEY_NEXT,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		height : 33,
+		width : '90%',
+		font : {
+			fontSize : '13dp'
+		},
 		color : '#000000'
-    });
-    emailField.addEventListener('change', Ti.App.autoTextAlign);
-    emailField.addEventListener('return', function() {
-        passField.focus();
-    });
+	});
+	usernameField.addEventListener('change', Ti.App.autoTextAlign);
+	usernameField.addEventListener('return', function() {
+		emailField.focus();
+	});
 
-    scrollview.add(emailField);
+	scrollview.add(usernameField);
 
-    passField = Ti.UI.createTextField({
-        height : 33,
-        width : '90%',
-        top : 105,
-        hintText : 'كلمة المرور',
-        textAlign : Ti.App.autoAlignHintext(),
-        passwordMask : true,
-        returnKeyType : Ti.UI.RETURNKEY_NEXT,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        font : {
-            fontSize : '13dp'
-        },
+	emailField = Ti.UI.createTextField({
+		top : 15,
+		hintText : 'البريد الخاص بك',
+		textAlign : Ti.App.autoAlignHintext(),
+		//autocapitalization : false,
+		returnKeyType : Ti.UI.RETURNKEY_NEXT,
+		keyboardType : Ti.UI.KEYBOARD_EMAIL,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		height : 33,
+		width : '90%',
+		font : {
+			fontSize : '13dp'
+		},
 		color : '#000000'
-    });
-    passField.addEventListener('change', Ti.App.autoTextAlign);
-    passField.addEventListener('return', function() {
-        confirmpassField.focus();
-    });
+	});
+	emailField.addEventListener('change', Ti.App.autoTextAlign);
+	emailField.addEventListener('return', function() {
+		passField.focus();
+	});
 
-    scrollview.add(passField);
+	scrollview.add(emailField);
 
-    confirmpassField = Ti.UI.createTextField({
-        height : 33,
-        width : '90%',
-        top : 145,
-        hintText : 'تآكيد كلمة المرور',
-        textAlign : Ti.App.autoAlignHintext(),
-        passwordMask : true,
-        returnKeyType : Ti.UI.RETURNKEY_JOIN,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        font : {
-            fontSize : '13dp'
-        },
+	passField = Ti.UI.createTextField({
+		height : 33,
+		width : '90%',
+		top : 15,
+		hintText : 'كلمة المرور',
+		textAlign : Ti.App.autoAlignHintext(),
+		passwordMask : true,
+		returnKeyType : Ti.UI.RETURNKEY_NEXT,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		font : {
+			fontSize : '13dp'
+		},
 		color : '#000000'
-    });
-    confirmpassField.addEventListener('change', Ti.App.autoTextAlign);
-    confirmpassField.addEventListener('return', function() {
-        submitBtn.fireEvent('click');
-    });
+	});
+	passField.addEventListener('change', Ti.App.autoTextAlign);
+	passField.addEventListener('return', function() {
+		confirmpassField.focus();
+	});
 
-    scrollview.add(confirmpassField);
+	scrollview.add(passField);
 
-    submitBtn = Ti.UI.createButton({
-        title : 'تسجيل'
-    });
+	confirmpassField = Ti.UI.createTextField({
+		height : 33,
+		width : '90%',
+		top : 15,
+		hintText : 'تآكيد كلمة المرور',
+		textAlign : Ti.App.autoAlignHintext(),
+		passwordMask : true,
+		returnKeyType : Ti.UI.RETURNKEY_JOIN,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		font : {
+			fontSize : '13dp'
+		},
+		color : '#000000'
+	});
+	confirmpassField.addEventListener('change', Ti.App.autoTextAlign);
+	confirmpassField.addEventListener('return', function() {
+		submitBtn.fireEvent('click');
+	});
 
-    submitBtn.addEventListener('click', function() {
+	scrollview.add(confirmpassField);
 
-        var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	submitBtn = Ti.UI.createButton({
+		title : 'تسجيل'
+	});
 
-        if (mobileField.getValue().length < 4) {
-            Ti.UI.createAlertDialog({
-                title : 'خطأ',
-                message : 'تحقق من اسم المستخدم',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            mobileField.focus();
+	submitBtn.addEventListener('click', function() {
 
-            return false;
-        }
+		var xhr, emailRGX = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-        if (!emailRGX.test(emailField.value)) {
-            Ti.UI.createAlertDialog({
-                title : 'خطأ',
-                message : 'خطأ في البريد الآلكتروني',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            emailField.focus();
+		if (mobileField.getValue().length < 7) {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ',
+				message : 'تحقق من رقم الجوال',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			mobileField.focus();
 
-            return false;
-        }
+			return false;
+		}
+		if (usernameField.getValue().length < 4) {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ',
+				message : 'تحقق من اسم المستخدم',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			usernameField.focus();
 
-        if (passField.value.length < 3) {
-            Ti.UI.createAlertDialog({
-                title : 'خطأ في كلمة المرور',
-                message : 'يجب آن تكون كلمة المرور آكبر من ٣ آحرف',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            passField.focus();
+			return false;
+		}
 
-            return false;
-        }
+		if (!emailRGX.test(emailField.value)) {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ',
+				message : 'خطأ في البريد الآلكتروني',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			emailField.focus();
 
-        if (passField.value !== confirmpassField.value) {
-            Ti.UI.createAlertDialog({
-                title : 'خطأ في كلمة المرور',
-                message : 'يجب آن تكون كلمة المرور و تآكيدها متطابقين',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            passField.focus();
+			return false;
+		}
 
-            return false;
-        }
+		if (passField.value.length < 3) {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ في كلمة المرور',
+				message : 'يجب آن تكون كلمة المرور آكبر من ٣ آحرف',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			passField.focus();
 
-        xhr = Ti.Network.createHTTPClient({});
-        xhr.onerror = function() {
-            Ti.UI.createAlertDialog({
-                title : 'خطأ في الآتصال',
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            Ti.App.fireEvent('hideLoading');
-        };
-        xhr.onload = function() {
+			return false;
+		}
 
-            Ti.App.fireEvent('hideLoading');
+		if (passField.value !== confirmpassField.value) {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ في كلمة المرور',
+				message : 'يجب آن تكون كلمة المرور و تآكيدها متطابقين',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			passField.focus();
 
-            var request, msgBox;
+			return false;
+		}
 
-            try {
-                request = JSON.parse(this.responseText);
-            } catch(e) {
-                Ti.UI.createAlertDialog({
-                    title : 'خطأ',
-                    message : 'خطأ في الآتصال، حاول مرة اخرى.',
-                    cancel : 0,
-                    buttonNames : ['موافق']
-                }).show();
+		xhr = Ti.Network.createHTTPClient({});
+		xhr.onerror = function() {
+			Ti.UI.createAlertDialog({
+				title : 'خطأ في الآتصال',
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
+			Ti.App.fireEvent('hideLoading');
+		};
+		xhr.onload = function() {
 
-                return false;
-            }
-            if (request.errors) {
-                msgBox = Ti.UI.createAlertDialog({
-                    title : 'خطأ',
-                    message : 'هذا البريد او اسم المستخدم مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
-                    cancel : 0,
-                    buttonNames : ['موافق', 'نسيت كلمة المرور؟']
-                });
+			Ti.App.fireEvent('hideLoading');
 
-                msgBox.show();
+			var request, msgBox;
 
-                msgBox.addEventListener('click', function(e) {
-                    if (e.index === 1) {
-                        Ti.App.fireEvent('openForgetpasswordWindow');
-                    }
-                });
+			try {
+				request = JSON.parse(this.responseText);
+			} catch(e) {
+				Ti.UI.createAlertDialog({
+					title : 'خطأ',
+					message : 'خطأ في الآتصال، حاول مرة اخرى.',
+					cancel : 0,
+					buttonNames : ['موافق']
+				}).show();
 
-                return false;
-            }
+				return false;
+			}
+			if (request.errors) {
+				msgBox = Ti.UI.createAlertDialog({
+					title : 'خطأ',
+					message : 'هذا البريد او اسم المستخدم مسجلين لدينا بالفعل، إذا كنت مسجل من قبل ونسيت كلمة المرور اضغط على زر نسيت كلمة المرور',
+					cancel : 0,
+					buttonNames : ['موافق', 'نسيت كلمة المرور؟']
+				});
 
-            Ti.UI.createAlertDialog({
-                title : request.msg,
-                cancel : 0,
-                buttonNames : ['موافق']
-            }).show();
-            Ti.App.fireEvent('hideLoading');
-            Ti.App.fireEvent('closeRegisterWindow');
-        };
+				msgBox.show();
 
-        xhr.open('POST', Ti.App.APIURL + 'authapi/register');
-        xhr.send({
-            username : mobileField.value,
-            email : emailField.value,
-            password : passField.value,
-            confirm_password : confirmpassField.value
-        });
-        Ti.App.fireEvent('showLoading');
+				msgBox.addEventListener('click', function(e) {
+					if (e.index === 1) {
+						Ti.App.fireEvent('openForgetpasswordWindow');
+					}
+				});
 
-    });
+				return false;
+			}
 
-    if (Ti.Platform.getOsname() === 'android') {
+			try {
+				Ti.UI.createAlertDialog({
+					title : request.msg,
+					cancel : 0,
+					buttonNames : ['موافق']
+				}).show();
+			} catch (e) {
+				Ti.API.log('error', 'server cant not send the msg');
+			}
+			Ti.App.fireEvent('hideLoading');
+			Ti.App.fireEvent('closeRegisterWindow');
+		};
 
-        submitBtn.height = 33;
-        submitBtn.width = '90%';
-        submitBtn.top = 185;
-        submitBtn.backgroundImage = '/images/button_ok.png';
-        submitBtn.color = '#ffffff';
+		xhr.open('POST', Ti.App.APIURL + 'authapi/register');
+		xhr.send({
+			mobile : mobileField.getValue(),
+			username : usernameField.getValue(),
+			email : emailField.getValue(),
+			password : passField.getValue(),
+			confirm_password : confirmpassField.getValue()
+		});
+		Ti.App.fireEvent('showLoading');
 
-        scrollview.add(submitBtn);
-    } else {
-        self.setRightNavButton(submitBtn);
-    }
-    self.add(scrollview);
+	});
 
-    return self;
+	if (Ti.Platform.getOsname() === 'android') {
+
+		submitBtn.height = 33;
+		submitBtn.width = '90%';
+		submitBtn.top = 15;
+		submitBtn.backgroundImage = '/images/button_ok.png';
+		submitBtn.color = '#ffffff';
+
+		scrollview.add(submitBtn);
+	} else {
+		self.setRightNavButton(submitBtn);
+	}
+	self.add(scrollview);
+
+	return self;
 }
 
 module.exports = openRegisterWindow;
