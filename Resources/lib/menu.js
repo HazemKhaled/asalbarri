@@ -3,7 +3,8 @@ function menusGenerator(self) {
             Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)',
             'اخبارنا',
             'س و ج',
-            'عروض خاصة'
+            'عروض خاصة',
+            'رسائل SMS'
         ];
 
     //openAboutWindow
@@ -60,7 +61,7 @@ function menusGenerator(self) {
     // options dialog
     optionsDialogOpts = {
         options : linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
-        cancel : 6,
+        cancel : 7,
         title : 'اعدادات'
     };
 
@@ -77,18 +78,18 @@ function menusGenerator(self) {
         //aboutBtn.title = 'You selected ' + e.index;
         if (auth.isLogedIn() === false) {
             switch(e.index) {
-                case 4:
+                case 5:
 
                     Ti.App.fireEvent('openLoginWindow');
                     break;
-                case 5:
+                case 6:
 
                     Ti.App.fireEvent('openRegisterWindow');
                     break;
             }
         } else {
             switch(e.index) {
-                case 4:
+                case 5:
 
                     Ti.App.Properties.removeProperty('userID');
                     Ti.App.fireEvent('cartEmpty');
@@ -97,7 +98,7 @@ function menusGenerator(self) {
                     Ti.App.fireEvent('closeOrderProductsWindow');
                     dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']);
                     break;
-                case 5:
+                case 6:
 
                     var userNameMsg = Ti.UI.createAlertDialog({
                         title : 'بيانات المستخدم',
@@ -120,6 +121,10 @@ function menusGenerator(self) {
                 break;
             case 3:
                 var OffersListWinModule = require('ui/common/offersListWin');
+                new OffersListWinModule().open();
+                break;
+            case 4:
+                var OffersListWinModule = require('ui/common/SMSProWin');
                 new OffersListWinModule().open();
                 break;
         }
