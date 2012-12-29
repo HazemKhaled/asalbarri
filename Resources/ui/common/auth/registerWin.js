@@ -144,7 +144,7 @@ function openRegisterWindow() {
 		if (usernameField.getValue().length < 4) {
 			Ti.UI.createAlertDialog({
 				title : 'خطأ',
-				message : 'تحقق من اسم المستخدم',
+				message : 'تحقق من ادخال اسم المستخدم ولا يقل عن ٤ احرف',
 				cancel : 0,
 				buttonNames : ['موافق']
 			}).show();
@@ -156,7 +156,7 @@ function openRegisterWindow() {
 		if (!emailRGX.test(emailField.value)) {
 			Ti.UI.createAlertDialog({
 				title : 'خطأ',
-				message : 'خطأ في البريد الآلكتروني',
+				message : 'تأكد من ادخالك البريد الالكتروني بشكل صحيح',
 				cancel : 0,
 				buttonNames : ['موافق']
 			}).show();
