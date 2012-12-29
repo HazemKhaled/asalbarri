@@ -1,5 +1,7 @@
 function menusGenerator(self) {
-	var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth, linksArray = [Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'رسائل SMS'];
+	var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
+
+	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'رسائل SMS'];
 
 	//openAboutWindow
 	if (Ti.Platform.getOsname() === 'android') {
@@ -11,7 +13,7 @@ function menusGenerator(self) {
 			});
 
 			aboutBtn.addEventListener('click', function() {
-				dialog.show();
+				Ti.App.dialog.show();
 			});
 
 			aboutBtn = e.menu.add({
@@ -46,7 +48,7 @@ function menusGenerator(self) {
 			backgroundImage : '/images/icon_1.png'
 		});
 		settingBtn.addEventListener('click', function() {
-			dialog.show();
+			Ti.App.dialog.show();
 		});
 
 		self.setRightNavButton(settingBtn);
@@ -54,21 +56,21 @@ function menusGenerator(self) {
 
 	// options dialog
 	optionsDialogOpts = {
-		options : linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
+		options : Ti.App.linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
 		cancel : 7,
 		title : 'اعدادات'
 	};
 
-	dialog = Ti.UI.createOptionDialog(optionsDialogOpts);
+	Ti.App.dialog = Ti.UI.createOptionDialog(optionsDialogOpts);
 
 	auth = require('/lib/auth');
 	if (auth.isLogedIn() !== false) {
-		dialog.options = linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
-		dialog.destructive = 6;
+		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
+		Ti.App.dialog.destructive = 6;
 	}
 
 	// add event listener
-	dialog.addEventListener('click', function(e) {
+	Ti.App.dialog.addEventListener('click', function(e) {
 		//aboutBtn.title = 'You selected ' + e.index;
 		if (auth.isLogedIn() === false) {
 			switch(e.index) {
@@ -94,11 +96,12 @@ function menusGenerator(self) {
 				case 6:
 
 					Ti.App.Properties.removeProperty('userID');
-					Ti.App.fireEvent('cartEmpty');
+					//Ti.App.fireEvent('cartEmpty');
 					Ti.App.fireEvent('showWalletBeforLogin');
 					Ti.App.fireEvent('showMyordersBeforLogin');
 					Ti.App.fireEvent('closeOrderProductsWindow');
-					dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']);
+					Ti.App.dialog.options = Ti.App.linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']);
+					Ti.App.dialog.destructive = 99;
 					break;
 			}
 		}
