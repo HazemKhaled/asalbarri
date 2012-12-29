@@ -1,6 +1,6 @@
 function Window() {
 
-	var self, nameField, mobileField;
+	var self, nameField, mobileField, submitBtn, closeBtn;
 
 	self = Ti.UI.createWindow({
 		title : 'اشترك في العروض',
@@ -77,6 +77,16 @@ function Window() {
 		self.add(submitBtn);
 	} else {
 		self.setRightNavButton(submitBtn);
+
+		closeBtn = Ti.UI.createButton({
+			title : 'اغلاق'
+		});
+
+		closeBtn.addEventListener('click', function() {
+			self.close();
+		});
+
+		self.setLeftNavButton(closeBtn);
 	}
 	submitBtn.addEventListener('click', function() {
 
