@@ -23,10 +23,10 @@ function forgetpasswordWin() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
 
     // align left if empty

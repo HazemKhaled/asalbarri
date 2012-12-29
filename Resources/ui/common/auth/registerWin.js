@@ -19,10 +19,10 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
 
     self.addEventListener('open', function() {
@@ -45,10 +45,10 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
     emailField.addEventListener('change', Ti.App.autoTextAlign);
     emailField.addEventListener('return', function() {
@@ -60,7 +60,6 @@ function openRegisterWindow() {
     passField = Ti.UI.createTextField({
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png',
         top : 105,
         hintText : 'كلمة المرور',
         textAlign : Ti.App.autoAlignHintext(),
@@ -69,7 +68,8 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
     passField.addEventListener('change', Ti.App.autoTextAlign);
     passField.addEventListener('return', function() {
@@ -81,7 +81,6 @@ function openRegisterWindow() {
     confirmpassField = Ti.UI.createTextField({
         height : 33,
         width : '90%',
-        backgroundImage : '/images/bg_total_price.png',
         top : 145,
         hintText : 'تآكيد كلمة المرور',
         textAlign : Ti.App.autoAlignHintext(),
@@ -90,7 +89,8 @@ function openRegisterWindow() {
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
     confirmpassField.addEventListener('change', Ti.App.autoTextAlign);
     confirmpassField.addEventListener('return', function() {

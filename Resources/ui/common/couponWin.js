@@ -107,10 +107,10 @@ function couponWin() {
         //autocapitalization : false,
         returnKeyType : Ti.UI.RETURNKEY_DONE,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
 
     self.addEventListener('open', function() {

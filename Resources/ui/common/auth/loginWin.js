@@ -24,10 +24,10 @@ function loginWin() {
         top : 25,
         returnKeyType : Ti.UI.RETURNKEY_NEXT,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
 
     userField.addEventListener('return', function() {
@@ -49,10 +49,10 @@ function loginWin() {
         passwordMask : true,
         returnKeyType : Ti.UI.RETURNKEY_SEND,
         borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        backgroundImage : '/images/bg_total_price.png',
         font : {
             fontSize : '13dp'
-        }
+        },
+		color : '#000000'
     });
     passField.addEventListener('return', function() {
         submitBtn.fireEvent('click');
