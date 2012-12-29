@@ -38,6 +38,15 @@ function forgetpasswordWin() {
 
 	self.add(emailField);
 
+	self.add(Ti.UI.createLabel({
+		text : 'او',
+		top : 15,
+		font : {
+			fontSize : '18dp'
+		},
+		color : '#000000'
+	}));
+
 	mobileField = Ti.UI.createTextField({
 		top : 15,
 		hintText : 'رقم الجوال',
@@ -156,16 +165,17 @@ function forgetpasswordWin() {
 				return false;
 			}
 
-			alertMsg = Ti.UI.createAlertDialog({
-				message : request.msg,
-				cancel : 0,
-				buttonNames : ['موافق']
-			});
-
-			alertMsg.addEventListener('click', function(ev) {
-				Ti.App.fireEvent('closeForgetpasswordWindow');
-			});
-			alertMsg.show();
+			try {
+				Ti.UI.createAlertDialog({
+					title : request.msg,
+					cancel : 0,
+					buttonNames : ['موافق']
+				}).show();
+			} catch (e) {
+				Ti.API.log('error', 'server cant not send the msg');
+			}
+			Ti.App.fireEvent('hideLoading');
+			Ti.App.fireEvent('closeForgetpasswordWindow');
 		};
 
 		xhr.open('POST', Ti.App.APIURL + 'authapi/forgot_password');
