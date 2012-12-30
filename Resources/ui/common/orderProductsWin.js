@@ -62,7 +62,6 @@ function orderProductsWin(parent) {
                         left : 0,
                         right : 110,
                         top : 10,
-                        color : '#000000',
                         textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                         color : '#ffffff',
                         font : {

@@ -119,7 +119,7 @@ function Window(mobileNumber) {
 			} catch (e) {
 				Ti.UI.createAlertDialog({
 					title : 'خطأ',
-					title : 'خطأ في الآتصال',
+					message : 'خطأ في الآتصال',
 					cancel : 0,
 					buttonNames : ['موافق']
 				}).show();
