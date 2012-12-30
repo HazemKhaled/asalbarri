@@ -88,7 +88,7 @@ function menusGenerator(self) {
 				case 4:
 
 					var ProfileWinModule = require('ui/common/auth/profileWin');
-					Ti.App.myTabGroup.getActiveTab().open(new ProfileWinModule);
+					Ti.App.myTabGroup.getActiveTab().open(new ProfileWinModule());
 					break;
 				case 5:
 
@@ -115,7 +115,7 @@ function menusGenerator(self) {
 				break;
 			case 3:
 				var SMSProWinModule = require('ui/common/SMSProWin');
-				Ti.App.myTabGroup.getActiveTab().open(new SMSProWinModule);
+				Ti.App.myTabGroup.getActiveTab().open(new SMSProWinModule());
 				break;
 		}
 	});

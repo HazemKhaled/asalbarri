@@ -68,19 +68,19 @@ Ti.App.addEventListener('openAboutWindow', function() {
 
 Ti.App.addEventListener('openCurrencyWindow', function() {
 	var CurrencyWinModule = require('/ui/common/currencyWin');
-	Ti.App.myTabGroup.getActiveTab().open(new CurrencyWinModule);
+	Ti.App.myTabGroup.getActiveTab().open(new CurrencyWinModule());
 });
 
 Ti.App.addEventListener('openNewsWindow', function() {
 	var WinModule = require('/ui/common/newsWin');
 
-	Ti.App.myTabGroup.getActiveTab().open(new WinModule);
+	Ti.App.myTabGroup.getActiveTab().open(new WinModule());
 });
 
 Ti.App.addEventListener('openFaqWindow', function() {
 	var WinModule = require('/ui/common/faqWin');
 
-	Ti.App.myTabGroup.getActiveTab().open(new WinModule);
+	Ti.App.myTabGroup.getActiveTab().open(new WinModule());
 });
 
 Ti.App.addEventListener('openChargeWalletWindow', function() {
