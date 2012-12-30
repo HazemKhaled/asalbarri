@@ -65,8 +65,8 @@ function menusGenerator(self) {
 
 	auth = require('/lib/auth');
 	if (auth.isLogedIn() !== false) {
-		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
-		Ti.App.dialog.destructive = 6;
+		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تغير كلمة المرور', 'تسجيل خروج', 'اغلاق']);
+		Ti.App.dialog.destructive = 7;
 	}
 
 	// add event listener
@@ -91,6 +91,11 @@ function menusGenerator(self) {
 					new ProfileWinModule().open();
 					break;
 				case 6:
+
+					var PasswordWinModule = require('ui/common/auth/passwordWin');
+					new PasswordWinModule().open();
+					break;
+				case 7:
 
 					Ti.App.Properties.removeProperty('userID');
 					//Ti.App.fireEvent('cartEmpty');

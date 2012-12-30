@@ -197,8 +197,8 @@ function loginWin() {
 			Ti.App.fireEvent('showWalletAfterLogin');
 			Ti.App.fireEvent('showMyordersAfterLogin');
 
-			Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
-			Ti.App.dialog.destructive = 6;
+			Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تغير كلمة المرور', 'تسجيل خروج', 'اغلاق']);
+			Ti.App.dialog.destructive = 7;
 
 			Ti.App.fireEvent('closeLoginWindow');
 		};
