@@ -1,17 +1,21 @@
-function forgetpasswordWin(mobileNumber) {
+function Window(mobileNumber) {
 
-	var self, codeField, submitBtn;
+	var self, scrollview, codeField, submitBtn;
 
 	self = Ti.UI.createWindow({
 		title : 'تفعيل العضوية',
 		backgroundImage : '/images/bg.jpg',
 		barImage : '/images/Navigation_Bar.jpg',
-		barColor : 'gray',
-		layout : 'vertical'
+		barColor : 'gray'
 	});
 
 	self.addEventListener('open', function() {
 		codeField.focus();
+	});
+
+	scrollview = Ti.UI.createScrollView({
+		contentWidth : Ti.Platform.displayCaps.platformWidth,
+		layout : 'vertical'
 	});
 
 	if (Ti.Platform.getOsname() !== 'android') {
@@ -42,13 +46,13 @@ function forgetpasswordWin(mobileNumber) {
 		});
 	}
 
-	self.add(Ti.UI.createLabel({
+	scrollview.add(Ti.UI.createLabel({
 		text : 'سيصلك الان رسالة بها كود تفعيل، اكتبها هنا لتفعيل عضويتك.\n يمكنك تخطي هذه الخطوة وقم بالضغط على الرابط الذي وصلك على بريدك.',
 		top : 15,
 		width : '90%',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
 		font : {
-			fontSize : '22dp'
+			fontSize : '20dp'
 		},
 		color : '#ffffff'
 	}));
@@ -56,7 +60,7 @@ function forgetpasswordWin(mobileNumber) {
 	codeField = Ti.UI.createTextField({
 		top : 15,
 		hintText : 'كود التفعيل',
-		textAlign : Ti.App.autoAlignHintext(),
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 		returnKeyType : Ti.UI.RETURNKEY_SEND,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		height : 33,
@@ -71,7 +75,7 @@ function forgetpasswordWin(mobileNumber) {
 		submitBtn.fireEvent('click');
 	});
 
-	self.add(codeField);
+	scrollview.add(codeField);
 
 	submitBtn = Ti.UI.createButton({
 		title : 'تفعيل'
@@ -163,12 +167,13 @@ function forgetpasswordWin(mobileNumber) {
 		submitBtn.backgroundImage = '/images/button_ok.png';
 		submitBtn.color = '#ffffff';
 
-		self.add(submitBtn);
+		scrollview.add(submitBtn);
 	} else {
 		self.setRightNavButton(submitBtn);
 	}
 
+	self.add(scrollview);
 	return self;
 }
 
-module.exports = forgetpasswordWin;
+module.exports = Window;
