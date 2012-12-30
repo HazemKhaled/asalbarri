@@ -3,6 +3,7 @@ function offersListWin() {
     var self, tableView;
     self = Ti.UI.createWindow({
         title : 'عروض خاصة',
+        hideAboutBtn : false,
         backButtonTitle : 'عودة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
