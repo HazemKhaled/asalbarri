@@ -164,15 +164,6 @@ function Window() {
 				return false;
 			}
 
-			try {
-				Ti.UI.createAlertDialog({
-					title : request.msg,
-					cancel : 0,
-					buttonNames : ['موافق']
-				}).show();
-			} catch (e) {
-				Ti.API.log('error', 'server cant not send the msg');
-			}
 			Ti.App.fireEvent('hideLoading');
 			self.close();
 		};
