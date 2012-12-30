@@ -65,8 +65,8 @@ function menusGenerator(self) {
 
 	auth = require('/lib/auth');
 	if (auth.isLogedIn() !== false) {
-		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تغير كلمة المرور', 'تسجيل خروج', 'اغلاق']);
-		Ti.App.dialog.destructive = 6;
+		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
+		Ti.App.dialog.destructive = 5;
 	}
 
 	// add event listener
@@ -88,14 +88,9 @@ function menusGenerator(self) {
 				case 4:
 
 					var ProfileWinModule = require('ui/common/auth/profileWin');
-					new ProfileWinModule().open();
+					Ti.App.myTabGroup.getActiveTab().open(new ProfileWinModule);
 					break;
 				case 5:
-
-					var PasswordWinModule = require('ui/common/auth/passwordWin');
-					new PasswordWinModule().open();
-					break;
-				case 6:
 
 					Ti.App.Properties.removeProperty('userID');
 					//Ti.App.fireEvent('cartEmpty');
@@ -120,7 +115,7 @@ function menusGenerator(self) {
 				break;
 			case 3:
 				var SMSProWinModule = require('ui/common/SMSProWin');
-				new SMSProWinModule().open();
+				Ti.App.myTabGroup.getActiveTab().open(new SMSProWinModule);
 				break;
 		}
 	});

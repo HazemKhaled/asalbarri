@@ -7,8 +7,7 @@ function Window() {
 		title : 'تسجيل',
 		backgroundImage : '/images/bg.jpg',
 		barImage : '/images/Navigation_Bar.jpg',
-		barColor : 'gray',
-		modal : true
+		barColor : 'gray'
 	});
 
 	self.addEventListener('open', function() {
@@ -199,16 +198,6 @@ function Window() {
 		scrollview.add(submitBtn);
 	} else {
 		self.setRightNavButton(submitBtn);
-
-		closeBtn = Ti.UI.createButton({
-			title : 'اغلاق'
-		});
-
-		closeBtn.addEventListener('click', function() {
-			self.close();
-		});
-
-		self.setLeftNavButton(closeBtn);
 	}
 	self.add(scrollview);
 

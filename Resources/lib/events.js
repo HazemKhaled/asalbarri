@@ -18,7 +18,7 @@ Ti.App.addEventListener('openLoginWindow', function() {
 	var LoginModule = require('/ui/common/auth/loginWin'), loginWin;
 
 	loginWin = new LoginModule();
-	Ti.App.catalogTab.open(loginWin);
+	Ti.App.myTabGroup.getActiveTab().open(loginWin);
 
 	Ti.App.addEventListener('closeLoginWindow', function(e) {
 
@@ -36,7 +36,7 @@ Ti.App.addEventListener('openRegisterWindow', function(e) {
 
 	registerWin = new RegisterWinModule();
 
-	Ti.App.catalogTab.open(registerWin);
+	Ti.App.myTabGroup.getActiveTab().open(registerWin);
 
 	Ti.App.addEventListener('closeRegisterWindow', function(e) {
 
@@ -50,7 +50,7 @@ Ti.App.addEventListener('openForgetpasswordWindow', function(e) {
 
 	forgetpasswordWin = new ForgetpasswordWinModule();
 
-	Ti.App.catalogTab.open(forgetpasswordWin);
+	Ti.App.myTabGroup.getActiveTab().open(forgetpasswordWin);
 
 	Ti.App.addEventListener('closeForgetpasswordWindow', function(e) {
 
@@ -68,20 +68,19 @@ Ti.App.addEventListener('openAboutWindow', function() {
 
 Ti.App.addEventListener('openCurrencyWindow', function() {
 	var CurrencyWinModule = require('/ui/common/currencyWin');
-
-	new CurrencyWinModule().open();
+	Ti.App.myTabGroup.getActiveTab().open(new CurrencyWinModule);
 });
 
 Ti.App.addEventListener('openNewsWindow', function() {
 	var WinModule = require('/ui/common/newsWin');
 
-	Ti.App.catalogTab.open(new WinModule());
+	Ti.App.myTabGroup.getActiveTab().open(new WinModule);
 });
 
 Ti.App.addEventListener('openFaqWindow', function() {
 	var WinModule = require('/ui/common/faqWin');
 
-	Ti.App.catalogTab.open(new WinModule());
+	Ti.App.myTabGroup.getActiveTab().open(new WinModule);
 });
 
 Ti.App.addEventListener('openChargeWalletWindow', function() {

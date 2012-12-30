@@ -7,9 +7,11 @@ function Window() {
 		backgroundImage : '/images/bg.jpg',
 		barImage : '/images/Navigation_Bar.jpg',
 		barColor : 'gray',
-		modal : true,
 		layout : 'vertical'
 	});
+
+    Ti.include('/lib/menu.js');
+    menusGenerator(self);
 
 	self.addEventListener('open', function() {
 		nameField.focus();
@@ -77,16 +79,6 @@ function Window() {
 		self.add(submitBtn);
 	} else {
 		self.setRightNavButton(submitBtn);
-
-		closeBtn = Ti.UI.createButton({
-			title : 'اغلاق'
-		});
-
-		closeBtn.addEventListener('click', function() {
-			self.close();
-		});
-
-		self.setLeftNavButton(closeBtn);
 	}
 	submitBtn.addEventListener('click', function() {
 
