@@ -74,28 +74,28 @@ function menusGenerator(self) {
 		//aboutBtn.title = 'You selected ' + e.index;
 		if (auth.isLogedIn() === false) {
 			switch(e.index) {
-				case 5:
+				case 4:
 
 					Ti.App.fireEvent('openLoginWindow');
 					break;
-				case 6:
+				case 5:
 
 					Ti.App.fireEvent('openRegisterWindow');
 					break;
 			}
 		} else {
 			switch(e.index) {
-				case 5:
+				case 4:
 
 					var ProfileWinModule = require('ui/common/auth/profileWin');
 					new ProfileWinModule().open();
 					break;
-				case 6:
+				case 5:
 
 					var PasswordWinModule = require('ui/common/auth/passwordWin');
 					new PasswordWinModule().open();
 					break;
-				case 7:
+				case 6:
 
 					Ti.App.Properties.removeProperty('userID');
 					//Ti.App.fireEvent('cartEmpty');
