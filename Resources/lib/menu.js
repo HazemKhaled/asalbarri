@@ -1,7 +1,7 @@
 function menusGenerator(self) {
 	var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
 
-	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'عروض خاصة', 'رسائل SMS'];
+	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'رسائل SMS'];
 
 	//openAboutWindow
 	if (Ti.Platform.getOsname() === 'android') {
@@ -57,7 +57,7 @@ function menusGenerator(self) {
 	// options dialog
 	optionsDialogOpts = {
 		options : Ti.App.linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
-		cancel : 7,
+		cancel : 6,
 		title : 'اعدادات'
 	};
 
@@ -66,7 +66,7 @@ function menusGenerator(self) {
 	auth = require('/lib/auth');
 	if (auth.isLogedIn() !== false) {
 		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تغير كلمة المرور', 'تسجيل خروج', 'اغلاق']);
-		Ti.App.dialog.destructive = 7;
+		Ti.App.dialog.destructive = 6;
 	}
 
 	// add event listener
@@ -119,10 +119,6 @@ function menusGenerator(self) {
 				Ti.App.fireEvent('openFaqWindow');
 				break;
 			case 3:
-				var OffersListWinModule = require('ui/common/offersListWin');
-				new OffersListWinModule().open();
-				break;
-			case 4:
 				var SMSProWinModule = require('ui/common/SMSProWin');
 				new SMSProWinModule().open();
 				break;
