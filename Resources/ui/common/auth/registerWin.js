@@ -235,17 +235,19 @@ function openRegisterWindow() {
 				return false;
 			}
 
-			try {
-				Ti.UI.createAlertDialog({
-					title : request.msg,
-					cancel : 0,
-					buttonNames : ['موافق']
-				}).show();
-			} catch (e) {
-				Ti.API.log('error', 'server cant not send the msg');
-			}
-			Ti.App.fireEvent('hideLoading');
-			Ti.App.fireEvent('closeRegisterWindow');
+			/*try {
+			 Ti.UI.createAlertDialog({
+			 title : request.msg,
+			 cancel : 0,
+			 buttonNames : ['موافق']
+			 }).show();
+			 } catch (e) {
+			 Ti.API.log('error', 'server cant not send the msg');
+			 }
+			 Ti.App.fireEvent('closeRegisterWindow');*/
+
+			var RegisterSMSWinModule = require('ui/common/auth/registerSMSWin');
+			Ti.App.myTabGroup.getActiveTab().open(new RegisterSMSWinModule(mobileField.getValue()));
 		};
 
 		xhr.open('POST', Ti.App.APIURL + 'authapi/register');
