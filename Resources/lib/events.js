@@ -91,9 +91,19 @@ Ti.App.addEventListener('openChargeWalletWindow', function() {
 });
 
 Ti.App.addEventListener('openCategoryWindow', function(e) {
-	var CategoryWin = require('ui/common/categoryWin');
+	var CategoryWin = require('ui/common/categoryWin'), categoryWin;
 
-	Ti.App.catalogTab.open(new CategoryWin(e.parent));
+	categoryWin = new CategoryWin(e.parent);
+	Ti.App.catalogTab.open(categoryWin);
+
+	Ti.App.addEventListener('closeCategoryWindow', function(e) {
+
+		if (Ti.Platform.getOsname() === 'android') {
+			categoryWin.close();
+		} else {
+			Ti.App.catalogTab.close(categoryWin);
+		}
+	});
 });
 
 Ti.App.addEventListener('openProductListWindow', function(e) {
@@ -111,7 +121,11 @@ Ti.App.addEventListener('openProductWindow', function(e) {
 
 	Ti.App.addEventListener('closeProductWindow', function(e) {
 
-		Ti.App.catalogTab.close(productWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			productWin.close();
+		} else {
+			Ti.App.catalogTab.close(productWin);
+		}
 	});
 });
 
