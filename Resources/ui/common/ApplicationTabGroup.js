@@ -1,6 +1,6 @@
 function ApplicationTabGroup(Window) {
 
-	var CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule, NewsWinModule, FaqWinModule;
+	var CategoryWinModule, CartWinModule, WalletWinModule, MyOrdersWinModule, OffersListWinModule;
 
 	//create module instance
 	Ti.App.myTabGroup = Ti.UI.createTabGroup({
@@ -37,7 +37,7 @@ function ApplicationTabGroup(Window) {
 		window : new CategoryWinModule(0)
 	});
 
-	var OffersListWinModule = require('ui/common/offersListWin');
+	OffersListWinModule = require('ui/common/offersListWin');
 	Ti.App.offersTab = Ti.UI.createTab({
 		title : 'عروض',
 		icon : '/images/icon_6.png',
@@ -55,6 +55,9 @@ function ApplicationTabGroup(Window) {
 	Ti.App.myTabGroup.addEventListener('open', function() {
 		if (!Ti.App.Properties.hasProperty('currencyName')) {
 			Ti.App.fireEvent('openCurrencyWindow');
+		}
+		if (Ti.Platform.osname === "android") {
+			Ti.App.myTabGroup.getActivity().actionBar.title = 'العسل البري';
 		}
 	});
 
