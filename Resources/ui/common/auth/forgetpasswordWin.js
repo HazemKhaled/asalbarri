@@ -42,9 +42,9 @@ function forgetpasswordWin() {
 		text : 'او',
 		top : 15,
 		font : {
-			fontSize : '18dp'
+			fontSize : '22dp'
 		},
-		color : '#000000'
+		color : '#ffffff'
 	}));
 
 	mobileField = Ti.UI.createTextField({
