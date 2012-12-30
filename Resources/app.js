@@ -31,9 +31,7 @@ Ti.include('/lib/events.js');
 var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 var tabGroup = new ApplicationTabGroup();
 
-setTimeout(function() {
-    tabGroup.open()
-}, 500);
+tabGroup.open()
 
 if (Ti.App.Properties.hasProperty('currency') === false) {
     Ti.App.Properties.setInt('currency', 0);
