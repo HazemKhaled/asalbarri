@@ -1,5 +1,5 @@
 function Window() {
-	var self, auth, scrollview, mobileField, addressField, emailField, submitBtn;
+	var self, auth, scrollview, mobileField, addressField, emailField, submitBtn, closeBtn;
 
 	auth = require('/lib/auth');
 
@@ -76,7 +76,7 @@ function Window() {
 		hintText : 'البريد الخاص بك',
 		textAlign : Ti.App.autoAlignHintext(),
 		//autocapitalization : false,
-		returnKeyType : Ti.UI.RETURNKEY_NEXT,
+		returnKeyType : Ti.UI.RETURNKEY_SEND,
 		keyboardType : Ti.UI.KEYBOARD_EMAIL,
 		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
 		height : 33,
