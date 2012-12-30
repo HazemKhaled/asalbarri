@@ -87,11 +87,8 @@ function menusGenerator(self) {
 			switch(e.index) {
 				case 5:
 
-					var userNameMsg = Ti.UI.createAlertDialog({
-						title : 'بيانات المستخدم',
-						message : 'العضو الحالي هو : ' + Ti.App.Properties.getString('userName')
-					});
-					userNameMsg.show();
+					var ProfileWinModule = require('ui/common/auth/profileWin');
+					new ProfileWinModule().open();
 					break;
 				case 6:
 
@@ -121,8 +118,8 @@ function menusGenerator(self) {
 				new OffersListWinModule().open();
 				break;
 			case 4:
-				var OffersListWinModule = require('ui/common/SMSProWin');
-				new OffersListWinModule().open();
+				var SMSProWinModule = require('ui/common/SMSProWin');
+				new SMSProWinModule().open();
 				break;
 		}
 	});
