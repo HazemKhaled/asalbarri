@@ -156,14 +156,15 @@ function forgetpasswordWin() {
 
 			if (request.errors) {
 
-				Ti.UI.createAlertDialog({
-					title : 'خطأ',
-					message : request.errors.login,
-					cancel : 0,
-					buttonNames : ['موافق']
-				}).show();
-
-				return false;
+				for (var i in request.errors) {
+					Ti.UI.createAlertDialog({
+						title : 'خطأ',
+						message : request.errors[i],
+						cancel : 0,
+						buttonNames : ['موافق']
+					}).show();
+					return false;
+				}
 			}
 
 			Ti.UI.createAlertDialog({
@@ -171,8 +172,13 @@ function forgetpasswordWin() {
 				cancel : 0,
 				buttonNames : ['موافق']
 			}).show();
-			Ti.App.fireEvent('hideLoading');
-			Ti.App.fireEvent('closeForgetpasswordWindow');
+
+			if (data.mobile) {
+				var WinModule = require('ui/common/auth/forgetPasswordSMSWin');
+				Ti.App.myTabGroup.getActiveTab().open(new WinModule(mobileField.getValue()));
+			} else {
+				Ti.App.fireEvent('closeForgetpasswordWindow');
+			}
 		};
 
 		xhr.open('POST', Ti.App.APIURL + 'authapi/forgot_password');
