@@ -140,6 +140,7 @@ function forgetpasswordWin() {
 			Ti.App.fireEvent('hideLoading');
 
 			var request, alertMsg;
+
 			try {
 				request = JSON.parse(this.responseText);
 			} catch (e) {
@@ -153,7 +154,7 @@ function forgetpasswordWin() {
 				return false;
 			}
 
-			if (request.errors.login) {
+			if (request.errors) {
 
 				Ti.UI.createAlertDialog({
 					title : 'خطأ',
@@ -165,15 +166,11 @@ function forgetpasswordWin() {
 				return false;
 			}
 
-			try {
-				Ti.UI.createAlertDialog({
-					title : request.msg,
-					cancel : 0,
-					buttonNames : ['موافق']
-				}).show();
-			} catch (e) {
-				Ti.API.log('error', 'server cant not send the msg');
-			}
+			Ti.UI.createAlertDialog({
+				title : request.msg,
+				cancel : 0,
+				buttonNames : ['موافق']
+			}).show();
 			Ti.App.fireEvent('hideLoading');
 			Ti.App.fireEvent('closeForgetpasswordWindow');
 		};

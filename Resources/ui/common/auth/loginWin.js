@@ -21,7 +21,7 @@ function loginWin() {
 	});
 
 	userField = Ti.UI.createTextField({
-		hintText : 'اسم المستخدم',
+		hintText : 'البريد الإلكتروني / رقم الجوال',
 		textAlign : Ti.App.autoAlignHintext(),
 		height : 33,
 		width : '90%',
@@ -142,7 +142,7 @@ function loginWin() {
 				sendSupportEmailDialogEvent = function(ev) {
 					if (ev.index === 0) {
 						var emailDialog = Ti.UI.createEmailDialog({
-							toRecipients : ['support@eshtery.me']
+							toRecipients : ['support@asalbarri.com']
 						});
 						emailDialog.open();
 					}
@@ -179,7 +179,7 @@ function loginWin() {
 							dialog.addEventListener('click', function(ev) {
 								if (ev.index === 1) {
 									var emailDialog = Ti.UI.createEmailDialog({
-										toRecipients : ['support@eshtery.me']
+										toRecipients : ['support@asalbarri.com']
 									});
 									emailDialog.open();
 								}
