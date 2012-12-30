@@ -2,35 +2,15 @@ function offersListWin() {
 
     var self, tableView;
     self = Ti.UI.createWindow({
-        title : 'عروض',
-        hideAboutBtn : true,
+        title : 'عروض خاصة',
         backButtonTitle : 'عودة',
         backgroundImage : '/images/bg.jpg',
         barImage : '/images/Navigation_Bar.jpg',
-        barColor : 'gray',
-        modal : true
+        barColor : 'gray'
     });
 
-    if (Ti.Platform.getOsname() !== 'android') {
-        closeBtn = Ti.UI.createButton({
-            title : 'اغلاق   ',
-            height : 31,
-            width : 67,
-            color : '#000000',
-            font : {
-                fontFamily : 'Arial',
-                fontSize : 14,
-                fontWeight : 'bold'
-            },
-            backgroundImage : '/images/button_back.png'
-        });
-
-        closeBtn.addEventListener('click', function() {
-            self.close();
-        });
-
-        self.setLeftNavButton(closeBtn);
-    }
+    Ti.include('/lib/menu.js');
+    menusGenerator(self);
 
     function filterData() {
 
@@ -246,7 +226,7 @@ function offersListWin() {
 
         if (e.rowData.data) {
 
-            self.close();
+            Ti.App.myTabGroup.setActiveTab(Ti.App.catalogTab);
 
             Ti.App.fireEvent('openProductWindow', {
                 data : e.rowData.data
