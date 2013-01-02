@@ -160,7 +160,7 @@ Ti.App.addEventListener('cartAdd', function(e) {
 	Ti.App.Properties.setObject('cart', cart);
 
 	if (Ti.Platform.getOsname() !== 'android') {
-		Ti.App.cartTab.setBadge(Ti.App.cartQuantityCounter(cart).totalNet.toFixed(2));
+		Ti.App.cartTab.setBadge(Ti.App.cartQuantityCounter(cart).totalNet.toFixed(0));
 	}
 
 	if (Ti.Platform.getOsname() !== 'android') {
