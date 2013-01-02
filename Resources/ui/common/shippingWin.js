@@ -111,7 +111,10 @@ function shippingWin() {
 
 	Ti.App.getHttpRequest('api/agreement', function(html) {
 		self.add(Ti.UI.createWebView({
-			html : '<html><body style="direction: rtl; background: url(/images/bg.jpg) fixed; color: #fff">' + html + '</body></html>'
+			html : '<html><body style="direction: rtl; color: #fff"><div style="width: 100%">' + html + '</div></body></html>',
+			backgroundColor : 'transparent',
+			width : '100%',
+			bottom : 50
 		}));
 	}, function() {
 		self.close();

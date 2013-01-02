@@ -1,144 +1,144 @@
 function couponWin() {
 
-    var self, closeBtn, couponTxt, submitBtn, submitEvent;
+	var self, closeBtn, couponTxt, submitBtn, submitEvent;
 
-    self = Ti.UI.createWindow({
-        title : 'ادخل كوبون',
-        modal : true,
-        backgroundImage : '/images/bg.jpg',
-        barImage : '/images/Navigation_Bar.jpg',
-        barColor : 'gray'
-    });
+	self = Ti.UI.createWindow({
+		title : 'ادخل كوبون',
+		modal : true,
+		backgroundImage : '/images/bg.jpg',
+		barImage : '/images/Navigation_Bar.jpg',
+		barColor : 'gray'
+	});
 
-    if (Ti.Platform.getOsname() !== 'android') {
-        closeBtn = Ti.UI.createButton({
-            title : 'اغلاق   ',
-            height : 31,
-            width : 67,
-            color : '#000000',
-            font : {
-                fontFamily : 'Arial',
-                fontSize : 14,
-                fontWeight : 'bold'
-            },
-            backgroundImage : '/images/button_back.png'
-        });
+	if (Ti.Platform.getOsname() !== 'android') {
+		closeBtn = Ti.UI.createButton({
+			title : 'اغلاق   ',
+			height : 31,
+			width : 67,
+			color : '#000000',
+			font : {
+				fontFamily : 'Arial',
+				fontSize : 14,
+				fontWeight : 'bold'
+			},
+			backgroundImage : '/images/button_back.png'
+		});
 
-        closeBtn.addEventListener('click', function() {
-            self.close();
-        });
+		closeBtn.addEventListener('click', function() {
+			self.close();
+		});
 
-        self.setLeftNavButton(closeBtn);
-    }
+		self.setLeftNavButton(closeBtn);
+	}
 
-    submitEvent = function() {
+	submitEvent = function() {
 
-        if (couponTxt.getValue().length <= 0) {
+		if (couponTxt.getValue().length <= 0) {
 
-            Ti.UI.createAlertDialog({
-                title : 'عفواً',
-                message : 'ادخل رقم بطاقة التخفيض.',
-                buttonNames : ['موافق']
-            }).show();
+			Ti.UI.createAlertDialog({
+				title : 'عفواً',
+				message : 'ادخل رقم بطاقة التخفيض.',
+				buttonNames : ['موافق']
+			}).show();
 
-            return false;
-        }
+			return false;
+		}
 
-        Ti.App.fireEvent('showLoading');
+		Ti.App.fireEvent('showLoading');
 
-        var xhr = Ti.Network.createHTTPClient();
+		var xhr = Ti.Network.createHTTPClient();
 
-        xhr.open('GET', Ti.App.APIURL + 'api/getCouponByCode/' + couponTxt.getValue());
+		xhr.open('GET', Ti.App.APIURL + 'api/getCouponByCode/' + couponTxt.getValue());
 
-        xhr.setOnerror(function() {
+		xhr.onerror = function() {
 
-            Ti.App.fireEvent('hideLoading');
+			Ti.App.fireEvent('hideLoading');
 
-            Ti.UI.createAlertDialog({
-                title : 'خطأ في الاتصال',
-                message : 'حاول مرة اخرى',
-                buttonNames : ['موافق']
-            }).show();
-        });
+			Ti.UI.createAlertDialog({
+				title : 'خطأ في الاتصال',
+				message : 'حاول مرة اخرى',
+				buttonNames : ['موافق']
+			}).show();
+		};
 
-        xhr.setOnload(function() {
+		xhr.onload = function() {
 
-            Ti.App.fireEvent('hideLoading');
+			Ti.App.fireEvent('hideLoading');
 
-            try {
-                var row = JSON.parse(this.responseText);
-            } catch (e) {
+			try {
+				var row = JSON.parse(this.responseText);
+			} catch (e) {
 
-                Ti.UI.createAlertDialog({
-                    title : 'خطأ',
-                    message : 'خطأ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
-                    cancel : 0,
-                    buttonNames : ['اغلاق']
-                }).show();
-                return false;
-            }
+				Ti.UI.createAlertDialog({
+					title : 'خطأ',
+					message : 'خطأ في الآتصال، تاكد من اتصال الانترنت الخاص بك.',
+					cancel : 0,
+					buttonNames : ['اغلاق']
+				}).show();
+				return false;
+			}
 
-            if (row.length === 0) {
+			if (row.length === 0) {
 
-                Ti.UI.createAlertDialog({
-                    title : 'خطأ',
-                    message : 'رقم البطاقة خطأ او انه انتهت صلاحيته.',
-                    buttonNames : ['موافق']
-                }).show();
+				Ti.UI.createAlertDialog({
+					title : 'خطأ',
+					message : 'رقم البطاقة خطأ او انه انتهت صلاحيته.',
+					buttonNames : ['موافق']
+				}).show();
 
-                return false;
-            }
-            //alert(row[0].discount);
-            Ti.App.Properties.setInt('coupon', row[0].discount);
-            Ti.App.Properties.setString('couponCode', couponTxt.getValue());
+				return false;
+			}
+			//alert(row[0].discount);
+			Ti.App.Properties.setInt('coupon', row[0].discount);
+			Ti.App.Properties.setString('couponCode', couponTxt.getValue());
 
-            self.close();
-        });
+			self.close();
+		};
 
-        xhr.send();
-    };
+		xhr.send();
+	};
 
-    couponTxt = Ti.UI.createTextField({
-        hintText : 'كود بطاقة الخصم',
-        textAlign : Ti.App.autoAlignHintext(),
-        height : 33,
-        width : '90%',
-        top : 80,
-        //autocapitalization : false,
-        returnKeyType : Ti.UI.RETURNKEY_DONE,
-        borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        font : {
-            fontSize : '13dp'
-        },
+	couponTxt = Ti.UI.createTextField({
+		hintText : 'كود بطاقة الخصم',
+		textAlign : Ti.App.autoAlignHintext(),
+		height : 33,
+		width : '90%',
+		top : 80,
+		//autocapitalization : false,
+		returnKeyType : Ti.UI.RETURNKEY_DONE,
+		borderStyle : Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+		font : {
+			fontSize : '13dp'
+		},
 		color : '#000000'
-    });
+	});
 
-    self.addEventListener('open', function() {
-        couponTxt.focus();
-    });
-    couponTxt.addEventListener('return', submitEvent);
+	self.addEventListener('open', function() {
+		couponTxt.focus();
+	});
+	couponTxt.addEventListener('return', submitEvent);
 
-    self.add(couponTxt);
+	self.add(couponTxt);
 
-    submitBtn = Ti.UI.createButton({
-        title : 'ارسال'
-    });
+	submitBtn = Ti.UI.createButton({
+		title : 'ارسال'
+	});
 
-    submitBtn.addEventListener('click', submitEvent);
+	submitBtn.addEventListener('click', submitEvent);
 
-    if (Ti.Platform.getOsname() !== 'android') {
-        self.setRightNavButton(submitBtn);
-    } else {
-        submitBtn.top = 120;
-        submitBtn.height = 33;
-        submitBtn.width = '90%';
-        submitBtn.color = '#ffffff';
-        submitBtn.backgroundImage = '/images/button_ok.png';
+	if (Ti.Platform.getOsname() !== 'android') {
+		self.setRightNavButton(submitBtn);
+	} else {
+		submitBtn.top = 120;
+		submitBtn.height = 33;
+		submitBtn.width = '90%';
+		submitBtn.color = '#ffffff';
+		submitBtn.backgroundImage = '/images/button_ok.png';
 
-        self.add(submitBtn);
-    }
+		self.add(submitBtn);
+	}
 
-    return self;
+	return self;
 }
 
 module.exports = couponWin;

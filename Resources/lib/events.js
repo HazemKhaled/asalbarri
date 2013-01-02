@@ -234,7 +234,7 @@ Ti.App.addEventListener('orderRequest', function(e) {
 	});
 
 	xhr.open('POST', Ti.App.APIURL + 'api/AddOrder');
-	xhr.setOnerror(function() {
+	xhr.onerror = function() {
 		Ti.App.fireEvent('hideLoading');
 
 		Ti.UI.createAlertDialog({
@@ -242,9 +242,9 @@ Ti.App.addEventListener('orderRequest', function(e) {
 			message : 'خطا في الاتصال، تاكد من اتصال الانترنت لديك وحاول مرة اخرى',
 			buttonNames : ['موافق']
 		}).show();
-	});
+	};
 
-	xhr.setOnload(function() {
+	xhr.onload = function() {
 		var results, TowcoWinModule;
 		try {
 			results = JSON.parse(this.responseText);
@@ -288,7 +288,7 @@ Ti.App.addEventListener('orderRequest', function(e) {
 				Ti.App.balanceLbl.text = results.balance;
 			});
 		}
-	});
+	};
 
 	xhr.send(orderData);
 
@@ -359,7 +359,7 @@ Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {
 	});
 
 	xhr.open('GET', Ti.App.APIURL + action);
-	xhr.setOnerror(function() {
+	xhr.onerror = function() {
 		Ti.App.fireEvent('hideLoading');
 
 		Ti.UI.createAlertDialog({
@@ -371,9 +371,9 @@ Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {
 		if ( typeof errorCallBack === 'function') {
 			errorCallBack();
 		}
-	});
+	};
 
-	xhr.setOnload(function() {
+	xhr.onload = function() {
 		try {
 			var results = JSON.parse(this.responseText);
 		} catch (e) {
@@ -385,7 +385,7 @@ Ti.App.getHttpRequest = function(action, loadCallBack, errorCallBack) {
 		}
 
 		Ti.App.fireEvent('hideLoading');
-	});
+	};
 
 	xhr.send();
 };

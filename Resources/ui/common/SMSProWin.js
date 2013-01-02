@@ -10,8 +10,8 @@ function Window() {
 		layout : 'vertical'
 	});
 
-    Ti.include('/lib/menu.js');
-    menusGenerator(self);
+	Ti.include('/lib/menu.js');
+	menusGenerator(self);
 
 	self.addEventListener('open', function() {
 		nameField.focus();
@@ -109,7 +109,7 @@ function Window() {
 
 		xhr.open('GET', Ti.App.APIURL + 'api/smspro/');
 
-		xhr.setOnerror(function() {
+		xhr.onerror = function() {
 
 			Ti.App.fireEvent('hideLoading');
 
@@ -118,13 +118,13 @@ function Window() {
 				message : 'حاول مرة اخرى',
 				buttonNames : ['موافق']
 			}).show();
-		});
+		};
 
-		xhr.setOnload(function() {
+		xhr.onload = function() {
 			Ti.App.fireEvent('hideLoading');
 
 			self.close();
-		});
+		};
 
 		xhr.send({
 			smspro_name : nameField.getValue(),

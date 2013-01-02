@@ -32,7 +32,7 @@ function xml_rss() {
                 text : rows[i].question,
                 color : '#fff',
                 font : {
-                    fontSize : 24
+                    fontSize : 18
                 },
                 textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                 height : 50,
