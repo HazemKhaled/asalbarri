@@ -111,10 +111,11 @@ function shippingWin() {
 
 	Ti.App.getHttpRequest('api/agreement', function(html) {
 		self.add(Ti.UI.createWebView({
-			html : '<html><body style="direction: rtl; color: #fff"><div style="width: 100%">' + html + '</div></body></html>',
+			html : '<html><head><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=2.0, user-scalable=no" /></head><body style="direction: rtl; color: #fff"><div style="width: ' + Ti.Platform.getDisplayCaps().getPlatformWidth + 'px">' + html + '</div></body></html>',
 			backgroundColor : 'transparent',
 			width : '100%',
-			bottom : 50
+			bottom : 50,
+			scalesPageToFit : false
 		}));
 	}, function() {
 		self.close();
