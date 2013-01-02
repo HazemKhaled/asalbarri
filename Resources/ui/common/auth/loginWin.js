@@ -1,6 +1,6 @@
 function loginWin() {
 
-	var self, auth = require('/lib/auth'), scrollview, userField, passField, submitBtn, registerBtn, forgetBtn, androidOffset = 0;
+	var self, auth = require('/lib/auth'), scrollview, userField, passField, submitBtn, registerBtn, forgetBtn;
 
 	self = Ti.UI.createWindow({
 		title : 'دخول',
@@ -69,8 +69,6 @@ function loginWin() {
 	});
 
 	if (Ti.Platform.getOsname() === 'android') {
-		androidOffset = 44;
-
 		submitBtn.height = 33;
 		submitBtn.width = '90%';
 		submitBtn.top = 15;
@@ -215,7 +213,7 @@ function loginWin() {
 		title : 'تسجيل جديد',
 		height : 33,
 		width : '90%',
-		top : 15 + androidOffset,
+		top : 15,
 		backgroundImage : '/images/button_ok.png',
 		color : '#ffffff'
 	}));
@@ -225,7 +223,7 @@ function loginWin() {
 		title : 'استرجع كلمة المرور',
 		height : 33,
 		width : '90%',
-		top : 15 + androidOffset,
+		top : 15,
 		backgroundImage : '/images/button_cancel.png',
 		color : '#ffffff'
 	}));
