@@ -72,7 +72,7 @@ function productWin(product) {
 
 	quantityMinusBtn = Ti.UI.createButton({
 		title : '',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+		valueTo : '-',
 		width : 39,
 		height : 24,
 		right : 160,
@@ -83,7 +83,7 @@ function productWin(product) {
 
 	quantityPlusBtn = Ti.UI.createButton({
 		title : '',
-		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+		valueTo : '+',
 		width : 39,
 		height : 24,
 		right : 110,
@@ -135,7 +135,7 @@ function productWin(product) {
 			return false;
 		}
 
-		if (e.source.title === '+') {
+		if (e.source.valueTo === '+') {
 			setQuantityFieldValue(value + 1);
 		} else {
 			setQuantityFieldValue(value - 1);
