@@ -40,7 +40,10 @@ function productWin(product) {
 		opacity : 0.7,
 		backgroundColor : '#111',
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-		color : '#ffffff'
+		color : '#ffffff',
+		font : {
+			fontSize : 15
+		}
 	}));
 
 	titleLbl = Ti.UI.createLabel({
