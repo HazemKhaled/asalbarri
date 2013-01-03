@@ -17,9 +17,9 @@ function productWin(product) {
 		width : 85,
 		height : 85,
 		right : 10,
+		top : 10,
 		borderRadius : 45,
-		defaultImage : '/images/default.png',
-		top : 10
+		defaultImage : '/images/default.png'
 	});
 
 	productImg.addEventListener('click', function() {
@@ -32,6 +32,16 @@ function productWin(product) {
 	});
 
 	mainScroll.add(productImg);
+
+	mainScroll.add(Ti.UI.createLabel({
+		text : (product.price_shown_coupon < product.price ? product.price_shown_coupon : product.price) + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
+		right : 10,
+		top : 75,
+		opacity : 0.7,
+		backgroundColor : '#111',
+		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+		color : '#ffffff'
+	}));
 
 	titleLbl = Ti.UI.createLabel({
 		text : product.title,
@@ -180,15 +190,14 @@ function productWin(product) {
 	descLbl = Ti.UI.createLabel({
 		text : product.desc,
 		textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
-		verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
+		//verticalAlign : Ti.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
 		color : '#000000',
 		top : 140,
-		left : '2%',
-		width : '96%',
+		left : '4%',
+		right : '4%',
+		width : '92%',
 		height : 199,
-		backgroundImage : '/images/textarea_bg.png',
-		paddingLeft : 5,
-		paddingRight : 5
+		backgroundImage : '/images/textarea_bg.png'
 	});
 	mainScroll.add(descLbl);
 
