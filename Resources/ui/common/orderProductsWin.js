@@ -115,7 +115,7 @@ function orderProductsWin(parent) {
                     row.add(priceLbl);
 
                     priceLbl2 = Ti.UI.createLabel({
-                        text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                        text : rows[i].purchases_unit_price + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                         left : 0,
                         right : 190,
                         top : 60,

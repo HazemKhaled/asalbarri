@@ -20,7 +20,7 @@ function productsListWin(parent) {
 
         xhr = Ti.Network.createHTTPClient();
 
-        xhr.open('GET', Ti.App.APIURL + 'api/productsByCatID/' + parent.id + '/' + Ti.App.Properties.getInt('currency', 1));
+        xhr.open('GET', Ti.App.APIURL + 'api/productsByCatID/' + parent.id + '/' + Ti.App.Properties.getInt('currency', 2));
 
         xhr.onerror = function() {
             tableView.fireEvent('reloadData', {
@@ -111,7 +111,7 @@ function productsListWin(parent) {
                         }));
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                            text : Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                             left : 0,
                             bottom : -5,
                             width : 85,
@@ -137,7 +137,7 @@ function productsListWin(parent) {
                         }));
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                            text : Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                             right : 0,
                             bottom : -5,
                             width : 85,
@@ -173,7 +173,7 @@ function productsListWin(parent) {
                         }));
 
                         pricebackground.add(Ti.UI.createLabel({
-                            text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                            text : Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                             left : 0,
                             bottom : -5,
                             width : 85,

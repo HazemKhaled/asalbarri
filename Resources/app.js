@@ -12,7 +12,7 @@
 
 //bootstrap and check dependencies
 if (Ti.version < 1.8) {
-    alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
+	alert('Sorry - this application template requires Titanium Mobile SDK 1.8 or later');
 }
 
 Ti.App.APIURL = 'http://www.asalbarri.com/asal/';
@@ -32,11 +32,6 @@ var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
 var tabGroup = new ApplicationTabGroup();
 
 tabGroup.open()
-
-if (Ti.App.Properties.hasProperty('currency') === false) {
-    Ti.App.Properties.setInt('currency', 0);
-    Ti.App.Properties.setString('currencyName', 'دولار أمريكي');
-}
 
 //Ti.UI.currentTab
 //})();

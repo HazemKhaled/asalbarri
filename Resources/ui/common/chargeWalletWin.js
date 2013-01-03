@@ -30,7 +30,7 @@ function chargeWalletWin() {
 
 		var xhr = Ti.Network.createHTTPClient();
 
-		xhr.open('GET', Ti.App.APIURL + 'api/chargeWallet/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency', 1) + '/' + cardTxt.value);
+		xhr.open('GET', Ti.App.APIURL + 'api/chargeWallet/' + Ti.App.Properties.getInt('userID') + '/' + Ti.App.Properties.getInt('currency', 2) + '/' + cardTxt.value);
 
 		xhr.onerror = function() {
 			Ti.App.fireEvent('hideLoading');
@@ -71,7 +71,7 @@ function chargeWalletWin() {
 				Ti.App.balanceLbl.text = row.balance;
 				dialouge = Ti.UI.createAlertDialog({
 					title : 'تم شحن المحفظة',
-					message : 'رصيدك الآن : ' + row.balance + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+					message : 'رصيدك الآن : ' + row.balance + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
 					cancel : 0,
 					buttonNames : ['موافق']
 				});

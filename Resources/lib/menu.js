@@ -1,7 +1,7 @@
 function menusGenerator(self) {
 	var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
 
-	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'دولار أمريكي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'رسائل SMS'];
+	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'ريال سعودي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'رسائل SMS'];
 
 	//openAboutWindow
 	if (Ti.Platform.getOsname() === 'android') {

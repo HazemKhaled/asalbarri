@@ -213,7 +213,7 @@ function cartWin() {
                 }
 
                 priceLblCurr = Ti.UI.createLabel({
-                    text : Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                    text : Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                     right : 110,
                     width : 80,
                     bottom : 16,
@@ -277,7 +277,7 @@ function cartWin() {
                 rowView2.add(descountlable);
 
                 descount = Ti.UI.createLabel({
-                    text : ' ' + coupon + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                    text : ' ' + coupon + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                     color : '#ffffff',
                     textAlign : Ti.UI.TEXT_ALIGNMENT_RIGHT,
                     font : {
@@ -314,7 +314,7 @@ function cartWin() {
             rowView3.add(totalLable);
 
             totalText = Ti.UI.createLabel({
-                text : ' ' + total.toFixed(2) + ' ' + Ti.App.Properties.getString('currencyName', 'دولار أمريكي'),
+                text : ' ' + total.toFixed(2) + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
                 color : '#ffffff',
                 textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
                 font : {
