@@ -86,7 +86,7 @@ function productsListWin(parent) {
                     });
                     row.add(titleLbl);
 
-                    if (rows[i].price_shown_coupon > 0) {
+                    if (rows[i].price_shown_coupon < rows[i].price) {
 
                         pricebackground = Ti.UI.createView({
                             backgroundImage : '/images/sss.png',

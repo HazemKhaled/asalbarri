@@ -178,7 +178,7 @@ function cartWin() {
                 });
                 rowView.add(pricebackground);
 
-                if (rows[i].price_shown_coupon > 0) {
+                if (rows[i].price_shown_coupon < rows[i].price) {
 
                     priceLbl = Ti.UI.createLabel({
                         text : parseFloat(rows[i].price_shown_coupon).toFixed(2),
