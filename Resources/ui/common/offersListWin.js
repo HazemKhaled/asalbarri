@@ -21,7 +21,7 @@ function offersListWin() {
 
         xhr = Ti.Network.createHTTPClient();
 
-        xhr.open('GET', Ti.App.APIURL + 'api/productsByOffers/2/' + Ti.App.Properties.getInt('currency', 1));
+        xhr.open('GET', Ti.App.APIURL + 'api/productsByOffers/' + Ti.App.Properties.getInt('currency', 1));
 
         xhr.onerror = function() {
             tableView.fireEvent('reloadData', {
