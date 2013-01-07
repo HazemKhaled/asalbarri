@@ -124,6 +124,11 @@ function Window() {
 			Ti.App.fireEvent('hideLoading');
 
 			self.close();
+
+			Ti.UI.createAlertDialog({
+				title : 'تم التسجيل بنجاح',
+				buttonNames : ['موافق']
+			}).show();
 		};
 
 		xhr.send({
