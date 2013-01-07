@@ -199,6 +199,78 @@ Ti.App.addEventListener('openfollowshippingWinndow', function(e) {
 	followshippingWin.open();
 });
 
+Ti.App.addEventListener('updateSystemMenu', function(e) {
+	var linksArray = [Ti.App.Properties.getString('currencyName') + ' (تغيير)', 'اخبارنا', 'س و ج', 'رسائل SMS'];
+
+	if (!Ti.App.dialog) {
+		Ti.App.dialog = Ti.UI.createOptionDialog({
+			options : linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
+			cancel : 6,
+			title : 'اعدادات'
+		});
+
+		// add event listener
+		Ti.App.dialog.addEventListener('click', function(e) {
+			//aboutBtn.title = 'You selected ' + e.index;
+			if (auth.isLogedIn() === false) {
+				switch(e.index) {
+					case 4:
+
+						Ti.App.fireEvent('openLoginWindow');
+						break;
+					case 5:
+
+						Ti.App.fireEvent('openRegisterWindow');
+						break;
+				}
+			} else {
+				switch(e.index) {
+					case 4:
+
+						var ProfileWinModule = require('ui/common/auth/profileWin');
+						Ti.App.myTabGroup.getActiveTab().open(new ProfileWinModule());
+						break;
+					case 5:
+
+						Ti.App.Properties.removeProperty('userID');
+						//Ti.App.fireEvent('cartEmpty');
+						Ti.App.fireEvent('showWalletBeforLogin');
+						Ti.App.fireEvent('showMyordersBeforLogin');
+						Ti.App.fireEvent('closeOrderProductsWindow');
+						Ti.App.fireEvent('updateSystemMenu');
+						break;
+				}
+			}
+
+			switch(e.index) {
+				case 0:
+					Ti.App.fireEvent('openCurrencyWindow');
+					break;
+				case 1:
+					Ti.App.fireEvent('openNewsWindow');
+					break;
+				case 2:
+					Ti.App.fireEvent('openFaqWindow');
+					break;
+				case 3:
+					var SMSProWinModule = require('ui/common/SMSProWin');
+					Ti.App.myTabGroup.getActiveTab().open(new SMSProWinModule());
+					break;
+			}
+		});
+
+	}
+
+	auth = require('/lib/auth');
+	if (auth.isLogedIn() !== false) {
+		Ti.App.dialog.options = linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
+		Ti.App.dialog.destructive = 5;
+	} else {
+		Ti.App.dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
+		Ti.App.dialog.destructive = 99;
+	}
+});
+
 Ti.App.addEventListener('orderRequest', function(e) {
 
 	var auth, orderData, cartProducts, xhr;

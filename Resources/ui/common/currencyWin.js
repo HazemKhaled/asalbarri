@@ -9,8 +9,8 @@ function currencyWin() {
 		barColor : 'gray'
 	});
 
-    Ti.include('/lib/menu.js');
-    menusGenerator(self);
+	Ti.include('/lib/menu.js');
+	menusGenerator(self);
 
 	label = Ti.UI.createLabel();
 	self.add(label);
@@ -93,12 +93,7 @@ function currencyWin() {
 		Ti.App.Properties.setInt('currency', e.row.data.id);
 		Ti.App.Properties.setString('currencyName', e.row.data.title);
 
-		var auth = require('/lib/auth');
-		if (auth.isLogedIn() !== false) {
-			//Ti.App.dialog.setOptions(['تسجيل خروج', 'بيانات المستخدم', Ti.App.Properties.getString('currencyName', 'ريال سعودي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق']);
-		} else {
-			//Ti.App.dialog.setOptions(['تسجيل دخول', 'تسجيل جديد', Ti.App.Properties.getString('currencyName', 'ريال سعودي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'اغلاق']);
-		}
+		Ti.App.fireEvent('updateSystemMenu');
 	});
 	filterData();
 

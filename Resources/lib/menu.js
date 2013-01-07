@@ -1,7 +1,5 @@
 function menusGenerator(self) {
-	var aboutBtn, settingBtn, optionsDialogOpts, dialog, auth;
-
-	Ti.App.linksArray = [Ti.App.Properties.getString('currencyName', 'ريال سعودي') + ' (تغيير)', 'اخبارنا', 'س و ج', 'رسائل SMS'];
+	var aboutBtn, settingBtn, auth;
 
 	//openAboutWindow
 	if (Ti.Platform.getOsname() === 'android') {
@@ -54,69 +52,6 @@ function menusGenerator(self) {
 		self.setRightNavButton(settingBtn);
 	}
 
-	// options dialog
-	optionsDialogOpts = {
-		options : Ti.App.linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
-		cancel : 6,
-		title : 'اعدادات'
-	};
+	Ti.App.fireEvent('updateSystemMenu')
 
-	Ti.App.dialog = Ti.UI.createOptionDialog(optionsDialogOpts);
-
-	auth = require('/lib/auth');
-	if (auth.isLogedIn() !== false) {
-		Ti.App.dialog.options = Ti.App.linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
-		Ti.App.dialog.destructive = 5;
-	}
-
-	// add event listener
-	Ti.App.dialog.addEventListener('click', function(e) {
-		//aboutBtn.title = 'You selected ' + e.index;
-		if (auth.isLogedIn() === false) {
-			switch(e.index) {
-				case 4:
-
-					Ti.App.fireEvent('openLoginWindow');
-					break;
-				case 5:
-
-					Ti.App.fireEvent('openRegisterWindow');
-					break;
-			}
-		} else {
-			switch(e.index) {
-				case 4:
-
-					var ProfileWinModule = require('ui/common/auth/profileWin');
-					Ti.App.myTabGroup.getActiveTab().open(new ProfileWinModule());
-					break;
-				case 5:
-
-					Ti.App.Properties.removeProperty('userID');
-					//Ti.App.fireEvent('cartEmpty');
-					Ti.App.fireEvent('showWalletBeforLogin');
-					Ti.App.fireEvent('showMyordersBeforLogin');
-					Ti.App.fireEvent('closeOrderProductsWindow');
-					Ti.App.dialog.options = Ti.App.linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']);
-					Ti.App.dialog.destructive = 99;
-					break;
-			}
-		}
-
-		switch(e.index) {
-			case 0:
-				Ti.App.fireEvent('openCurrencyWindow');
-				break;
-			case 1:
-				Ti.App.fireEvent('openNewsWindow');
-				break;
-			case 2:
-				Ti.App.fireEvent('openFaqWindow');
-				break;
-			case 3:
-				var SMSProWinModule = require('ui/common/SMSProWin');
-				Ti.App.myTabGroup.getActiveTab().open(new SMSProWinModule());
-				break;
-		}
-	});
 }
