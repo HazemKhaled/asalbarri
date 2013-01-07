@@ -98,7 +98,6 @@ function currencyWin() {
 
 		if (Ti.App.Properties.getInt('currency') != e.row.data.id) {
 			confirmAlert.show();
-			Ti.API.debug('aaa: ', JSON.stringify(e.row.data));
 		}
 
 		confirmAlert.addEventListener('click', function(eAlert) {
