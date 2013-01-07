@@ -208,7 +208,7 @@ function productWin(product) {
 
 		self.activity.onCreateOptionsMenu = function(e) {
 			var shareBtn = e.menu.add({
-				title : 'نشر',
+				title : 'نشر المنتج',
 				icon : '/images/share_icon.png',
 				showAsAction : Ti.Android.SHOW_AS_ACTION_IF_ROOM
 			});
@@ -220,9 +220,10 @@ function productWin(product) {
 					type : 'text/plain'
 				});
 
-				intent.putExtra(Ti.Android.EXTRA_TEXT, product.title);
-				intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.title + "\n\n" + product.desc + "\n\nمزيد من المعلومات:\n http://www.asalbarri.com/asal-product-" + product.id + '.html');
-				activity.startActivity(Ti.Android.createIntentChooser(intent, 'Share'));
+				intent.putExtra(Ti.Android.EXTRA_TITLE, product.title);
+				intent.putExtra(Ti.Android.EXTRA_SUBJECT, product.title);
+				intent.putExtra(Ti.Android.EXTRA_TEXT, product.desc + "\n\nمزيد من المعلومات:\n http://www.asalbarri.com/asal-product-" + product.id + '.html');
+				activity.startActivity(Ti.Android.createIntentChooser(intent, 'نشر المنتج'));
 			});
 		};
 	} else {
