@@ -69,7 +69,7 @@ function forgetpasswordWin() {
 	self.add(mobileField);
 
 	submitBtn = Ti.UI.createButton({
-		title : 'آرسال'
+		title : 'ارسال'
 	});
 
 	submitBtn.addEventListener('click', function() {
