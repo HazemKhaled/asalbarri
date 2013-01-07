@@ -22,7 +22,11 @@ Ti.App.addEventListener('openLoginWindow', function() {
 
 	Ti.App.addEventListener('closeLoginWindow', function(e) {
 
-		Ti.App.catalogTab.close(loginWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			loginWin.close();
+		} else {
+			Ti.App.catalogTab.close(loginWin);
+		}
 	});
 });
 
@@ -40,7 +44,11 @@ Ti.App.addEventListener('openRegisterWindow', function(e) {
 
 	Ti.App.addEventListener('closeRegisterWindow', function(e) {
 
-		Ti.App.catalogTab.close(registerWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			registerWin.close();
+		} else {
+			Ti.App.catalogTab.close(registerWin);
+		}
 	});
 });
 
@@ -54,7 +62,11 @@ Ti.App.addEventListener('openForgetpasswordWindow', function(e) {
 
 	Ti.App.addEventListener('closeForgetpasswordWindow', function(e) {
 
-		Ti.App.catalogTab.close(forgetpasswordWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			forgetpasswordWin.close();
+		} else {
+			Ti.App.catalogTab.close(forgetpasswordWin);
+		}
 	});
 });
 
@@ -137,7 +149,11 @@ Ti.App.addEventListener('openOrderProductsWindow', function(e) {
 
 	Ti.App.addEventListener('closeOrderProductsWindow', function(e) {
 
-		Ti.App.catalogTab.close(orderProductsWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			orderProductsWin.close();
+		} else {
+			Ti.App.catalogTab.close(orderProductsWin);
+		}
 	});
 });
 
@@ -185,7 +201,11 @@ Ti.App.addEventListener('openShippingWindow', function() {
 
 	Ti.App.addEventListener('closeShippingWindow', function(e) {
 
-		Ti.App.cartTab.close(shippingWin);
+		if (Ti.Platform.getOsname() === 'android') {
+			shippingWin.close();
+		} else {
+			Ti.App.catalogTab.close(shippingWin);
+		}
 	});
 
 });
@@ -266,8 +286,7 @@ Ti.App.addEventListener('updateSystemMenu', function(e) {
 		Ti.App.dialog.options = linksArray.concat(['تغير بيناتي', 'تسجيل خروج', 'اغلاق']);
 		Ti.App.dialog.destructive = 5;
 	} else {
-		Ti.App.dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']),
-		Ti.App.dialog.destructive = 99;
+		Ti.App.dialog.options = linksArray.concat(['تسجيل دخول', 'تسجيل جديد', 'اغلاق']), Ti.App.dialog.destructive = 99;
 	}
 });
 
