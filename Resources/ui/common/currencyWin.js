@@ -90,10 +90,27 @@ function currencyWin() {
 		self.add(picker);
 	});
 	picker.addEventListener('change', function(e) {
-		Ti.App.Properties.setInt('currency', e.row.data.id);
-		Ti.App.Properties.setString('currencyName', e.row.data.title);
+		var confirmAlert = Ti.UI.createAlertDialog({
+			title : 'افراغ سلة المشتريات ؟',
+			message : 'سنضتر لافراغ سلة المشتريات في حالة تغير العملة، هل توافق ؟',
+			buttonNames : ['نعم', 'لا']
+		});
 
-		Ti.App.fireEvent('updateSystemMenu');
+		if (Ti.App.Properties.getInt('currency') != e.row.data.id) {
+			confirmAlert.show();
+			Ti.API.debug('aaa: ', JSON.stringify(e.row.data));
+		}
+
+		confirmAlert.addEventListener('click', function(eAlert) {
+			if (eAlert.index === 0) {
+				Ti.App.Properties.setInt('currency', e.row.data.id);
+				Ti.App.Properties.setString('currencyName', e.row.data.title);
+
+				Ti.App.fireEvent('updateSystemMenu');
+
+				Ti.App.fireEvent('cartEmpty');
+			}
+		});
 	});
 	filterData();
 
