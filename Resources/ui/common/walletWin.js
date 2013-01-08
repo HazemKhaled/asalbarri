@@ -17,7 +17,9 @@ function walletWin() {
 			//right : 10,
 			//top : 10,
 			color : '#000000',
-			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER
+			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
+			zIndex : 99,
+			bottom : 10
 		});
 		self.add(loadinLabel);
 
@@ -169,14 +171,16 @@ function walletWin() {
 			self.remove(chargeBtn);
 		}
 	});
+	self.addEventListener('focus', function() {
 
-	if (!auth.isLogedIn()) {
+		if (!auth.isLogedIn()) {
 
-		Ti.App.fireEvent('showWalletBeforLogin');
-	} else {
+			Ti.App.fireEvent('showWalletBeforLogin');
+		} else {
 
-		Ti.App.fireEvent('showWalletAfterLogin');
-	}
+			Ti.App.fireEvent('showWalletAfterLogin');
+		}
+	});
 
 	return self;
 }
