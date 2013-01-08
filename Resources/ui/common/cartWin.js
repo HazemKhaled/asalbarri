@@ -30,7 +30,7 @@ function cartWin() {
 			var nextStepAlert = Ti.UI.createAlertDialog({
 				title : 'هل انت عضو؟',
 				//message : 'التسجيل ليدنا يعطيك المزيد من الامكانيات',
-				buttonNames : ['تسجيل الدخول', 'اكمل الشراء مباشرتاً', 'عودة'],
+				buttonNames : ['تسجيل الدخول', 'اكمل الشراء مباشرةً', 'عودة'],
 				cancel : 2
 			});
 
