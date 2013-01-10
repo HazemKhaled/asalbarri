@@ -224,8 +224,6 @@ function offersListWin() {
 
 		if (e.rowData.data) {
 
-			Ti.App.myTabGroup.setActiveTab(Ti.App.catalogTab);
-
 			Ti.App.fireEvent('openProductWindow', {
 				data : e.rowData.data
 			});

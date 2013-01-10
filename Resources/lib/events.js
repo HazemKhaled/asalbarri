@@ -128,14 +128,14 @@ Ti.App.addEventListener('openProductWindow', function(e) {
 	var ProductWinModule = require('/ui/common/productWin'), productWin;
 
 	productWin = new ProductWinModule(e.data);
-	Ti.App.catalogTab.open(productWin);
+	Ti.App.myTabGroup.getActiveTab().open(productWin);
 
 	Ti.App.addEventListener('closeProductWindow', function(e) {
 
 		if (Ti.Platform.getOsname() === 'android') {
 			productWin.close();
 		} else {
-			Ti.App.catalogTab.close(productWin);
+			Ti.App.myTabGroup.getActiveTab().close(productWin);
 		}
 	});
 });
