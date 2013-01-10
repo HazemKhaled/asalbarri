@@ -8,7 +8,7 @@
         <target device="blackberry">false</target>
     </deployment-targets>
     <sdk-version>3.0.0.GA</sdk-version>
-    <id>com.asalbarri</id>
+    <id>com.hgi.asalbarri</id>
     <name>asalbarri</name>
     <version>2.0</version>
     <publisher>Hazem Khaled</publisher>
