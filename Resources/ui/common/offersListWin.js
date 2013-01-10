@@ -199,11 +199,8 @@ function offersListWin() {
 		xhr.send();
 	}
 
-	var searchBar = Ti.UI.createSearchBar();
-
 	tableView = Ti.UI.createTableView({
 		filterAttribute : 'myTitle',
-		//search : searchBar,
 		backgroundColor : 'transparent',
 		separatorColor : 'transparent'
 	});
@@ -219,7 +216,6 @@ function offersListWin() {
 			title : 'مشكلة تحميل، حاول بعد قليل.',
 			color : '#ffffff'
 		}]);
-		searchBar.blur();
 	});
 
 	self.addEventListener('focus', filterData);
