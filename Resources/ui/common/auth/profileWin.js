@@ -4,7 +4,7 @@ function Window() {
 	auth = require('/lib/auth');
 
 	self = Ti.UI.createWindow({
-		title : 'تسجيل',
+		title : 'تعديل البيانات',
 		backgroundImage : '/images/bg.jpg',
 		barImage : '/images/Navigation_Bar.jpg',
 		barColor : 'gray'

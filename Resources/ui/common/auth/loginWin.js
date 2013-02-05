@@ -21,7 +21,7 @@ function loginWin() {
 	});
 
 	userField = Ti.UI.createTextField({
-		hintText : 'البريد الإلكتروني / رقم الجوال',
+		hintText : 'البريد الإلكتروني / اسم المستخدم',
 		textAlign : Ti.App.autoAlignHintext(),
 		height : 33,
 		width : '90%',
