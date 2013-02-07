@@ -34,7 +34,7 @@ function productWin(product) {
 	mainScroll.add(productImg);
 
 	mainScroll.add(Ti.UI.createLabel({
-		text : (product.price_shown_coupon < product.price ? product.price_shown_coupon : product.price) + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
+		text : (product.price_shown_coupon < product.price ? product.price_shown_coupon.toFixed(2) : product.price.toFixed(2)) + ' ' + Ti.App.Properties.getString('currencyName', 'ريال سعودي'),
 		right : 10,
 		top : 75,
 		opacity : 0.7,
