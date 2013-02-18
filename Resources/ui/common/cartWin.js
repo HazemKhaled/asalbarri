@@ -200,6 +200,7 @@ function cartWin() {
 
 				if (rows[i].price_shown_coupon < rows[i].price) {
 
+					total += parseFloat(rows[i].price_shown_coupon) * parseInt(rows[i].quantity, 10);
 					priceLbl = Ti.UI.createLabel({
 						text : parseFloat(rows[i].price_shown_coupon).toFixed(2),
 						right : 120,
@@ -215,7 +216,7 @@ function cartWin() {
 					});
 					rowView.add(priceLbl);
 				} else {
-
+					total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
 					priceLbl = Ti.UI.createLabel({
 						text : parseFloat(rows[i].price).toFixed(2),
 						right : 120,
@@ -246,7 +247,6 @@ function cartWin() {
 				});
 				rowView.add(priceLblCurr);
 
-				total += parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10);
 				priceRowLbl = Ti.UI.createLabel({
 					text : parseFloat(rows[i].price) * parseInt(rows[i].quantity, 10).toFixed(2),
 					color : '#ffffff',
