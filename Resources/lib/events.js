@@ -169,7 +169,7 @@ Ti.App.addEventListener('cartAdd', function(e) {
 			id : e.productID,
 			title : e.productTitle,
 			quantity : e.quantity,
-			price : e.price,
+			price : e.price < e.price_shown_coupon ? e.price : e.price_shown_coupon,
 			price_shown_coupon : e.price_shown_coupon
 		};
 	}
